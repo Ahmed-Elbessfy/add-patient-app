@@ -1,7 +1,12 @@
 import "./App.css";
+import AddPatientForm from "./features/AddPatientForm/AddPatientForm";
 
 function App() {
-  return <>Hallow World </>;
+  return (
+    <>
+      <AddPatientForm />
+    </>
+  );
 }
 
 export default App;
