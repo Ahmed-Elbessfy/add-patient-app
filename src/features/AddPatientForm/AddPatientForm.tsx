@@ -90,6 +90,7 @@ const AddPatientForm: FC = () => {
           render={({ field }) => (
             <StyledInput
               {...field}
+              title="name"
               placeholder={t("formInputs.nameInput.text")}
               prefix={<UserOutlined />}
             />
@@ -102,6 +103,7 @@ const AddPatientForm: FC = () => {
           control={control}
           render={({ field }) => (
             <StyledInput
+              title="email"
               {...field}
               placeholder={t("formInputs.emailInput.text")}
               prefix={<MailOutlined />}
@@ -116,6 +118,7 @@ const AddPatientForm: FC = () => {
           render={({ field }) => (
             <StyledInput
               {...field}
+              title="age"
               type="number"
               placeholder={t("formInputs.ageInput.text")}
               prefix={<AccountBookOutlined />}
@@ -129,6 +132,7 @@ const AddPatientForm: FC = () => {
           control={control}
           render={({ field }) => (
             <StyledSelect
+              title="gender"
               {...field}
               placeholder={t("formInputs.genderInput.text")}
             >
@@ -151,6 +155,7 @@ const AddPatientForm: FC = () => {
           control={control}
           render={({ field }) => (
             <StyledInput
+              title="phone"
               {...field}
               placeholder={t("formInputs.phoneInput.text")}
               prefix={<PhoneOutlined />}
@@ -165,6 +170,7 @@ const AddPatientForm: FC = () => {
           render={({ field }) => (
             <StyledInput
               {...field}
+              title="country"
               placeholder={t("formInputs.countryInput.text")}
               prefix={<GlobalOutlined />}
             />
@@ -174,7 +180,7 @@ const AddPatientForm: FC = () => {
           {errors?.country && errors.country.message}
         </StyledErrorMsg>
 
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" data-testid="submitBtn">
           {t("formSubmitBtn")}
         </Button>
       </form>
