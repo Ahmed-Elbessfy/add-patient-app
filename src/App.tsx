@@ -13,18 +13,18 @@ function App() {
   return (
     <>
       <ConfigProvider direction={i18n.language == "ar" ? "rtl" : "ltr"}>
-        {/* Switch language  */}
-        <Select
-          defaultValue="en"
-          style={{ width: 100, marginBottom: "1rem" }}
-          placeholder="Select Language"
-          options={[
-            { value: "en", label: "English" },
-            { value: "ar", label: "العربية" },
-          ]}
-          onChange={(lang) => i18n.changeLanguage(lang)}
-        />
         <Suspense fallback={<div>Loading ....</div>}>
+          {/* Switch language  */}
+          <Select
+            defaultValue="en"
+            style={{ width: 100, marginBottom: "1rem" }}
+            placeholder="Select Language"
+            options={[
+              { value: "en", label: "English" },
+              { value: "ar", label: "العربية" },
+            ]}
+            onChange={(lang) => i18n.changeLanguage(lang)}
+          />
           <AddPatientForm />
         </Suspense>
       </ConfigProvider>
