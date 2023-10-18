@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Select } from "antd";
@@ -12,6 +13,7 @@ import {
   ManOutlined,
   WomanOutlined,
 } from "@ant-design/icons";
+import { ADD_PATIENT } from "./addPateintFormGQ";
 import {
   StyledInput,
   StyledSelect,
@@ -33,7 +35,7 @@ const AddPatientForm: FC = () => {
   const telRegex: RegExp =
     /^(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/;
   const emailRegexp: RegExp =
-    /^[A-Za-z0-9]{3,}@[A-Za-z0-9]{3,}\.[A-Za-z0-9]{3,}$/;
+    /^[A-Za-z0-9,-_.]{3,}@[A-Za-z0-9]{3,}\.[A-Za-z0-9]{3,}$/;
 
   // Yup schema to validate inputs values
   const schema = yup.object().shape({
@@ -59,13 +61,21 @@ const AddPatientForm: FC = () => {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
+  // submitting data to server
+  const [createPatient] = useMutation(ADD_PATIENT, { variables: { data: {} } });
   const onSubmit = (data: AddPatientFormInterface) => {
-    console.log(data);
+    createPatient({
+      variables: { key: Math.floor(Math.random() * 10000), ...data },
+    });
+
+    // reset form fields
+    reset();
   };
   return (
     <>
