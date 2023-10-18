@@ -1,0 +1,43 @@
+{
+  "formHeader": "أضف مريض ججديد",
+  "formInputs": {
+    "nameInput": {
+      "text": "Name",
+      "errorText": "برجاء ادخال الأسم"
+    },
+    "emailInput": {
+      "text": "Email",
+      "errorText": {
+        "required": "برجاء ادخال البريد الالكتروني",
+        "validation": "برجاء ادخال البريد الالكتروني صحيح"
+      }
+    },
+    "ageInput": {
+      "text": "العمر",
+      "errorText": {
+        "required": "برجاء ادخال العمر",
+        "validation": "العمر يجب أن يكون رقم صحيح موجب"
+      }
+    },
+    "genderInput": {
+      "text": "اختر النوع",
+      "options": {
+        "male": "ذكر",
+        "female": "أنثى"
+      },
+      "errorText": "برجاء تحديد النوع"
+    },
+    "phoneInput": {
+      "text": "رقم الهاتف",
+      "errorText": {
+        "required": "برجاء ادخال رقم الهاتف",
+        "validation": "برجاء ادخال رقم هاتف مصري"
+      }
+    },
+    "countryInput": {
+      "text": "البلد",
+      "errorText": "برجاء ادخال البلد"
+    }
+  },
+  "formSubmitBtn": "أضف مريض"
+}

@@ -3,6 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useTranslation } from "react-i18next";
 import { Button, Select } from "antd";
 import {
   UserOutlined,
@@ -67,6 +68,7 @@ const AddPatientForm: FC = () => {
     resolver: yupResolver(schema),
   });
 
+  const { t } = useTranslation("lang");
   // submitting data to server
   const [createPatient] = useMutation(ADD_PATIENT, { variables: { data: {} } });
   const onSubmit = (data: AddPatientFormInterface) => {
@@ -79,7 +81,7 @@ const AddPatientForm: FC = () => {
   };
   return (
     <>
-      <h1>Add New Patient</h1>
+      <h1>{t("formHeader")}</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* name input  */}
         <Controller
@@ -88,7 +90,7 @@ const AddPatientForm: FC = () => {
           render={({ field }) => (
             <StyledInput
               {...field}
-              placeholder="Name"
+              placeholder={t("formInputs.nameInput.text")}
               prefix={<UserOutlined />}
             />
           )}
@@ -101,7 +103,7 @@ const AddPatientForm: FC = () => {
           render={({ field }) => (
             <StyledInput
               {...field}
-              placeholder="Email"
+              placeholder={t("formInputs.emailInput.text")}
               prefix={<MailOutlined />}
             />
           )}
@@ -115,7 +117,7 @@ const AddPatientForm: FC = () => {
             <StyledInput
               {...field}
               type="number"
-              placeholder="Age"
+              placeholder={t("formInputs.ageInput.text")}
               prefix={<AccountBookOutlined />}
             />
           )}
@@ -126,13 +128,16 @@ const AddPatientForm: FC = () => {
           name="gender"
           control={control}
           render={({ field }) => (
-            <StyledSelect {...field} placeholder="Gender">
+            <StyledSelect
+              {...field}
+              placeholder={t("formInputs.genderInput.text")}
+            >
               <Select.Option value="male">
-                <ManOutlined /> Male
+                <ManOutlined /> {t("formInputs.genderInput.options.male")}
               </Select.Option>
               <Select.Option value="female">
                 <WomanOutlined />
-                Female
+                {t("formInputs.genderInput.options.female")}
               </Select.Option>
             </StyledSelect>
           )}
@@ -147,7 +152,7 @@ const AddPatientForm: FC = () => {
           render={({ field }) => (
             <StyledInput
               {...field}
-              placeholder="Phone"
+              placeholder={t("formInputs.phoneInput.text")}
               prefix={<PhoneOutlined />}
             />
           )}
@@ -160,7 +165,7 @@ const AddPatientForm: FC = () => {
           render={({ field }) => (
             <StyledInput
               {...field}
-              placeholder="Country"
+              placeholder={t("formInputs.countryInput.text")}
               prefix={<GlobalOutlined />}
             />
           )}
@@ -170,7 +175,7 @@ const AddPatientForm: FC = () => {
         </StyledErrorMsg>
 
         <Button type="primary" htmlType="submit">
-          Submit
+          {t("formSubmitBtn")}
         </Button>
       </form>
     </>
