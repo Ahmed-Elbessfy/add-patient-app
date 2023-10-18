@@ -1,8 +1,12 @@
+import { Suspense } from "react";
+import loadable from "@loadable/component";
 import { ConfigProvider, Select } from "antd";
 import { useTranslation } from "react-i18next";
-import AddPatientForm from "./features/AddPatientForm/AddPatientForm";
 import "./App.css";
 
+const AddPatientForm = loadable(
+  () => import("./features/AddPatientForm/AddPatientForm")
+);
 function App() {
   // configure i18n
   const { i18n } = useTranslation("lang");
@@ -20,7 +24,9 @@ function App() {
           ]}
           onChange={(lang) => i18n.changeLanguage(lang)}
         />
-        <AddPatientForm />
+        <Suspense fallback={<div>Loading ....</div>}>
+          <AddPatientForm />
+        </Suspense>
       </ConfigProvider>
     </>
   );
