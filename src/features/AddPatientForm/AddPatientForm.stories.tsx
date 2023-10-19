@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import AddPatientForm from "../features/AddPatientForm/AddPatientForm";
+import AddPatientForm from "./AddPatientForm";
 
 const meta: Meta<typeof AddPatientForm> = {
   component: AddPatientForm,

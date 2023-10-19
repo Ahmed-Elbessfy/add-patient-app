@@ -2,12 +2,12 @@ import { Suspense } from "react";
 import loadable from "@loadable/component";
 import { ConfigProvider } from "antd";
 import { useTranslation } from "react-i18next";
-import SwitchLangBtn from "./patterns/SwitchLangBtn";
 import "./App.css";
 
 const AddPatientForm = loadable(
   () => import("./features/AddPatientForm/AddPatientForm")
 );
+const SwitchLangBtn = loadable(() => import("./patterns/SwitchLangBtn"));
 function App() {
   // configure i18n
   const { i18n } = useTranslation("lang");

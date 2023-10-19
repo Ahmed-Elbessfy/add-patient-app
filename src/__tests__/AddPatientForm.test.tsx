@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { MockedProvider } from "@apollo/client/testing";
-import { ADD_PATIENT } from "../features/AddPatientForm/addPateintFormGQ";
+import { ADD_PATIENT } from "../features/AddPatientForm/AddPatientForm.gql";
 import AddPatientForm from "../features/AddPatientForm/AddPatientForm";
 
 test("From & its content rendered properly", () => {

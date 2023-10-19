@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import SwitchLangBtn from "../patterns/SwitchLangBtn";
+import SwitchLangBtn from "./SwitchLangBtn";
 
 const meta: Meta<typeof SwitchLangBtn> = {
   component: SwitchLangBtn,

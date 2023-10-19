@@ -1,7 +1,7 @@
 import React from "react";
 import type { Decorator, Preview } from "@storybook/react";
 import { MockedProvider } from "@apollo/client/testing";
-import { ADD_PATIENT } from "../src/features/AddPatientForm/addPateintFormGQ";
+import { ADD_PATIENT } from "../src/features/AddPatientForm/AddPatientForm.gql";
 
 const newPatientData = {
   id: 7,
