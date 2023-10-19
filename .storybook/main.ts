@@ -8,7 +8,6 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
     "storybook-addon-apollo-client",
-
   ],
   framework: {
     name: "@storybook/react-vite",
@@ -16,6 +15,9 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag",
+  },
+  core: {
+    builder: "@storybook/builder-vite", // 👈 The builder enabled here.
   },
 };
 export default config;
