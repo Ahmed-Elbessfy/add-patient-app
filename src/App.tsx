@@ -2,11 +2,10 @@ import { Suspense } from "react";
 import loadable from "@loadable/component";
 import { ConfigProvider } from "antd";
 import { useTranslation } from "react-i18next";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
-const AddPatientForm = loadable(
-  () => import("./features/AddPatientForm/AddPatientForm")
-);
+const AddPatientPage = loadable(() => import("./pages/AddPatientPage"));
 const SwitchLangBtn = loadable(() => import("./patterns/SwitchLangBtn"));
 function App() {
   // configure i18n
@@ -17,7 +16,11 @@ function App() {
         <Suspense fallback={<div>Loading ....</div>}>
           {/* Switch language  */}
           <SwitchLangBtn />
-          <AddPatientForm />
+          <Router>
+            <Routes>
+              <Route path="/add_patient" element={<AddPatientPage />} />
+            </Routes>
+          </Router>
         </Suspense>
       </ConfigProvider>
     </>
