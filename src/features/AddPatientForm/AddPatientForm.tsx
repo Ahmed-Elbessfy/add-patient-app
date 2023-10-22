@@ -51,7 +51,7 @@ const AddPatientForm: FC = () => {
       variables: { key: Math.floor(Math.random() * 10000), ...data },
     });
 
-    // reset form fields
+    // reset form fieAddPatientFormlds
     reset();
   };
   return (
