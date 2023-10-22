@@ -1,5 +1,14 @@
 import * as yup from "yup";
 
+export interface AddPatientFormInterface {
+  name: string;
+  email: string;
+  age: number;
+  gender: string;
+  phone: string;
+  country: string;
+}
+
 const telRegex: RegExp =
   /^(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/;
 const emailRegexp: RegExp =

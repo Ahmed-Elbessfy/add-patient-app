@@ -13,22 +13,13 @@ import {
   ManOutlined,
   WomanOutlined,
 } from "@ant-design/icons";
-import { schema } from "./AddPatientForm.constants";
+import { schema, AddPatientFormInterface } from "./AddPatientForm.constants";
 import { ADD_PATIENT } from "./AddPatientForm.gql";
 import {
   StyledInput,
   StyledSelect,
   StyledErrorMsg,
 } from "./AddPatientForm.styled";
-
-interface AddPatientFormInterface {
-  name: string;
-  email: string;
-  age: number;
-  gender: string;
-  phone: string;
-  country: string;
-}
 
 const AddPatientForm: FC = () => {
   // configure React Hook Form
