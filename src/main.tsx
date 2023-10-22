@@ -5,7 +5,7 @@ import "./index.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import i18next from "./i18n.ts";
 import { I18nextProvider } from "react-i18next";
-import ErrorBoundary from "./patterns/ErrorBoundary.tsx";
+import ErrorBoundary from "./patterns/ErrorBoundaryComp/ErrorBoundary.tsx";
 
 const client = new ApolloClient({
   uri: "http://localhost:3000/graphql",

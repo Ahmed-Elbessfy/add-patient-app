@@ -7,7 +7,7 @@ import "./App.css";
 import PatientsListPage from "./pages/PatientsListPage";
 
 const AddPatientPage = loadable(() => import("./pages/AddPatientPage"));
-const SwitchLangBtn = loadable(() => import("./patterns/SwitchLangBtn"));
+const SwitchLangBtn = loadable(() => import("./patterns/SwitchLangBtn/SwitchLangBtn"));
 function App() {
   // configure i18n
   const { i18n } = useTranslation("lang");
