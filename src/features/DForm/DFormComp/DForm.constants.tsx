@@ -6,12 +6,12 @@ interface DSelectOptionsInterface {
 }
 
 export interface DInputConfigurationInterface {
-  fieldType?: string;
+  fieldType?: string; // optional for select input
   name: string;
   placeholder: string;
   label?: string;
   fieldId: string;
-  multiOptions?: DSelectOptionsInterface[];
+  multiOptions?: DSelectOptionsInterface[]; // for multi options inputs like : Select, Radio, checkbox
   onChangeEvent: (inputName: string, inputValue: string | number) => void;
 }
 
