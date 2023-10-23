@@ -3,6 +3,7 @@ import { Button } from "antd";
 import DTextInput from "../DTextInput/DTextInput";
 import DNumberInput from "../DNumberInput/DNumberInput";
 import DynamicSelectInput from "../DSelectInput/DSelectInput";
+import DTextAreaInput from "../DTextAreaInput/DTextAreaInput";
 import { DFormConfigurationInterface } from "./DForm.constants";
 
 const DynamicForm: FC = () => {
@@ -78,6 +79,14 @@ const DynamicForm: FC = () => {
         ],
         onChangeEvent: handleChange,
       },
+      {
+        fieldType: "textarea",
+        name: "description",
+        fieldId: "description",
+        placeholder: "Description about patient",
+        label: "Description",
+        onChangeEvent: handleChange,
+      },
     ],
     onSubmit: handleSubmit,
   };
@@ -86,6 +95,20 @@ const DynamicForm: FC = () => {
     <form onSubmit={handleSubmit}>
       <h1>Add new patient dynamically</h1>
       {dynamicFormConfig.inputsConfig.map((inputConfig) => {
+        // Text Area Input
+        if (inputConfig.fieldType === "textarea") {
+          return (
+            <DTextAreaInput
+              key={inputConfig.fieldId}
+              name={inputConfig.name}
+              placeholder={inputConfig.placeholder}
+              fieldId={inputConfig.fieldId}
+              label={inputConfig.label}
+              onChangeEvent={inputConfig.onChangeEvent}
+            />
+          );
+        }
+        // Select Input
         if (inputConfig.fieldType === "select") {
           return (
             <DynamicSelectInput
@@ -99,6 +122,7 @@ const DynamicForm: FC = () => {
             />
           );
         }
+        // Number input
         if (inputConfig.fieldType === "number") {
           return (
             <DNumberInput
@@ -113,6 +137,7 @@ const DynamicForm: FC = () => {
           );
         }
         return (
+          // Default Input is the Text input
           <DTextInput
             key={inputConfig.fieldId}
             fieldType={inputConfig.fieldType}
