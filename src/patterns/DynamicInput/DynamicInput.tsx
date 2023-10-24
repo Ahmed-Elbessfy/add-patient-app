@@ -5,6 +5,7 @@ import { DynamicInputConfig } from "./DynamicInput.types";
 import {
   StyledErrorMsg,
   StyledDynamicFormInput,
+  StyledDynamicTextArea,
   StyledDynamicSelectInput,
   StyledLabel,
   StyledDynamicCheckboxInput,
@@ -20,13 +21,24 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
         <StyledLabel htmlFor={id}>{label}</StyledLabel>
       )}
       {/* Text & Number input  */}
-      {!hasOptions && (
+      {!hasOptions && fieldType !== "textarea" && (
         <StyledDynamicFormInput
           type={fieldType}
           name={name}
           placeholder={placeholder}
           id={id}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            onChange(e.target.name, e.target.value)
+          }
+        />
+      )}
+      {/* Textarea input  */}
+      {fieldType === "textarea" && (
+        <StyledDynamicTextArea
+          name={name}
+          placeholder={placeholder}
+          id={id}
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
             onChange(e.target.name, e.target.value)
           }
         />
