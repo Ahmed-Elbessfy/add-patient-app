@@ -1,21 +1,25 @@
 import { ChangeEvent, FC } from "react";
 import { Select } from "antd";
+import { CheckboxValueType } from "antd/es/checkbox/Group";
 import { DynamicInputConfig } from "./DynamicInput.types";
 import {
   StyledErrorMsg,
   StyledDynamicFormInput,
   StyledDynamicSelectInput,
   StyledLabel,
+  StyledDynamicCheckboxInput,
 } from "./DynamicInput.styled";
 
 const DynamicInput: FC<DynamicInputConfig> = (props) => {
   const { fieldType, name, placeholder, label, id, onChange } = props;
-
+  const hasOptions = ["select", "radio", "checkbox"].includes(fieldType);
   return (
     <>
-      {label && <StyledLabel htmlFor={id}>{label}</StyledLabel>}
+      {label && fieldType !== "checkbox" && (
+        <StyledLabel htmlFor={id}>{label}</StyledLabel>
+      )}
       {/* Text & Number input  */}
-      {!["select", "radio", "checkbox"].includes(fieldType) && (
+      {!hasOptions && (
         <StyledDynamicFormInput
           type={fieldType}
           name={name}
@@ -26,7 +30,8 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           }
         />
       )}
-      {props.options && fieldType === "select" && (
+      {/* Select input  */}
+      {fieldType === "select" && (
         <StyledDynamicSelectInput
           placeholder={placeholder}
           id={id}
@@ -41,6 +46,18 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
               );
             })}
         </StyledDynamicSelectInput>
+      )}
+      {/* Checkbox input  */}
+      {fieldType === "checkbox" && (
+        <fieldset>
+          <legend>{label}</legend>
+          <StyledDynamicCheckboxInput
+            options={props.options}
+            onChange={(checkedValues: CheckboxValueType[]) =>
+              onChange(name, checkedValues)
+            }
+          ></StyledDynamicCheckboxInput>
+        </fieldset>
       )}
       {/* Error message  */}
       <StyledErrorMsg></StyledErrorMsg>

@@ -1,14 +1,19 @@
+import { CheckboxValueType } from "antd/es/checkbox/Group";
+
 type Option = {
   label: string;
   value: string;
 };
 
-type OnChange = (name: string, value: string | number) => void;
+type OnChange = (
+  name: string,
+  value: string | number | CheckboxValueType[]
+) => void;
 
 interface DynamicInputConfigBase {
   fieldType: "text" | "number" | "select" | "textarea" | "radio" | "checkbox";
   name: string;
-  placeholder: string;
+  placeholder?: string;
   label?: string;
   id?: string;
   testId?: string;

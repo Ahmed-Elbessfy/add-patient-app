@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import { Input, Select } from "antd";
-
-
-
+import { Input, Select, Checkbox } from "antd";
 
 
 export const StyledLabel = styled.label`
@@ -22,6 +19,12 @@ font-size: 1.1rem;
 width: 100%;
 max-width: 30rem;
 margin:auto;
+`
+
+export const StyledDynamicCheckboxInput = styled(Checkbox.Group)`
+& label{
+  color:white;
+}
 `
 
 export const StyledErrorMsg = styled.p`

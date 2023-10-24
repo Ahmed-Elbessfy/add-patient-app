@@ -1,5 +1,6 @@
 import { FC, FormEvent, useState } from "react";
 import { Button } from "antd";
+import { CheckboxValueType } from "antd/es/checkbox/Group";
 // import DTextInput from "../DForm/DTextInput/DTextInput";
 // import DNumberInput from "../DForm/DNumberInput/DNumberInput";
 // import DynamicSelectInput from "../DForm/DSelectInput/DSelectInput";
@@ -17,8 +18,11 @@ const DynamicForm: FC = () => {
     phone: "",
   });
 
-  const handleChange = (inputName: string, inputValue: string | number) => {
-    setFormData({ ...formData, [inputName]: inputValue });
+  const handleChange = (
+    name: string,
+    value: string | number | CheckboxValueType[]
+  ) => {
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -98,6 +102,18 @@ const DynamicForm: FC = () => {
         options: [
           { value: "yes", label: "Gamer" },
           { value: "no", label: "Not a Gamer" },
+        ],
+        onChange: handleChange,
+      },
+      {
+        fieldType: "checkbox",
+        name: "preferredMeals",
+        id: "preferredMeals",
+        label: "What would you like to eat?",
+        options: [
+          { label: "Apple", value: "Apple" },
+          { label: "Pear", value: "Pear" },
+          { label: "Orange", value: "Orange" },
         ],
         onChange: handleChange,
       },
