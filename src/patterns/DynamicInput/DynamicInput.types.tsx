@@ -20,28 +20,28 @@ interface DynamicInputConfigBase {
   onChange: OnChange;
 }
 
-interface DynamicInputConfigText extends DynamicInputConfigBase {
+export interface DynamicInputConfigText extends DynamicInputConfigBase {
   fieldType: "text";
 }
 
-interface DynamicInputConfigNumber extends DynamicInputConfigBase {
+export interface DynamicInputConfigNumber extends DynamicInputConfigBase {
   fieldType: "number";
 }
 
-interface DynamicInputConfigTextArea extends DynamicInputConfigBase {
+export interface DynamicInputConfigTextArea extends DynamicInputConfigBase {
   fieldType: "textarea";
 }
 
-interface DynamicInputConfigSelect extends DynamicInputConfigBase {
+export interface DynamicInputConfigSelect extends DynamicInputConfigBase {
   fieldType: "select";
   options: Option[];
 }
-interface DynamicInputConfigRadio extends DynamicInputConfigBase {
+export interface DynamicInputConfigRadio extends DynamicInputConfigBase {
   fieldType: "radio";
   options: Option[];
 }
 
-interface DynamicInputConfigCheckbox extends DynamicInputConfigBase {
+export interface DynamicInputConfigCheckbox extends DynamicInputConfigBase {
   fieldType: "checkbox";
   options: Option[];
 }

@@ -2,6 +2,7 @@ import { ChangeEvent, FC } from "react";
 import { RadioChangeEvent, Select } from "antd";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 import { DynamicInputConfig } from "./DynamicInput.types";
+import { IStyledComponent } from "styled-components";
 import {
   StyledErrorMsg,
   StyledDynamicFormInput,
@@ -12,14 +13,32 @@ import {
   StyledDynamicRadioInput,
 } from "./DynamicInput.styled";
 
+type InputComponents = {
+  [key: string]: IStyledComponent<"web">;
+};
+
+const inputComponents: InputComponents = {
+  text: StyledDynamicFormInput,
+  textarea: StyledDynamicTextArea,
+  select: StyledDynamicSelectInput,
+  radio: StyledDynamicRadioInput,
+  checkbox: StyledDynamicCheckboxInput,
+};
+
 const DynamicInput: FC<DynamicInputConfig> = (props) => {
   const { fieldType, name, placeholder, label, id, onChange } = props;
   const hasOptions = ["select", "radio", "checkbox"].includes(fieldType);
+  const renderInput = () => {
+    if (!props.fieldType || !!inputComponents[props.fieldType]) return null;
+    const Component = inputComponents[props.fieldType];
+    return <Component {...props} />;
+  };
   return (
     <>
       {label && fieldType !== "checkbox" && fieldType !== "radio" && (
         <StyledLabel htmlFor={id}>{label}</StyledLabel>
       )}
+      {renderInput()}
       {/* Text & Number input  */}
       {!hasOptions && fieldType !== "textarea" && (
         <StyledDynamicFormInput

@@ -18,14 +18,14 @@ const DynamicForm: FC = () => {
     phone: "",
   });
 
-  const handleChange = (
+  const onChange = (
     name: string,
     value: string | number | CheckboxValueType[]
   ) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log(formData);
@@ -39,7 +39,7 @@ const DynamicForm: FC = () => {
         id: "name",
         placeholder: "Name",
         label: "Name",
-        onChange: handleChange,
+        onChange,
       },
       {
         fieldType: "text",
@@ -47,7 +47,7 @@ const DynamicForm: FC = () => {
         id: "email",
         placeholder: "Email",
         label: "Email",
-        onChange: handleChange,
+        onChange,
       },
       {
         fieldType: "number",
@@ -55,7 +55,7 @@ const DynamicForm: FC = () => {
         id: "age",
         placeholder: "Age",
         label: "Age",
-        onChange: handleChange,
+        onChange,
       },
       {
         fieldType: "text",
@@ -63,7 +63,7 @@ const DynamicForm: FC = () => {
         id: "phone",
         placeholder: "Phone",
         label: "Phone",
-        onChange: handleChange,
+        onChange,
       },
       {
         fieldType: "text",
@@ -71,7 +71,7 @@ const DynamicForm: FC = () => {
         id: "country",
         placeholder: "Country",
         label: "Country",
-        onChange: handleChange,
+        onChange,
       },
       {
         fieldType: "select",
@@ -83,7 +83,7 @@ const DynamicForm: FC = () => {
           { value: "male", label: "Male" },
           { value: "female", label: "Female" },
         ],
-        onChange: handleChange,
+        onChange,
       },
       {
         fieldType: "textarea",
@@ -91,7 +91,7 @@ const DynamicForm: FC = () => {
         id: "description",
         placeholder: "Description about patient",
         label: "Description",
-        onChange: handleChange,
+        onChange,
       },
       {
         fieldType: "radio",
@@ -103,7 +103,7 @@ const DynamicForm: FC = () => {
           { value: "gamer", label: "Gamer" },
           { value: "not_gamer", label: "Not a Gamer" },
         ],
-        onChange: handleChange,
+        onChange,
       },
       {
         fieldType: "checkbox",
@@ -115,14 +115,14 @@ const DynamicForm: FC = () => {
           { label: "Pear", value: "Pear" },
           { label: "Orange", value: "Orange" },
         ],
-        onChange: handleChange,
+        onChange,
       },
     ],
-    onSubmit: handleSubmit,
+    onSubmit,
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSubmit}>
       <h1>Add new patient dynamically</h1>
       {dynamicFormConfig.inputsConfig.map((inputConfig) => {
         return (
