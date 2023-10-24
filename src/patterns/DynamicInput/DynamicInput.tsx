@@ -9,21 +9,13 @@ import {
 } from "./DynamicInput.styled";
 
 const DynamicInput: FC<DynamicInputConfig> = (props) => {
-  const {
-  fieldType,
-  name,
-  placeholder,
-  label,
-  id,
-  onChange,
-} = props
-  const options = ["select", "radio", "checkbox"].includes(fieldType) ? props.options : [];
+  const { fieldType, name, placeholder, label, id, onChange } = props;
 
   return (
     <>
       {label && <StyledLabel htmlFor={id}>{label}</StyledLabel>}
       {/* Text & Number input  */}
-      {!options && (
+      {!["select", "radio", "checkbox"].includes(fieldType) && (
         <StyledDynamicFormInput
           type={fieldType}
           name={name}
@@ -34,45 +26,20 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           }
         />
       )}
-      {options && fieldType === "select" && (
+      {props.options && fieldType === "select" && (
         <StyledDynamicSelectInput
           placeholder={placeholder}
           id={id}
           onChange={(value: string) => onChange(name, value)}
         >
-          {options &&
-            options.map((option, ind) => {
+          {props.options &&
+            props.options.map((option, ind) => {
               return (
                 <Select.Option key={ind} value={option.value}>
                   {option.label}
                 </Select.Option>
               );
             })}
-      {/* {!options && (
-        <StyledDynamicFormInput
-          type={fieldType}
-          name={name}
-          placeholder={placeholder}
-          id={id}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            onChange(e.target.name, e.target.value)
-          }
-        />
-      )}
-      {options && fieldType === "select" && (
-        <StyledDynamicSelectInput
-          placeholder={placeholder}
-          id={id}
-          onChange={(value: string) => onChange(name, value)}
-        >
-          {options &&
-            options.map((option, ind) => {
-              return (
-                <Select.Option key={ind} value={option.value}>
-                  {option.label}
-                </Select.Option>
-              );
-            })} */}
         </StyledDynamicSelectInput>
       )}
       {/* Error message  */}
