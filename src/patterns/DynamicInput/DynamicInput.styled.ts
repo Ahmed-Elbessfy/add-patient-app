@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Input, Select, Radio, Checkbox } from "antd";
+import { Input, Select, Radio, Checkbox, InputNumber } from "antd";
 const {TextArea} = Input
 
 export const StyledLabel = styled.label`
@@ -7,9 +7,17 @@ export const StyledLabel = styled.label`
   margin-right: .5rem
   `
 
-export const StyledDynamicFormInput = styled(Input)`
+export const StyledDynamicTextInput = styled(Input)`
   font-size: 1.1rem;
   padding: .3rem .7rem;
+  max-width: 30rem;
+  margin:auto;
+`
+
+export const StyledDynamicNumberInput = styled(InputNumber)`
+  font-size: 1.1rem;
+  padding: .3rem .7rem;
+  width: 100%;
   max-width: 30rem;
   margin:auto;
 `

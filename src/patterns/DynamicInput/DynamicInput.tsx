@@ -1,11 +1,14 @@
-import { ChangeEvent, FC } from "react";
-import { RadioChangeEvent, Select } from "antd";
-import { CheckboxValueType } from "antd/es/checkbox/Group";
-import { DynamicInputConfig } from "./DynamicInput.types";
+import { FC, ReactElement } from "react";
+// import { RadioChangeEvent, Select } from "antd";
+// import { CheckboxValueType } from "antd/es/checkbox/Group";
 import { IStyledComponent } from "styled-components";
+import DynamicTextInput from "../DynamicTextInput/DynamicTextInput";
+
+import { DynamicInputConfig } from "./DynamicInput.types";
 import {
   StyledErrorMsg,
-  StyledDynamicFormInput,
+  StyledDynamicTextInput,
+  StyledDynamicNumberInput,
   StyledDynamicTextArea,
   StyledDynamicSelectInput,
   StyledLabel,
@@ -17,8 +20,9 @@ type InputComponents = {
   [key: string]: IStyledComponent<"web">;
 };
 
-const inputComponents: InputComponents = {
-  text: StyledDynamicFormInput,
+const inputComponents: FC<DynamicInputConfig> = {
+  text: DynamicTextInput,
+  number: StyledDynamicNumberInput,
   textarea: StyledDynamicTextArea,
   select: StyledDynamicSelectInput,
   radio: StyledDynamicRadioInput,
@@ -26,11 +30,14 @@ const inputComponents: InputComponents = {
 };
 
 const DynamicInput: FC<DynamicInputConfig> = (props) => {
-  const { fieldType, name, placeholder, label, id, onChange } = props;
-  const hasOptions = ["select", "radio", "checkbox"].includes(fieldType);
+  const { fieldType, label, id } = props;
+  // const hasOptions = ["select", "radio", "checkbox"].includes(fieldType);
   const renderInput = () => {
-    if (!props.fieldType || !!inputComponents[props.fieldType]) return null;
+    console.log("rendercomp ");
+    console.log(props.fieldType);
+    if (!props.fieldType || !inputComponents[props.fieldType]) return null;
     const Component = inputComponents[props.fieldType];
+    console.log(<Component {...props} />);
     return <Component {...props} />;
   };
   return (
@@ -40,8 +47,8 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
       )}
       {renderInput()}
       {/* Text & Number input  */}
-      {!hasOptions && fieldType !== "textarea" && (
-        <StyledDynamicFormInput
+      {/* {!hasOptions && fieldType !== "textarea" && (
+        <StyledDynamicTextInput
           type={fieldType}
           name={name}
           placeholder={placeholder}
@@ -50,9 +57,9 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
             onChange(e.target.name, e.target.value)
           }
         />
-      )}
+      )} */}
       {/* Textarea input  */}
-      {fieldType === "textarea" && (
+      {/* {fieldType === "textarea" && (
         <StyledDynamicTextArea
           name={name}
           placeholder={placeholder}
@@ -61,9 +68,9 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
             onChange(e.target.name, e.target.value)
           }
         />
-      )}
+      )} */}
       {/* Select input  */}
-      {fieldType === "select" && (
+      {/* {fieldType === "select" && (
         <StyledDynamicSelectInput
           placeholder={placeholder}
           id={id}
@@ -78,9 +85,9 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
               );
             })}
         </StyledDynamicSelectInput>
-      )}
+      )} */}
       {/* Checkbox input  */}
-      {fieldType === "radio" && (
+      {/* {fieldType === "radio" && (
         <fieldset>
           <legend>{label}</legend>
           <StyledDynamicRadioInput
@@ -91,9 +98,9 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
             }
           ></StyledDynamicRadioInput>
         </fieldset>
-      )}
+      )} */}
       {/* Checkbox input  */}
-      {fieldType === "checkbox" && (
+      {/* {fieldType === "checkbox" && (
         <fieldset>
           <legend>{label}</legend>
           <StyledDynamicCheckboxInput
@@ -103,7 +110,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
             }
           ></StyledDynamicCheckboxInput>
         </fieldset>
-      )}
+      )} */}
       {/* Error message  */}
       <StyledErrorMsg></StyledErrorMsg>
     </>
