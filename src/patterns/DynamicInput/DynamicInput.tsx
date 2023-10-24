@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from "react";
-import { Select } from "antd";
+import { RadioChangeEvent, Select } from "antd";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 import { DynamicInputConfig } from "./DynamicInput.types";
 import {
@@ -8,6 +8,7 @@ import {
   StyledDynamicSelectInput,
   StyledLabel,
   StyledDynamicCheckboxInput,
+  StyledDynamicRadioInput,
 } from "./DynamicInput.styled";
 
 const DynamicInput: FC<DynamicInputConfig> = (props) => {
@@ -15,7 +16,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
   const hasOptions = ["select", "radio", "checkbox"].includes(fieldType);
   return (
     <>
-      {label && fieldType !== "checkbox" && (
+      {label && fieldType !== "checkbox" && fieldType !== "radio" && (
         <StyledLabel htmlFor={id}>{label}</StyledLabel>
       )}
       {/* Text & Number input  */}
@@ -46,6 +47,19 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
               );
             })}
         </StyledDynamicSelectInput>
+      )}
+      {/* Checkbox input  */}
+      {fieldType === "radio" && (
+        <fieldset>
+          <legend>{label}</legend>
+          <StyledDynamicRadioInput
+            name={name}
+            options={props.options}
+            onChange={({ target: { value } }: RadioChangeEvent) =>
+              onChange(name, value)
+            }
+          ></StyledDynamicRadioInput>
+        </fieldset>
       )}
       {/* Checkbox input  */}
       {fieldType === "checkbox" && (

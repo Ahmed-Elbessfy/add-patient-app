@@ -100,8 +100,8 @@ const DynamicForm: FC = () => {
         placeholder: "A Gamer or not?",
         label: "Gamer Status",
         options: [
-          { value: "yes", label: "Gamer" },
-          { value: "no", label: "Not a Gamer" },
+          { value: "gamer", label: "Gamer" },
+          { value: "not_gamer", label: "Not a Gamer" },
         ],
         onChange: handleChange,
       },
