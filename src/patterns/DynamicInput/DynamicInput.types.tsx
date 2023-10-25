@@ -20,7 +20,8 @@ interface DynamicInputConfigBase {
     | "checkbox"
     | "datePicker"
     | "rangePicker"
-    | "switch";
+    | "switch"
+    | "slider";
   name: string;
   placeholder?: string;
   label?: string;
@@ -73,6 +74,10 @@ export interface DynamicInputConfigSwitch extends DynamicInputConfigBase {
   fieldType: "switch";
 }
 
+export interface DynamicInputConfigSlider extends DynamicInputConfigBase {
+  fieldType: "slider";
+}
+
 export type DynamicInputConfig =
   | DynamicInputConfigText
   | DynamicInputConfigTextArea
@@ -82,7 +87,8 @@ export type DynamicInputConfig =
   | DynamicInputConfigCheckbox
   | DynamicInputConfigDatePicker
   | DynamicInputConfigRangePicker
-  | DynamicInputConfigSwitch;
+  | DynamicInputConfigSwitch
+  | DynamicInputConfigSlider;
 
 // Types Approach
 // type DynamicTextInputConfig = {

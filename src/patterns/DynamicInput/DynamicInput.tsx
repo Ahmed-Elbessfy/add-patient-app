@@ -15,6 +15,7 @@ import {
   StyledDynamicCheckboxInput,
   StyledDynamicRadioInput,
   StyledDynamicSwitchInput,
+  StyledDynamicSliderInput,
 } from "./DynamicInput.styled";
 
 const { RangePicker } = DatePicker;
@@ -151,6 +152,12 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
       {fieldType === "switch" && (
         <StyledDynamicSwitchInput
           onChange={(checked: boolean) => onChange(name, checked)}
+        />
+      )}
+      {/* Switch Input  */}
+      {fieldType === "slider" && (
+        <StyledDynamicSliderInput
+          onChange={(value: number) => onChange(name, value)}
         />
       )}
       {/* Error message  */}

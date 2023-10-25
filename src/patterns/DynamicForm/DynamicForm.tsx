@@ -142,6 +142,13 @@ const DynamicForm: FC = () => {
         label: "Available",
         onChange,
       },
+      {
+        fieldType: "slider",
+        name: "how_much",
+        id: "slider",
+        label: "How much",
+        onChange,
+      },
     ],
     onSubmit,
   };
