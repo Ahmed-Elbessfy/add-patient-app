@@ -16,6 +16,7 @@ import {
   StyledDynamicRadioInput,
   StyledDynamicSwitchInput,
   StyledDynamicSliderInput,
+  StyledDynamicRateInput,
 } from "./DynamicInput.styled";
 
 const { RangePicker } = DatePicker;
@@ -157,6 +158,13 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
       {/* Switch Input  */}
       {fieldType === "slider" && (
         <StyledDynamicSliderInput
+          onChange={(value: number) => onChange(name, value)}
+        />
+      )}
+      {/* Rate Input  */}
+      {fieldType === "rate" && (
+        <StyledDynamicRateInput
+          allowHalf={props.allowHalfRate}
           onChange={(value: number) => onChange(name, value)}
         />
       )}

@@ -21,7 +21,8 @@ interface DynamicInputConfigBase {
     | "datePicker"
     | "rangePicker"
     | "switch"
-    | "slider";
+    | "slider"
+    | "rate";
   name: string;
   placeholder?: string;
   label?: string;
@@ -78,6 +79,11 @@ export interface DynamicInputConfigSlider extends DynamicInputConfigBase {
   fieldType: "slider";
 }
 
+export interface DynamicInputConfigRate extends DynamicInputConfigBase {
+  fieldType: "rate";
+  allowHalfRate: boolean;
+}
+
 export type DynamicInputConfig =
   | DynamicInputConfigText
   | DynamicInputConfigTextArea
@@ -88,7 +94,8 @@ export type DynamicInputConfig =
   | DynamicInputConfigDatePicker
   | DynamicInputConfigRangePicker
   | DynamicInputConfigSwitch
-  | DynamicInputConfigSlider;
+  | DynamicInputConfigSlider
+  | DynamicInputConfigRate;
 
 // Types Approach
 // type DynamicTextInputConfig = {

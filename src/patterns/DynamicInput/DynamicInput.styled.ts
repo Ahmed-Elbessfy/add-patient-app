@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Input, Select, Radio, Checkbox, Switch, Slider } from "antd";
+import { Input, Select, Radio, Checkbox, Switch, Slider, Rate } from "antd";
 const {TextArea} = Input
 
 export const StyledLabel = styled.label`
@@ -56,6 +56,12 @@ export const StyledDynamicSwitchInput = styled(Switch)`
 export const StyledDynamicSliderInput = styled(Slider)`
   border: 2px solid rgba(255,255,255, 0.5);
   border-radius: 10px;
+`
+
+export const StyledDynamicRateInput = styled(Rate)`
+  .ant-rate-star.ant-rate-star-zero .ant-rate-star-first, .ant-rate-star.ant-rate-star-zero .ant-rate-star-second{
+    color:white
+  }
 `
 
 export const StyledErrorMsg = styled.p`

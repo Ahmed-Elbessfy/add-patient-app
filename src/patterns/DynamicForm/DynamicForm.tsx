@@ -149,6 +149,14 @@ const DynamicForm: FC = () => {
         label: "How much",
         onChange,
       },
+      {
+        fieldType: "rate",
+        name: "rate",
+        id: "rate",
+        label: "Rate service",
+        allowHalfRate: true,
+        onChange,
+      },
     ],
     onSubmit,
   };
