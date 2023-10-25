@@ -1,8 +1,7 @@
-import { FC, ReactElement } from "react";
-// import { RadioChangeEvent, Select } from "antd";
-// import { CheckboxValueType } from "antd/es/checkbox/Group";
-import { IStyledComponent } from "styled-components";
-import DynamicTextInput from "../DynamicTextInput/DynamicTextInput";
+import { FC, ChangeEvent } from "react";
+import { RadioChangeEvent, Select } from "antd";
+import { CheckboxValueType } from "antd/es/checkbox/Group";
+// import { IStyledComponent } from "styled-components";
 
 import { DynamicInputConfig } from "./DynamicInput.types";
 import {
@@ -16,38 +15,38 @@ import {
   StyledDynamicRadioInput,
 } from "./DynamicInput.styled";
 
-type InputComponents = {
-  [key: string]: IStyledComponent<"web">;
-};
+// type InputComponents = {
+//   [key: string]: IStyledComponent<"web">;
+// };
 
-const inputComponents: FC<DynamicInputConfig> = {
-  text: DynamicTextInput,
-  number: StyledDynamicNumberInput,
-  textarea: StyledDynamicTextArea,
-  select: StyledDynamicSelectInput,
-  radio: StyledDynamicRadioInput,
-  checkbox: StyledDynamicCheckboxInput,
-};
+// const inputComponents: InputComponents = {
+//   text: StyledDynamicTextInput,
+//   number: StyledDynamicNumberInput,
+//   textarea: StyledDynamicTextArea,
+//   select: StyledDynamicSelectInput,
+//   radio: StyledDynamicRadioInput,
+//   checkbox: StyledDynamicCheckboxInput,
+// };
 
 const DynamicInput: FC<DynamicInputConfig> = (props) => {
-  const { fieldType, label, id } = props;
+  const { fieldType, label, id, name, placeholder, onChange } = props;
   // const hasOptions = ["select", "radio", "checkbox"].includes(fieldType);
-  const renderInput = () => {
-    console.log("rendercomp ");
-    console.log(props.fieldType);
-    if (!props.fieldType || !inputComponents[props.fieldType]) return null;
-    const Component = inputComponents[props.fieldType];
-    console.log(<Component {...props} />);
-    return <Component {...props} />;
-  };
+  // const renderInput = () => {
+  //   console.log("rendercomp ");
+  //   console.log(props.fieldType);
+  //   if (!props.fieldType || !inputComponents[props.fieldType]) return null;
+  //   const Component = inputComponents[props.fieldType];
+  //   console.log(<Component {...props} />);
+  //   return <Component {...props} />;
+  // };
   return (
     <>
       {label && fieldType !== "checkbox" && fieldType !== "radio" && (
         <StyledLabel htmlFor={id}>{label}</StyledLabel>
       )}
-      {renderInput()}
+      {/* {renderInput()} */}
       {/* Text & Number input  */}
-      {/* {!hasOptions && fieldType !== "textarea" && (
+      {fieldType === "text" && (
         <StyledDynamicTextInput
           type={fieldType}
           name={name}
@@ -57,9 +56,21 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
             onChange(e.target.name, e.target.value)
           }
         />
-      )} */}
+      )}
+      {/* Number input  */}
+      {fieldType === "number" && (
+        <StyledDynamicNumberInput
+          type={fieldType}
+          name={name}
+          placeholder={placeholder}
+          id={id}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            onChange(e.target.name, e.target.value)
+          }
+        />
+      )}
       {/* Textarea input  */}
-      {/* {fieldType === "textarea" && (
+      {fieldType === "textarea" && (
         <StyledDynamicTextArea
           name={name}
           placeholder={placeholder}
@@ -68,9 +79,9 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
             onChange(e.target.name, e.target.value)
           }
         />
-      )} */}
+      )}
       {/* Select input  */}
-      {/* {fieldType === "select" && (
+      {fieldType === "select" && (
         <StyledDynamicSelectInput
           placeholder={placeholder}
           id={id}
@@ -85,9 +96,9 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
               );
             })}
         </StyledDynamicSelectInput>
-      )} */}
+      )}
       {/* Checkbox input  */}
-      {/* {fieldType === "radio" && (
+      {fieldType === "radio" && (
         <fieldset>
           <legend>{label}</legend>
           <StyledDynamicRadioInput
@@ -98,9 +109,9 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
             }
           ></StyledDynamicRadioInput>
         </fieldset>
-      )} */}
+      )}
       {/* Checkbox input  */}
-      {/* {fieldType === "checkbox" && (
+      {fieldType === "checkbox" && (
         <fieldset>
           <legend>{label}</legend>
           <StyledDynamicCheckboxInput
@@ -110,7 +121,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
             }
           ></StyledDynamicCheckboxInput>
         </fieldset>
-      )} */}
+      )}
       {/* Error message  */}
       <StyledErrorMsg></StyledErrorMsg>
     </>
