@@ -1,5 +1,6 @@
 import { FC, ChangeEvent } from "react";
-import { RadioChangeEvent, Select } from "antd";
+import { DatePicker, RadioChangeEvent, Select } from "antd";
+import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 // import { IStyledComponent } from "styled-components";
 
@@ -14,6 +15,8 @@ import {
   StyledDynamicCheckboxInput,
   StyledDynamicRadioInput,
 } from "./DynamicInput.styled";
+
+const { RangePicker } = DatePicker;
 
 // type InputComponents = {
 //   [key: string]: IStyledComponent<"web">;
@@ -30,7 +33,6 @@ import {
 
 const DynamicInput: FC<DynamicInputConfig> = (props) => {
   const { fieldType, label, id, name, placeholder, onChange } = props;
-  // const hasOptions = ["select", "radio", "checkbox"].includes(fieldType);
   // const renderInput = () => {
   //   console.log("rendercomp ");
   //   console.log(props.fieldType);
@@ -121,6 +123,27 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
             }
           ></StyledDynamicCheckboxInput>
         </fieldset>
+      )}
+      {/* Date Picker  */}
+      {fieldType === "datePicker" && (
+        <DatePicker
+          format={props.format}
+          showTime={props.showTime}
+          onChange={(
+            value: DatePickerProps["value"] | RangePickerProps["value"],
+            dateString: [string, string] | string
+          ) => onChange(name, dateString)}
+        />
+      )}
+      {fieldType === "rangePicker" && (
+        <RangePicker
+          format={props.format}
+          showTime={props.showTime}
+          onChange={(
+            value: DatePickerProps["value"] | RangePickerProps["value"],
+            dateString: [string, string] | string
+          ) => onChange(name, dateString)}
+        />
       )}
       {/* Error message  */}
       <StyledErrorMsg></StyledErrorMsg>

@@ -11,7 +11,15 @@ type OnChange = (
 ) => void;
 
 interface DynamicInputConfigBase {
-  fieldType: "text" | "number" | "select" | "textarea" | "radio" | "checkbox";
+  fieldType:
+    | "text"
+    | "number"
+    | "select"
+    | "textarea"
+    | "radio"
+    | "checkbox"
+    | "datePicker"
+    | "rangePicker";
   name: string;
   placeholder?: string;
   label?: string;
@@ -46,13 +54,29 @@ export interface DynamicInputConfigCheckbox extends DynamicInputConfigBase {
   options: Option[];
 }
 
+interface DynamicInputConfigDateInputs extends DynamicInputConfigBase {
+  showTime: boolean;
+  format: string;
+}
+export interface DynamicInputConfigDatePicker
+  extends DynamicInputConfigDateInputs {
+  fieldType: "datePicker";
+}
+
+export interface DynamicInputConfigrangePicker
+  extends DynamicInputConfigDateInputs {
+  fieldType: "rangePicker";
+}
+
 export type DynamicInputConfig =
   | DynamicInputConfigText
   | DynamicInputConfigTextArea
   | DynamicInputConfigNumber
   | DynamicInputConfigSelect
   | DynamicInputConfigRadio
-  | DynamicInputConfigCheckbox;
+  | DynamicInputConfigCheckbox
+  | DynamicInputConfigDatePicker
+  | DynamicInputConfigrangePicker;
 
 // Types Approach
 // type DynamicTextInputConfig = {
