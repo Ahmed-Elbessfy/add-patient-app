@@ -132,6 +132,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
         <DatePicker
           format={props.format}
           showTime={props.showTime}
+          placeholder={placeholder}
           onChange={(
             value: DatePickerProps["value"] | RangePickerProps["value"],
             dateString: [string, string] | string
@@ -143,6 +144,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
         <RangePicker
           format={props.format}
           showTime={props.showTime}
+          placeholder={placeholder}
           onChange={(
             value: DatePickerProps["value"] | RangePickerProps["value"],
             dateString: [string, string] | string

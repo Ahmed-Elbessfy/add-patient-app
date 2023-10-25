@@ -4,6 +4,7 @@ import { CheckboxValueType } from "antd/es/checkbox/Group";
 
 import DynamicForm from "../patterns/DynamicForm/DynamicForm";
 import { DynamicFormConfiguration } from "../patterns/DynamicForm/DynamicForm.types";
+import { useTranslation } from "react-i18next";
 
 const AddPatientPage: FC = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,10 @@ const AddPatientPage: FC = () => {
     phone: "",
   });
 
+  // dynamic form translation configurations
+  const { t } = useTranslation("lang");
+
+  // Dynamic Form Configuration
   const onChange = (
     name: string,
     value: string | number | CheckboxValueType[] | boolean
@@ -26,78 +31,91 @@ const AddPatientPage: FC = () => {
 
     console.log(formData);
   };
+
   const formConfig: DynamicFormConfiguration = {
-    heading: "Add new patient dynamically",
+    heading: `${t("formHeader")}`,
     inputsConfig: [
       {
         fieldType: "text",
         name: "name",
         id: "name",
-        placeholder: "Name",
-        label: "Name",
+        placeholder: `${t("formInputs.nameInput.text")}`,
+        label: `${t("formInputs.nameInput.text")}`,
         onChange,
       },
       {
         fieldType: "text",
         name: "email",
         id: "email",
-        placeholder: "Email",
-        label: "Email",
+        placeholder: `${t("formInputs.emailInput.text")}`,
+        label: `${t("formInputs.emailInput.text")}`,
         onChange,
       },
       {
         fieldType: "number",
         name: "age",
         id: "age",
-        placeholder: "Age",
-        label: "Age",
-        onChange,
-      },
-      {
-        fieldType: "text",
-        name: "phone",
-        id: "phone",
-        placeholder: "Phone",
-        label: "Phone",
-        onChange,
-      },
-      {
-        fieldType: "text",
-        name: "country",
-        id: "country",
-        placeholder: "Country",
-        label: "Country",
+        placeholder: `${t("formInputs.ageInput.text")}`,
+        label: `${t("formInputs.ageInput.text")}`,
         onChange,
       },
       {
         fieldType: "select",
         name: "gender",
         id: "gender",
-        placeholder: "Gender",
-        label: "Gender",
+        placeholder: `${t("formInputs.genderInput.text")}`,
+        label: `${t("formInputs.genderInput.text")}`,
         options: [
-          { value: "male", label: "Male" },
-          { value: "female", label: "Female" },
+          {
+            value: "male",
+            label: `${t("formInputs.genderInput.options.male")}`,
+          },
+          {
+            value: "female",
+            label: `${t("formInputs.genderInput.options.female")}`,
+          },
         ],
+        onChange,
+      },
+      {
+        fieldType: "text",
+        name: "phone",
+        id: "phone",
+        placeholder: `${t("formInputs.phoneInput.text")}`,
+        label: `${t("formInputs.phoneInput.text")}`,
+        onChange,
+      },
+      {
+        fieldType: "text",
+        name: "country",
+        id: "country",
+        placeholder: `${t("formInputs.countryInput.text")}`,
+        label: `${t("formInputs.countryInput.text")}`,
         onChange,
       },
       {
         fieldType: "textarea",
         name: "description",
         id: "description",
-        placeholder: "Description about patient",
-        label: "Description",
+        placeholder: `${t("formInputs.descriptionInput.text")}`,
+        label: `${t("formInputs.descriptionInput.text")}`,
         onChange,
       },
       {
         fieldType: "radio",
         name: "gamer",
         id: "gamer",
-        placeholder: "A Gamer or not?",
-        label: "Gamer Status",
+        placeholder: `${t("formInputs.gamerRadioInput.text")}`,
+        label: `${t("formInputs.gamerRadioInput.text")}`,
         options: [
-          { value: "gamer", label: "Gamer" },
-          { value: "not_gamer", label: "Not a Gamer" },
+          {
+            value: "gamer",
+            label: `${t("formInputs.gamerRadioInput.options.gamer")}`,
+          },
+          {
+            value: "not_gamer",
+            label: `${t("formInputs.gamerRadioInput.options.not_gamer")}`,
+          },
         ],
         onChange,
       },
@@ -105,11 +123,20 @@ const AddPatientPage: FC = () => {
         fieldType: "checkbox",
         name: "preferredMeals",
         id: "preferredMeals",
-        label: "What would you like to eat?",
+        label: `${t("formInputs.prefMealCheckboxInput.text")}`,
         options: [
-          { label: "Apple", value: "Apple" },
-          { label: "Pear", value: "Pear" },
-          { label: "Orange", value: "Orange" },
+          {
+            label: `${t("formInputs.prefMealCheckboxInput.options.apple")}`,
+            value: "apple",
+          },
+          {
+            label: `${t("formInputs.prefMealCheckboxInput.options.pear")}`,
+            value: "pear",
+          },
+          {
+            label: `${t("formInputs.prefMealCheckboxInput.options.orange")}`,
+            value: "orange",
+          },
         ],
         onChange,
       },
@@ -117,7 +144,8 @@ const AddPatientPage: FC = () => {
         fieldType: "datePicker",
         name: "datePicker",
         id: "datePicker",
-        label: "Pick date",
+        placeholder: `${t("formInputs.datePickerInput.text")}`,
+        label: `${t("formInputs.datePickerInput.text")}`,
         showTime: true,
         format: "DD/MM/YYYY,hh:mm",
         onChange,
@@ -126,7 +154,11 @@ const AddPatientPage: FC = () => {
         fieldType: "rangePicker",
         name: "rangePicker",
         id: "rangePicker",
-        label: "Set Session period:",
+        placeholder: [
+          `${t("formInputs.rangePickerInput.startText")}`,
+          `${t("formInputs.rangePickerInput.endText")}`,
+        ],
+        label: `${t("formInputs.rangePickerInput.text")}`,
         showTime: true,
         format: "DD/MM/YYYY,hh:mm",
         onChange,
@@ -135,21 +167,21 @@ const AddPatientPage: FC = () => {
         fieldType: "switch",
         name: "available",
         id: "available",
-        label: "Available",
+        label: `${t("formInputs.switchInput.text")}`,
         onChange,
       },
       {
         fieldType: "slider",
         name: "how_much",
         id: "slider",
-        label: "How much",
+        label: `${t("formInputs.sliderInput.text")}`,
         onChange,
       },
       {
         fieldType: "rate",
         name: "rate",
         id: "rate",
-        label: "Rate service",
+        label: `${t("formInputs.rateInput.text")}`,
         allowHalfRate: true,
         onChange,
       },

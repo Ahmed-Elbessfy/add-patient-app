@@ -1,12 +1,12 @@
 {
-  "formHeader": "أضف مريض ججديد",
+  "formHeader": "أضف مريض جديد",
   "formInputs": {
     "nameInput": {
-      "text": "Name",
+      "text": "الاسم",
       "errorText": "برجاء ادخال الأسم"
     },
     "emailInput": {
-      "text": "Email",
+      "text": "البريد الالكتروني",
       "errorText": {
         "required": "برجاء ادخال البريد الالكتروني",
         "validation": "برجاء ادخال البريد الالكتروني صحيح"
@@ -37,6 +37,47 @@
     "countryInput": {
       "text": "البلد",
       "errorText": "برجاء ادخال البلد"
+    },
+    "descriptionInput": {
+      "text": "ملاحظات عن المريض ان وجدت "
+    },
+    "gamerRadioInput": {
+      "text": "مهارة اللعب",
+      "options": {
+        "gamer": "ماهر",
+        "not_gamer": "غير ماهر"
+      },
+      "errorText": "برجاء اضافة حالة اللعب "
+    },
+    "prefMealCheckboxInput": {
+      "text": "ماذا تحب أن تاكل ",
+      "options": {
+        "apple": "التفاح",
+        "pear": "كمثرى",
+        "orange": "برتقال"
+      },
+      "errorText": "برجاء اختيار وجبة"
+    },
+    "datePickerInput": {
+      "text": "اختر التاريخ",
+      "errorText": "برجاء تحديد تاريخ"
+    },
+    "rangePickerInput": {
+      "text": "حدد زمن الجلسة",
+      "startText": "اختر بداية المدة",
+      "endText": "اختر نهاية المدة",
+      "errorText": "برجاء تحديد زمن الجلسة"
+    },
+    "switchInput": {
+      "text": "مدى الاتاحة",
+      "errorText": "برجاء تحديد مدى الاتاحة  "
+    },
+    "sliderInput": {
+      "text": "حدد الكمية",
+      "errorText": "برجاء تحيديد الامكانية"
+    },
+    "rateInput": {
+      "text": "تقييم خدماتنا"
     }
   },
   "formSubmitBtn": "أضف مريض"

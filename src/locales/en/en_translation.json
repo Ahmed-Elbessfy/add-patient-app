@@ -6,7 +6,7 @@
       "errorText": "Name is required"
     },
     "emailInput": {
-      "text": "Email",
+      "text": "Email Ahmed",
       "errorText": {
         "required": "Email is required",
         "validation": "Please add a valid email"
@@ -37,6 +37,48 @@
     "countryInput": {
       "text": "Country",
       "errorText": "Country is required"
+    },
+    "descriptionInput": {
+      "text": "Description about patient vvv"
+    },
+    "gamerRadioInput": {
+      "text": "Gamer Status",
+      "options": {
+        "gamer": "Gamer",
+        "not_gamer": "Not a Gamer"
+      },
+      "errorText": "Gamer Status is required"
+    },
+    "prefMealCheckboxInput": {
+      "text": "What would you like to eat?",
+      "options": {
+        "apple": "Apple",
+        "pear": "Pear",
+        "orange": "Orange"
+      },
+      "errorText": "Select at least one meal"
+    },
+    "datePickerInput": {
+      "text": "Pick a date",
+      "errorText": "date is required"
+    },
+    "rangePickerInput": {
+      "text": "Set Session period",
+      "startText":"Pick a start date",
+      "endText":"Pick a end date",
+      "errorText": "Session period is required"
+    },
+    "switchInput": {
+      "text": "Availability",
+      "errorText": "Please set your Availability "
+    },
+    "sliderInput": {
+      "text": "How Much?",
+      "errorText": "Please set How much"
+    },
+    "rateInput": {
+      "text": "Rate our service",
+      "errorText": "Please give a rate"
     }
   },
   "formSubmitBtn": "Add Patient"

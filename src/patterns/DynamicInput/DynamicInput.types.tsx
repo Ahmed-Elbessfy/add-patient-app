@@ -24,7 +24,7 @@ interface DynamicInputConfigBase {
     | "slider"
     | "rate";
   name: string;
-  placeholder?: string;
+  placeholder?: string | [string, string];
   label?: string;
   id?: string;
   testId?: string;
