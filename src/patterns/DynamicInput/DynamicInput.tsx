@@ -14,6 +14,7 @@ import {
   StyledLabel,
   StyledDynamicCheckboxInput,
   StyledDynamicRadioInput,
+  StyledDynamicSwitchInput,
 } from "./DynamicInput.styled";
 
 const { RangePicker } = DatePicker;
@@ -135,6 +136,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           ) => onChange(name, dateString)}
         />
       )}
+      {/* Range Picker  */}
       {fieldType === "rangePicker" && (
         <RangePicker
           format={props.format}
@@ -143,6 +145,12 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
             value: DatePickerProps["value"] | RangePickerProps["value"],
             dateString: [string, string] | string
           ) => onChange(name, dateString)}
+        />
+      )}
+      {/* Switch Input  */}
+      {fieldType === "switch" && (
+        <StyledDynamicSwitchInput
+          onChange={(checked: boolean) => onChange(name, checked)}
         />
       )}
       {/* Error message  */}

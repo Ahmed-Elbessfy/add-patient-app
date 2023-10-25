@@ -20,7 +20,7 @@ const DynamicForm: FC = () => {
 
   const onChange = (
     name: string,
-    value: string | number | CheckboxValueType[]
+    value: string | number | CheckboxValueType[] | boolean
   ) => {
     setFormData({ ...formData, [name]: value });
   };
@@ -133,6 +133,13 @@ const DynamicForm: FC = () => {
         label: "Set Session period:",
         showTime: true,
         format: "DD/MM/YYYY,hh:mm",
+        onChange,
+      },
+      {
+        fieldType: "switch",
+        name: "available",
+        id: "available",
+        label: "Available",
         onChange,
       },
     ],

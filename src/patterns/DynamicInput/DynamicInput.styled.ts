@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Input, Select, Radio, Checkbox } from "antd";
+import { Input, Select, Radio, Checkbox, Switch } from "antd";
 const {TextArea} = Input
 
 export const StyledLabel = styled.label`
@@ -31,10 +31,10 @@ export const StyledDynamicTextArea = styled(TextArea)`
 
 
 export const StyledDynamicSelectInput = styled(Select)`
-font-size: 1.1rem;
-width: 100%;
-max-width: 30rem;
-margin:auto;
+  font-size: 1.1rem;
+  width: 100%;
+  max-width: 30rem;
+  margin:auto;
 `
 
 export const StyledDynamicCheckboxInput = styled(Checkbox.Group)`
@@ -48,7 +48,9 @@ export const StyledDynamicCheckboxInput = styled(Checkbox.Group)`
     color:white;
   }
 `
-
+export const StyledDynamicSwitchInput = styled(Switch)`
+  background-color:rgba(255,255,255, 0.5)
+`
 
 export const StyledErrorMsg = styled.p`
   height: 1.2rem;

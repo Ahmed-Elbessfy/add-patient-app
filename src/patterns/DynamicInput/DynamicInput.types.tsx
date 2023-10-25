@@ -7,7 +7,7 @@ type Option = {
 
 type OnChange = (
   name: string,
-  value: string | number | CheckboxValueType[]
+  value: string | number | CheckboxValueType[] | boolean
 ) => void;
 
 interface DynamicInputConfigBase {
@@ -19,7 +19,8 @@ interface DynamicInputConfigBase {
     | "radio"
     | "checkbox"
     | "datePicker"
-    | "rangePicker";
+    | "rangePicker"
+    | "switch";
   name: string;
   placeholder?: string;
   label?: string;
@@ -63,9 +64,13 @@ export interface DynamicInputConfigDatePicker
   fieldType: "datePicker";
 }
 
-export interface DynamicInputConfigrangePicker
+export interface DynamicInputConfigRangePicker
   extends DynamicInputConfigDateInputs {
   fieldType: "rangePicker";
+}
+
+export interface DynamicInputConfigSwitch extends DynamicInputConfigBase {
+  fieldType: "switch";
 }
 
 export type DynamicInputConfig =
@@ -76,7 +81,8 @@ export type DynamicInputConfig =
   | DynamicInputConfigRadio
   | DynamicInputConfigCheckbox
   | DynamicInputConfigDatePicker
-  | DynamicInputConfigrangePicker;
+  | DynamicInputConfigRangePicker
+  | DynamicInputConfigSwitch;
 
 // Types Approach
 // type DynamicTextInputConfig = {
