@@ -1,6 +1,9 @@
 import { FC, useState, FormEvent } from "react";
 // import AddPatientForm from "../features/AddPatientForm/AddPatientForm";
+import { CheckboxValueType } from "antd/es/checkbox/Group";
+
 import DynamicForm from "../patterns/DynamicForm/DynamicForm";
+import { DynamicFormConfiguration } from "../patterns/DynamicForm/DynamicForm.types";
 
 const AddPatientPage: FC = () => {
   const [formData, setFormData] = useState({
@@ -11,75 +14,153 @@ const AddPatientPage: FC = () => {
     phone: "",
   });
 
-  const handleChange = (inputName: string, inputValue: string | number) => {
-    setFormData({ ...formData, [inputName]: inputValue });
+  const onChange = (
+    name: string,
+    value: string | number | CheckboxValueType[] | boolean
+  ) => {
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log(formData);
   };
-  const formConfig = [
-    {
-      fieldType: "text",
-      name: "name",
-      fieldId: "name",
-      placeholder: "Name",
-      label: "Name",
-      onChangeEvent: handleChange,
-    },
-    {
-      fieldType: "text",
-      name: "email",
-      fieldId: "email",
-      placeholder: "Email",
-      label: "Email",
-      onChangeEvent: handleChange,
-    },
-    {
-      fieldType: "number",
-      name: "age",
-      fieldId: "age",
-      placeholder: "Age",
-      label: "Age",
-      onChangeEvent: handleChange,
-    },
-    {
-      fieldType: "text",
-      name: "phone",
-      fieldId: "phone",
-      placeholder: "Phone",
-      label: "Phone",
-      onChangeEvent: handleChange,
-    },
-    {
-      fieldType: "text",
-      name: "country",
-      fieldId: "country",
-      placeholder: "Country",
-      label: "Country",
-      onChangeEvent: handleChange,
-    },
-    {
-      fieldType: "select",
-      name: "gender",
-      fieldId: "gender",
-      placeholder: "Gender",
-      label: "Gender",
-      selectOptions: [
-        { value: "male", valText: "Male" },
-        { value: "female", valText: "Female" },
-      ],
-      onChangeEvent: handleChange,
-    },
-  ];
+  const formConfig: DynamicFormConfiguration = {
+    heading: "Add new patient dynamically",
+    inputsConfig: [
+      {
+        fieldType: "text",
+        name: "name",
+        id: "name",
+        placeholder: "Name",
+        label: "Name",
+        onChange,
+      },
+      {
+        fieldType: "text",
+        name: "email",
+        id: "email",
+        placeholder: "Email",
+        label: "Email",
+        onChange,
+      },
+      {
+        fieldType: "number",
+        name: "age",
+        id: "age",
+        placeholder: "Age",
+        label: "Age",
+        onChange,
+      },
+      {
+        fieldType: "text",
+        name: "phone",
+        id: "phone",
+        placeholder: "Phone",
+        label: "Phone",
+        onChange,
+      },
+      {
+        fieldType: "text",
+        name: "country",
+        id: "country",
+        placeholder: "Country",
+        label: "Country",
+        onChange,
+      },
+      {
+        fieldType: "select",
+        name: "gender",
+        id: "gender",
+        placeholder: "Gender",
+        label: "Gender",
+        options: [
+          { value: "male", label: "Male" },
+          { value: "female", label: "Female" },
+        ],
+        onChange,
+      },
+      {
+        fieldType: "textarea",
+        name: "description",
+        id: "description",
+        placeholder: "Description about patient",
+        label: "Description",
+        onChange,
+      },
+      {
+        fieldType: "radio",
+        name: "gamer",
+        id: "gamer",
+        placeholder: "A Gamer or not?",
+        label: "Gamer Status",
+        options: [
+          { value: "gamer", label: "Gamer" },
+          { value: "not_gamer", label: "Not a Gamer" },
+        ],
+        onChange,
+      },
+      {
+        fieldType: "checkbox",
+        name: "preferredMeals",
+        id: "preferredMeals",
+        label: "What would you like to eat?",
+        options: [
+          { label: "Apple", value: "Apple" },
+          { label: "Pear", value: "Pear" },
+          { label: "Orange", value: "Orange" },
+        ],
+        onChange,
+      },
+      {
+        fieldType: "datePicker",
+        name: "datePicker",
+        id: "datePicker",
+        label: "Pick date",
+        showTime: true,
+        format: "DD/MM/YYYY,hh:mm",
+        onChange,
+      },
+      {
+        fieldType: "rangePicker",
+        name: "rangePicker",
+        id: "rangePicker",
+        label: "Set Session period:",
+        showTime: true,
+        format: "DD/MM/YYYY,hh:mm",
+        onChange,
+      },
+      {
+        fieldType: "switch",
+        name: "available",
+        id: "available",
+        label: "Available",
+        onChange,
+      },
+      {
+        fieldType: "slider",
+        name: "how_much",
+        id: "slider",
+        label: "How much",
+        onChange,
+      },
+      {
+        fieldType: "rate",
+        name: "rate",
+        id: "rate",
+        label: "Rate service",
+        allowHalfRate: true,
+        onChange,
+      },
+    ],
+    onSubmit,
+  };
 
-  console.log(handleSubmit, formConfig);
   return (
     <>
       {/* <AddPatientForm /> */}
-      <DynamicForm />
+      <DynamicForm {...formConfig} />
     </>
   );
 };
