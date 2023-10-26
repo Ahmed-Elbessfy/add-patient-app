@@ -24,6 +24,7 @@ interface DynamicInputConfigBase {
     | "slider"
     | "rate";
   name: string;
+  schemaName: schemaTypes;
   placeholder?: string | [string, string];
   label?: string;
   id?: string;
@@ -97,6 +98,23 @@ export type DynamicInputConfig =
   | DynamicInputConfigSlider
   | DynamicInputConfigRate;
 
+export type schemaTypes =
+  | "datePicker"
+  | "rangePicker"
+  | "rate"
+  | "name"
+  | "email"
+  | "age"
+  | "gender"
+  | "country"
+  | "phone"
+  | "description"
+  | "gamer"
+  | "preferredMeals"
+  | "available"
+  | "how_much"
+  | `rangePicker.${number}`
+  | `preferredMeals.${number}`;
 // Types Approach
 // type DynamicTextInputConfig = {
 //   fieldType: "text" | "number" | "select" | "textarea" | "radio" | "checkbox";

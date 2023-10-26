@@ -49,6 +49,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "text",
         name: "name",
+        schemaName: "name",
         id: "name",
         placeholder: `${t("formInputs.nameInput.text")}`,
         label: `${t("formInputs.nameInput.text")}`,
@@ -57,6 +58,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "text",
         name: "email",
+        schemaName: "email",
         id: "email",
         placeholder: `${t("formInputs.emailInput.text")}`,
         label: `${t("formInputs.emailInput.text")}`,
@@ -65,6 +67,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "number",
         name: "age",
+        schemaName: "age",
         id: "age",
         placeholder: `${t("formInputs.ageInput.text")}`,
         label: `${t("formInputs.ageInput.text")}`,
@@ -73,6 +76,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "select",
         name: "gender",
+        schemaName: "gender",
         id: "gender",
         placeholder: `${t("formInputs.genderInput.text")}`,
         label: `${t("formInputs.genderInput.text")}`,
@@ -91,6 +95,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "text",
         name: "phone",
+        schemaName: "phone",
         id: "phone",
         placeholder: `${t("formInputs.phoneInput.text")}`,
         label: `${t("formInputs.phoneInput.text")}`,
@@ -99,6 +104,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "text",
         name: "country",
+        schemaName: "country",
         id: "country",
         placeholder: `${t("formInputs.countryInput.text")}`,
         label: `${t("formInputs.countryInput.text")}`,
@@ -107,6 +113,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "textarea",
         name: "description",
+        schemaName: "description",
         id: "description",
         placeholder: `${t("formInputs.descriptionInput.text")}`,
         label: `${t("formInputs.descriptionInput.text")}`,
@@ -115,6 +122,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "radio",
         name: "gamer",
+        schemaName: "gamer",
         id: "gamer",
         placeholder: `${t("formInputs.gamerRadioInput.text")}`,
         label: `${t("formInputs.gamerRadioInput.text")}`,
@@ -133,6 +141,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "checkbox",
         name: "preferredMeals",
+        schemaName: "preferredMeals",
         id: "preferredMeals",
         label: `${t("formInputs.prefMealCheckboxInput.text")}`,
         options: [
@@ -154,6 +163,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "datePicker",
         name: "datePicker",
+        schemaName: "datePicker",
         id: "datePicker",
         placeholder: `${t("formInputs.datePickerInput.text")}`,
         label: `${t("formInputs.datePickerInput.text")}`,
@@ -164,6 +174,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "rangePicker",
         name: "rangePicker",
+        schemaName: "rangePicker",
         id: "rangePicker",
         placeholder: [
           `${t("formInputs.rangePickerInput.startText")}`,
@@ -177,6 +188,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "switch",
         name: "available",
+        schemaName: "available",
         id: "available",
         label: `${t("formInputs.switchInput.text")}`,
         onChange,
@@ -184,6 +196,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "slider",
         name: "how_much",
+        schemaName: "how_much",
         id: "slider",
         label: `${t("formInputs.sliderInput.text")}`,
         onChange,
@@ -191,6 +204,7 @@ const AddPatientPage: FC = () => {
       {
         fieldType: "rate",
         name: "rate",
+        schemaName: "rate",
         id: "rate",
         label: `${t("formInputs.rateInput.text")}`,
         allowHalfRate: true,

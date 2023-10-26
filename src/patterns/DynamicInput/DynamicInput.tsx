@@ -18,7 +18,7 @@ import {
   StyledDynamicSliderInput,
   StyledDynamicRateInput,
 } from "./DynamicInput.styled";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const { RangePicker } = DatePicker;
@@ -48,7 +48,6 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
   // };
 
   const {
-    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -63,40 +62,29 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
       {/* {renderInput()} */}
       {/* Text & Number input  */}
       {fieldType === "text" && (
-        <Controller
-          name={name}
-          control={control}
-          render={({ field }) => (
-            <StyledDynamicTextInput
-              {...field}
-              type={fieldType}
-              placeholder={placeholder}
-              id={id}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                onChange(e.target.name, e.target.value)
-              }
-            />
-          )}
+        <StyledDynamicTextInput
+          type={fieldType}
+          placeholder={placeholder}
+          id={id}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            onChange(e.target.name, e.target.value)
+          }
         />
       )}
+
       {/* Number input  */}
       {fieldType === "number" && (
-        <Controller
+        <StyledDynamicNumberInput
+          type={fieldType}
           name={name}
-          control={control}
-          render={({ field }) => (
-            <StyledDynamicNumberInput
-              type={fieldType}
-              name={name}
-              placeholder={placeholder}
-              id={id}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                onChange(e.target.name, e.target.value)
-              }
-            />
-          )}
+          placeholder={placeholder}
+          id={id}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            onChange(e.target.name, e.target.value)
+          }
         />
       )}
+
       {/* Textarea input  */}
       {fieldType === "textarea" && (
         <StyledDynamicTextArea
