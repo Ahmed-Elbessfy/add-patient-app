@@ -3,7 +3,7 @@ import { DatePicker, RadioChangeEvent, Select } from "antd";
 import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 // import { IStyledComponent } from "styled-components";
-
+import { schema } from "../DynamicForm/DynamicForm.constants";
 import { DynamicInputConfig } from "./DynamicInput.types";
 import {
   StyledErrorMsg,
@@ -18,6 +18,8 @@ import {
   StyledDynamicSliderInput,
   StyledDynamicRateInput,
 } from "./DynamicInput.styled";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const { RangePicker } = DatePicker;
 
@@ -44,6 +46,15 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
   //   console.log(<Component {...props} />);
   //   return <Component {...props} />;
   // };
+
+  const {
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  console.log("errors: ", errors);
   return (
     <>
       {label && fieldType !== "checkbox" && fieldType !== "radio" && (
@@ -52,26 +63,38 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
       {/* {renderInput()} */}
       {/* Text & Number input  */}
       {fieldType === "text" && (
-        <StyledDynamicTextInput
-          type={fieldType}
+        <Controller
           name={name}
-          placeholder={placeholder}
-          id={id}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            onChange(e.target.name, e.target.value)
-          }
+          control={control}
+          render={({ field }) => (
+            <StyledDynamicTextInput
+              {...field}
+              type={fieldType}
+              placeholder={placeholder}
+              id={id}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                onChange(e.target.name, e.target.value)
+              }
+            />
+          )}
         />
       )}
       {/* Number input  */}
       {fieldType === "number" && (
-        <StyledDynamicNumberInput
-          type={fieldType}
+        <Controller
           name={name}
-          placeholder={placeholder}
-          id={id}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            onChange(e.target.name, e.target.value)
-          }
+          control={control}
+          render={({ field }) => (
+            <StyledDynamicNumberInput
+              type={fieldType}
+              name={name}
+              placeholder={placeholder}
+              id={id}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                onChange(e.target.name, e.target.value)
+              }
+            />
+          )}
         />
       )}
       {/* Textarea input  */}
@@ -171,7 +194,9 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
         />
       )}
       {/* Error message  */}
-      <StyledErrorMsg></StyledErrorMsg>
+      <StyledErrorMsg>
+        {errors["name"] && errors["name"].message}
+      </StyledErrorMsg>
     </>
   );
 };

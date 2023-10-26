@@ -1,18 +1,30 @@
-import { FC, useState, FormEvent } from "react";
+import { FC, useState } from "react";
 // import AddPatientForm from "../features/AddPatientForm/AddPatientForm";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 
 import DynamicForm from "../patterns/DynamicForm/DynamicForm";
-import { DynamicFormConfiguration } from "../patterns/DynamicForm/DynamicForm.types";
+import {
+  DynamicFormConfiguration,
+  DynamicFormOutput,
+} from "../patterns/DynamicForm/DynamicForm.types";
 import { useTranslation } from "react-i18next";
 
 const AddPatientPage: FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<DynamicFormOutput>({
     name: "",
     email: "",
     age: 1,
     country: "",
     phone: "",
+    gender: "",
+    description: "",
+    gamer: "",
+    preferredMeals: [],
+    datePicker: "",
+    rangePicker: [],
+    available: false,
+    how_much: 0,
+    rate: 0,
   });
 
   // dynamic form translation configurations
@@ -26,9 +38,8 @@ const AddPatientPage: FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const onSubmit = () => {
+    console.log("on submit");
     console.log(formData);
   };
 

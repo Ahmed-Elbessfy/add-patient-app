@@ -70,7 +70,7 @@
     },
     "switchInput": {
       "text": "Availability",
-      "errorText": "Please set your Availability "
+      "errorText": "Please set your Availability"
     },
     "sliderInput": {
       "text": "How Much?",
