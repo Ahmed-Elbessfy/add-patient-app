@@ -64,6 +64,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
       {fieldType === "text" && (
         <StyledDynamicTextInput
           type={fieldType}
+          name={name}
           placeholder={placeholder}
           id={id}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
