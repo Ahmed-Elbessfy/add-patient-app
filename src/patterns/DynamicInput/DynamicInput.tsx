@@ -53,7 +53,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
     resolver: yupResolver(schema),
   });
 
-  console.log("errors: ", errors);
+  // console.log("errors: ", errors);
   return (
     <>
       {label && fieldType !== "checkbox" && fieldType !== "radio" && (

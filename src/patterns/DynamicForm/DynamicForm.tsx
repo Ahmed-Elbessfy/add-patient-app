@@ -22,6 +22,7 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
       {inputsConfig.map((inputConfig: DynamicInputConfig) => {
         return (
           <Controller
+            key={inputConfig.id}
             name={inputConfig.schemaName}
             control={control}
             render={() => (
