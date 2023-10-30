@@ -1,13 +1,14 @@
 import { FC } from "react";
 // import AddPatientForm from "../features/AddPatientForm/AddPatientForm";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
-
+import { useTranslation } from "react-i18next";
+import { useMutation } from "@apollo/client";
+import { ADD_PATIENT } from "../patterns/DynamicForm/DynamicForm.gql";
 import DynamicForm from "../patterns/DynamicForm/DynamicForm";
 import {
   DynamicFormConfiguration,
   DynamicFormOutput,
 } from "../patterns/DynamicForm/DynamicForm.types";
-import { useTranslation } from "react-i18next";
 
 const AddPatientPage: FC = () => {
   // dynamic form translation configurations
@@ -18,8 +19,13 @@ const AddPatientPage: FC = () => {
     value: string | number | CheckboxValueType[] | boolean
   ) => {};
 
+  // send data to server
+  const [createPatient] = useMutation(ADD_PATIENT, { variables: { data: {} } });
   const onSubmit = (data: DynamicFormOutput) => {
     console.log(data);
+    createPatient({
+      variables: { key: Math.floor(Math.random() * 10000), ...data },
+    });
   };
 
   const formConfig: DynamicFormConfiguration = {

@@ -3,62 +3,71 @@
     {
       "id": 1,
       "key": 1,
-      "name": "Ahmed Taha",
-      "email": "ahmedtaha@gmail.com",
-      "age": 31,
-      "gender": "male",
-      "phone": "01113305408",
-      "country": "Egypt"
-    },
-    {
-      "id": 2,
-      "key": 2,
       "name": "Zaki Badr",
       "email": "zakibadr@gmail.com",
       "age": 19,
       "gender": "male",
       "phone": "01113305409",
-      "country": "Japan"
+      "country": "Japan",
+      "description": "Previous Minister of Interior",
+      "gamer": "gamer",
+      "preferredMeals": [
+        ""
+      ],
+      "datePicker": "01/01/1999,11:40",
+      "rangePicker": [
+        "01/01/1999,11:40",
+        "01/01/1999,11:40"
+      ],
+      "available": false,
+      "how_much": 1000000000,
+      "rate": 4
     },
     {
-      "id": 3,
-      "key": 3,
-      "name": "Ziena Helmy",
-      "email": "zeinahelmy@gmail.com",
-      "age": 23,
-      "gender": "female",
-      "phone": "01113305407",
-      "country": "Germany"
-    },
-    {
-      "id": 4,
-      "key": 4,
+      "id": 2,
+      "key": 2,
       "name": "Dina Ali",
       "email": "dinaali@gmail.com",
       "age": 31,
       "gender": "female",
       "phone": "01113305406",
-      "country": "UK"
+      "country": "UK",
+      "description": "Teaching assistant at faculty of engineering",
+      "gamer": "gamer",
+      "preferredMeals": [
+        ""
+      ],
+      "datePicker": "01/01/1999,11:40",
+      "rangePicker": [
+        "01/01/1999,11:40",
+        "01/01/1999,11:40"
+      ],
+      "available": false,
+      "how_much": 1000000000,
+      "rate": 4
     },
     {
-      "id": 5,
-      "key": 5,
+      "id": 3,
+      "key": 3,
       "name": "Abeer Abdallah",
       "email": "abeerabdallah@gmail.com",
       "age": 31,
       "gender": "female",
       "phone": "01113305405",
-      "country": "USA"
-    },
-    {
-      "id": 6,
-      "key": 6,
-      "name": "Mhmd Gabr",
-      "email": "mhmdgabr@gmail.com",
-      "age": 45,
-      "gender": "male",
-      "phone": "01113305422",
-      "country": "France"
+      "country": "USA",
+      "description": "Civil Engineer",
+      "gamer": "gamer",
+      "preferredMeals": [
+        ""
+      ],
+      "datePicker": "01/01/1999,11:40",
+      "rangePicker": [
+        "01/01/1999,11:40",
+        "01/01/1999,11:40"
+      ],
+      "available": false,
+      "how_much": 1000000000,
+      "rate": 4
     }
   ]
 }
