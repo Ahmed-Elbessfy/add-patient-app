@@ -6,9 +6,35 @@ type Option = {
 };
 
 type OnChange = (
-  name: string,
   value: string | number | CheckboxValueType[] | boolean
 ) => void;
+
+export type schemaTypes =
+  | "datePicker"
+  | "rangePicker"
+  | "rate"
+  | "name"
+  | "email"
+  | "age"
+  | "gender"
+  | "country"
+  | "phone"
+  | "description"
+  | "gamer"
+  | "preferredMeals"
+  | "available"
+  | "how_much"
+  | `rangePicker.${number}`
+  | `preferredMeals.${number}`;
+
+type validationRuleFormat = {
+  required: boolean;
+  min?: number;
+  max?: number;
+  pattern?: RegExp;
+  acceptMultiples?: boolean;
+  valueFormat?: string | string[];
+};
 
 interface DynamicInputConfigBase {
   fieldType:
@@ -29,6 +55,7 @@ interface DynamicInputConfigBase {
   label?: string;
   id?: string;
   testId?: string;
+  // validationRules: validationRuleFormat[];
   onChange: OnChange;
 }
 
@@ -97,56 +124,3 @@ export type DynamicInputConfig =
   | DynamicInputConfigSwitch
   | DynamicInputConfigSlider
   | DynamicInputConfigRate;
-
-export type schemaTypes =
-  | "datePicker"
-  | "rangePicker"
-  | "rate"
-  | "name"
-  | "email"
-  | "age"
-  | "gender"
-  | "country"
-  | "phone"
-  | "description"
-  | "gamer"
-  | "preferredMeals"
-  | "available"
-  | "how_much"
-  | `rangePicker.${number}`
-  | `preferredMeals.${number}`;
-// Types Approach
-// type DynamicTextInputConfig = {
-//   fieldType: "text" | "number" | "select" | "textarea" | "radio" | "checkbox";
-//   name: string;
-//   placeholder: string;
-//   label?: string;
-//   id?: string;
-//   testId?: string;
-//   onChange: OnChange;
-// };
-
-// type DynamicNumberInputConfig = {
-//   fieldType: "number";
-//   name: string;
-//   placeholder: string;
-//   label?: string;
-//   id?: string;
-//   testId?: string;
-//   onChange: OnChange;
-// };
-
-// type DynamicSelectInputConfig = {
-//   fieldType: "select";
-//   name: string;
-//   placeholder: string;
-//   label?: string;
-//   id?: string;
-//   testId?: string;
-//   options: Option[];
-//   onChange: OnChange;
-// };
-// export type DynamicInputConfigType =
-//   | DynamicTextInputConfig
-//   | DynamicNumberInputConfig
-//   | DynamicSelectInputConfig;

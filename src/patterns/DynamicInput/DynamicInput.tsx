@@ -3,10 +3,8 @@ import { DatePicker, RadioChangeEvent, Select } from "antd";
 import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 // import { IStyledComponent } from "styled-components";
-import { schema } from "../DynamicForm/DynamicForm.constants";
 import { DynamicInputConfig } from "./DynamicInput.types";
 import {
-  StyledErrorMsg,
   StyledDynamicTextInput,
   StyledDynamicNumberInput,
   StyledDynamicTextArea,
@@ -18,8 +16,6 @@ import {
   StyledDynamicSliderInput,
   StyledDynamicRateInput,
 } from "./DynamicInput.styled";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 const { RangePicker } = DatePicker;
 
@@ -47,13 +43,6 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
   //   return <Component {...props} />;
   // };
 
-  const {
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  // console.log("errors: ", errors);
   return (
     <>
       {label && fieldType !== "checkbox" && fieldType !== "radio" && (
@@ -68,7 +57,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           placeholder={placeholder}
           id={id}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            onChange(e.target.name, e.target.value)
+            onChange(e.target.value)
           }
         />
       )}
@@ -81,7 +70,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           placeholder={placeholder}
           id={id}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            onChange(e.target.name, e.target.value)
+            onChange(e.target.value)
           }
         />
       )}
@@ -93,7 +82,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           placeholder={placeholder}
           id={id}
           onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-            onChange(e.target.name, e.target.value)
+            onChange(e.target.value)
           }
         />
       )}
@@ -102,7 +91,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
         <StyledDynamicSelectInput
           placeholder={placeholder}
           id={id}
-          onChange={(value: string) => onChange(name, value)}
+          onChange={(value: string) => onChange(value)}
         >
           {props.options &&
             props.options.map((option, ind) => {
@@ -122,7 +111,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
             name={name}
             options={props.options}
             onChange={({ target: { value } }: RadioChangeEvent) =>
-              onChange(name, value)
+              onChange(value)
             }
           ></StyledDynamicRadioInput>
         </fieldset>
@@ -134,7 +123,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           <StyledDynamicCheckboxInput
             options={props.options}
             onChange={(checkedValues: CheckboxValueType[]) =>
-              onChange(name, checkedValues)
+              onChange(checkedValues)
             }
           ></StyledDynamicCheckboxInput>
         </fieldset>
@@ -148,7 +137,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           onChange={(
             value: DatePickerProps["value"] | RangePickerProps["value"],
             dateString: [string, string] | string
-          ) => onChange(name, dateString)}
+          ) => onChange(dateString)}
         />
       )}
       {/* Range Picker  */}
@@ -160,32 +149,28 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           onChange={(
             value: DatePickerProps["value"] | RangePickerProps["value"],
             dateString: [string, string] | string
-          ) => onChange(name, dateString)}
+          ) => onChange(dateString)}
         />
       )}
       {/* Switch Input  */}
       {fieldType === "switch" && (
         <StyledDynamicSwitchInput
-          onChange={(checked: boolean) => onChange(name, checked)}
+          onChange={(checked: boolean) => onChange(checked)}
         />
       )}
       {/* Switch Input  */}
       {fieldType === "slider" && (
         <StyledDynamicSliderInput
-          onChange={(value: number) => onChange(name, value)}
+          onChange={(value: number) => onChange(value)}
         />
       )}
       {/* Rate Input  */}
       {fieldType === "rate" && (
         <StyledDynamicRateInput
           allowHalf={props.allowHalfRate}
-          onChange={(value: number) => onChange(name, value)}
+          onChange={(value: number) => onChange(value)}
         />
       )}
-      {/* Error message  */}
-      <StyledErrorMsg>
-        {errors["name"] && errors["name"].message}
-      </StyledErrorMsg>
     </>
   );
 };
