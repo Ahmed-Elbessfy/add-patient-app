@@ -52,7 +52,7 @@ interface DynamicInputConfigBase {
   id?: string;
   testId?: string;
   // validationRules: validationRuleFormat[];
-  onChange: (value: FieldElement["value"]) => void;
+  // onChange: (value: FieldElement["value"]) => void;
 }
 
 export interface DynamicInputConfigText extends DynamicInputConfigBase {
@@ -120,8 +120,8 @@ export interface DynamicInputConfigRate extends DynamicInputConfigBase {
   placeholder?: string;
 }
 
-// contains onChange property and used for Dynamic Input props Format
-export type DynamicInputConfig =
+// creates types without onChange method, used for inputConfig array
+export type DynamicFormInputConfig =
   | DynamicInputConfigText
   | DynamicInputConfigTextArea
   | DynamicInputConfigNumber
@@ -134,13 +134,9 @@ export type DynamicInputConfig =
   | DynamicInputConfigSlider
   | DynamicInputConfigRate;
 
-// remove onChange method in DynamicFormInputConfig to use as a formatter for inputConfig array
-type DistributiveOmit<
-  T,
-  K extends keyof DynamicInputConfig
-> = T extends DynamicInputConfig ? Omit<T, K> : never;
+// adding onChange Method, used as Props form at Dynamic input
+type DynamicInputOnChange = {
+  onChange: (value: FieldElement["value"]) => void;
+};
 
-export type DynamicFormInputConfig = DistributiveOmit<
-  DynamicInputConfig,
-  "onChange"
->;
+export type DynamicInputConfig = DynamicFormInputConfig & DynamicInputOnChange;
