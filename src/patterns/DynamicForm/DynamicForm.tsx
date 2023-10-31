@@ -13,11 +13,7 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
   inputsConfig,
   onSubmit,
 }) => {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm({
+  const { handleSubmit, control } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -29,25 +25,25 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
       <h1>{heading}</h1>
       {inputsConfig.map((inputConfig: DynamicInputConfig) => {
         return (
-          <>
-            <Controller
-              key={inputConfig.id}
-              name={inputConfig.schemaName}
-              control={control}
-              // rules={inputConfig.validationRules[0]}
-              render={({ field }) => (
-                <DynamicInput
-                  key={inputConfig.id}
-                  {...inputConfig}
-                  onChange={field.onChange}
-                />
-              )}
-            />
-            <StyledErrorMsg>
-              {errors[inputConfig.schemaName] &&
-                errors[inputConfig.schemaName].message}
-            </StyledErrorMsg>
-          </>
+          <Controller
+            key={inputConfig.id}
+            name={inputConfig.schemaName}
+            control={control}
+            // rules={inputConfig.validationRules[0]}
+            render={({ field, fieldState: { error } }) => {
+              // console.log(inputConfig.schemaName, props);
+              return (
+                <>
+                  <DynamicInput
+                    key={inputConfig.id}
+                    {...inputConfig}
+                    onChange={field.onChange}
+                  />
+                  <StyledErrorMsg>{error && error.message}</StyledErrorMsg>
+                </>
+              );
+            }}
+          />
         );
       })}
       <Button type="primary" htmlType="submit" data-testId="submitBtn">
