@@ -33,7 +33,7 @@ const { RangePicker } = DatePicker;
 // };
 
 const DynamicInput: FC<DynamicInputConfig> = (props) => {
-  const { fieldType, label, id, name, placeholder, onChange } = props;
+  const { fieldType, label, id, name, placeholder, testId, onChange } = props;
   // const renderInput = () => {
   //   console.log("rendercomp ");
   //   console.log(props.fieldType);
@@ -55,6 +55,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           type={fieldType}
           name={name}
           placeholder={placeholder}
+          data-testId={testId}
           id={id}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
@@ -68,6 +69,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           type={fieldType}
           name={name}
           placeholder={placeholder}
+          data-testId={testId}
           id={id}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
@@ -80,6 +82,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
         <StyledDynamicTextArea
           name={name}
           placeholder={placeholder}
+          data-testId={testId}
           id={id}
           onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
             onChange(e.target.value)
@@ -90,6 +93,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
       {fieldType === "select" && (
         <StyledDynamicSelectInput
           placeholder={placeholder}
+          data-testId={testId}
           id={id}
           onChange={(value: string) => onChange(value)}
         >
@@ -110,6 +114,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           <StyledDynamicRadioInput
             name={name}
             options={props.options}
+            data-testId={testId}
             onChange={({ target: { value } }: RadioChangeEvent) =>
               onChange(value)
             }
@@ -122,6 +127,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           <legend>{label}</legend>
           <StyledDynamicCheckboxInput
             options={props.options}
+            data-testId={testId}
             onChange={(checkedValues: CheckboxValueType[]) =>
               onChange(checkedValues)
             }
@@ -134,6 +140,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           format={props.format}
           showTime={props.showTime}
           placeholder={placeholder}
+          data-testId={testId}
           onChange={(
             value: DatePickerProps["value"] | RangePickerProps["value"],
             dateString: [string, string] | string
@@ -146,6 +153,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
           format={props.format}
           showTime={props.showTime}
           placeholder={placeholder}
+          data-testId={testId}
           onChange={(
             value: DatePickerProps["value"] | RangePickerProps["value"],
             dateString: [string, string] | string
@@ -155,18 +163,21 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
       {/* Switch Input  */}
       {fieldType === "switch" && (
         <StyledDynamicSwitchInput
+          data-testId={testId}
           onChange={(checked: boolean) => onChange(checked)}
         />
       )}
       {/* Switch Input  */}
       {fieldType === "slider" && (
         <StyledDynamicSliderInput
+          data-testId={testId}
           onChange={(value: number) => onChange(value)}
         />
       )}
       {/* Rate Input  */}
       {fieldType === "rate" && (
         <StyledDynamicRateInput
+          data-testId={testId}
           allowHalf={props.allowHalfRate}
           onChange={(value: number) => onChange(value)}
         />

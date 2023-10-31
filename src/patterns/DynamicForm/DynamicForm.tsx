@@ -50,7 +50,7 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
           </>
         );
       })}
-      <Button type="primary" htmlType="submit">
+      <Button type="primary" htmlType="submit" data-testId="submitBtn">
         Add Patient
       </Button>
     </form>
