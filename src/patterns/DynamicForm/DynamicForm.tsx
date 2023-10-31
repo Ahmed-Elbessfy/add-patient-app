@@ -46,7 +46,7 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
           />
         );
       })}
-      <Button type="primary" htmlType="submit" data-testId="submitBtn">
+      <Button type="primary" htmlType="submit" data-testid="submitBtn">
         Add Patient
       </Button>
     </form>
