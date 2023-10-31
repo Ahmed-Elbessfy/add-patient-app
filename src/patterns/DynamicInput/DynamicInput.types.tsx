@@ -1,13 +1,9 @@
-import { CheckboxValueType } from "antd/es/checkbox/Group";
+import { FieldElement } from "react-hook-form";
 
 type Option = {
   label: string;
   value: string;
 };
-
-type OnChange = (
-  value: string | number | CheckboxValueType[] | boolean
-) => void;
 
 export type schemaTypes =
   | "datePicker"
@@ -27,14 +23,14 @@ export type schemaTypes =
   | `rangePicker.${number}`
   | `preferredMeals.${number}`;
 
-type validationRuleFormat = {
-  required: boolean;
-  min?: number;
-  max?: number;
-  pattern?: RegExp;
-  acceptMultiples?: boolean;
-  valueFormat?: string | string[];
-};
+// type validationRuleFormat = {
+//   required: boolean;
+//   min?: number;
+//   max?: number;
+//   pattern?: RegExp;
+//   acceptMultiples?: boolean;
+//   valueFormat?: string | string[];
+// };
 
 interface DynamicInputConfigBase {
   fieldType:
@@ -56,7 +52,7 @@ interface DynamicInputConfigBase {
   id?: string;
   testId?: string;
   // validationRules: validationRuleFormat[];
-  onChange: OnChange;
+  onChange: (value: FieldElement["value"]) => void;
 }
 
 export interface DynamicInputConfigText extends DynamicInputConfigBase {
@@ -124,6 +120,7 @@ export interface DynamicInputConfigRate extends DynamicInputConfigBase {
   placeholder?: string;
 }
 
+// contains onChange property and used for Dynamic Input props Format
 export type DynamicInputConfig =
   | DynamicInputConfigText
   | DynamicInputConfigTextArea
@@ -136,3 +133,14 @@ export type DynamicInputConfig =
   | DynamicInputConfigSwitch
   | DynamicInputConfigSlider
   | DynamicInputConfigRate;
+
+// remove onChange method in DynamicFormInputConfig to use as a formatter for inputConfig array
+type DistributiveOmit<
+  T,
+  K extends keyof DynamicInputConfig
+> = T extends DynamicInputConfig ? Omit<T, K> : never;
+
+export type DynamicFormInputConfig = DistributiveOmit<
+  DynamicInputConfig,
+  "onChange"
+>;

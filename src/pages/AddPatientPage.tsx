@@ -1,6 +1,5 @@
 import { FC } from "react";
 // import AddPatientForm from "../features/AddPatientForm/AddPatientForm";
-import { CheckboxValueType } from "antd/es/checkbox/Group";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@apollo/client";
 import { ADD_PATIENT } from "../patterns/DynamicForm/DynamicForm.gql";
@@ -13,11 +12,6 @@ import {
 const AddPatientPage: FC = () => {
   // dynamic form translation configurations
   const { t } = useTranslation("lang");
-
-  // Dynamic Form Configuration
-  const onChange = (
-    value: string | number | CheckboxValueType[] | boolean
-  ) => {};
 
   // send data to server
   const [createPatient] = useMutation(ADD_PATIENT, { variables: { data: {} } });
@@ -39,7 +33,6 @@ const AddPatientPage: FC = () => {
         id: "name",
         placeholder: `${t("formInputs.nameInput.text")}`,
         label: `${t("formInputs.nameInput.text")}`,
-        onChange,
         // validationRules: [{ required: true }],
       },
       {
@@ -50,7 +43,6 @@ const AddPatientPage: FC = () => {
         id: "email",
         placeholder: `${t("formInputs.emailInput.text")}`,
         label: `${t("formInputs.emailInput.text")}`,
-        onChange,
         // validationRules: [
         //   {
         //     required: true,
@@ -66,7 +58,6 @@ const AddPatientPage: FC = () => {
         id: "age",
         placeholder: `${t("formInputs.ageInput.text")}`,
         label: `${t("formInputs.ageInput.text")}`,
-        onChange,
         // validationRules: [{ required: true, min: 1, max: 200 }],
       },
       {
@@ -87,7 +78,6 @@ const AddPatientPage: FC = () => {
             label: `${t("formInputs.genderInput.options.female")}`,
           },
         ],
-        onChange,
         // validationRules: [{ required: true }],
       },
       {
@@ -98,7 +88,6 @@ const AddPatientPage: FC = () => {
         id: "phone",
         placeholder: `${t("formInputs.phoneInput.text")}`,
         label: `${t("formInputs.phoneInput.text")}`,
-        onChange,
         // validationRules: [
         //   {
         //     required: true,
@@ -115,7 +104,6 @@ const AddPatientPage: FC = () => {
         id: "country",
         placeholder: `${t("formInputs.countryInput.text")}`,
         label: `${t("formInputs.countryInput.text")}`,
-        onChange,
         // validationRules: [{ required: true }],
       },
       {
@@ -126,7 +114,6 @@ const AddPatientPage: FC = () => {
         id: "description",
         placeholder: `${t("formInputs.descriptionInput.text")}`,
         label: `${t("formInputs.descriptionInput.text")}`,
-        onChange,
         // validationRules: [{ required: false }],
       },
       {
@@ -147,7 +134,6 @@ const AddPatientPage: FC = () => {
             label: `${t("formInputs.gamerRadioInput.options.not_gamer")}`,
           },
         ],
-        onChange,
         // validationRules: [{ required: true }],
       },
       {
@@ -171,7 +157,6 @@ const AddPatientPage: FC = () => {
             value: "orange",
           },
         ],
-        onChange,
         // validationRules: [
         //   { required: true, acceptMultiples: true, valueFormat: [] },
         // ],
@@ -186,7 +171,6 @@ const AddPatientPage: FC = () => {
         label: `${t("formInputs.datePickerInput.text")}`,
         showTime: true,
         format: "DD/MM/YYYY,hh:mm",
-        onChange,
         // validationRules: [{ required: true }],
       },
       {
@@ -202,7 +186,6 @@ const AddPatientPage: FC = () => {
         label: `${t("formInputs.rangePickerInput.text")}`,
         showTime: true,
         format: "DD/MM/YYYY,hh:mm",
-        onChange,
         // validationRules: [
         //   { required: true, acceptMultiples: true, valueFormat: [] },
         // ],
@@ -214,7 +197,6 @@ const AddPatientPage: FC = () => {
         testId: "available",
         id: "available",
         label: `${t("formInputs.switchInput.text")}`,
-        onChange,
         // validationRules: [{ required: true }],
       },
       {
@@ -224,7 +206,6 @@ const AddPatientPage: FC = () => {
         testId: "how_much",
         id: "slider",
         label: `${t("formInputs.sliderInput.text")}`,
-        onChange,
         // validationRules: [{ required: true, min: 1 }],
       },
       {
@@ -235,7 +216,6 @@ const AddPatientPage: FC = () => {
         id: "rate",
         label: `${t("formInputs.rateInput.text")}`,
         allowHalfRate: true,
-        onChange,
         // validationRules: [{ required: true, min: 0.5 }],
       },
     ],

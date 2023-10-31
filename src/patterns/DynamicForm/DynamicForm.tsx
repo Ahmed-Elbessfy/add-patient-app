@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Button } from "antd";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { DynamicInputConfig } from "../DynamicInput/DynamicInput.types";
+import { DynamicFormInputConfig } from "../DynamicInput/DynamicInput.types";
 import DynamicInput from "../DynamicInput/DynamicInput";
 import { schema } from "./DynamicForm.constants";
 import { DynamicFormConfiguration } from "./DynamicForm.types";
@@ -23,7 +23,7 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>{heading}</h1>
-      {inputsConfig.map((inputConfig: DynamicInputConfig) => {
+      {inputsConfig.map((inputConfig: DynamicFormInputConfig) => {
         return (
           <Controller
             key={inputConfig.id}
