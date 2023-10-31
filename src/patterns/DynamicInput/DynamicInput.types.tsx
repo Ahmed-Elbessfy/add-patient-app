@@ -61,55 +61,67 @@ interface DynamicInputConfigBase {
 
 export interface DynamicInputConfigText extends DynamicInputConfigBase {
   fieldType: "text";
+  placeholder?: string;
 }
 
 export interface DynamicInputConfigNumber extends DynamicInputConfigBase {
   fieldType: "number";
+  placeholder?: string;
 }
 
 export interface DynamicInputConfigTextArea extends DynamicInputConfigBase {
   fieldType: "textarea";
+  placeholder?: string;
 }
 
 export interface DynamicInputConfigSelect extends DynamicInputConfigBase {
   fieldType: "select";
   options: Option[];
+  placeholder?: string;
 }
 export interface DynamicInputConfigRadio extends DynamicInputConfigBase {
   fieldType: "radio";
   options: Option[];
+  placeholder?: string;
 }
 
 export interface DynamicInputConfigCheckbox extends DynamicInputConfigBase {
   fieldType: "checkbox";
   options: Option[];
+  placeholder?: string | [string, string];
 }
 
 interface DynamicInputConfigDateInputs extends DynamicInputConfigBase {
   showTime: boolean;
   format: string;
+  placeholder?: string | [string, string];
 }
 export interface DynamicInputConfigDatePicker
   extends DynamicInputConfigDateInputs {
   fieldType: "datePicker";
+  placeholder?: string;
 }
 
 export interface DynamicInputConfigRangePicker
   extends DynamicInputConfigDateInputs {
   fieldType: "rangePicker";
+  placeholder?: [string, string];
 }
 
 export interface DynamicInputConfigSwitch extends DynamicInputConfigBase {
   fieldType: "switch";
+  placeholder?: string;
 }
 
 export interface DynamicInputConfigSlider extends DynamicInputConfigBase {
   fieldType: "slider";
+  placeholder?: string;
 }
 
 export interface DynamicInputConfigRate extends DynamicInputConfigBase {
   fieldType: "rate";
   allowHalfRate: boolean;
+  placeholder?: string;
 }
 
 export type DynamicInputConfig =
