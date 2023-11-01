@@ -4,19 +4,6 @@ import { DynamicFormInputConfig } from "../DynamicInput/DynamicInput.types";
 
 export interface DynamicFormOutput {
   name: string;
-  email: string;
-  age: number;
-  gender: string;
-  phone: string;
-  country: string;
-  description?: string;
-  gamer: string;
-  preferredMeals: string[];
-  datePicker: string;
-  rangePicker: string[];
-  available: boolean;
-  how_much: number;
-  rate: number;
 }
 
 export type DynamicFormConfiguration = {

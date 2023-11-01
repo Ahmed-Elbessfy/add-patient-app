@@ -31,6 +31,9 @@ export type schemaTypes =
 //   acceptMultiples?: boolean;
 //   valueFormat?: string | string[];
 // };
+type validationFormat = {
+  type: string;
+};
 
 interface DynamicInputConfigBase {
   fieldType:
@@ -51,6 +54,7 @@ interface DynamicInputConfigBase {
   label?: string;
   id?: string;
   testId?: string;
+  validation: validationFormat[];
   // validationRules: validationRuleFormat[];
   // onChange: (value: FieldElement["value"]) => void;
 }
