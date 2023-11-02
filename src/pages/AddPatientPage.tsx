@@ -40,6 +40,24 @@ const AddPatientPage: FC = () => {
           },
         ],
       },
+      {
+        fieldType: "number",
+        name: "age",
+        schemaName: "age",
+        testId: "age",
+        id: "age",
+        placeholder: `${t("formInputs.ageInput.text")}`,
+        label: `${t("formInputs.ageInput.text")}`,
+        validation: [
+          {
+            type: "required",
+          },
+          {
+            type: "minimum",
+            minNumber: 1,
+          },
+        ],
+      },
     ],
     onSubmit,
   };

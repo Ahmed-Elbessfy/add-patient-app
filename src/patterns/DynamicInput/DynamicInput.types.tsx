@@ -5,23 +5,21 @@ type Option = {
   value: string;
 };
 
-export type schemaTypes =
-  | "datePicker"
-  | "rangePicker"
-  | "rate"
-  | "name"
-  | "email"
-  | "age"
-  | "gender"
-  | "country"
-  | "phone"
-  | "description"
-  | "gamer"
-  | "preferredMeals"
-  | "available"
-  | "how_much"
-  | `rangePicker.${number}`
-  | `preferredMeals.${number}`;
+export type schemaTypes = "name" | "age";
+// | "datePicker"
+// | "rangePicker"
+// | "rate"
+// | "email"
+// | "gender"
+// | "country"
+// | "phone"
+// | "description"
+// | "gamer"
+// | "preferredMeals"
+// | "available"
+// | "how_much"
+// | `rangePicker.${number}`
+// | `preferredMeals.${number}`;
 
 // type validationRuleFormat = {
 //   required: boolean;
@@ -33,6 +31,7 @@ export type schemaTypes =
 // };
 type validationFormat = {
   type: string;
+  minNumber?: number;
 };
 
 interface DynamicInputConfigBase {

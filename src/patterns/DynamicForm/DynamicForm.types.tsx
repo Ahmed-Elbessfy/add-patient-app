@@ -4,6 +4,7 @@ import { DynamicFormInputConfig } from "../DynamicInput/DynamicInput.types";
 
 export interface DynamicFormOutput {
   name: string;
+  age: number;
 }
 
 export type DynamicFormConfiguration = {

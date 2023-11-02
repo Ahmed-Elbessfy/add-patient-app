@@ -1,3 +1,4 @@
+import { DynamicFormInputConfig } from "./../patterns/DynamicInput/DynamicInput.types";
 import {
   error_messages,
   input_validation_types,
@@ -5,27 +6,42 @@ import {
 } from "../patterns/DynamicForm/DynamicForm.constants";
 
 const validationRules = {
-  [validation_rule_types.required]: ({ validationSchema, inputData }) => {
-    console.log(inputData);
+  [validation_rule_types.required]: (
+    validationSchema,
+    input: DynamicFormInputConfig
+  ) => {
     return validationSchema.required(
-      error_messages[validation_rule_types.required]
+      error_messages[validation_rule_types.required](input.name)
+    );
+  },
+  [validation_rule_types.minimum]: (
+    validationSchema,
+    input: DynamicFormInputConfig
+  ) => {
+    const minValue = input.validation.filter(
+      (rule) => rule.type === "minimum"
+    )[0].minNumber;
+    console.log("min value ", minValue);
+    return validationSchema.min(
+      minValue,
+      error_messages[validation_rule_types.minimum](input.name, minValue)
     );
   },
 };
 
 // creating a schema
-export const parseValidation = (input) => {
+export const parseValidation = (input: DynamicFormInputConfig) => {
   // if field of unknown or handled type
   if (!input_validation_types[input.fieldType]) {
-    return `Unknown input type of type ${input.fieldType}`;
+    throw Error(`Unknown input type of type ${input.fieldType}`);
   }
 
-  return input.validation.reduce(({ validationSchema, rule }) => {
+  return input.validation.reduce((validationSchema, rule) => {
     // if field has unknown or handled error
     if (!validationRules[rule.type]) {
       return `Unknown validation rule of ${rule.type}`;
     }
 
-    return validationRules[rule.type]({ validationSchema, input });
+    return validationRules[rule.type](validationSchema, input);
   }, input_validation_types[input.fieldType]);
 };
