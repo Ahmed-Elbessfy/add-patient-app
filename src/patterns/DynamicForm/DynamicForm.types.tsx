@@ -8,6 +8,7 @@ export interface DynamicFormOutput {
   email: string;
   phone: string;
   gender: string;
+  country: string;
 }
 
 export type DynamicFormConfiguration = {

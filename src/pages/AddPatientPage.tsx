@@ -79,20 +79,13 @@ const AddPatientPage: FC = () => {
       },
       {
         fieldType: "text",
-        name: "phone",
-        schemaName: "phone",
-        testId: "phone",
-        id: "phone",
-        placeholder: `${t("formInputs.phoneInput.text")}`,
-        label: `${t("formInputs.phoneInput.text")}`,
-        validation: [
-          { type: "required" },
-          {
-            type: "pattern",
-            pattern:
-              /^(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
-          },
-        ],
+        name: "country",
+        schemaName: "country",
+        testId: "country",
+        id: "country",
+        placeholder: `${t("formInputs.countryInput.text")}`,
+        label: `${t("formInputs.countryInput.text")}`,
+        validation: [{ type: "required" }],
       },
       {
         fieldType: "select",
