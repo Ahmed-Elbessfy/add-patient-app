@@ -12,6 +12,11 @@ export type DynamicFormConfiguration = {
   inputsConfig: DynamicFormInputConfig[];
   onSubmit: (data: DynamicFormOutput) => void;
 };
+
+export type RuleValidation = {
+  fieldName: string;
+  minNumber?: number;
+};
 // outputFormat: DynamicFormOutput;
 // schema:yup.ObjectSchema<{
 //   name: string;

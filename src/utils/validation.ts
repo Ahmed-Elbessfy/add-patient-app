@@ -10,8 +10,11 @@ const validationRules = {
     validationSchema,
     input: DynamicFormInputConfig
   ) => {
+    const rule = {
+      fieldName: input.name,
+    };
     return validationSchema.required(
-      error_messages[validation_rule_types.required](input.name)
+      error_messages[validation_rule_types.required](rule)
     );
   },
   [validation_rule_types.minimum]: (
@@ -22,9 +25,13 @@ const validationRules = {
       (rule) => rule.type === "minimum"
     )[0].minNumber;
     console.log("min value ", minValue);
+    const rule = {
+      fieldName: input.name,
+      minNumber: minValue,
+    };
     return validationSchema.min(
       minValue,
-      error_messages[validation_rule_types.minimum](input.name, minValue)
+      error_messages[validation_rule_types.minimum](rule)
     );
   },
 };

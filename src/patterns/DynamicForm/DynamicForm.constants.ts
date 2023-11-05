@@ -1,5 +1,5 @@
 import * as yup from "yup";
-
+import { RuleValidation } from "./DynamicForm.types";
 // const telRegex: RegExp =
 //   /^(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/;
 // const emailRegexp: RegExp =
@@ -52,10 +52,10 @@ export const validation_rule_types = {
 };
 
 export const error_messages = {
-  [validation_rule_types.required]: (fieldName: string) =>
-    `${fieldName} field is required`,
-  [validation_rule_types.minimum]: (fieldName: string, minNumber: number) =>
-    `${fieldName} need to be more than ${minNumber}`,
+  [validation_rule_types.required]: (rule: RuleValidation) =>
+    `${rule.fieldName} field is required`,
+  [validation_rule_types.minimum]: (rule: RuleValidation) =>
+    `${rule.fieldName} need to be more than ${rule.minNumber}`,
 };
 
 export const input_validation_types = {
