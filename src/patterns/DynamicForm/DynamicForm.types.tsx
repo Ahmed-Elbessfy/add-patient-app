@@ -6,6 +6,7 @@ export interface DynamicFormOutput {
   name: string;
   age: number;
   email: string;
+  phone:string
 }
 
 export type DynamicFormConfiguration = {

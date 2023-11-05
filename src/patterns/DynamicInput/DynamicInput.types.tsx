@@ -5,7 +5,7 @@ type Option = {
   value: string;
 };
 
-export type schemaTypes = "name" | "age" | "email";
+export type schemaTypes = "name" | "age" | "email" | "phone";
 // | "datePicker"
 // | "rangePicker"
 // | "rate"
