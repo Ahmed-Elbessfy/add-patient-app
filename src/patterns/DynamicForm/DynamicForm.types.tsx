@@ -10,6 +10,7 @@ export interface DynamicFormOutput {
   gender: string;
   country: string;
   human: string;
+  preferredMeals: string[];
 }
 
 export type DynamicFormConfiguration = {

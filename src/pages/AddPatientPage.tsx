@@ -127,6 +127,33 @@ const AddPatientPage: FC = () => {
         ],
         validation: [{ type: "required" }],
       },
+      {
+        fieldType: "checkbox",
+        name: "preferredMeals",
+        schemaName: "preferredMeals",
+        testId: "preferredMeals",
+        id: "preferredMeals",
+        label: `${t("formInputs.prefMealCheckboxInput.text")}`,
+        options: [
+          {
+            label: `${t("formInputs.prefMealCheckboxInput.options.apple")}`,
+            value: "apple",
+          },
+          {
+            label: `${t("formInputs.prefMealCheckboxInput.options.pear")}`,
+            value: "pear",
+          },
+          {
+            label: `${t("formInputs.prefMealCheckboxInput.options.orange")}`,
+            value: "orange",
+          },
+        ],
+        validation: [
+          {
+            type: "at_least_one_required",
+          },
+        ],
+      },
     ],
     onSubmit,
   };

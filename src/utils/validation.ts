@@ -61,6 +61,17 @@ const validationRules = {
       error_messages[validation_rule_types.pattern](rule)
     );
   },
+  [validation_rule_types.atLeastOneRequired]: (
+    validationSchema,
+    input: DynamicFormInputConfig
+  ) => {
+    const rule = {
+      fieldName: input.name,
+    };
+    return validationSchema.required(
+      error_messages[validation_rule_types.atLeastOneRequired](rule)
+    );
+  },
 };
 
 // creating a schema

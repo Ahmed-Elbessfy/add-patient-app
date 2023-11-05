@@ -45,6 +45,7 @@ export const input_types = {
   input_number: "number",
   input_select: "select",
   input_radio: "radio",
+  input_checkbox: "checkbox",
 };
 
 export const validation_rule_types = {
@@ -52,6 +53,7 @@ export const validation_rule_types = {
   minimum: "minimum",
   isInteger: "isInteger",
   pattern: "pattern",
+  atLeastOneRequired: "at_least_one_required",
 };
 
 export const error_messages = {
@@ -63,6 +65,8 @@ export const error_messages = {
     `${fieldName} must be a valid integer`,
   [validation_rule_types.pattern]: ({ fieldName }: RuleValidation) =>
     `${fieldName} is not valid`,
+  [validation_rule_types.atLeastOneRequired]: ({ fieldName }: RuleValidation) =>
+    `must check at lease one of ${fieldName}`,
 };
 
 export const input_validation_types = {
@@ -70,4 +74,5 @@ export const input_validation_types = {
   [input_types.input_number]: yup.number(),
   [input_types.input_select]: yup.string(),
   [input_types.input_radio]: yup.string(),
+  [input_types.input_checkbox]: yup.array().of(yup.string()),
 };

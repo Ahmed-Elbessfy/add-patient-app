@@ -12,7 +12,9 @@ export type schemaTypes =
   | "phone"
   | "gender"
   | "country"
-  | "human";
+  | "human"
+  | "preferredMeals";
+
 // | "datePicker"
 // | "rangePicker"
 // | "rate"
@@ -22,7 +24,6 @@ export type schemaTypes =
 // | "phone"
 // | "description"
 // | "gamer"
-// | "preferredMeals"
 // | "available"
 // | "how_much"
 // | `rangePicker.${number}`
