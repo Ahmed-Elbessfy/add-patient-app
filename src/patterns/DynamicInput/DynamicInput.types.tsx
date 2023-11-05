@@ -11,7 +11,8 @@ export type schemaTypes =
   | "email"
   | "phone"
   | "gender"
-  | "country";
+  | "country"
+  | "human";
 // | "datePicker"
 // | "rangePicker"
 // | "rate"

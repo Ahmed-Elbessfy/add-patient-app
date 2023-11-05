@@ -41,11 +41,11 @@
     "descriptionInput": {
       "text": "ملاحظات عن المريض ان وجدت "
     },
-    "gamerRadioInput": {
+    "humanRadioInput": {
       "text": "مهارة اللعب",
       "options": {
-        "gamer": "ماهر",
-        "not_gamer": "غير ماهر"
+        "human": "ماهر",
+        "not_human": "غير ماهر"
       },
       "errorText": "برجاء اضافة حالة اللعب "
     },

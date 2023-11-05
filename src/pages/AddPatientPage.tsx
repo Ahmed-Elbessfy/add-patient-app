@@ -107,6 +107,26 @@ const AddPatientPage: FC = () => {
         ],
         validation: [{ type: "required" }],
       },
+      {
+        fieldType: "radio",
+        name: "human",
+        schemaName: "human",
+        testId: "human",
+        id: "human",
+        placeholder: `${t("formInputs.humanRadioInput.text")}`,
+        label: `${t("formInputs.humanRadioInput.text")}`,
+        options: [
+          {
+            value: "human",
+            label: `${t("formInputs.humanRadioInput.options.human")}`,
+          },
+          {
+            value: "not_human",
+            label: `${t("formInputs.humanRadioInput.options.not_human")}`,
+          },
+        ],
+        validation: [{ type: "required" }],
+      },
     ],
     onSubmit,
   };

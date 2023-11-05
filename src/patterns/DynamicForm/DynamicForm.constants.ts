@@ -44,6 +44,7 @@ export const input_types = {
   input_text: "text",
   input_number: "number",
   input_select: "select",
+  input_radio: "radio",
 };
 
 export const validation_rule_types = {
@@ -68,4 +69,5 @@ export const input_validation_types = {
   [input_types.input_text]: yup.string(),
   [input_types.input_number]: yup.number(),
   [input_types.input_select]: yup.string(),
+  [input_types.input_radio]: yup.string(),
 };
