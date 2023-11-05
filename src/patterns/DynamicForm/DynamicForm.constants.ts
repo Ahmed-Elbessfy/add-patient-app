@@ -52,10 +52,12 @@ export const validation_rule_types = {
 };
 
 export const error_messages = {
-  [validation_rule_types.required]: (rule: RuleValidation) =>
-    `${rule.fieldName} field is required`,
-  [validation_rule_types.minimum]: (rule: RuleValidation) =>
-    `${rule.fieldName} need to be more than ${rule.minNumber}`,
+  [validation_rule_types.required]: ({ fieldName }: RuleValidation) =>
+    `${fieldName} field is required`,
+  [validation_rule_types.minimum]: ({ fieldName, minNumber }: RuleValidation) =>
+    `${fieldName} need to be more than ${minNumber}`,
+  [validation_rule_types.isInteger]: ({ fieldName }: RuleValidation) =>
+    `${fieldName} must be a valid integer`,
 };
 
 export const input_validation_types = {

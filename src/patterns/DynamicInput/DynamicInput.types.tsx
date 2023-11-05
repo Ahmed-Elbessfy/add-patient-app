@@ -32,6 +32,7 @@ export type schemaTypes = "name" | "age";
 type validationFormat = {
   type: string;
   minNumber?: number;
+  isInteger?: boolean;
 };
 
 interface DynamicInputConfigBase {

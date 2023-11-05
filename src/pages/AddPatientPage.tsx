@@ -56,6 +56,10 @@ const AddPatientPage: FC = () => {
             type: "minimum",
             minNumber: 1,
           },
+          {
+            type: "isInteger",
+            isInteger: true,
+          },
         ],
       },
     ],
