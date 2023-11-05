@@ -43,7 +43,7 @@ export const schema = yup.object().shape({
 export const input_types = {
   input_text: "text",
   input_number: "number",
-  input_email: "email",
+  input_select: "select",
 };
 
 export const validation_rule_types = {
@@ -67,5 +67,5 @@ export const error_messages = {
 export const input_validation_types = {
   [input_types.input_text]: yup.string(),
   [input_types.input_number]: yup.number(),
-  [input_types.input_email]: yup.string(),
+  [input_types.input_select]: yup.string(),
 };

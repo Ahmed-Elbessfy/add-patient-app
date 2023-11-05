@@ -94,6 +94,26 @@ const AddPatientPage: FC = () => {
           },
         ],
       },
+      {
+        fieldType: "select",
+        name: "gender",
+        schemaName: "gender",
+        testId: "gender",
+        id: "gender",
+        placeholder: `${t("formInputs.genderInput.text")}`,
+        label: `${t("formInputs.genderInput.text")}`,
+        options: [
+          {
+            value: "male",
+            label: `${t("formInputs.genderInput.options.male")}`,
+          },
+          {
+            value: "female",
+            label: `${t("formInputs.genderInput.options.female")}`,
+          },
+        ],
+        validation: [{ type: "required" }],
+      },
     ],
     onSubmit,
   };
