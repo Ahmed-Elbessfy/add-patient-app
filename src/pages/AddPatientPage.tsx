@@ -56,6 +56,10 @@ const AddPatientPage: FC = () => {
             minNumber: 1,
           },
           {
+            type: "maximum",
+            maxNumber: 200,
+          },
+          {
             type: "isInteger",
             isInteger: true,
           },

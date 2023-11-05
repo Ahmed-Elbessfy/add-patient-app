@@ -37,9 +37,10 @@ export type schemaTypes =
 //   acceptMultiples?: boolean;
 //   valueFormat?: string | string[];
 // };
-type validationFormat = {
+type inputValidationFormat = {
   type: string;
   minNumber?: number;
+  maxNumber?: number;
   isInteger?: boolean;
   pattern?: RegExp;
 };
@@ -63,7 +64,7 @@ interface DynamicInputConfigBase {
   label?: string;
   id?: string;
   testId?: string;
-  validation: validationFormat[];
+  validation: inputValidationFormat[];
   // validationRules: validationRuleFormat[];
   // onChange: (value: FieldElement["value"]) => void;
 }

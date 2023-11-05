@@ -22,6 +22,7 @@ export type DynamicFormConfiguration = {
 export type RuleValidation = {
   fieldName: string;
   minNumber?: number;
+  maxNumber?: number;
   pattern?: RegExp;
 };
 // outputFormat: DynamicFormOutput;

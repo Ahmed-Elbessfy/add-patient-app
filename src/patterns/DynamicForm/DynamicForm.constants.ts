@@ -54,6 +54,7 @@ export const validation_rule_types = {
   isInteger: "isInteger",
   pattern: "pattern",
   atLeastOneRequired: "at_least_one_required",
+  maximum: "maximum",
 };
 
 export const error_messages = {
@@ -67,6 +68,8 @@ export const error_messages = {
     `${fieldName} is not valid`,
   [validation_rule_types.atLeastOneRequired]: ({ fieldName }: RuleValidation) =>
     `must check at lease one of ${fieldName}`,
+  [validation_rule_types.maximum]: ({ fieldName, maxNumber }: RuleValidation) =>
+    `${fieldName} need to be less than ${maxNumber}`,
 };
 
 export const input_validation_types = {

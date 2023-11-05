@@ -72,6 +72,23 @@ const validationRules = {
       error_messages[validation_rule_types.atLeastOneRequired](rule)
     );
   },
+  [validation_rule_types.maximum]: (
+    validationSchema,
+    input: DynamicFormInputConfig
+  ) => {
+    const maxValue = input.validation.filter(
+      (rule) => rule.type === "maximum"
+    )[0].maxNumber;
+
+    const rule = {
+      fieldName: input.name,
+      maxNumber: maxValue,
+    };
+    return validationSchema.max(
+      maxValue,
+      error_messages[validation_rule_types.maximum](rule)
+    );
+  },
 };
 
 // creating a schema
