@@ -5,7 +5,7 @@ type Option = {
   value: string;
 };
 
-export type schemaTypes = "name" | "age";
+export type schemaTypes = "name" | "age" | "email";
 // | "datePicker"
 // | "rangePicker"
 // | "rate"
@@ -33,6 +33,7 @@ type validationFormat = {
   type: string;
   minNumber?: number;
   isInteger?: boolean;
+  pattern?: RegExp;
 };
 
 interface DynamicInputConfigBase {

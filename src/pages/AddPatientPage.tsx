@@ -33,7 +33,6 @@ const AddPatientPage: FC = () => {
         id: "name",
         placeholder: `${t("formInputs.nameInput.text")}`,
         label: `${t("formInputs.nameInput.text")}`,
-        // validationRules: [{ required: true }],
         validation: [
           {
             type: "required",
@@ -59,6 +58,22 @@ const AddPatientPage: FC = () => {
           {
             type: "isInteger",
             isInteger: true,
+          },
+        ],
+      },
+      {
+        fieldType: "text",
+        name: "email",
+        schemaName: "email",
+        testId: "email",
+        id: "email",
+        placeholder: `${t("formInputs.emailInput.text")}`,
+        label: `${t("formInputs.emailInput.text")}`,
+        validation: [
+          { type: "required" },
+          {
+            type: "pattern",
+            pattern: /^[A-Za-z0-9,-_.]{3,}@[A-Za-z0-9]{3,}\.[A-Za-z0-9]{3,}$/,
           },
         ],
       },

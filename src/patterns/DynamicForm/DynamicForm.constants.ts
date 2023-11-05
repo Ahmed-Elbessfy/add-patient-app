@@ -43,12 +43,14 @@ export const schema = yup.object().shape({
 export const input_types = {
   input_text: "text",
   input_number: "number",
+  input_email: "email",
 };
 
 export const validation_rule_types = {
   required: "required",
   minimum: "minimum",
   isInteger: "isInteger",
+  pattern: "pattern",
 };
 
 export const error_messages = {
@@ -58,9 +60,12 @@ export const error_messages = {
     `${fieldName} need to be more than ${minNumber}`,
   [validation_rule_types.isInteger]: ({ fieldName }: RuleValidation) =>
     `${fieldName} must be a valid integer`,
+  [validation_rule_types.pattern]: ({ fieldName }: RuleValidation) =>
+    `${fieldName} is not valid`,
 };
 
 export const input_validation_types = {
   [input_types.input_text]: yup.string(),
   [input_types.input_number]: yup.number(),
+  [input_types.input_email]: yup.string(),
 };

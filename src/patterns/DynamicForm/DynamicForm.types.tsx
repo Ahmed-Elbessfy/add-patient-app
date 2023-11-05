@@ -5,6 +5,7 @@ import { DynamicFormInputConfig } from "../DynamicInput/DynamicInput.types";
 export interface DynamicFormOutput {
   name: string;
   age: number;
+  email: string;
 }
 
 export type DynamicFormConfiguration = {
@@ -16,6 +17,7 @@ export type DynamicFormConfiguration = {
 export type RuleValidation = {
   fieldName: string;
   minNumber?: number;
+  pattern?: RegExp;
 };
 // outputFormat: DynamicFormOutput;
 // schema:yup.ObjectSchema<{

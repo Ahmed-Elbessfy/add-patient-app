@@ -47,6 +47,20 @@ const validationRules = {
       error_messages[validation_rule_types.isInteger](rule)
     );
   },
+  [validation_rule_types.pattern]: (
+    validationSchema,
+    input: DynamicFormInputConfig
+  ) => {
+    const rule = { fieldName: input.name };
+    const pattern = input.validation.filter(
+      (rule) => rule.type === "pattern"
+    )[0].pattern;
+
+    return validationSchema.matches(
+      pattern,
+      error_messages[validation_rule_types.pattern](rule)
+    );
+  },
 };
 
 // creating a schema
