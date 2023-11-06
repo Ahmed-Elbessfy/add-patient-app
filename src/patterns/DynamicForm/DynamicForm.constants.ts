@@ -57,6 +57,7 @@ export const validation_rule_types = {
   atLeastOneRequired: "at_least_one_required",
   maximum: "maximum",
   earlierThan: "earlier_than",
+  laterThan: "later_than",
 };
 
 export const error_messages = {
@@ -74,6 +75,8 @@ export const error_messages = {
     `${fieldName} need to be less than ${maxNumber}`,
   [validation_rule_types.earlierThan]: ({ fieldName, date }: RuleValidation) =>
     `${fieldName} must be earlier than ${date}`,
+  [validation_rule_types.laterThan]: ({ fieldName, date }: RuleValidation) =>
+    `${fieldName} must be after ${date}`,
 };
 
 export const input_validation_types = {

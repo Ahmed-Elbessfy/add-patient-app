@@ -14,8 +14,8 @@ export type schemaTypes =
   | "country"
   | "human"
   | "preferredMeals"
-  | "pastDate";
-
+  | "pastDate"
+  | "futureDate";
 // | "datePicker"
 // | "rangePicker"
 // | "rate"

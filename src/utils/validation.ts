@@ -107,6 +107,24 @@ const validationRules = {
       error_messages[validation_rule_types.earlierThan](rule)
     );
   },
+  [validation_rule_types.laterThan]: (
+    validationSchema,
+    input: DynamicFormInputConfig
+  ) => {
+    const date = input.validation.filter(
+      (rule) => rule.type === "later_than"
+    )[0].date;
+
+    const rule = {
+      fieldName: input.name,
+      date: date && date.toLocaleDateString("en-GB"),
+    };
+
+    return validationSchema.min(
+      date,
+      error_messages[validation_rule_types.laterThan](rule)
+    );
+  },
 };
 
 // creating a schema
