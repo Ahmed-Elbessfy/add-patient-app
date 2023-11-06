@@ -24,6 +24,7 @@ export type RuleValidation = {
   minNumber?: number;
   maxNumber?: number;
   pattern?: RegExp;
+  date?: string;
 };
 // outputFormat: DynamicFormOutput;
 // schema:yup.ObjectSchema<{

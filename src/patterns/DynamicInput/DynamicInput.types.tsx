@@ -13,7 +13,8 @@ export type schemaTypes =
   | "gender"
   | "country"
   | "human"
-  | "preferredMeals";
+  | "preferredMeals"
+  | "pastDate";
 
 // | "datePicker"
 // | "rangePicker"
@@ -43,6 +44,7 @@ type inputValidationFormat = {
   maxNumber?: number;
   isInteger?: boolean;
   pattern?: RegExp;
+  date?: Date;
 };
 
 interface DynamicInputConfigBase {

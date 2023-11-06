@@ -158,6 +158,24 @@ const AddPatientPage: FC = () => {
           },
         ],
       },
+      {
+        fieldType: "datePicker",
+        name: "pastDate",
+        schemaName: "pastDate",
+        testId: "pastDate",
+        id: "pastDate",
+        placeholder: `${t("formInputs.datePickerInput.text")}`,
+        label: `${t("formInputs.datePickerInput.text")}`,
+        showTime: false,
+        format: "YYYY-MM-DD",
+        validation: [
+          { type: "required" },
+          {
+            type: "earlier_than",
+            date: new Date(),
+          },
+        ],
+      },
     ],
     onSubmit,
   };

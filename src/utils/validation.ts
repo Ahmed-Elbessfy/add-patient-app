@@ -89,6 +89,24 @@ const validationRules = {
       error_messages[validation_rule_types.maximum](rule)
     );
   },
+  [validation_rule_types.earlierThan]: (
+    validationSchema,
+    input: DynamicFormInputConfig
+  ) => {
+    const date = input.validation.filter(
+      (rule) => rule.type === "earlier_than"
+    )[0].date;
+
+    const rule = {
+      fieldName: input.name,
+      date: date && date.toLocaleDateString("en-GB"),
+    };
+
+    return validationSchema.max(
+      date,
+      error_messages[validation_rule_types.earlierThan](rule)
+    );
+  },
 };
 
 // creating a schema

@@ -46,6 +46,7 @@ export const input_types = {
   input_select: "select",
   input_radio: "radio",
   input_checkbox: "checkbox",
+  input_datePicker: "datePicker",
 };
 
 export const validation_rule_types = {
@@ -55,6 +56,7 @@ export const validation_rule_types = {
   pattern: "pattern",
   atLeastOneRequired: "at_least_one_required",
   maximum: "maximum",
+  earlierThan: "earlier_than",
 };
 
 export const error_messages = {
@@ -70,6 +72,8 @@ export const error_messages = {
     `must check at lease one of ${fieldName}`,
   [validation_rule_types.maximum]: ({ fieldName, maxNumber }: RuleValidation) =>
     `${fieldName} need to be less than ${maxNumber}`,
+  [validation_rule_types.earlierThan]: ({ fieldName, date }: RuleValidation) =>
+    `${fieldName} must be earlier than ${date}`,
 };
 
 export const input_validation_types = {
@@ -78,4 +82,5 @@ export const input_validation_types = {
   [input_types.input_select]: yup.string(),
   [input_types.input_radio]: yup.string(),
   [input_types.input_checkbox]: yup.array().of(yup.string()),
+  [input_types.input_datePicker]: yup.date(),
 };
