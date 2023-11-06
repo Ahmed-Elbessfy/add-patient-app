@@ -5,126 +5,159 @@ import {
   validation_rule_types,
 } from "../patterns/DynamicForm/DynamicForm.constants";
 
-const validationRules = {
-  [validation_rule_types.required]: (
-    validationSchema,
-    input: DynamicFormInputConfig
-  ) => {
-    const rule = {
-      fieldName: input.name,
-    };
+import * as yup from "yup";
+// import { DynamicFormOutput } from "../patterns/DynamicForm/DynamicForm.types";
+type ValidationSchema =
+  | yup.StringSchema
+  | yup.NumberSchema
+  | yup.BooleanSchema
+  | yup.ArraySchema<string[], unknown>
+  | yup.AnySchema;
 
-    return validationSchema.required(
-      error_messages[validation_rule_types.required](rule)
-    );
-  },
-  [validation_rule_types.minimum]: (
-    validationSchema,
-    input: DynamicFormInputConfig
-  ) => {
-    const minValue = input.validation.filter(
-      (rule) => rule.type === "minimum"
-    )[0].minNumber;
+const validateRequired = (
+  validationSchema: yup.StringSchema,
+  input: DynamicFormInputConfig
+) => {
+  const rule = {
+    fieldName: input.name,
+  };
 
+  return validationSchema.required(
+    error_messages[validation_rule_types.required](rule)
+  );
+};
+
+const validateMinimum = (
+  validationSchema: yup.NumberSchema,
+  input: DynamicFormInputConfig
+) => {
+  const minValue = input.validation.find(
+    (rule) => rule.type === "minimum"
+  )?.minNumber;
+
+  if (minValue !== undefined) {
     const rule = {
       fieldName: input.name,
       minNumber: minValue,
     };
+
     return validationSchema.min(
       minValue,
       error_messages[validation_rule_types.minimum](rule)
     );
-  },
-  [validation_rule_types.isInteger]: (
-    validationSchema,
-    input: DynamicFormInputConfig
-  ) => {
-    const rule = {
-      fieldName: input.name,
-    };
+  }
 
-    return validationSchema.integer(
-      error_messages[validation_rule_types.isInteger](rule)
-    );
-  },
-  [validation_rule_types.pattern]: (
-    validationSchema,
-    input: DynamicFormInputConfig
-  ) => {
-    const rule = { fieldName: input.name };
-    const pattern = input.validation.filter(
-      (rule) => rule.type === "pattern"
-    )[0].pattern;
+  return validationSchema;
+};
 
-    return validationSchema.matches(
+const validateInteger = (
+  validationSchema: yup.NumberSchema,
+  input: DynamicFormInputConfig
+) => {
+  const rule = {
+    fieldName: input.name,
+  };
+
+  return validationSchema.integer(
+    error_messages[validation_rule_types.isInteger](rule)
+  );
+};
+
+const validatePattern = (
+  validationSchema: yup.StringSchema,
+  input: DynamicFormInputConfig
+) => {
+  const rule = { fieldName: input.name };
+  const pattern = input.validation.filter((rule) => rule.type === "pattern")[0]
+    .pattern;
+
+  return (
+    pattern &&
+    validationSchema.matches(
       pattern,
       error_messages[validation_rule_types.pattern](rule)
-    );
-  },
-  [validation_rule_types.atLeastOneRequired]: (
-    validationSchema,
-    input: DynamicFormInputConfig
-  ) => {
-    const rule = {
-      fieldName: input.name,
-    };
-    return validationSchema.required(
-      error_messages[validation_rule_types.atLeastOneRequired](rule)
-    );
-  },
-  [validation_rule_types.maximum]: (
-    validationSchema,
-    input: DynamicFormInputConfig
-  ) => {
-    const maxValue = input.validation.filter(
-      (rule) => rule.type === "maximum"
-    )[0].maxNumber;
+    )
+  );
+};
 
-    const rule = {
-      fieldName: input.name,
-      maxNumber: maxValue,
-    };
-    return validationSchema.max(
+const validateAtLeastOneRequired = (
+  validationSchema: yup.ArraySchema<string[], unknown>,
+  input: DynamicFormInputConfig
+) => {
+  const rule = {
+    fieldName: input.name,
+  };
+  return validationSchema.required(
+    error_messages[validation_rule_types.atLeastOneRequired](rule)
+  );
+};
+
+const validateMaximum = (
+  validationSchema: yup.NumberSchema,
+  input: DynamicFormInputConfig
+) => {
+  const maxValue = input.validation.filter((rule) => rule.type === "maximum")[0]
+    .maxNumber;
+
+  const rule = {
+    fieldName: input.name,
+    maxNumber: maxValue,
+  };
+  return (
+    maxValue &&
+    validationSchema.max(
       maxValue,
       error_messages[validation_rule_types.maximum](rule)
-    );
-  },
-  [validation_rule_types.earlierThan]: (
-    validationSchema,
-    input: DynamicFormInputConfig
-  ) => {
-    const date = input.validation.filter(
-      (rule) => rule.type === "earlier_than"
-    )[0].date;
+    )
+  );
+};
 
-    const rule = {
-      fieldName: input.name,
-      date: date && date.toLocaleDateString("en-GB"),
-    };
+const validateEarlierThan = (
+  validationSchema: yup.AnyObject,
+  input: DynamicFormInputConfig
+) => {
+  const date = input.validation.filter(
+    (rule) => rule.type === "earlier_than"
+  )[0].date;
 
-    return validationSchema.max(
-      date,
-      error_messages[validation_rule_types.earlierThan](rule)
-    );
-  },
-  [validation_rule_types.laterThan]: (
-    validationSchema,
-    input: DynamicFormInputConfig
-  ) => {
-    const date = input.validation.filter(
-      (rule) => rule.type === "later_than"
-    )[0].date;
+  const rule = {
+    fieldName: input.name,
+    date: date && date.toLocaleDateString("en-GB"),
+  };
 
-    const rule = {
-      fieldName: input.name,
-      date: date && date.toLocaleDateString("en-GB"),
-    };
+  return validationSchema.max(
+    date,
+    error_messages[validation_rule_types.earlierThan](rule)
+  );
+};
 
-    return validationSchema.min(
-      date,
-      error_messages[validation_rule_types.laterThan](rule)
-    );
-  },
+const validateLaterThan = (
+  validationSchema: yup.AnyObject,
+  input: DynamicFormInputConfig
+) => {
+  const date = input.validation.filter((rule) => rule.type === "later_than")[0]
+    .date;
+
+  const rule = {
+    fieldName: input.name,
+    date: date && date.toLocaleDateString("en-GB"),
+  };
+
+  return validationSchema.min(
+    date,
+    error_messages[validation_rule_types.laterThan](rule)
+  );
+};
+
+const validationRules = {
+  [validation_rule_types.required]: validateRequired,
+  [validation_rule_types.minimum]: validateMinimum,
+  [validation_rule_types.isInteger]: validateInteger,
+  [validation_rule_types.pattern]: validatePattern,
+  [validation_rule_types.atLeastOneRequired]: validateAtLeastOneRequired,
+  [validation_rule_types.maximum]: validateMaximum,
+  [validation_rule_types.earlierThan]: validateEarlierThan,
+  [validation_rule_types.laterThan]: validateLaterThan,
 };
 
 // creating a schema
