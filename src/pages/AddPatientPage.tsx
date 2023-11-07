@@ -38,6 +38,7 @@ const AddPatientPage: FC = () => {
             type: "required",
           },
         ],
+        visibility: true,
       },
       {
         fieldType: "number",
@@ -64,6 +65,7 @@ const AddPatientPage: FC = () => {
             isInteger: true,
           },
         ],
+        visibility: true,
       },
       {
         fieldType: "text",
@@ -80,6 +82,7 @@ const AddPatientPage: FC = () => {
             pattern: /^[A-Za-z0-9,-_.]{3,}@[A-Za-z0-9]{3,}\.[A-Za-z0-9]{3,}$/,
           },
         ],
+        visibility: true,
       },
       {
         fieldType: "text",
@@ -90,6 +93,7 @@ const AddPatientPage: FC = () => {
         placeholder: `${t("formInputs.countryInput.text")}`,
         label: `${t("formInputs.countryInput.text")}`,
         validation: [{ type: "required" }],
+        visibility: true,
       },
       {
         fieldType: "select",
@@ -110,6 +114,7 @@ const AddPatientPage: FC = () => {
           },
         ],
         validation: [{ type: "required" }],
+        visibility: true,
       },
       {
         fieldType: "radio",
@@ -130,6 +135,7 @@ const AddPatientPage: FC = () => {
           },
         ],
         validation: [{ type: "required" }],
+        visibility: true,
       },
       {
         fieldType: "checkbox",
@@ -157,6 +163,7 @@ const AddPatientPage: FC = () => {
             type: "at_least_one_required",
           },
         ],
+        visibility: true,
       },
       {
         fieldType: "datePicker",
@@ -175,6 +182,7 @@ const AddPatientPage: FC = () => {
             date: new Date(),
           },
         ],
+        visibility: true,
       },
       {
         fieldType: "datePicker",
@@ -193,6 +201,7 @@ const AddPatientPage: FC = () => {
             date: new Date(),
           },
         ],
+        visibility: true,
       },
     ],
     onSubmit,

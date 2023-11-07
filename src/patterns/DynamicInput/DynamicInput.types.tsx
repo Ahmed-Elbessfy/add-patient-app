@@ -67,6 +67,7 @@ interface DynamicInputConfigBase {
   id?: string;
   testId?: string;
   validation: inputValidationFormat[];
+  visibility: boolean;
   // validationRules: validationRuleFormat[];
   // onChange: (value: FieldElement["value"]) => void;
 }
