@@ -12,7 +12,8 @@ export type schemaTypes =
   | "phone"
   | "gender"
   | "country"
-  | "human"
+  | "maritalStatus"
+  | "wifeName"
   | "preferredMeals"
   | "pastDate"
   | "futureDate";
@@ -156,4 +157,13 @@ type DynamicInputOnChange = {
   onChange: (value: FieldElement["value"]) => void;
 };
 
-export type DynamicInputConfig = DynamicFormInputConfig & DynamicInputOnChange;
+type DynamicFormValues = {
+  values: {
+    [x: string]: unknown;
+    [x: number]: unknown;
+  };
+};
+
+export type DynamicInputConfig = DynamicFormInputConfig &
+  DynamicInputOnChange &
+  DynamicFormValues;

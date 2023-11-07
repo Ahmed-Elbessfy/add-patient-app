@@ -33,7 +33,9 @@ const { RangePicker } = DatePicker;
 // };
 
 const DynamicInput: FC<DynamicInputConfig> = (props) => {
-  const { fieldType, label, id, name, placeholder, testId, onChange } = props;
+  const { fieldType, label, id, name, placeholder, testId, onChange, values } =
+    props;
+  console.log(values);
   // const renderInput = () => {
   //   console.log("rendercomp ");
   //   console.log(props.fieldType);
@@ -49,7 +51,7 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
         <StyledLabel htmlFor={id}>{label}</StyledLabel>
       )}
       {/* {renderInput()} */}
-      {/* Text & Number input  */}
+      {/* Text input  */}
       {fieldType === "text" && (
         <StyledDynamicTextInput
           type={fieldType}
@@ -63,6 +65,21 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
         />
       )}
 
+      {/* wifeName text input: this input is visible and required only if user is married. Radio value is "married" */}
+      {fieldType === "text" &&
+        id === "wifeName" &&
+        values.maritalStatus === "married" && (
+          <StyledDynamicTextInput
+            type={fieldType}
+            name={name}
+            placeholder={placeholder}
+            data-testid={testId}
+            id={id}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              onChange(e.target.value)
+            }
+          />
+        )}
       {/* Number input  */}
       {fieldType === "number" && (
         <StyledDynamicNumberInput

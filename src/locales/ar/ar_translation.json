@@ -41,13 +41,13 @@
     "descriptionInput": {
       "text": "ملاحظات عن المريض ان وجدت "
     },
-    "humanRadioInput": {
-      "text": "مهارة اللعب",
+    "MarriageRadioInput": {
+      "text": "الحالة الاجتماعية",
       "options": {
-        "human": "ماهر",
-        "not_human": "غير ماهر"
+        "married": "متزوج",
+        "unmarried": "غير متزوج"
       },
-      "errorText": "برجاء اضافة حالة اللعب "
+      "errorText": "برجاء اضافة الحالة الاجتماعية"
     },
     "prefMealCheckboxInput": {
       "text": "ماذا تحب أن تاكل ",

@@ -41,13 +41,17 @@
     "descriptionInput": {
       "text": "Description about patient vvv"
     },
-    "humanRadioInput": {
-      "text": "human Status",
+    "MarriageRadioInput": {
+      "text": "MartiaL Status",
       "options": {
-        "human": "human",
-        "not_human": "Not a human"
+        "married": "Married",
+        "unmarried": "Unmarried"
       },
-      "errorText": "human Status is required"
+      "errorText": "Martial Status is required"
+    },
+    "wifeNameInput": {
+      "text": "Wife Name",
+      "errorText": "Wife Name is required"
     },
     "prefMealCheckboxInput": {
       "text": "What would you like to eat?",
