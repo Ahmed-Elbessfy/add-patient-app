@@ -1,5 +1,11 @@
 import { FieldElement } from "react-hook-form";
 
+type itemCategory = "field" | "layout" | "UI";
+/*
+**********************************************************
+                    Category: Field
+**********************************************************
+*/
 type Option = {
   label: string;
   value: string;
@@ -17,29 +23,8 @@ export type schemaTypes =
   | "preferredMeals"
   | "pastDate"
   | "futureDate";
-// | "datePicker"
-// | "rangePicker"
-// | "rate"
-// | "email"
-// | "gender"
-// | "country"
-// | "phone"
-// | "description"
-// | "gamer"
-// | "available"
-// | "how_much"
-// | `rangePicker.${number}`
-// | `preferredMeals.${number}`;
 
-// type validationRuleFormat = {
-//   required: boolean;
-//   min?: number;
-//   max?: number;
-//   pattern?: RegExp;
-//   acceptMultiples?: boolean;
-//   valueFormat?: string | string[];
-// };
-type inputValidationFormat = {
+type fieldValidationForm = {
   type: string;
   minNumber?: number;
   maxNumber?: number;
@@ -48,7 +33,8 @@ type inputValidationFormat = {
   date?: Date;
 };
 
-interface DynamicInputConfigBase {
+interface DynamicFieldConfigBase {
+  category: itemCategory;
   fieldType:
     | "text"
     | "number"
@@ -67,103 +53,169 @@ interface DynamicInputConfigBase {
   label?: string;
   id?: string;
   testId?: string;
-  validation: inputValidationFormat[];
+  validation: fieldValidationForm[];
   visibility: boolean;
-  // validationRules: validationRuleFormat[];
-  // onChange: (value: FieldElement["value"]) => void;
 }
 
-export interface DynamicInputConfigText extends DynamicInputConfigBase {
+export interface DynamicFieldConfigText extends DynamicFieldConfigBase {
   fieldType: "text";
   placeholder?: string;
 }
 
-export interface DynamicInputConfigNumber extends DynamicInputConfigBase {
+export interface DynamicFieldConfigNumber extends DynamicFieldConfigBase {
   fieldType: "number";
   placeholder?: string;
 }
 
-export interface DynamicInputConfigTextArea extends DynamicInputConfigBase {
+export interface DynamicFieldConfigTextArea extends DynamicFieldConfigBase {
   fieldType: "textarea";
   placeholder?: string;
 }
 
-export interface DynamicInputConfigSelect extends DynamicInputConfigBase {
+export interface DynamicFieldConfigSelect extends DynamicFieldConfigBase {
   fieldType: "select";
   options: Option[];
   placeholder?: string;
 }
-export interface DynamicInputConfigRadio extends DynamicInputConfigBase {
+export interface DynamicFieldConfigRadio extends DynamicFieldConfigBase {
   fieldType: "radio";
   options: Option[];
   placeholder?: string;
 }
 
-export interface DynamicInputConfigCheckbox extends DynamicInputConfigBase {
+export interface DynamicFieldConfigCheckbox extends DynamicFieldConfigBase {
   fieldType: "checkbox";
   options: Option[];
   placeholder?: string | [string, string];
 }
 
-interface DynamicInputConfigDateInputs extends DynamicInputConfigBase {
+interface DynamicFieldConfigDateInputs extends DynamicFieldConfigBase {
   showTime: boolean;
   format: string;
   placeholder?: string | [string, string];
 }
-export interface DynamicInputConfigDatePicker
-  extends DynamicInputConfigDateInputs {
+export interface DynamicFieldConfigDatePicker
+  extends DynamicFieldConfigDateInputs {
   fieldType: "datePicker";
   placeholder?: string;
 }
 
-export interface DynamicInputConfigRangePicker
-  extends DynamicInputConfigDateInputs {
+export interface DynamicFieldConfigRangePicker
+  extends DynamicFieldConfigDateInputs {
   fieldType: "rangePicker";
   placeholder?: [string, string];
 }
 
-export interface DynamicInputConfigSwitch extends DynamicInputConfigBase {
+export interface DynamicFieldConfigSwitch extends DynamicFieldConfigBase {
   fieldType: "switch";
   placeholder?: string;
 }
 
-export interface DynamicInputConfigSlider extends DynamicInputConfigBase {
+export interface DynamicFieldConfigSlider extends DynamicFieldConfigBase {
   fieldType: "slider";
   placeholder?: string;
 }
 
-export interface DynamicInputConfigRate extends DynamicInputConfigBase {
+export interface DynamicFieldConfigRate extends DynamicFieldConfigBase {
   fieldType: "rate";
   allowHalfRate: boolean;
   placeholder?: string;
 }
 
 // creates types without onChange method, used for inputConfig array
-export type DynamicFormInputConfig =
-  | DynamicInputConfigText
-  | DynamicInputConfigTextArea
-  | DynamicInputConfigNumber
-  | DynamicInputConfigSelect
-  | DynamicInputConfigRadio
-  | DynamicInputConfigCheckbox
-  | DynamicInputConfigDatePicker
-  | DynamicInputConfigRangePicker
-  | DynamicInputConfigSwitch
-  | DynamicInputConfigSlider
-  | DynamicInputConfigRate;
+export type DynamicFormFieldConfig =
+  | DynamicFieldConfigText
+  | DynamicFieldConfigTextArea
+  | DynamicFieldConfigNumber
+  | DynamicFieldConfigSelect
+  | DynamicFieldConfigRadio
+  | DynamicFieldConfigCheckbox
+  | DynamicFieldConfigDatePicker
+  | DynamicFieldConfigRangePicker
+  | DynamicFieldConfigSwitch
+  | DynamicFieldConfigSlider
+  | DynamicFieldConfigRate;
 
 // adding onChange Method, used as Props form at Dynamic input
-type DynamicInputOnChange = {
+type DynamicFieldOnChange = {
   onChange: (value: FieldElement["value"]) => void;
 };
 
-type DynamicFormValues = {
-  values: {
-    [x: string]: unknown;
-    [x: number]: unknown;
+// type DynamicFormValues = {
+//   values: {
+//     [x: string]: unknown;
+//     [x: number]: unknown;
+//   };
+// };
+
+export type DynamicFieldConfig = DynamicFormFieldConfig & DynamicFieldOnChange;
+
+/*
+**********************************************************
+                    Category: Layout
+**********************************************************
+*/
+
+type LayoutType = "hStack" | "box";
+
+export type LayoutBase = {
+  category: itemCategory;
+  type: LayoutType;
+  children: DynamicFormFieldConfig[];
+  gap: number;
+};
+
+export interface LayoutHStack extends LayoutBase {
+  type: LayoutType;
+}
+
+export interface LayoutBox extends LayoutBase {
+  type: LayoutType;
+  padding: number;
+}
+
+export type ItemLayout = LayoutHStack | LayoutBox;
+
+/*
+**********************************************************
+                      Category: UI
+**********************************************************
+*/
+
+type UIType = "title" | "text" | "link" | "alert";
+
+export type UIBase = {
+  category: itemCategory;
+  type: UIType;
+};
+
+export type UITitle = {
+  type: UIType;
+  title: string;
+  level: number;
+};
+
+export type UIText = {
+  type: UIType;
+  text: string;
+  style?: {
+    type?: "secondary" | "success" | "warning" | "danger";
+    disabled?: boolean;
+    mark?: boolean;
+    strong?: boolean;
   };
 };
 
-export type DynamicInputConfig = DynamicFormInputConfig &
-  DynamicInputOnChange &
-  DynamicFormValues;
+export type UILink = {
+  type: UIType;
+  text: string;
+  url: string;
+};
+
+export type UIAlert = {
+  type: UIType;
+  title: string;
+  message: string;
+};
+
+export type ItemUI = UITitle | UIText | UILink | UIAlert;

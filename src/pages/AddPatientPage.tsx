@@ -26,6 +26,7 @@ const AddPatientPage: FC = () => {
     heading: `${t("formHeader")}`,
     inputsConfig: [
       {
+        category: "field",
         fieldType: "text",
         name: "name",
         schemaName: "name",
@@ -41,6 +42,7 @@ const AddPatientPage: FC = () => {
         visibility: true,
       },
       {
+        category: "field",
         fieldType: "number",
         name: "age",
         schemaName: "age",
@@ -68,6 +70,7 @@ const AddPatientPage: FC = () => {
         visibility: true,
       },
       {
+        category: "field",
         fieldType: "text",
         name: "email",
         schemaName: "email",
@@ -85,6 +88,7 @@ const AddPatientPage: FC = () => {
         visibility: true,
       },
       {
+        category: "field",
         fieldType: "text",
         name: "country",
         schemaName: "country",
@@ -96,6 +100,7 @@ const AddPatientPage: FC = () => {
         visibility: true,
       },
       {
+        category: "field",
         fieldType: "select",
         name: "gender",
         schemaName: "gender",
@@ -117,6 +122,7 @@ const AddPatientPage: FC = () => {
         visibility: true,
       },
       {
+        category: "field",
         fieldType: "radio",
         name: "maritalStatus",
         schemaName: "maritalStatus",
@@ -138,17 +144,26 @@ const AddPatientPage: FC = () => {
         visibility: true,
       },
       {
-        fieldType: "text",
-        name: "wifeName",
-        schemaName: "wifeName",
-        testId: "wifeName",
-        id: "wifeName",
-        placeholder: `${t("formInputs.wifeNameInput.text")}`,
-        label: `${t("formInputs.wifeNameInput.text")}`,
-        validation: [{ type: "required" }],
-        visibility: false,
+        category: "layout",
+        type: "hStack",
+        gap: 1,
+        children: [
+          {
+            category: "field",
+            fieldType: "text",
+            name: "wifeName",
+            schemaName: "wifeName",
+            testId: "wifeName",
+            id: "wifeName",
+            placeholder: `${t("formInputs.wifeNameInput.text")}`,
+            label: `${t("formInputs.wifeNameInput.text")}`,
+            validation: [{ type: "required" }],
+            visibility: false,
+          },
+        ],
       },
       {
+        category: "field",
         fieldType: "checkbox",
         name: "preferredMeals",
         schemaName: "preferredMeals",
@@ -177,6 +192,7 @@ const AddPatientPage: FC = () => {
         visibility: true,
       },
       {
+        category: "field",
         fieldType: "datePicker",
         name: "pastDate",
         schemaName: "pastDate",
@@ -196,6 +212,7 @@ const AddPatientPage: FC = () => {
         visibility: true,
       },
       {
+        category: "field",
         fieldType: "datePicker",
         name: "futureDate",
         schemaName: "futureDate",

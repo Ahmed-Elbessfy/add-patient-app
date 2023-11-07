@@ -3,7 +3,7 @@ import { DatePicker, RadioChangeEvent, Select } from "antd";
 import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 // import { IStyledComponent } from "styled-components";
-import { DynamicInputConfig } from "./DynamicInput.types";
+import { DynamicFieldConfig } from "./DynamicInput.types";
 import {
   StyledDynamicTextInput,
   StyledDynamicNumberInput,
@@ -32,10 +32,8 @@ const { RangePicker } = DatePicker;
 //   checkbox: StyledDynamicCheckboxInput,
 // };
 
-const DynamicInput: FC<DynamicInputConfig> = (props) => {
-  const { fieldType, label, id, name, placeholder, testId, onChange, values } =
-    props;
-  console.log(values);
+const DynamicInput: FC<DynamicFieldConfig> = (props) => {
+  const { fieldType, label, id, name, placeholder, testId, onChange } = props;
   // const renderInput = () => {
   //   console.log("rendercomp ");
   //   console.log(props.fieldType);
@@ -65,21 +63,6 @@ const DynamicInput: FC<DynamicInputConfig> = (props) => {
         />
       )}
 
-      {/* wifeName text input: this input is visible and required only if user is married. Radio value is "married" */}
-      {fieldType === "text" &&
-        id === "wifeName" &&
-        values.maritalStatus === "married" && (
-          <StyledDynamicTextInput
-            type={fieldType}
-            name={name}
-            placeholder={placeholder}
-            data-testid={testId}
-            id={id}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              onChange(e.target.value)
-            }
-          />
-        )}
       {/* Number input  */}
       {fieldType === "number" && (
         <StyledDynamicNumberInput

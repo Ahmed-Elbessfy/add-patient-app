@@ -1,6 +1,10 @@
 // import { FormEvent } from "react";
 // import * as yup from "yup"
-import { DynamicFormInputConfig } from "../DynamicInput/DynamicInput.types";
+import {
+  DynamicFormFieldConfig,
+  ItemLayout,
+  ItemUI,
+} from "../DynamicInput/DynamicInput.types";
 
 export interface DynamicFormOutput {
   name: string;
@@ -13,9 +17,11 @@ export interface DynamicFormOutput {
   preferredMeals: string[];
 }
 
+export type InputConfigOptions = DynamicFormFieldConfig | ItemLayout | ItemUI;
+
 export type DynamicFormConfiguration = {
   heading: string;
-  inputsConfig: DynamicFormInputConfig[];
+  inputsConfig: InputConfigOptions[];
   onSubmit: (data: DynamicFormOutput) => void;
 };
 

@@ -1,4 +1,4 @@
-import { DynamicFormInputConfig } from "./../patterns/DynamicInput/DynamicInput.types";
+import { DynamicFormFieldConfig } from "./../patterns/DynamicInput/DynamicInput.types";
 import {
   error_messages,
   input_validation_types,
@@ -16,7 +16,7 @@ type ValidationSchema =
 
 const validateRequired = (
   validationSchema: yup.StringSchema,
-  input: DynamicFormInputConfig
+  input: DynamicFormFieldConfig
 ) => {
   const rule = {
     fieldName: input.name,
@@ -29,7 +29,7 @@ const validateRequired = (
 
 const validateMinimum = (
   validationSchema: yup.NumberSchema,
-  input: DynamicFormInputConfig
+  input: DynamicFormFieldConfig
 ) => {
   const minValue = input.validation.find(
     (rule) => rule.type === "minimum"
@@ -52,7 +52,7 @@ const validateMinimum = (
 
 const validateInteger = (
   validationSchema: yup.NumberSchema,
-  input: DynamicFormInputConfig
+  input: DynamicFormFieldConfig
 ) => {
   const rule = {
     fieldName: input.name,
@@ -65,7 +65,7 @@ const validateInteger = (
 
 const validatePattern = (
   validationSchema: yup.StringSchema,
-  input: DynamicFormInputConfig
+  input: DynamicFormFieldConfig
 ) => {
   const rule = { fieldName: input.name };
   const pattern = input.validation.filter((rule) => rule.type === "pattern")[0]
@@ -82,7 +82,7 @@ const validatePattern = (
 
 const validateAtLeastOneRequired = (
   validationSchema: yup.ArraySchema<string[], unknown>,
-  input: DynamicFormInputConfig
+  input: DynamicFormFieldConfig
 ) => {
   const rule = {
     fieldName: input.name,
@@ -94,7 +94,7 @@ const validateAtLeastOneRequired = (
 
 const validateMaximum = (
   validationSchema: yup.NumberSchema,
-  input: DynamicFormInputConfig
+  input: DynamicFormFieldConfig
 ) => {
   const maxValue = input.validation.filter((rule) => rule.type === "maximum")[0]
     .maxNumber;
@@ -114,7 +114,7 @@ const validateMaximum = (
 
 const validateEarlierThan = (
   validationSchema: yup.AnyObject,
-  input: DynamicFormInputConfig
+  input: DynamicFormFieldConfig
 ) => {
   const date = input.validation.filter(
     (rule) => rule.type === "earlier_than"
@@ -133,7 +133,7 @@ const validateEarlierThan = (
 
 const validateLaterThan = (
   validationSchema: yup.AnyObject,
-  input: DynamicFormInputConfig
+  input: DynamicFormFieldConfig
 ) => {
   const date = input.validation.filter((rule) => rule.type === "later_than")[0]
     .date;
@@ -161,7 +161,7 @@ const validationRules = {
 };
 
 // creating a schema
-export const parseValidation = (input: DynamicFormInputConfig) => {
+export const parseValidation = (input: DynamicFormFieldConfig) => {
   // if field of unknown or handled type
   if (!input_validation_types[input.fieldType]) {
     throw Error(`Unknown input type of type ${input.fieldType}`);
