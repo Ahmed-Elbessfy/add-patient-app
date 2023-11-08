@@ -1,15 +1,24 @@
 import { FC } from "react";
-import { Button } from "antd";
+import { Alert, Button, Typography } from "antd";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { parseValidation } from "../../utils/validation";
-import { DynamicFormFieldConfig } from "../DynamicInput/DynamicInput.types";
-import { InputConfigOptions } from "./DynamicForm.types";
+// import { parseValidation } from "../../utils/validation";
+import {
+  DynamicFormFieldConfig,
+  ItemLayout,
+  ItemUI,
+  UIAlert,
+  UILink,
+  UIText,
+  UITitle,
+} from "../DynamicInput/DynamicInput.types";
 import DynamicInput from "../DynamicInput/DynamicInput";
-import { DynamicFormConfiguration } from "./DynamicForm.types";
+import { InputConfigOptions } from "./DynamicForm.types";
 import { StyledErrorMsg } from "./DynamicForm.styled";
-import Title from "antd/es/typography/Title";
+import { DynamicFormConfiguration } from "./DynamicForm.types";
+
+const { Text, Link, Title } = Typography;
 
 const DynamicForm: FC<DynamicFormConfiguration> = ({
   heading,
@@ -30,22 +39,45 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
 
   const renderItems = (inputsConfig: InputConfigOptions[]) => {
     return inputsConfig.map((inputConfig: InputConfigOptions) => {
-      console.log(inputConfig.category);
-      switch (inputConfig.category) {
-        case "field":
-          return (
+      // Field render
+      if (inputConfig.category === "field") {
+        const currentItem = inputConfig as DynamicFormFieldConfig;
+        return (
+          <Controller
+            key={currentItem.id}
+            name={currentItem.schemaName}
+            control={control}
+            render={({ field, fieldState: { error } }) => {
+              return (
+                <>
+                  <DynamicInput
+                    key={currentItem.id}
+                    {...currentItem}
+                    onChange={field.onChange}
+                  />
+                  <StyledErrorMsg>{error && error.message}</StyledErrorMsg>
+                </>
+              );
+            }}
+          />
+        );
+      }
+
+      // Layout Render
+      if (inputConfig.category === "layout") {
+        const currentItem = inputConfig as ItemLayout;
+        return currentItem.children.map(
+          (layoutInputConfig: DynamicFormFieldConfig) => (
             <Controller
-              key={inputConfig.id}
-              name={inputConfig.schemaName}
+              key={layoutInputConfig.id}
+              name={layoutInputConfig.schemaName}
               control={control}
-              // rules={inputConfig.validationRules[0]}
               render={({ field, fieldState: { error } }) => {
-                // console.log(inputConfig.schemaName, props);
                 return (
                   <>
                     <DynamicInput
-                      key={inputConfig.id}
-                      {...inputConfig}
+                      key={layoutInputConfig.id}
+                      {...layoutInputConfig}
                       onChange={field.onChange}
                     />
                     <StyledErrorMsg>{error && error.message}</StyledErrorMsg>
@@ -53,43 +85,43 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
                 );
               }}
             />
-          );
+          )
+        );
+      }
 
-        case "layout":
-          return inputConfig.children.map(
-            (layoutInputConfig: InputConfigOptions) => (
-              <Controller
-                key={layoutInputConfig.id}
-                name={layoutInputConfig.schemaName}
-                control={control}
-                // rules={layoutInputConfig.validationRules[0]}
-                render={({ field, fieldState: { error } }) => {
-                  // console.log(layoutInputConfig.schemaName, props);
-                  return (
-                    <>
-                      <DynamicInput
-                        key={layoutInputConfig.id}
-                        {...layoutInputConfig}
-                        onChange={field.onChange}
-                      />
-                      <StyledErrorMsg>{error && error.message}</StyledErrorMsg>
-                    </>
-                  );
-                }}
-              />
-            )
-          );
-
-        case "UI":
-          switch (inputConfig.type) {
-            case "title":
-              return (
-                <Title level={inputConfig.level}>{inputConfig.title}</Title>
-              );
-
-            case "text":
-              return <Text>{inputConfig.text}</Text>;
+      // UI Render
+      if (inputConfig.category === "UI") {
+        const currentItem = inputConfig as ItemUI;
+        switch (currentItem.type) {
+          // Title UI Item
+          case "title": {
+            const { level, title } = currentItem as UITitle;
+            return <Title level={level}>{title}</Title>;
           }
+          // Text UI Item
+          case "text": {
+            const { text } = currentItem as UIText;
+            return <Text>{text}</Text>;
+          }
+          // Link UI Item
+          case "link": {
+            const { text, url } = currentItem as UILink;
+            return <Link href={url}>{text}</Link>;
+          }
+          // Alert UI Item
+          case "alert": {
+            const { description, message, alertType, showIcon } =
+              currentItem as UIAlert;
+            return (
+              <Alert
+                message={message}
+                description={description}
+                type={alertType}
+                showIcon={showIcon}
+              />
+            );
+          }
+        }
       }
     });
   };

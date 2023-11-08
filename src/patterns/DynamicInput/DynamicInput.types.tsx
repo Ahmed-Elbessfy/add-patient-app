@@ -189,13 +189,13 @@ export type UIBase = {
   type: UIType;
 };
 
-export type UITitle = {
+export interface UITitle extends UIBase {
   type: UIType;
   title: string;
-  level: number;
-};
+  level: 1 | 2 | 3 | 4 | 5;
+}
 
-export type UIText = {
+export interface UIText extends UIBase {
   type: UIType;
   text: string;
   style?: {
@@ -204,18 +204,20 @@ export type UIText = {
     mark?: boolean;
     strong?: boolean;
   };
-};
+}
 
-export type UILink = {
+export interface UILink extends UIBase {
   type: UIType;
   text: string;
   url: string;
-};
+}
 
-export type UIAlert = {
+export interface UIAlert extends UIBase {
   type: UIType;
-  title: string;
+  description: string;
   message: string;
-};
+  alertType: "error" | "success" | "info" | "warning";
+  showIcon:boolean
+}
 
 export type ItemUI = UITitle | UIText | UILink | UIAlert;
