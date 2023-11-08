@@ -1,6 +1,5 @@
 import { FC } from "react";
 // import AddPatientForm from "../features/AddPatientForm/AddPatientForm";
-import { useTranslation } from "react-i18next";
 import { useMutation } from "@apollo/client";
 import { ADD_PATIENT } from "../patterns/DynamicForm/DynamicForm.gql";
 import DynamicForm from "../patterns/DynamicForm/DynamicForm";
@@ -11,7 +10,6 @@ import {
 
 const AddPatientPage: FC = () => {
   // dynamic form translation configurations
-  const { t } = useTranslation("lang");
 
   // send data to server
   const [createPatient] = useMutation(ADD_PATIENT, { variables: { data: {} } });
@@ -23,7 +21,7 @@ const AddPatientPage: FC = () => {
   };
 
   const formConfig: DynamicFormConfiguration = {
-    heading: `${t("formHeader")}`,
+    heading: "formHeader",
     inputsConfig: [
       {
         category: "field",

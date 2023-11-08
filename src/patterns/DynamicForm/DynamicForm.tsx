@@ -4,6 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 // import { parseValidation } from "../../utils/validation";
+import { useTranslation } from "react-i18next";
 import {
   DynamicFormFieldConfig,
   ItemLayout,
@@ -36,6 +37,9 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
     resolver: yupResolver(localSchema),
     mode: "onChange",
   });
+
+  // for header & error messages
+  const { t } = useTranslation("lang");
 
   const renderItems = (inputsConfig: InputConfigOptions[]) => {
     return inputsConfig.map((inputConfig: InputConfigOptions) => {
@@ -129,7 +133,7 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
   // console.log(errors);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>{heading}</h1>
+      <h1>{t(heading)}</h1>
       {renderItems(inputsConfig)}
       <Button type="primary" htmlType="submit" data-testid="submitBtn">
         Add Patient
