@@ -49,6 +49,10 @@
       },
       "errorText": "برجاء اضافة الحالة الاجتماعية"
     },
+    "wifeNameInput": {
+      "text": "اسم الزوجة",
+      "errorText": "برجاء اضافة اسم الزوجة"
+    },
     "prefMealCheckboxInput": {
       "text": "ماذا تحب أن تاكل ",
       "options": {

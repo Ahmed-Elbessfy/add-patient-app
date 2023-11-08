@@ -32,8 +32,8 @@ const AddPatientPage: FC = () => {
         schemaName: "name",
         testId: "name",
         id: "name",
-        placeholder: `${t("formInputs.nameInput.text")}`,
-        label: `${t("formInputs.nameInput.text")}`,
+        placeholder: "formInputs.nameInput.text",
+        label: "formInputs.nameInput.text",
         validation: [
           {
             type: "required",
@@ -48,8 +48,8 @@ const AddPatientPage: FC = () => {
         schemaName: "age",
         testId: "age",
         id: "age",
-        placeholder: `${t("formInputs.ageInput.text")}`,
-        label: `${t("formInputs.ageInput.text")}`,
+        placeholder: "formInputs.ageInput.text",
+        label: "formInputs.ageInput.text",
         validation: [
           {
             type: "required",
@@ -76,8 +76,8 @@ const AddPatientPage: FC = () => {
         schemaName: "email",
         testId: "email",
         id: "email",
-        placeholder: `${t("formInputs.emailInput.text")}`,
-        label: `${t("formInputs.emailInput.text")}`,
+        placeholder: "formInputs.emailInput.text",
+        label: "formInputs.emailInput.text",
         validation: [
           { type: "required" },
           {
@@ -94,8 +94,8 @@ const AddPatientPage: FC = () => {
         schemaName: "country",
         testId: "country",
         id: "country",
-        placeholder: `${t("formInputs.countryInput.text")}`,
-        label: `${t("formInputs.countryInput.text")}`,
+        placeholder: "formInputs.countryInput.text",
+        label: "formInputs.countryInput.text",
         validation: [{ type: "required" }],
         visibility: true,
       },
@@ -106,16 +106,16 @@ const AddPatientPage: FC = () => {
         schemaName: "gender",
         testId: "gender",
         id: "gender",
-        placeholder: `${t("formInputs.genderInput.text")}`,
-        label: `${t("formInputs.genderInput.text")}`,
+        placeholder: "formInputs.genderInput.text",
+        label: "formInputs.genderInput.text",
         options: [
           {
             value: "male",
-            label: `${t("formInputs.genderInput.options.male")}`,
+            label: `formInputs.genderInput.options.male`,
           },
           {
             value: "female",
-            label: `${t("formInputs.genderInput.options.female")}`,
+            label: `formInputs.genderInput.options.female`,
           },
         ],
         validation: [{ type: "required" }],
@@ -128,16 +128,16 @@ const AddPatientPage: FC = () => {
         schemaName: "maritalStatus",
         testId: "maritalStatus",
         id: "maritalStatus",
-        placeholder: `${t("formInputs.MarriageRadioInput.text")}`,
-        label: `${t("formInputs.MarriageRadioInput.text")}`,
+        placeholder: "formInputs.MarriageRadioInput.text",
+        label: "formInputs.MarriageRadioInput.text",
         options: [
           {
             value: "married",
-            label: `${t("formInputs.MarriageRadioInput.options.married")}`,
+            label: "formInputs.MarriageRadioInput.options.married",
           },
           {
             value: "unmarried",
-            label: `${t("formInputs.MarriageRadioInput.options.unmarried")}`,
+            label: "formInputs.MarriageRadioInput.options.unmarried",
           },
         ],
         validation: [{ type: "required" }],
@@ -155,8 +155,8 @@ const AddPatientPage: FC = () => {
             schemaName: "wifeName",
             testId: "wifeName",
             id: "wifeName",
-            placeholder: `${t("formInputs.wifeNameInput.text")}`,
-            label: `${t("formInputs.wifeNameInput.text")}`,
+            placeholder: "formInputs.wifeNameInput.text",
+            label: "formInputs.wifeNameInput.text",
             validation: [{ type: "required" }],
             visibility: false,
           },
@@ -169,18 +169,18 @@ const AddPatientPage: FC = () => {
         schemaName: "preferredMeals",
         testId: "preferredMeals",
         id: "preferredMeals",
-        label: `${t("formInputs.prefMealCheckboxInput.text")}`,
+        label: "formInputs.prefMealCheckboxInput.text",
         options: [
           {
-            label: `${t("formInputs.prefMealCheckboxInput.options.apple")}`,
+            label: "formInputs.prefMealCheckboxInput.options.apple",
             value: "apple",
           },
           {
-            label: `${t("formInputs.prefMealCheckboxInput.options.pear")}`,
+            label: "formInputs.prefMealCheckboxInput.options.pear",
             value: "pear",
           },
           {
-            label: `${t("formInputs.prefMealCheckboxInput.options.orange")}`,
+            label: "formInputs.prefMealCheckboxInput.options.orange",
             value: "orange",
           },
         ],
@@ -198,8 +198,8 @@ const AddPatientPage: FC = () => {
         schemaName: "pastDate",
         testId: "pastDate",
         id: "pastDate",
-        placeholder: `${t("formInputs.datePickerInput.text")}`,
-        label: `${t("formInputs.datePickerInput.text")}`,
+        placeholder: "formInputs.datePickerInput.text",
+        label: "formInputs.datePickerInput.text",
         showTime: false,
         format: "YYYY-MM-DD",
         validation: [
@@ -218,8 +218,8 @@ const AddPatientPage: FC = () => {
         schemaName: "futureDate",
         testId: "futureDate",
         id: "futureDate",
-        placeholder: `${t("formInputs.datePickerInput.text")}`,
-        label: `${t("formInputs.datePickerInput.text")}`,
+        placeholder: "formInputs.datePickerInput.text",
+        label: "formInputs.datePickerInput.text",
         showTime: false,
         format: "YYYY-MM-DD",
         validation: [

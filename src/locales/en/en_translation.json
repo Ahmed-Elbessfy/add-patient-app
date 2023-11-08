@@ -6,7 +6,7 @@
       "errorText": "Name is required"
     },
     "emailInput": {
-      "text": "Email Ahmed",
+      "text": "Email",
       "errorText": {
         "required": "Email is required",
         "validation": "Please add a valid email"

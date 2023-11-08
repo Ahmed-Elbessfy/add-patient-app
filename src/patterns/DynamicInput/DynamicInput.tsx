@@ -1,5 +1,6 @@
 import { FC, ChangeEvent } from "react";
-import { DatePicker, RadioChangeEvent, Select } from "antd";
+import { Checkbox, DatePicker, Radio, RadioChangeEvent, Select } from "antd";
+import { useTranslation } from "react-i18next";
 import type { DatePickerProps, RangePickerProps } from "antd/es/date-picker";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 // import { IStyledComponent } from "styled-components";
@@ -17,36 +18,14 @@ import {
   StyledDynamicRateInput,
 } from "./DynamicInput.styled";
 
-const { RangePicker } = DatePicker;
-
-// type InputComponents = {
-//   [key: string]: IStyledComponent<"web">;
-// };
-
-// const inputComponents: InputComponents = {
-//   text: StyledDynamicTextInput,
-//   number: StyledDynamicNumberInput,
-//   textarea: StyledDynamicTextArea,
-//   select: StyledDynamicSelectInput,
-//   radio: StyledDynamicRadioInput,
-//   checkbox: StyledDynamicCheckboxInput,
-// };
-
 const DynamicInput: FC<DynamicFieldConfig> = (props) => {
   const { fieldType, label, id, name, placeholder, testId, onChange } = props;
-  // const renderInput = () => {
-  //   console.log("rendercomp ");
-  //   console.log(props.fieldType);
-  //   if (!props.fieldType || !inputComponents[props.fieldType]) return null;
-  //   const Component = inputComponents[props.fieldType];
-  //   console.log(<Component {...props} />);
-  //   return <Component {...props} />;
-  // };
+  const { t } = useTranslation("lang");
 
   return (
     <>
       {label && fieldType !== "checkbox" && fieldType !== "radio" && (
-        <StyledLabel htmlFor={id}>{label}</StyledLabel>
+        <StyledLabel htmlFor={id}>{t(label)}</StyledLabel>
       )}
       {/* {renderInput()} */}
       {/* Text input  */}
@@ -54,7 +33,7 @@ const DynamicInput: FC<DynamicFieldConfig> = (props) => {
         <StyledDynamicTextInput
           type={fieldType}
           name={name}
-          placeholder={placeholder}
+          placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           id={id}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -68,7 +47,7 @@ const DynamicInput: FC<DynamicFieldConfig> = (props) => {
         <StyledDynamicNumberInput
           type={fieldType}
           name={name}
-          placeholder={placeholder}
+          placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           id={id}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -81,7 +60,7 @@ const DynamicInput: FC<DynamicFieldConfig> = (props) => {
       {fieldType === "textarea" && (
         <StyledDynamicTextArea
           name={name}
-          placeholder={placeholder}
+          placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           id={id}
           onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
@@ -92,7 +71,7 @@ const DynamicInput: FC<DynamicFieldConfig> = (props) => {
       {/* Select input  */}
       {fieldType === "select" && (
         <StyledDynamicSelectInput
-          placeholder={placeholder}
+          placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           id={id}
           onChange={(value: string) => onChange(value)}
@@ -101,7 +80,7 @@ const DynamicInput: FC<DynamicFieldConfig> = (props) => {
             props.options.map((option, ind) => {
               return (
                 <Select.Option key={ind} value={option.value}>
-                  {option.label}
+                  {t(option.label)}
                 </Select.Option>
               );
             })}
@@ -110,28 +89,38 @@ const DynamicInput: FC<DynamicFieldConfig> = (props) => {
       {/* Checkbox input  */}
       {fieldType === "radio" && (
         <fieldset>
-          <legend>{label}</legend>
+          <legend>{label && t(label)}</legend>
           <StyledDynamicRadioInput
             name={name}
-            options={props.options}
             data-testid={testId}
             onChange={({ target: { value } }: RadioChangeEvent) =>
               onChange(value)
             }
-          ></StyledDynamicRadioInput>
+          >
+            {props.options.map((option, ind) => (
+              <Radio key={ind} value={option.value}>
+                {t(option.label)}
+              </Radio>
+            ))}
+          </StyledDynamicRadioInput>
         </fieldset>
       )}
       {/* Checkbox input  */}
       {fieldType === "checkbox" && (
         <fieldset>
-          <legend>{label}</legend>
+          <legend>{label && t(label)}</legend>
           <StyledDynamicCheckboxInput
-            options={props.options}
             data-testid={testId}
             onChange={(checkedValues: CheckboxValueType[]) =>
               onChange(checkedValues)
             }
-          ></StyledDynamicCheckboxInput>
+          >
+            {props.options.map((option, ind) => (
+              <Checkbox key={ind} value={option.value}>
+                {t(option.label)}
+              </Checkbox>
+            ))}
+          </StyledDynamicCheckboxInput>
         </fieldset>
       )}
       {/* Date Picker  */}
@@ -139,7 +128,7 @@ const DynamicInput: FC<DynamicFieldConfig> = (props) => {
         <DatePicker
           format={props.format}
           showTime={props.showTime}
-          placeholder={placeholder}
+          placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           onChange={(
             value: DatePickerProps["value"] | RangePickerProps["value"],
@@ -147,19 +136,7 @@ const DynamicInput: FC<DynamicFieldConfig> = (props) => {
           ) => onChange(dateString)}
         />
       )}
-      {/* Range Picker  */}
-      {fieldType === "rangePicker" && (
-        <RangePicker
-          format={props.format}
-          showTime={props.showTime}
-          placeholder={placeholder}
-          data-testid={testId}
-          onChange={(
-            value: DatePickerProps["value"] | RangePickerProps["value"],
-            dateString: [string, string] | string
-          ) => onChange(dateString)}
-        />
-      )}
+
       {/* Switch Input  */}
       {fieldType === "switch" && (
         <StyledDynamicSwitchInput

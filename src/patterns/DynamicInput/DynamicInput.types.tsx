@@ -6,6 +6,7 @@ type itemCategory = "field" | "layout" | "UI";
                     Category: Field
 **********************************************************
 */
+
 type Option = {
   label: string;
   value: string;
@@ -49,7 +50,7 @@ interface DynamicFieldConfigBase {
     | "rate";
   name: string;
   schemaName: schemaTypes;
-  placeholder?: string | [string, string];
+  placeholder?: string;
   label?: string;
   id?: string;
   testId?: string;
@@ -59,67 +60,47 @@ interface DynamicFieldConfigBase {
 
 export interface DynamicFieldConfigText extends DynamicFieldConfigBase {
   fieldType: "text";
-  placeholder?: string;
 }
 
 export interface DynamicFieldConfigNumber extends DynamicFieldConfigBase {
   fieldType: "number";
-  placeholder?: string;
 }
 
 export interface DynamicFieldConfigTextArea extends DynamicFieldConfigBase {
   fieldType: "textarea";
-  placeholder?: string;
 }
 
 export interface DynamicFieldConfigSelect extends DynamicFieldConfigBase {
   fieldType: "select";
   options: Option[];
-  placeholder?: string;
 }
 export interface DynamicFieldConfigRadio extends DynamicFieldConfigBase {
   fieldType: "radio";
   options: Option[];
-  placeholder?: string;
 }
 
 export interface DynamicFieldConfigCheckbox extends DynamicFieldConfigBase {
   fieldType: "checkbox";
   options: Option[];
-  placeholder?: string | [string, string];
 }
 
-interface DynamicFieldConfigDateInputs extends DynamicFieldConfigBase {
+export interface DynamicFieldConfigDatePicker extends DynamicFieldConfigBase {
   showTime: boolean;
   format: string;
-  placeholder?: string | [string, string];
-}
-export interface DynamicFieldConfigDatePicker
-  extends DynamicFieldConfigDateInputs {
   fieldType: "datePicker";
-  placeholder?: string;
-}
-
-export interface DynamicFieldConfigRangePicker
-  extends DynamicFieldConfigDateInputs {
-  fieldType: "rangePicker";
-  placeholder?: [string, string];
 }
 
 export interface DynamicFieldConfigSwitch extends DynamicFieldConfigBase {
   fieldType: "switch";
-  placeholder?: string;
 }
 
 export interface DynamicFieldConfigSlider extends DynamicFieldConfigBase {
   fieldType: "slider";
-  placeholder?: string;
 }
 
 export interface DynamicFieldConfigRate extends DynamicFieldConfigBase {
   fieldType: "rate";
   allowHalfRate: boolean;
-  placeholder?: string;
 }
 
 // creates types without onChange method, used for inputConfig array
@@ -131,7 +112,6 @@ export type DynamicFormFieldConfig =
   | DynamicFieldConfigRadio
   | DynamicFieldConfigCheckbox
   | DynamicFieldConfigDatePicker
-  | DynamicFieldConfigRangePicker
   | DynamicFieldConfigSwitch
   | DynamicFieldConfigSlider
   | DynamicFieldConfigRate;
@@ -217,7 +197,7 @@ export interface UIAlert extends UIBase {
   description: string;
   message: string;
   alertType: "error" | "success" | "info" | "warning";
-  showIcon:boolean
+  showIcon: boolean;
 }
 
 export type ItemUI = UITitle | UIText | UILink | UIAlert;
