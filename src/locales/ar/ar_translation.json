@@ -53,6 +53,14 @@
       "text": "اسم الزوجة",
       "errorText": "برجاء اضافة اسم الزوجة"
     },
+    "childrenNumberInput": {
+      "text": "كم عدد ابناءك؟",
+      "errorText": "برجاء اضافة عدد الابناء"
+    },
+    "childrenNamesInput": {
+      "text": "أسماء أبناءك",
+      "errorText": "برجاء اضافة أسماء أبناءك"
+    },
     "prefMealCheckboxInput": {
       "text": "ماذا تحب أن تاكل ",
       "options": {

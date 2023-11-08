@@ -23,7 +23,9 @@ export type schemaTypes =
   | "wifeName"
   | "preferredMeals"
   | "pastDate"
-  | "futureDate";
+  | "futureDate"
+  | "childrenNumber"
+  | "childrenNames";
 
 type fieldValidationForm = {
   type: string;

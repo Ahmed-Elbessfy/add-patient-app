@@ -53,6 +53,14 @@
       "text": "Wife Name",
       "errorText": "Wife Name is required"
     },
+    "childrenNumberInput": {
+      "text": "how many children?",
+      "errorText": "Children Numbers is required"
+    },
+    "childrenNamesInput": {
+      "text": "Children Names",
+      "errorText": "Children Names is required"
+    },
     "prefMealCheckboxInput": {
       "text": "What would you like to eat?",
       "options": {
