@@ -70,27 +70,7 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
       // Layout Render
       if (inputConfig.category === "layout") {
         const currentItem = inputConfig as ItemLayout;
-        return currentItem.children.map(
-          (layoutInputConfig: DynamicFormFieldConfig) => (
-            <Controller
-              key={layoutInputConfig.id}
-              name={layoutInputConfig.schemaName}
-              control={control}
-              render={({ field, fieldState: { error } }) => {
-                return (
-                  <>
-                    <DynamicInput
-                      key={layoutInputConfig.id}
-                      {...layoutInputConfig}
-                      onChange={field.onChange}
-                    />
-                    <StyledErrorMsg>{error && error.message}</StyledErrorMsg>
-                  </>
-                );
-              }}
-            />
-          )
-        );
+        return renderItems(currentItem.children);
       }
 
       // UI Render
