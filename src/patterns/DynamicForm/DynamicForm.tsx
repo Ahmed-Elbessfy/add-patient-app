@@ -14,6 +14,7 @@ import {
   UIText,
   UITitle,
 } from "../DynamicInput/DynamicInput.types";
+import DynamicFormSection from "../DynamicFormSection/DynamicFormSection";
 import DynamicInput from "../DynamicInput/DynamicInput";
 import { InputConfigOptions } from "./DynamicForm.types";
 import { StyledErrorMsg } from "./DynamicForm.styled";
@@ -55,14 +56,14 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
                 control={control}
                 render={({ field, fieldState: { error } }) => {
                   return (
-                    <>
+                    <div>
                       <DynamicInput
                         key={currentItem.id}
                         {...currentItem}
                         onChange={field.onChange}
                       />
                       <StyledErrorMsg>{error && error.message}</StyledErrorMsg>
-                    </>
+                    </div>
                   );
                 }}
               />
@@ -72,7 +73,9 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
           // Layout Render
           if (inputConfig.category === "layout") {
             const currentItem = inputConfig as ItemLayout;
-            return renderItems(currentItem.children);
+            return (
+              <DynamicFormSection {...currentItem} renderItems={renderItems} />
+            );
           }
 
           // UI Render

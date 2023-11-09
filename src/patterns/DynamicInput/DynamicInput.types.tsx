@@ -147,6 +147,7 @@ export type LayoutBase = {
   type: LayoutType;
   children: ChildrenType[];
   gap: number;
+  padding?: number;
 };
 
 export interface LayoutHStack extends LayoutBase {
