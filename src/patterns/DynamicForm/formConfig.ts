@@ -167,7 +167,141 @@ export const inputsConfig: InputConfigOptions[] = [
     type: "box",
     gap: 1,
     padding: 0.7,
-    children: [],
+    children: [
+      {
+        category: "field",
+        fieldType: "text",
+        name: "name",
+        schemaName: "name",
+        testId: "name",
+        id: "name",
+        placeholder: "formInputs.nameInput.text",
+        label: "formInputs.nameInput.text",
+        validation: [
+          {
+            type: "required",
+          },
+        ],
+        visibility: true,
+      },
+      {
+        category: "field",
+        fieldType: "number",
+        name: "age",
+        schemaName: "age",
+        testId: "age",
+        id: "age",
+        placeholder: "formInputs.ageInput.text",
+        label: "formInputs.ageInput.text",
+        validation: [
+          {
+            type: "required",
+          },
+          {
+            type: "minimum",
+            minNumber: 1,
+          },
+          {
+            type: "maximum",
+            maxNumber: 200,
+          },
+          {
+            type: "isInteger",
+            isInteger: true,
+          },
+        ],
+        visibility: true,
+      },
+      {
+        category: "field",
+        fieldType: "text",
+        name: "email",
+        schemaName: "email",
+        testId: "email",
+        id: "email",
+        placeholder: "formInputs.emailInput.text",
+        label: "formInputs.emailInput.text",
+        validation: [
+          { type: "required" },
+          {
+            type: "pattern",
+            pattern: /^[A-Za-z0-9,-_.]{3,}@[A-Za-z0-9]{3,}\.[A-Za-z0-9]{3,}$/,
+          },
+        ],
+        visibility: true,
+      },
+      {
+        category: "layout",
+        type: "box",
+        gap: 1,
+        padding: 0.5,
+        children: [
+          {
+            category: "field",
+            fieldType: "text",
+            name: "name",
+            schemaName: "name",
+            testId: "name",
+            id: "name",
+            placeholder: "formInputs.nameInput.text",
+            label: "formInputs.nameInput.text",
+            validation: [
+              {
+                type: "required",
+              },
+            ],
+            visibility: true,
+          },
+          {
+            category: "field",
+            fieldType: "number",
+            name: "age",
+            schemaName: "age",
+            testId: "age",
+            id: "age",
+            placeholder: "formInputs.ageInput.text",
+            label: "formInputs.ageInput.text",
+            validation: [
+              {
+                type: "required",
+              },
+              {
+                type: "minimum",
+                minNumber: 1,
+              },
+              {
+                type: "maximum",
+                maxNumber: 200,
+              },
+              {
+                type: "isInteger",
+                isInteger: true,
+              },
+            ],
+            visibility: true,
+          },
+          {
+            category: "field",
+            fieldType: "text",
+            name: "email",
+            schemaName: "email",
+            testId: "email",
+            id: "email",
+            placeholder: "formInputs.emailInput.text",
+            label: "formInputs.emailInput.text",
+            validation: [
+              { type: "required" },
+              {
+                type: "pattern",
+                pattern:
+                  /^[A-Za-z0-9,-_.]{3,}@[A-Za-z0-9]{3,}\.[A-Za-z0-9]{3,}$/,
+              },
+            ],
+            visibility: true,
+          },
+        ],
+      },
+    ],
   },
   {
     category: "field",
