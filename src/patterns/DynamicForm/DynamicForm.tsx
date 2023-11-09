@@ -41,73 +41,77 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
   // for header & error messages
   const { t } = useTranslation("lang");
 
-  const renderItems = (inputsConfig: InputConfigOptions[]) => {
-    return inputsConfig.map((inputConfig: InputConfigOptions) => {
-      // Field render
-      if (inputConfig.category === "field") {
-        const currentItem = inputConfig as DynamicFormFieldConfig;
-        return (
-          <Controller
-            key={currentItem.id}
-            name={currentItem.schemaName}
-            control={control}
-            render={({ field, fieldState: { error } }) => {
-              return (
-                <>
-                  <DynamicInput
-                    key={currentItem.id}
-                    {...currentItem}
-                    onChange={field.onChange}
-                  />
-                  <StyledErrorMsg>{error && error.message}</StyledErrorMsg>
-                </>
-              );
-            }}
-          />
-        );
-      }
-
-      // Layout Render
-      if (inputConfig.category === "layout") {
-        const currentItem = inputConfig as ItemLayout;
-        return renderItems(currentItem.children);
-      }
-
-      // UI Render
-      if (inputConfig.category === "UI") {
-        const currentItem = inputConfig as ItemUI;
-        switch (currentItem.type) {
-          // Title UI Item
-          case "title": {
-            const { level, title } = currentItem as UITitle;
-            return <Title level={level}>{title}</Title>;
-          }
-          // Text UI Item
-          case "text": {
-            const { text } = currentItem as UIText;
-            return <Text>{text}</Text>;
-          }
-          // Link UI Item
-          case "link": {
-            const { text, url } = currentItem as UILink;
-            return <Link href={url}>{text}</Link>;
-          }
-          // Alert UI Item
-          case "alert": {
-            const { description, message, alertType, showIcon } =
-              currentItem as UIAlert;
+  const renderItems = (inputsConfig: InputConfigOptions[]): JSX.Element => {
+    return (
+      <>
+        {inputsConfig.map((inputConfig: InputConfigOptions) => {
+          // Field render
+          if (inputConfig.category === "field") {
+            const currentItem = inputConfig as DynamicFormFieldConfig;
             return (
-              <Alert
-                message={message}
-                description={description}
-                type={alertType}
-                showIcon={showIcon}
+              <Controller
+                key={currentItem.id}
+                name={currentItem.schemaName}
+                control={control}
+                render={({ field, fieldState: { error } }) => {
+                  return (
+                    <>
+                      <DynamicInput
+                        key={currentItem.id}
+                        {...currentItem}
+                        onChange={field.onChange}
+                      />
+                      <StyledErrorMsg>{error && error.message}</StyledErrorMsg>
+                    </>
+                  );
+                }}
               />
             );
           }
-        }
-      }
-    });
+
+          // Layout Render
+          if (inputConfig.category === "layout") {
+            const currentItem = inputConfig as ItemLayout;
+            return renderItems(currentItem.children);
+          }
+
+          // UI Render
+          if (inputConfig.category === "UI") {
+            const currentItem = inputConfig as ItemUI;
+            switch (currentItem.type) {
+              // Title UI Item
+              case "title": {
+                const { level, title } = currentItem as UITitle;
+                return <Title level={level}>{title}</Title>;
+              }
+              // Text UI Item
+              case "text": {
+                const { text } = currentItem as UIText;
+                return <Text>{text}</Text>;
+              }
+              // Link UI Item
+              case "link": {
+                const { text, url } = currentItem as UILink;
+                return <Link href={url}>{text}</Link>;
+              }
+              // Alert UI Item
+              case "alert": {
+                const { description, message, alertType, showIcon } =
+                  currentItem as UIAlert;
+                return (
+                  <Alert
+                    message={message}
+                    description={description}
+                    type={alertType}
+                    showIcon={showIcon}
+                  />
+                );
+              }
+            }
+          }
+        })}
+      </>
+    );
   };
 
   // console.log(errors);
