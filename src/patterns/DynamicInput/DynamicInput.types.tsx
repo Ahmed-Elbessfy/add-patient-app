@@ -140,10 +140,12 @@ export type DynamicFieldConfig = DynamicFormFieldConfig & DynamicFieldOnChange;
 
 type LayoutType = "hStack" | "box";
 
+type ChildrenType = DynamicFormFieldConfig | ItemLayout | ItemUI;
+
 export type LayoutBase = {
   category: itemCategory;
   type: LayoutType;
-  children: DynamicFormFieldConfig[];
+  children: ChildrenType[];
   gap: number;
 };
 
