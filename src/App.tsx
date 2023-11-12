@@ -4,10 +4,12 @@ import { ConfigProvider } from "antd";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import PatientsListPage from "./pages/PatientsListPage";
+import AddAppointmentPage from "./pages/AddAppointmentPage";
 
 const AddPatientPage = loadable(() => import("./pages/AddPatientPage"));
-const SwitchLangBtn = loadable(() => import("./patterns/SwitchLangBtn/SwitchLangBtn"));
+const SwitchLangBtn = loadable(
+  () => import("./patterns/SwitchLangBtn/SwitchLangBtn")
+);
 function App() {
   // configure i18n
   const { i18n } = useTranslation("lang");
@@ -19,7 +21,7 @@ function App() {
           <SwitchLangBtn />
           <Router>
             <Routes>
-              <Route path="/" element={<PatientsListPage />} />
+              <Route path="/" element={<AddAppointmentPage />} />
               <Route path="/add_patient" element={<AddPatientPage />} />
             </Routes>
           </Router>
