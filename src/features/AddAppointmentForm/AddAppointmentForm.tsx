@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Alert, Button, Typography } from "antd";
+import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
 import {
   FormFieldConfig,
   Item,
@@ -36,7 +37,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                 render={({ field, fieldState: { error } }) => {
                   return (
                     <div>
-                      {field.name}
+                      <AddAppointmentFields
+                        {...item}
+                        onChange={field.onChange}
+                      />
                       {error && error.message}
                     </div>
                   );
