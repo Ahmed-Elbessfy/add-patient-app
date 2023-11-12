@@ -9,10 +9,12 @@ type itemCategory = "field" | "layout" | "UI";
 
 type fieldTypeValues =
   | "text"
+  | "number"
   | "select"
-  | "date"
-  | "time"
+  | "datePicker"
+  | "timePicker"
   | "textarea"
+  | "radio"
   | "switch";
 interface ItemField {
   category: itemCategory;
@@ -22,6 +24,7 @@ interface ItemField {
   name: string;
   label?: string;
   placeholder?: string;
+  defaultValue?: string | number;
 }
 
 type Option = {
@@ -33,22 +36,29 @@ export interface FieldText extends ItemField {
   fieldType: "text";
 }
 
+export interface FieldNumber extends ItemField {
+  fieldType: "number";
+}
+
 export interface FieldSelect extends ItemField {
   fieldType: "select";
   options: Option[];
 }
 
+export interface FieldRadio extends ItemField {
+  fieldType: "radio";
+  options: Option[];
+}
+
 export interface FieldDate extends ItemField {
-  fieldType: "date";
+  fieldType: "datePicker";
   format: string;
-  defaultValue: string;
 }
 
 export interface FieldTime extends ItemField {
-  fieldType: "time";
+  fieldType: "timePicker";
   use12Hours: boolean;
   format: string;
-  defaultValue: string;
 }
 
 export interface FieldTextArea extends ItemField {
@@ -57,11 +67,16 @@ export interface FieldTextArea extends ItemField {
 
 export interface FieldSwitch extends ItemField {
   fieldType: "switch";
+  checkedChildren: string;
+  unCheckedChildren: string;
+  defaultChecked: boolean;
 }
 
 export type FormFieldConfig =
   | FieldText
+  | FieldNumber
   | FieldSelect
+  | FieldRadio
   | FieldDate
   | FieldTime
   | FieldSwitch
@@ -148,4 +163,4 @@ export interface UIAlert extends UIBase {
 
 export type ItemUI = UITitle | UIText | UILink | UIAlert;
 
-export type Item = FieldConfig | ItemLayout | ItemUI;
+export type Item = FormFieldConfig | ItemLayout | ItemUI;
