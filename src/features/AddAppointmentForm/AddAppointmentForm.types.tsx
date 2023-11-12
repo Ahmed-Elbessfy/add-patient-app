@@ -1,5 +1,4 @@
-import { Item } from "../AddAppointmentFields.ts/AddAppointmentInputs.type";
-
+import { Item } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
 export interface AddAppointmentFormProps {
   fieldsConfig: Item[];

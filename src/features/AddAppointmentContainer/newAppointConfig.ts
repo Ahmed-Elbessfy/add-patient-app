@@ -1,4 +1,4 @@
-import { Item } from "../AddAppointmentFields.ts/AddAppointmentInputs.type";
+import { Item } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
 export const addAppointmentFieldsConfig: Item[] = [
   {
