@@ -10,11 +10,11 @@ import {
   Switch,
 } from "antd";
 import dayjs from "dayjs";
-
+import type { Dayjs } from "dayjs";
 import { FieldConfig } from "./AddAppointmentInputs.type";
 
 const AddAppointmentFields: FC<FieldConfig> = (props) => {
-  console.log(props);
+  // console.log(props);
   const { fieldType, label, name, id, placeholder, testId, onChange } = props;
   return (
     <>
@@ -123,6 +123,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           id={id}
           use12Hours={props.use12Hours}
           defaultValue={dayjs(props.defaultValue, props.format)}
+          onChange={(time: Dayjs | null) => onChange(time)}
         />
       )}
 
