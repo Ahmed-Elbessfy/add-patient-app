@@ -13,6 +13,7 @@ import {
   UITitle,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
+import AddAppointmentSection from "../AddApointmentSection/AddAppointmentSection";
 
 const { Title, Text, Link } = Typography;
 
@@ -52,7 +53,9 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
           // Layout Render
           if (fieldConfig.category === "layout") {
             const item = fieldConfig as ItemLayout;
-            return renderItems(item.children);
+            return (
+              <AddAppointmentSection renderItems={renderItems} {...item} />
+            );
           }
 
           // UI Render
