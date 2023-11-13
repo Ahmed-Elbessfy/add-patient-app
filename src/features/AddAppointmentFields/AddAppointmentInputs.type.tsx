@@ -24,7 +24,6 @@ interface ItemField {
   name: string;
   label?: string;
   placeholder?: string;
-  defaultValue?: string | number;
 }
 
 type Option = {
@@ -38,27 +37,32 @@ export interface FieldText extends ItemField {
 
 export interface FieldNumber extends ItemField {
   fieldType: "number";
+  defaultValue?: number;
 }
 
 export interface FieldSelect extends ItemField {
   fieldType: "select";
   options: Option[];
+  defaultValue?: string;
 }
 
 export interface FieldRadio extends ItemField {
   fieldType: "radio";
   options: Option[];
+  defaultValue?: string;
 }
 
 export interface FieldDate extends ItemField {
   fieldType: "datePicker";
   format: string;
+  defaultValue?: string;
 }
 
 export interface FieldTime extends ItemField {
   fieldType: "timePicker";
   use12Hours: boolean;
   format: string;
+  defaultValue?: string;
 }
 
 export interface FieldTextArea extends ItemField {

@@ -66,6 +66,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           data-testid={testId}
           id={id}
           onChange={(value: string) => onChange(value)}
+          defaultValue={props.defaultValue}
         >
           {props.options &&
             props.options.map((option, ind) => {
