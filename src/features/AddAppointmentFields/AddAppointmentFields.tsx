@@ -9,6 +9,8 @@ import {
   TimePicker,
   Switch,
 } from "antd";
+import dayjs from "dayjs";
+
 import { FieldConfig } from "./AddAppointmentInputs.type";
 
 const AddAppointmentFields: FC<FieldConfig> = (props) => {
@@ -120,6 +122,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           data-testid={testId}
           id={id}
           use12Hours={props.use12Hours}
+          defaultValue={dayjs(props.defaultValue, props.format)}
         />
       )}
 
