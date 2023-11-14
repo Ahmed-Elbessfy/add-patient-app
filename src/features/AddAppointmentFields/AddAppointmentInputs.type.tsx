@@ -12,7 +12,7 @@ type FieldValidation = {
   required: boolean;
 };
 
-type SchemaName =
+export type SchemaName =
   | "patient_name"
   | "switch_input_method"
   | "doctor"

@@ -14,8 +14,9 @@ import {
   UILink,
   UIText,
   UITitle,
+  SchemaName,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
-import AddAppointmentSection from "../AddApointmentSection/AddAppointmentSection";
+import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
 
 const { Title, Text, Link } = Typography;
@@ -26,28 +27,44 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
 }) => {
   // Schema Config
   const shape: yup.ObjectShape = {};
-  const buildSchemaShape = (itemsData: Item[]) => {
+  // default values config
+  const defaultValuesObject: Record<
+    SchemaName,
+    string | number | boolean | undefined
+  > = {};
+
+  // build schema & default values
+  const configValidation = (itemsData: Item[]) => {
     itemsData.forEach((item: Item) => {
       if (item.category === "field") {
         const currentItem = item as FormFieldConfig;
+        // config default values
+        if ("defaultValue" in item) {
+          defaultValuesObject[item.schemaName] = item.defaultValue;
+        }
+        if ("defaultChecked" in item) {
+          defaultValuesObject[item.schemaName] = item.defaultChecked;
+        }
+        // config schema
         shape[currentItem.schemaName] = parseValidation(item);
       }
       if (item.category === "layout") {
         const currentItem = item as ItemLayout;
-        buildSchemaShape(currentItem.children);
+        configValidation(currentItem.children);
       }
     });
     return shape;
   };
 
-  const schemaShape: yup.ObjectShape = buildSchemaShape(fieldsConfig);
+  const schemaShape: yup.ObjectShape = configValidation(fieldsConfig);
   const schema = yup.object().shape(schemaShape);
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, getValues } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
+    defaultValues: defaultValuesObject,
   });
-
+  // render items recursively config
   const renderItems = (fieldsConfig: Item[]): JSX.Element => {
     return (
       <>
@@ -125,6 +142,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {renderItems(fieldsConfig)}
+      <>{console.log(getValues())}</>
       <Button type="primary" htmlType="submit">
         submit
       </Button>
