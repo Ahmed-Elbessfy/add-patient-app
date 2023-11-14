@@ -1,6 +1,9 @@
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Alert, Button, Typography } from "antd";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { parseValidation } from "../../utils/addAppointValidation";
 import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
 import {
   FormFieldConfig,
@@ -12,8 +15,8 @@ import {
   UIText,
   UITitle,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
-import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
 import AddAppointmentSection from "../AddApointmentSection/AddAppointmentSection";
+import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
 
 const { Title, Text, Link } = Typography;
 
@@ -21,7 +24,29 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   fieldsConfig,
   onSubmit,
 }) => {
-  const { control, handleSubmit } = useForm();
+  // Schema Config
+  const shape: yup.ObjectShape = {};
+  const buildSchemaShape = (itemsData: Item[]) => {
+    itemsData.forEach((item: Item) => {
+      if (item.category === "field") {
+        const currentItem = item as FormFieldConfig;
+        shape[currentItem.schemaName] = parseValidation(item);
+      }
+      if (item.category === "layout") {
+        const currentItem = item as ItemLayout;
+        buildSchemaShape(currentItem.children);
+      }
+    });
+    return shape;
+  };
+
+  const schemaShape: yup.ObjectShape = buildSchemaShape(fieldsConfig);
+  const schema = yup.object().shape(schemaShape);
+
+  const { control, handleSubmit } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
   const renderItems = (fieldsConfig: Item[]): JSX.Element => {
     return (
@@ -42,7 +67,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                         {...item}
                         onChange={field.onChange}
                       />
-                      {error && error.message}
+                      <p>{error && error.message}</p>
                     </div>
                   );
                 }}

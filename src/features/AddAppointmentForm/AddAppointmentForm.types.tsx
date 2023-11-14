@@ -4,3 +4,7 @@ export interface AddAppointmentFormProps {
   fieldsConfig: Item[];
   onSubmit: (data) => void;
 }
+
+export type ValidationRule = {
+  fieldName: string;
+};

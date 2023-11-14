@@ -7,6 +7,32 @@ type itemCategory = "field" | "layout" | "UI";
 **********************************************************
 */
 
+type FieldValidation = {
+  type: string;
+  required: boolean;
+};
+
+type SchemaName =
+  | "patient_name"
+  | "switch_input_method"
+  | "doctor"
+  | "room"
+  | "status"
+  | "day"
+  | "start_time"
+  | "end_time"
+  | "type"
+  | "subtype"
+  | "created"
+  | "assistants"
+  | "description"
+  | "diagnostic_fees"
+  | "collected_diagnostic_fees"
+  | "collected_diagnostic_fees_options"
+  | "collected_diagnostic_fees_subtype"
+  | "reminder_before"
+  | "reminder_before_interval";
+
 type fieldTypeValues =
   | "text"
   | "number"
@@ -22,8 +48,10 @@ interface ItemField {
   testId: string;
   fieldType: fieldTypeValues;
   name: string;
+  schemaName: SchemaName;
   label?: string;
   placeholder?: string;
+  validation: FieldValidation[];
 }
 
 type Option = {
