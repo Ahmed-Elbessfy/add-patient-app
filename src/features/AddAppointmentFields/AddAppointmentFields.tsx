@@ -107,6 +107,13 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           placeholder={placeholder}
           data-testid={testId}
           id={id}
+          defaultValue={
+            props.defaultValue
+              ? props.defaultValue === "today"
+                ? dayjs()
+                : dayjs(props.defaultValue)
+              : undefined
+          }
           onChange={(value: DatePickerProps["value"], dateString: string) =>
             onChange(dateString)
           }
