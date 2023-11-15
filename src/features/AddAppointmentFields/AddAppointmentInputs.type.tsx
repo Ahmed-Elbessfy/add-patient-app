@@ -9,7 +9,8 @@ type itemCategory = "field" | "layout" | "UI";
 
 type FieldValidation = {
   type: string;
-  required: boolean;
+  required?: boolean;
+  date?: Date;
 };
 
 export type SchemaName =
@@ -42,6 +43,7 @@ type fieldTypeValues =
   | "textarea"
   | "radio"
   | "switch";
+
 interface ItemField {
   category: itemCategory;
   id: string;

@@ -23,8 +23,42 @@ const validateRequired = (validationSchema, field) => {
   );
 };
 
+const validateEarlierThan = (validationSchema, field) => {
+  const date = field.validation.filter(
+    (rule) => rule.type === "earlier_than"
+  )[0].date;
+  // console.log(field);
+
+  const rule = {
+    fieldName: field.name,
+    date: date && date.toLocaleDateString("en-GB"),
+  };
+
+  return validationSchema.max(
+    date,
+    ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](rule)
+  );
+};
+
+const validateLaterThan = (validationSchema, field) => {
+  const date = field.validation.filter((rule) => rule.type === "later_than")[0]
+    .date;
+
+  const rule = {
+    fieldName: field.name,
+    date: date && date.toLocaleDateString("en-GB"),
+  };
+
+  return validationSchema.min(
+    date,
+    ERROR_MESSAGES[VALIDATION_RULE_TYPES.LATER_THAN](rule)
+  );
+};
+
 const validationRules = {
   [VALIDATION_RULE_TYPES.REQUIRED]: validateRequired,
+  [VALIDATION_RULE_TYPES.EARLIER_THAN]: validateEarlierThan,
+  [VALIDATION_RULE_TYPES.LATER_THAN]: validateLaterThan,
 };
 
 // creating a schema
@@ -39,11 +73,7 @@ export const parseValidation = (input) => {
     if (!validationRules[rule.type]) {
       return `Unknown validation rule of ${rule.type}`;
     }
-    // console.log(
-    //   "validation schema: ",
-    //   input.name,
-    //   INPUT_VALIDATION_TYPES[input.fieldType]
-    // );
+
     return validationRules[rule.type](validationSchema, input);
   }, INPUT_VALIDATION_TYPES[input.fieldType]);
 };

@@ -7,4 +7,5 @@ export interface AddAppointmentFormProps {
 
 export type ValidationRule = {
   fieldName: string;
+  date?: string;
 };
