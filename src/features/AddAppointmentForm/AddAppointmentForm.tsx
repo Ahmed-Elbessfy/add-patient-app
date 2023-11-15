@@ -50,7 +50,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
           item.fieldType === "datePicker" &&
           item.defaultValue === "today"
         ) {
-          defaultValuesObject[item.schemaName] = dayjs();
+          defaultValuesObject[item.schemaName] = dayjs().format(item.format);
         }
 
         if ("defaultChecked" in item) {
@@ -153,7 +153,8 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {renderItems(fieldsConfig)}
-      <>{console.log(getValues())}</>
+      {/* <>{console.log(getValues())}</> */}
+      {/* <>{console.log(defaultValuesObject)}</> */}
       <Button type="primary" htmlType="submit">
         submit
       </Button>

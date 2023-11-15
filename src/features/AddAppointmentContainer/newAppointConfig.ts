@@ -105,7 +105,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "day",
         label: "Day",
         defaultValue: "today",
-        format: "DD-MM-YYYY",
+        format: "DD/MM/YYYY",
         validation: [
           { type: "required", required: true },
           {
@@ -192,7 +192,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "created",
         schemaName: "created",
         label: "Created",
-        format: "DD-MM-YYYY",
+        format: "DD/MM/YYYY",
         validation: [
           { type: "required", required: false },
           {

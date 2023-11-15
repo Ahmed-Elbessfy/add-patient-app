@@ -114,9 +114,9 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
                 : dayjs(props.defaultValue)
               : undefined
           }
-          onChange={(value: DatePickerProps["value"], dateString: string) =>
-            onChange(dateString)
-          }
+          onChange={(value: DatePickerProps["value"], dateString: string) => {
+            onChange(value);
+          }}
         />
       )}
 
