@@ -15,12 +15,11 @@ const validateRequired = (validationSchema, field) => {
     (rule) => rule.type === "required"
   ).required;
 
-  return (
-    fieldRequiredStatus &&
-    validationSchema.required(
-      ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED](rule)
-    )
-  );
+  return fieldRequiredStatus
+    ? validationSchema.required(
+        ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED](rule)
+      )
+    : validationSchema;
 };
 
 const validateEarlierThan = (validationSchema, field) => {
