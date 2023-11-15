@@ -3,6 +3,8 @@ import { Controller, useForm } from "react-hook-form";
 import { Alert, Button, Typography } from "antd";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import dayjs from "dayjs";
+import type { Dayjs } from "dayjs";
 import { parseValidation } from "../../utils/addAppointValidation";
 import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
 import {
@@ -30,7 +32,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   // default values config
   const defaultValuesObject: Record<
     SchemaName,
-    string | number | boolean | undefined
+    string | number | boolean | undefined | Dayjs
   > = {};
 
   // build schema & default values
@@ -39,9 +41,18 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
       if (item.category === "field") {
         const currentItem = item as FormFieldConfig;
         // config default values
-        if ("defaultValue" in item) {
+        if ("defaultValue" in item)
           defaultValuesObject[item.schemaName] = item.defaultValue;
+
+        // custom case for date picker default value
+        if (
+          "defaultValue" in item &&
+          item.fieldType === "datePicker" &&
+          item.defaultValue === "today"
+        ) {
+          defaultValuesObject[item.schemaName] = dayjs();
         }
+
         if ("defaultChecked" in item) {
           defaultValuesObject[item.schemaName] = item.defaultChecked;
         }
