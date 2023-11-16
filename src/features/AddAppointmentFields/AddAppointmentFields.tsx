@@ -30,6 +30,25 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
     }
   };
 
+  // Time Picker
+  // this format matches New Appointment requirements but MAY NOT BE APPLICABLE in others cases. I will work on when I get full requirements
+  // currently, it produces next hour as start time & next Hour + 30 minutes as End time
+  const formatTime = (time: string = "now") => {
+    const currentHour = new Date().getHours();
+    const formattedHour = currentHour > 12 ? currentHour - 12 : currentHour;
+    if (time === "now") {
+      return dayjs()
+        .hour(formattedHour + 1)
+        .minute(0);
+    }
+
+    if (time === "next") {
+      return dayjs()
+        .hour(formattedHour + 1)
+        .minute(30);
+    }
+  };
+
   return (
     <>
       {label && <label>{label}</label>}
@@ -153,8 +172,11 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           data-testid={testId}
           id={id}
           use12Hours={props.use12Hours}
-          defaultValue={dayjs(props.defaultValue, props.format)}
-          onChange={(time: Dayjs | null) => onChange(time)}
+          defaultValue={formatTime(props.defaultValue)}
+          onChange={(time: Dayjs | null) => {
+            console.log(dayjs(time).format(props.format));
+            onChange(dayjs(time).format(props.format));
+          }}
         />
       )}
 
