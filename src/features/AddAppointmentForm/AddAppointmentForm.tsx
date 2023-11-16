@@ -94,7 +94,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                     <div>
                       <AddAppointmentFields
                         {...item}
-                        status={error && "error"}
                         onChange={field.onChange}
                       />
                       <p>{error && error.message}</p>

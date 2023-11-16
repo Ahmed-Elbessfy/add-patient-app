@@ -16,6 +16,20 @@ import { FieldConfig } from "./AddAppointmentInputs.type";
 const AddAppointmentFields: FC<FieldConfig> = (props) => {
   // console.log(props);
   const { fieldType, label, name, id, placeholder, testId, onChange } = props;
+
+  // set disabled date for Date Picker Input
+  const disabledDate = (current: Dayjs, status: string, limit: string) => {
+    if (limit !== "today") {
+      return status === "before"
+        ? current.isBefore(dayjs(limit), "day")
+        : current.isAfter(dayjs(limit), "day");
+    } else {
+      return status === "before"
+        ? current.isBefore(dayjs(), "day")
+        : current.isAfter(dayjs(), "day");
+    }
+  };
+
   return (
     <>
       {label && <label>{label}</label>}
@@ -107,6 +121,15 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           placeholder={placeholder}
           data-testid={testId}
           id={id}
+          disabledDate={(current) =>
+            props.dateLimit
+              ? disabledDate(
+                  current,
+                  props.dateLimit.status,
+                  props.dateLimit.date
+                )
+              : false
+          }
           defaultValue={
             props.defaultValue
               ? props.defaultValue === "today"

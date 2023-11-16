@@ -44,6 +44,11 @@ type fieldTypeValues =
   | "radio"
   | "switch";
 
+type DateLimitRule = {
+  status: string;
+  date: string;
+};
+
 interface ItemField {
   category: itemCategory;
   id: string;
@@ -86,6 +91,7 @@ export interface FieldDate extends ItemField {
   fieldType: "datePicker";
   format: string;
   defaultValue?: string;
+  dateLimit?: DateLimitRule;
 }
 
 export interface FieldTime extends ItemField {

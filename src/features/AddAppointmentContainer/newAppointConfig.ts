@@ -200,6 +200,10 @@ export const addAppointmentFieldsConfig: Item[] = [
             date: "today",
           },
         ],
+        dateLimit: {
+          status: "after",
+          date: "today",
+        },
       },
     ],
   },
