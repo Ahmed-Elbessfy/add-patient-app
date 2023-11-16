@@ -10,7 +10,7 @@ type itemCategory = "field" | "layout" | "UI";
 type FieldValidation = {
   type: string;
   required?: boolean;
-  date?: Date;
+  date?: string;
 };
 
 export type SchemaName =

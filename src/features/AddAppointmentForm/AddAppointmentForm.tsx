@@ -50,7 +50,8 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
           item.fieldType === "datePicker" &&
           item.defaultValue === "today"
         ) {
-          defaultValuesObject[item.schemaName] = dayjs().format(item.format);
+          // accepted format "YYYY/MM/DD"
+          defaultValuesObject[item.schemaName] = dayjs().format("YYYY/MM/DD");
         }
 
         if ("defaultChecked" in item) {
@@ -70,7 +71,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   const schemaShape: yup.ObjectShape = configValidation(fieldsConfig);
   const schema = yup.object().shape(schemaShape);
 
-  const { control, handleSubmit, getValues } = useForm({
+  const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
     defaultValues: defaultValuesObject,
@@ -93,6 +94,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                     <div>
                       <AddAppointmentFields
                         {...item}
+                        status={error && "error"}
                         onChange={field.onChange}
                       />
                       <p>{error && error.message}</p>
@@ -153,8 +155,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {renderItems(fieldsConfig)}
-      {/* <>{console.log(getValues())}</> */}
-      {/* <>{console.log(defaultValuesObject)}</> */}
       <Button type="primary" htmlType="submit">
         submit
       </Button>

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import {
   ERROR_MESSAGES,
   VALIDATION_RULE_TYPES,
@@ -26,15 +27,20 @@ const validateEarlierThan = (validationSchema, field) => {
   const date = field.validation.filter(
     (rule) => rule.type === "earlier_than"
   )[0].date;
-  // console.log(field);
+
+  const formattedDate =
+    date === "today"
+      ? dayjs().format("YYYY/MM/DD")
+      : date.split("/").reverse().join("/");
 
   const rule = {
     fieldName: field.name,
-    date: date && date.toLocaleDateString("en-GB"),
+    date: date === "today" ? dayjs().format("DD/MM/YYYY") : date,
   };
 
+  // accepted format "YYYY/MM/DD"
   return validationSchema.max(
-    date,
+    formattedDate,
     ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](rule)
   );
 };
@@ -43,13 +49,19 @@ const validateLaterThan = (validationSchema, field) => {
   const date = field.validation.filter((rule) => rule.type === "later_than")[0]
     .date;
 
+  const formattedDate =
+    date === "today"
+      ? dayjs().format("YYYY/MM/DD")
+      : date.split("/").reverse().join("/");
+
   const rule = {
     fieldName: field.name,
-    date: date && date.toLocaleDateString("en-GB"),
+    date: date === "today" ? dayjs().format("DD/MM/YYYY") : date,
   };
 
+  // accepted format "YYYY/MM/DD"
   return validationSchema.min(
-    date,
+    formattedDate,
     ERROR_MESSAGES[VALIDATION_RULE_TYPES.LATER_THAN](rule)
   );
 };

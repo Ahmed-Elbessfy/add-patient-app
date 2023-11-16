@@ -110,7 +110,7 @@ export const addAppointmentFieldsConfig: Item[] = [
           { type: "required", required: true },
           {
             type: "later_than",
-            date: new Date(),
+            date: "today",
           },
         ],
       },
@@ -197,7 +197,7 @@ export const addAppointmentFieldsConfig: Item[] = [
           { type: "required", required: false },
           {
             type: "earlier_than",
-            date: new Date(),
+            date: "today",
           },
         ],
       },
