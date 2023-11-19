@@ -11,6 +11,7 @@ type FieldValidation = {
   type: string;
   required?: boolean;
   date?: string;
+  fields?: SchemaName[];
 };
 
 export type SchemaName =

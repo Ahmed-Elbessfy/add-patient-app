@@ -125,7 +125,10 @@ export const addAppointmentFieldsConfig: Item[] = [
         use12Hours: true,
         defaultValue: "now",
         format: "HH:mm",
-        validation: [{ type: "required", required: true }],
+        validation: [
+          { type: "required", required: true, fields: ["end_time"] },
+          { type: "time_earlier_than", fields: ["end_time"] },
+        ],
       },
       {
         category: "field",
@@ -138,7 +141,10 @@ export const addAppointmentFieldsConfig: Item[] = [
         defaultValue: "next",
         use12Hours: true,
         format: "HH:mm",
-        validation: [{ type: "required", required: true }],
+        validation: [
+          { type: "required", required: true },
+          { type: "time_later_than", fields: ["start_time"] },
+        ],
       },
     ],
   },
