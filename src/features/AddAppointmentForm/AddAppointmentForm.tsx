@@ -35,41 +35,20 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     string | number | boolean | undefined | Dayjs
   > = {};
 
-  const getDefaultValues = (itemsData: Item[]) => {
-    console.log(getValues());
-    itemsData.forEach((item: Item) => {
-      if (item.category === "field") {
-        // config default values
-        if ("defaultValue" in item)
-          defaultValuesObject[item.schemaName] = item.defaultValue;
-
-        // custom case for date picker default value
-        if (
-          "defaultValue" in item &&
-          item.fieldType === "datePicker" &&
-          item.defaultValue === "today"
-        ) {
-          // accepted format "YYYY/MM/DD"
-          defaultValuesObject[item.schemaName] = dayjs().format("YYYY/MM/DD");
-        }
-
-        if ("defaultChecked" in item) {
-          defaultValuesObject[item.schemaName] = item.defaultChecked;
-        }
-      }
-      if (item.category === "layout") {
-        const currentItem = item as ItemLayout;
-        getDefaultValues(currentItem.children);
-      }
-    });
-  };
-
   // build schema & default values
   const configValidation = (itemsData: Item[]) => {
     itemsData.forEach((item: Item) => {
       if (item.category === "field") {
         const currentItem = item as FormFieldConfig;
-        // config default values
+        /********************
+        config default values FOR FORM STATE which gets validated
+        default value for each field input is for the displayed value for user
+         ********************/
+
+        if ("defaultChecked" in item) {
+          defaultValuesObject[item.schemaName] = item.defaultChecked;
+        }
+
         if ("defaultValue" in item)
           defaultValuesObject[item.schemaName] = item.defaultValue;
 
@@ -83,16 +62,36 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
           defaultValuesObject[item.schemaName] = dayjs().format("YYYY/MM/DD");
         }
 
-        if ("defaultChecked" in item) {
-          defaultValuesObject[item.schemaName] = item.defaultChecked;
+        // custom case for time picker default value
+        if (
+          "defaultValue" in item &&
+          item.fieldType === "timePicker" &&
+          item.defaultValue === "now"
+        ) {
+          // Target Format hh:mm a
+          const currentHour = new Date().getHours();
+          defaultValuesObject[item.schemaName] = dayjs()
+            .hour(currentHour + 1)
+            .minute(0)
+            .format("hh:mm a");
         }
-        if ("schemaName" in item && item.schemaName === "start_time") {
-          // const { end_time } = getValues();
-          // console.log(getValues());
+        if (
+          "defaultValue" in item &&
+          item.fieldType === "timePicker" &&
+          item.defaultValue === "next"
+        ) {
+          // Target Format hh:mm a
+          const currentHour = new Date().getHours();
+          defaultValuesObject[item.schemaName] = dayjs()
+            .hour(currentHour + 1)
+            .minute(30)
+            .format("hh:mm a");
         }
+
         // config schema
         shape[currentItem.schemaName] = parseValidation(item);
       }
+
       if (item.category === "layout") {
         const currentItem = item as ItemLayout;
         configValidation(currentItem.children);
@@ -104,7 +103,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   const schemaShape: yup.ObjectShape = configValidation(fieldsConfig);
   const schema = yup.object().shape(schemaShape);
 
-  const { control, handleSubmit, getValues } = useForm({
+  const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
     defaultValues: defaultValuesObject,
@@ -186,7 +185,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <>{getDefaultValues(fieldsConfig)}</>
       {renderItems(fieldsConfig)}
       <Button type="primary" htmlType="submit">
         submit
