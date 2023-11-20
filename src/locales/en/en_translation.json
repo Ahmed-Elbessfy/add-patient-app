@@ -93,5 +93,130 @@
       "errorText": "Please give a rate"
     }
   },
+  "apInputs": {
+    "patient_name": {
+      "label": "Patient",
+      "placeholder": "Please choose or add new patient"
+    },
+    "doctor": {
+      "label": "Doctor",
+      "placeholder": "Select a doctor",
+      "options": {
+        "ahmed": "Ahmed",
+        "taha": "Taha"
+      }
+    },
+    "room": {
+      "label": "Room",
+      "options": {
+        "room_1": "Room 1",
+        "room_2": "Room 2",
+        "room_3": "Room 3",
+        "room_4": "Room 4"
+      }
+    },
+    "status": {
+      "label": "Status",
+      "options": {
+        "open": "Open",
+        "confirmed": "Confirmed",
+        "check_in": "Check In",
+        "in_progress": "in Progress",
+        "completed": "Completed",
+        "delayed": "Delayed",
+        "canceled": "Canceled",
+        "no_show": "No Show"
+      }
+    },
+    "day": {
+      "label": "Day"
+    },
+    "start_time": {
+      "label": "Start"
+    },
+    "end_time": {
+      "label": "End"
+    },
+    "type": {
+      "label": "Type",
+      "options": {
+        "examination": "Examination",
+        "follow_up": "Follow Up",
+        "consultation": "Consultation",
+        "routine_treatment": "Routine Treatment",
+        "extended_treatment": "Extended Treatment",
+        "emergency": "Emergency",
+        "endo": "Endo"
+      }
+    },
+    "subtype": {
+      "label": "Subtype",
+      "options": {
+        "subtype_1": "Subtype 1",
+        "subtype_2": "Subtype 2",
+        "subtype_3": "Subtype 3",
+        "subtype_4": "Subtype 4"
+      }
+    },
+    "created": {
+      "label": "Created",
+      "placeholder": "pick a date"
+    },
+    "assistants": {
+      "label": "Assistants",
+      "options": {
+        "assistant_1": "Assistant 1",
+        "assistant_2": "Assistant 2"
+      }
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Add extra details here"
+    },
+    "diagnostic_fees_title": {
+      "text": "Diagnostic Fees"
+    },
+    "diagnostic_fees": {
+      "options": {
+        "none": "None",
+        "collected": "Collected",
+        "add_to_next_invoice": "Add to next invoice"
+      }
+    },
+    "collected_diagnostic_fees_options": {
+      "options": {
+        "cash": "Cash",
+        "card": "Card",
+        "insurance": "Insurance",
+        "cheque": "Cheque",
+        "voucher": "Voucher",
+        "bank_transfer": "Bank Transfer",
+        "mobile_wallet": "Mobile Wallet",
+        "other": "Other"
+      }
+    },
+    "collected_diagnostic_fees_subtype": {
+      "options": {
+        "subtype": "Subtype",
+        "subtype_1": "subtype 1",
+        "subtype_2": "subtype 2"
+      }
+    },
+    "mobile_notification": {
+      "text": "Mobile Notification for Doctor"
+    },
+    "reminder_before": {
+      "label": "Remind before appointment in"
+    },
+    "reminder_before_interval": {
+      "label": "Interval",
+      "options": {
+        "minutes": "Minutes",
+        "hours": "Hours",
+        "days": "Days",
+        "months": "Months"
+      }
+    }
+  },
   "formSubmitBtn": "Add Patient"
 }

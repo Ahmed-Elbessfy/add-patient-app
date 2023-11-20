@@ -11,6 +11,7 @@ import {
 } from "antd";
 import dayjs from "dayjs";
 import type { Dayjs } from "dayjs";
+import { useTranslation } from "react-i18next";
 import { FieldConfig } from "./AddAppointmentInputs.type";
 
 const AddAppointmentFields: FC<FieldConfig> = (props) => {
@@ -49,15 +50,17 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
     }
   };
 
+  const { t } = useTranslation("lang");
+
   return (
     <>
-      {label && <label>{label}</label>}
+      {label && <label>{t(label)}</label>}
       {/* Text Input  */}
       {fieldType === "text" && (
         <Input
           type={fieldType}
           name={name}
-          placeholder={placeholder}
+          placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           id={id}
           status={status}
@@ -72,7 +75,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
         <Input
           type={fieldType}
           name={name}
-          placeholder={placeholder}
+          placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           id={id}
           status={status}
@@ -87,7 +90,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
         <Input
           type={fieldType}
           name={name}
-          placeholder={placeholder}
+          placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           id={id}
           status={status}
@@ -100,7 +103,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
       {/* Select Input  */}
       {fieldType === "select" && (
         <Select
-          placeholder={placeholder}
+          placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           id={id}
           status={status}
@@ -111,7 +114,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
             props.options.map((option, ind) => {
               return (
                 <Select.Option key={ind} value={option.value}>
-                  {option.label}
+                  {t(option.label)}
                 </Select.Option>
               );
             })}
@@ -130,7 +133,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           {props.options &&
             props.options.map((option, ind) => (
               <Radio key={ind} value={option.value}>
-                {option.label}
+                {t(option.label)}
               </Radio>
             ))}
         </Radio.Group>
@@ -141,7 +144,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
         <DatePicker
           name={name}
           format={props.format}
-          placeholder={placeholder}
+          placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           id={id}
           status={status}
@@ -173,7 +176,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
         <TimePicker
           name={name}
           format={props.format}
-          placeholder={placeholder}
+          placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           id={id}
           status={status}

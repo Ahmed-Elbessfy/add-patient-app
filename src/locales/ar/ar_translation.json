@@ -92,5 +92,130 @@
       "text": "تقييم خدماتنا"
     }
   },
+  "apInputs": {
+    "patient_name": {
+      "label": "اسم المريض",
+      "placeholder": "برجاء اختيار او اضافة مريض "
+    },
+    "doctor": {
+      "label": "اسم طبيب",
+      "placeholder": "برجاء اختيار طبيب",
+      "options": {
+        "ahmed": "Ahmed",
+        "taha": "Taha"
+      }
+    },
+    "room": {
+      "label": "غرفة",
+      "options": {
+        "room_1": "غرفة 1",
+        "room_2": "غرفة 2",
+        "room_3": "غرفة 3",
+        "room_4": "غرفة 4"
+      }
+    },
+    "status": {
+      "label": "نوع الحجز",
+      "options": {
+        "open": "مفتوح",
+        "confirmed": "تم التأكيد",
+        "check_in": "تم الوصول",
+        "in_progress": "قيد العمل",
+        "completed": "تم الانتهاء",
+        "delayed": "متأخر",
+        "canceled": "ملغي",
+        "no_show": "لم يحضر المريض"
+      }
+    },
+    "day": {
+      "label": "يوم"
+    },
+    "start_time": {
+      "label": "وقت البداية"
+    },
+    "end_time": {
+      "label": "وقت الانتهاء"
+    },
+    "type": {
+      "label": "نوع الكشف",
+      "options": {
+        "examination": "فحص",
+        "follow_up": "متابعة",
+        "consultation": "استشارة",
+        "routine_treatment": "لقاء دوري",
+        "extended_treatment": "علاج اضافي",
+        "emergency": "طوارئ",
+        "endo": "اندو"
+      }
+    },
+    "subtype": {
+      "label": "نوع ثانوي",
+      "options": {
+        "subtype_1": "نوع ثانوي 1",
+        "subtype_2": "نوع ثانوي 2",
+        "subtype_3": "نوع ثانوي 3",
+        "subtype_4": "نوع ثانوي 4"
+      }
+    },
+    "created": {
+      "label": "تاريخ التسجيل",
+      "placeholder": "حدد تاريخ"
+    },
+    "assistants": {
+      "label": "المساعدين",
+      "options": {
+        "assistant_1": "مساعد 1",
+        "assistant_2": "مساعد 2"
+      }
+    },
+    "description": {
+      "label": "وصف",
+      "placeholder": "أضف تفاصيل أخرى"
+    },
+    "diagnostic_fees_title": {
+      "text": "تماليف الكشف"
+    },
+    "diagnostic_fees": {
+      "options": {
+        "none": "ﻻ يوجد",
+        "collected": "تم الدفع",
+        "add_to_next_invoice": "اضافة الى فاتورة قادمة"
+      }
+    },
+    "collected_diagnostic_fees_options": {
+      "options": {
+        "cash": "نقدي",
+        "card": "بطاقة كريدت",
+        "insurance": "تأمين",
+        "cheque": "شيك بنكي",
+        "voucher": "قسيمة شراء",
+        "bank_transfer": "تحويل بنكي",
+        "mobile_wallet": "محفظة الكترونية",
+        "other": "أخرى"
+      }
+    },
+    "collected_diagnostic_fees_subtype": {
+      "options": {
+        "subtype": "نوع ثانوي",
+        "subtype_1": "نوع ثانوي 1",
+        "subtype_2": "نوع ثانوي 2"
+      }
+    },
+    "mobile_notification": {
+      "text": "اشعارات المحمول للطبيب"
+    },
+    "reminder_before": {
+      "label": "ارسل اشعار قبل"
+    },
+    "reminder_before_interval": {
+      "label": "نوع المدة",
+      "options": {
+        "minutes": "دقيقة",
+        "hours": "ساعة",
+        "days": "يوم",
+        "months": "شهر"
+      }
+    }
+  },
   "formSubmitBtn": "أضف مريض"
 }
