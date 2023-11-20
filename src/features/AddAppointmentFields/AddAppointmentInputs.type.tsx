@@ -60,6 +60,7 @@ interface ItemField {
   label?: string;
   placeholder?: string;
   validation: FieldValidation[];
+  status?: "error";
 }
 
 type Option = {

@@ -15,7 +15,8 @@ import { FieldConfig } from "./AddAppointmentInputs.type";
 
 const AddAppointmentFields: FC<FieldConfig> = (props) => {
   // console.log(props);
-  const { fieldType, label, name, id, placeholder, testId, onChange } = props;
+  const { fieldType, label, name, id, placeholder, testId, onChange, status } =
+    props;
 
   // set disabled date for Date Picker Input
   const disabledDate = (current: Dayjs, status: string, limit: string) => {
@@ -59,6 +60,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           placeholder={placeholder}
           data-testid={testId}
           id={id}
+          status={status}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
           }
@@ -73,6 +75,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           placeholder={placeholder}
           data-testid={testId}
           id={id}
+          status={status}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
           }
@@ -87,6 +90,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           placeholder={placeholder}
           data-testid={testId}
           id={id}
+          status={status}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
           }
@@ -99,6 +103,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           placeholder={placeholder}
           data-testid={testId}
           id={id}
+          status={status}
           onChange={(value: string) => onChange(value)}
           defaultValue={props.defaultValue}
         >
@@ -139,6 +144,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           placeholder={placeholder}
           data-testid={testId}
           id={id}
+          status={status}
           disabledDate={(current) =>
             props.dateLimit
               ? disabledDate(
@@ -170,6 +176,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           placeholder={placeholder}
           data-testid={testId}
           id={id}
+          status={status}
           use12Hours={props.use12Hours}
           defaultValue={formatTime(props.defaultValue)}
           onChange={(time: Dayjs | null) => {
