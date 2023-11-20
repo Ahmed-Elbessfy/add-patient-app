@@ -67,25 +67,33 @@ const validateLaterThan = (validationSchema, field) => {
 };
 
 const validateTimeEarlierThan = (validationSchema, field) => {
+  const targetField = field.validation.filter(
+    (rule) => rule.type === "time_earlier_than"
+  )[0].fields[0];
+
   const rule = {
     fieldName: field.name,
-    time: "14:30", // temp for testing
+    targetField,
   };
 
   return validationSchema.isTimeEarlierThan({
-    targetTime: "14:30", // replace with your target time
+    targetField,
     errorMsg: ERROR_MESSAGES[VALIDATION_RULE_TYPES.TIME_EARLIER_THAN](rule),
   });
 };
 
 const validateTimeLaterThan = (validationSchema, field) => {
+  const targetField = field.validation.filter(
+    (rule) => rule.type === "time_later_than"
+  )[0].fields[0];
+
   const rule = {
     fieldName: field.name,
-    time: "14:30", // temp for testing
+    targetField,
   };
 
-  return validationSchema.isTimeEarlierThan({
-    targetTime: "14:30", // replace with your target time
+  return validationSchema.isTimeLaterThan({
+    targetField,
     errorMsg: ERROR_MESSAGES[VALIDATION_RULE_TYPES.TIME_LATER_THAN](rule),
   });
 };

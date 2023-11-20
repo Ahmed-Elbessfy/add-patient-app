@@ -30,12 +30,12 @@ export const ERROR_MESSAGES = {
     `${fieldName} must be after ${date}`,
   [VALIDATION_RULE_TYPES.TIME_EARLIER_THAN]: ({
     fieldName,
-    time,
-  }: ValidationRule) => `${fieldName} must be before ${time}`,
+    targetField,
+  }: ValidationRule) => `${fieldName} must be before ${targetField}`,
   [VALIDATION_RULE_TYPES.TIME_LATER_THAN]: ({
     fieldName,
-    time,
-  }: ValidationRule) => `${fieldName} must be after ${time}`,
+    targetField,
+  }: ValidationRule) => `${fieldName} must be after ${targetField}`,
 };
 
 export const INPUT_VALIDATION_TYPES = {
@@ -58,8 +58,8 @@ export const INPUT_VALIDATION_TYPES = {
 // Extend StringSchema type to accept new methods
 declare module "yup" {
   interface StringSchema {
-    isTimeEarlierThan(message: string, targetTime: string): this;
-    isTimeLaterThan(message: string, targetTime: string): this;
+    isTimeEarlierThan(message: string, targetField: string): this;
+    isTimeLaterThan(message: string, targetField: string): this;
   }
 }
 
@@ -68,16 +68,19 @@ declare module "yup" {
 yup.addMethod(
   yup.string,
   "isTimeEarlierThan",
-  function ({ errorMsg, targetTime }) {
+  function ({ targetField, errorMsg }) {
+    console.log(targetField);
     return this.test({
       name: "isTimeEarlierThan",
       message: errorMsg || "Invalid time",
       exclusive: true,
-      test: function (value) {
+      test: function (value, context) {
+        // get form state values or current fields values from context.parent
+        const targetTime = context.parent[targetField];
         // Use dayjs to parse the input time
-        const parsedTime = dayjs(value, "HH:mm", true);
+        const parsedTime = dayjs(value, "hh:mm a", true);
         // Parse the target time
-        const parsedTargetTime = dayjs(targetTime, "HH:mm", true);
+        const parsedTargetTime = dayjs(targetTime, "hh:mm a", true);
 
         // Check if parsing was successful and both input & target time is a valid time
         if (!parsedTime.isValid() || !parsedTargetTime.isValid()) {
@@ -96,16 +99,18 @@ yup.addMethod(
 yup.addMethod(
   yup.string,
   "isTimeLaterThan",
-  function ({ errorMsg, targetTime }) {
+  function ({ errorMsg, targetField }) {
     return this.test({
       name: "isTimeLaterThan",
       message: errorMsg || "Invalid time",
       exclusive: true,
-      test: function (value) {
+      test: function (value, context) {
+        // get form state values or current fields values from context.parent
+        const targetTime = context.parent[targetField];
         // Use dayjs to parse the input time
-        const parsedTime = dayjs(value, "HH:mm", true);
+        const parsedTime = dayjs(value, "hh:mm a", true);
         // Parse the target time
-        const parsedTargetTime = dayjs(targetTime, "HH:mm", true);
+        const parsedTargetTime = dayjs(targetTime, "hh:mm a", true);
 
         // Check if parsing was successful and both input & target time is a valid time
         if (!parsedTime.isValid() || !parsedTargetTime.isValid()) {
