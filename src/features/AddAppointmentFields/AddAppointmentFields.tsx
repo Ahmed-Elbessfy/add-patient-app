@@ -35,16 +35,15 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
   // currently, it produces next hour as start time & next Hour + 30 minutes as End time
   const formatTime = (time: string = "now") => {
     const currentHour = new Date().getHours();
-    const formattedHour = currentHour > 12 ? currentHour - 12 : currentHour;
     if (time === "now") {
       return dayjs()
-        .hour(formattedHour + 1)
+        .hour(currentHour + 1)
         .minute(0);
     }
 
     if (time === "next") {
       return dayjs()
-        .hour(formattedHour + 1)
+        .hour(currentHour + 1)
         .minute(30);
     }
   };
@@ -174,7 +173,6 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           use12Hours={props.use12Hours}
           defaultValue={formatTime(props.defaultValue)}
           onChange={(time: Dayjs | null) => {
-            console.log(dayjs(time).format(props.format));
             onChange(dayjs(time).format(props.format));
           }}
         />
