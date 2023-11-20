@@ -69,7 +69,6 @@ yup.addMethod(
   yup.string,
   "isTimeEarlierThan",
   function ({ targetField, errorMsg }) {
-    console.log(targetField);
     return this.test({
       name: "isTimeEarlierThan",
       message: errorMsg || "Invalid time",
