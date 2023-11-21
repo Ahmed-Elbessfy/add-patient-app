@@ -129,7 +129,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         defaultValue: "now",
         format: "hh:mm a",
         validation: [
-          { type: "required", required: true, fields: ["end_time"] },
+          { type: "required", required: true },
           { type: "time_earlier_than", fields: ["end_time"] },
         ],
       },

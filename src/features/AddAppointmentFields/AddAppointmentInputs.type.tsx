@@ -1,4 +1,4 @@
-import { FieldElement } from "react-hook-form";
+import { FieldElement, UseFormClearErrors } from "react-hook-form";
 
 type itemCategory = "field" | "layout" | "UI";
 /*
@@ -61,6 +61,10 @@ interface ItemField {
   placeholder?: string;
   validation: FieldValidation[];
   status?: "error";
+  clearErrors?: UseFormClearErrors<{
+    [x: string]: unknown;
+    [x: number]: unknown;
+  }>;
 }
 
 type Option = {

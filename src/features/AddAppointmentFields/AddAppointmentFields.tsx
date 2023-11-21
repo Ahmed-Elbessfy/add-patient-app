@@ -16,8 +16,18 @@ import { FieldConfig } from "./AddAppointmentInputs.type";
 
 const AddAppointmentFields: FC<FieldConfig> = (props) => {
   // console.log(props);
-  const { fieldType, label, name, id, placeholder, testId, onChange, status } =
-    props;
+  const {
+    fieldType,
+    label,
+    name,
+    id,
+    placeholder,
+    testId,
+    onChange,
+    status,
+    clearErrors,
+    validation,
+  } = props;
 
   // set disabled date for Date Picker Input
   const disabledDate = (current: Dayjs, status: string, limit: string) => {
@@ -183,7 +193,16 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           use12Hours={props.use12Hours}
           defaultValue={formatTime(props.defaultValue)}
           onChange={(time: Dayjs | null) => {
+            // submit input value to form state
             onChange(dayjs(time).format(props.format));
+            // clear validation error
+            // Get fields that needs clearing error
+            const fields = validation.reduce<string[]>((acc, current) => {
+              if (current.fields) acc.push(...current.fields);
+              return acc;
+            }, []);
+
+            clearErrors?.(fields);
           }}
         />
       )}

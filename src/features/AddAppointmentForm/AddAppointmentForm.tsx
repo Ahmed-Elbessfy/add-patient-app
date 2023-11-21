@@ -103,7 +103,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   const schemaShape: yup.ObjectShape = configValidation(fieldsConfig);
   const schema = yup.object().shape(schemaShape);
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, clearErrors } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
     defaultValues: defaultValuesObject,
@@ -126,6 +126,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                     <div>
                       <AddAppointmentFields
                         {...item}
+                        clearErrors={clearErrors}
                         onChange={field.onChange}
                         status={error ? "error" : undefined}
                       />
