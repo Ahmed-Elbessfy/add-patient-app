@@ -50,6 +50,16 @@ type DateLimitRule = {
   date: string;
 };
 
+type Option = {
+  label: string;
+  value: string;
+};
+
+type visibilityRule = {
+  field: SchemaName;
+  value: string | number | boolean;
+};
+
 interface ItemField {
   category: itemCategory;
   id: string;
@@ -65,12 +75,8 @@ interface ItemField {
     [x: string]: unknown;
     [x: number]: unknown;
   }>;
+  visibility?: visibilityRule[];
 }
-
-type Option = {
-  label: string;
-  value: string;
-};
 
 export interface FieldText extends ItemField {
   fieldType: "text";

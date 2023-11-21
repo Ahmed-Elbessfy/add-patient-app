@@ -103,7 +103,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   const schemaShape: yup.ObjectShape = configValidation(fieldsConfig);
   const schema = yup.object().shape(schemaShape);
 
-  const { control, handleSubmit, clearErrors } = useForm({
+  const { control, handleSubmit, clearErrors, watch } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
     defaultValues: defaultValuesObject,
@@ -123,15 +123,36 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                 control={control}
                 render={({ field, fieldState: { error } }) => {
                   return (
-                    <div>
-                      <AddAppointmentFields
-                        {...item}
-                        clearErrors={clearErrors}
-                        onChange={field.onChange}
-                        status={error ? "error" : undefined}
-                      />
-                      <p>{error && error.message}</p>
-                    </div>
+                    <>
+                      {/* in case there is a visibility rule:
+                          - check if it is fulfilled first, if yse render field
+                          - if not render field normally
+                      */}
+                      {item.visibility ? (
+                        watch(item.visibility[0].field) ===
+                          item.visibility[0].value && (
+                          <div>
+                            <AddAppointmentFields
+                              {...item}
+                              clearErrors={clearErrors}
+                              onChange={field.onChange}
+                              status={error ? "error" : undefined}
+                            />
+                            <p>{error && error.message}</p>
+                          </div>
+                        )
+                      ) : (
+                        <div>
+                          <AddAppointmentFields
+                            {...item}
+                            clearErrors={clearErrors}
+                            onChange={field.onChange}
+                            status={error ? "error" : undefined}
+                          />
+                          <p>{error && error.message}</p>
+                        </div>
+                      )}
+                    </>
                   );
                 }}
               />
