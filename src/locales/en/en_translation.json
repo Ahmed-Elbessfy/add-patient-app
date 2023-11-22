@@ -123,8 +123,12 @@
           "egypt": "Egypt - مصر",
           "palestine": "Palestine - فلسطين",
           "china": "China - الصين",
-          "australia ": "Australia - أستراليا"
+          "australia": "Australia - أستراليا"
         }
+      },
+      "switch_date_age": {
+        "checked": "date",
+        "unchecked": "age"
       },
       "birthDate": {
         "label": "Date of Birth",
@@ -134,7 +138,14 @@
         "label": "Age"
       },
       "title": {
-        "label": "Title"
+        "label": "Title",
+        "options": {
+          "mr": "Mr",
+          "mrs": "Mrs",
+          "miss": "Miss",
+          "ms": "Ms",
+          "dr": "Dr"
+        }
       },
       "gender": {
         "label": "Gender",
@@ -204,7 +215,7 @@
           "egypt": "Egypt - مصر",
           "palestine": "Palestine - فلسطين",
           "china": "China - الصين",
-          "australia ": "Australia - أستراليا"
+          "australia": "Australia - أستراليا"
         }
       },
       "tax": {
@@ -213,7 +224,7 @@
       "national_id": {
         "label": "National ID"
       },
-      "patients_details": {
+      "patient_details": {
         "label": "Patients Details",
         "placeholder": "Add extra details here"
       },
@@ -242,6 +253,12 @@
       },
       "referral_details": {
         "label": "Details"
+      },
+      "referral_user": {
+        "label": "Select a User"
+      },
+      "referral_patient": {
+        "label": "Select a Patient"
       },
       "emergency_contact_title": {
         "text": "Emergency Contact"

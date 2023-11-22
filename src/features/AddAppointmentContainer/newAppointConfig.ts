@@ -31,6 +31,731 @@ export const addAppointmentFieldsConfig: Item[] = [
       },
     ],
   },
+  // start new patient form config
+  {
+    category: "layout",
+    type: "box",
+    gap: 0.5,
+    children: [
+      {
+        category: "UI",
+        type: "title",
+        text: "apInputs.add_new.diagnostic_fees_title.text",
+        level: 3,
+      },
+      {
+        category: "layout",
+        type: "hStack",
+        gap: 0.5,
+        children: [
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_id",
+            testId: "new_patient_id",
+            name: "new_patient_id",
+            schemaName: "new_patient_id",
+            label: "apInputs.add_new.id.label",
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_first_name",
+            testId: "new_patient_first_name",
+            name: "new_patient_first_name",
+            schemaName: "new_patient_first_name",
+            label: "apInputs.add_new.first_name.label",
+            validation: [{ type: "required", required: true }],
+          },
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_last_name",
+            testId: "new_patient_last_name",
+            name: "new_patient_last_name",
+            schemaName: "new_patient_last_name",
+            label: "apInputs.add_new.last_name.label",
+            validation: [{ type: "required", required: true }],
+          },
+        ],
+      },
+      {
+        category: "layout",
+        type: "hStack",
+        gap: 0.5,
+        children: [
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_phone",
+            testId: "new_patient_phone",
+            name: "new_patient_phone",
+            schemaName: "new_patient_phone",
+            label: "apInputs.add_new.phone.label",
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_secondary_phone",
+            testId: "new_patient_secondary_phone",
+            name: "new_patient_secondary_phone",
+            schemaName: "new_patient_secondary_phone",
+            label: "apInputs.add_new.secondary_phone.label",
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_country",
+            testId: "new_patient_country",
+            name: "new_patient_country",
+            schemaName: "new_patient_country",
+            label: "apInputs.add_new.country.label",
+            defaultValue: "egypt",
+            options: [
+              {
+                value: "egypt",
+                label: "apInputs.add_new.country.options.egypt",
+              },
+              {
+                value: "palestine",
+                label: "apInputs.add_new.country.options.palestine",
+              },
+              {
+                value: "china",
+                label: "apInputs.add_new.country.options.china",
+              },
+              {
+                value: "australia",
+                label: "apInputs.add_new.country.options.australia",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
+          },
+        ],
+      },
+      {
+        category: "layout",
+        type: "hStack",
+        gap: 0.5,
+        children: [
+          {
+            category: "layout",
+            type: "box",
+            gap: 0.5,
+            children: [
+              {
+                category: "field",
+                fieldType: "datePicker",
+                id: "new_patient_birthDate",
+                testId: "new_patient_birthDate",
+                name: "new_patient_birthDate",
+                schemaName: "new_patient_birthDate",
+                label: "apInputs.add_new.birthDate.label",
+                placeholder: "apInputs.add_new.birthDate.placeholder",
+                format: "DD/MM/YYYY",
+                validation: [
+                  { type: "required", required: false },
+                  {
+                    type: "earlier_than",
+                    date: "today",
+                  },
+                ],
+                visibility: [
+                  {
+                    field: "new_patient_switch_date_age",
+                    value: false,
+                  },
+                ],
+              },
+              {
+                category: "field",
+                fieldType: "text",
+                id: "new_patient_age",
+                testId: "new_patient_age",
+                name: "new_patient_age",
+                schemaName: "new_patient_age",
+                label: "apInputs.add_new.age.label",
+                validation: [{ type: "required", required: false }],
+                visibility: [
+                  {
+                    field: "new_patient_switch_date_age",
+                    value: true,
+                  },
+                ],
+              },
+              {
+                category: "field",
+                fieldType: "switch",
+                id: "new_patient_switch_date_age",
+                testId: "new_patient_switch_date_age",
+                name: "new_patient_switch_date_age",
+                schemaName: "new_patient_switch_date_age",
+                checkedChildren: "apInputs.add_new.switch_date_age.checked",
+                unCheckedChildren: "apInputs.add_new.switch_date_age.unchecked",
+                defaultChecked: false,
+                validation: [{ type: "required", required: true }],
+              },
+            ],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_title",
+            testId: "new_patient_title",
+            name: "new_patient_title",
+            schemaName: "new_patient_title",
+            label: "apInputs.add_new.title.label",
+            options: [
+              {
+                value: "mr",
+                label: "apInputs.add_new.title.options.mr",
+              },
+              {
+                value: "mrs",
+                label: "apInputs.add_new.title.options.mrs",
+              },
+              {
+                value: "miss",
+                label: "apInputs.add_new.title.options.miss",
+              },
+              {
+                value: "ms",
+                label: "apInputs.add_new.title.options.ms",
+              },
+              {
+                value: "dr",
+                label: "apInputs.add_new.title.options.dr",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_gender",
+            testId: "new_patient_gender",
+            name: "new_patient_gender",
+            schemaName: "new_patient_gender",
+            label: "apInputs.add_new.gender.label",
+            options: [
+              {
+                value: "male",
+                label: "apInputs.add_new.gender.options.male",
+              },
+              {
+                value: "female",
+                label: "apInputs.add_new.gender.options.female",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
+          },
+        ],
+      },
+      {
+        category: "layout",
+        type: "hStack",
+        gap: 0.5,
+        children: [
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_email",
+            testId: "new_patient_email",
+            name: "new_patient_email",
+            schemaName: "new_patient_email",
+            label: "apInputs.add_new.email.label",
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_address",
+            testId: "new_patient_address",
+            name: "new_patient_address",
+            schemaName: "new_patient_address",
+            label: "apInputs.add_new.address.label",
+            validation: [{ type: "required", required: false }],
+          },
+        ],
+      },
+      {
+        category: "layout",
+        type: "hStack",
+        gap: 0.5,
+        children: [
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_assigned_practitioner",
+            testId: "new_patient_assigned_practitioner",
+            name: "new_patient_assigned_practitioner",
+            schemaName: "new_patient_assigned_practitioner",
+            label: "apInputs.add_new.assigned_practitioner.label",
+            options: [
+              {
+                value: "ahmed_taha",
+                label:
+                  "apInputs.add_new.assigned_practitioner.options.ahmed_taha",
+              },
+              {
+                value: "assistant",
+                label:
+                  "apInputs.add_new.assigned_practitioner.options.assistant",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_price_list_group",
+            testId: "new_patient_price_list_group",
+            name: "new_patient_price_list_group",
+            schemaName: "new_patient_price_list_group",
+            label: "apInputs.add_new.price_list_group.label",
+            options: [
+              {
+                value: "price_list_group_1",
+                label:
+                  "apInputs.add_new.price_list_group.options.price_list_group_1",
+              },
+              {
+                value: "price_list_group_2",
+                label:
+                  "apInputs.add_new.price_list_group.options.price_list_group_2",
+              },
+              {
+                value: "price_list_group_3",
+                label:
+                  "apInputs.add_new.price_list_group.options.price_list_group_3",
+              },
+            ],
+
+            validation: [{ type: "required", required: false }],
+          },
+        ],
+      },
+      {
+        category: "field",
+        fieldType: "select",
+        id: "new_patient_patient_tags",
+        testId: "new_patient_patient_tags",
+        name: "new_patient_patient_tags",
+        schemaName: "new_patient_patient_tags",
+        label: "apInputs.add_new.patient_tags.label",
+        options: [
+          {
+            value: "diamond",
+            label: "apInputs.add_new.patient_tags.options.diamond",
+          },
+          {
+            value: "gold",
+            label: "apInputs.add_new.patient_tags.options.gold",
+          },
+          {
+            value: "platinum",
+            label: "apInputs.add_new.patient_tags.options.platinum",
+          },
+          {
+            value: "silver",
+            label: "apInputs.add_new.patient_tags.options.silver",
+          },
+          {
+            value: "vip",
+            label: "apInputs.add_new.patient_tags.options.vip",
+          },
+          {
+            value: "friends",
+            label: "apInputs.add_new.patient_tags.options.friends",
+          },
+          {
+            value: "family",
+            label: "apInputs.add_new.patient_tags.options.family",
+          },
+          {
+            value: "colleague",
+            label: "apInputs.add_new.patient_tags.options.colleague",
+          },
+        ],
+        validation: [{ type: "required", required: false }],
+      },
+      {
+        category: "layout",
+        type: "hStack",
+        gap: 0.5,
+        children: [
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_martial_status",
+            testId: "new_patient_martial_status",
+            name: "new_patient_martial_status",
+            schemaName: "new_patient_martial_status",
+            label: "apInputs.add_new.martial_status.label",
+            options: [
+              {
+                value: "married",
+                label: "apInputs.add_new.martial_status.options.married",
+              },
+              {
+                value: "single",
+                label: "apInputs.add_new.martial_status.options.single",
+              },
+              {
+                value: "divorced",
+                label: "apInputs.add_new.martial_status.options.divorced",
+              },
+              {
+                value: "separated",
+                label: "apInputs.add_new.martial_status.options.separated",
+              },
+              {
+                value: "widowed",
+                label: "apInputs.add_new.martial_status.options.widowed",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_job",
+            testId: "new_patient_job",
+            name: "new_patient_job",
+            schemaName: "new_patient_job",
+            label: "apInputs.add_new.job.label",
+            options: [
+              {
+                value: "job_1",
+                label: "apInputs.add_new.job.options.job_1",
+              },
+              {
+                value: "job_2",
+                label: "apInputs.add_new.job.options.job_2",
+              },
+              {
+                value: "job_3",
+                label: "apInputs.add_new.job.options.job_3",
+              },
+              {
+                value: "job_4",
+                label: "apInputs.add_new.job.options.job_4",
+              },
+              {
+                value: "job_5",
+                label: "apInputs.add_new.job.options.job_5",
+              },
+              {
+                value: "job_6",
+                label: "apInputs.add_new.job.options.job_6",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_nationality",
+            testId: "new_patient_nationality",
+            name: "new_patient_nationality",
+            schemaName: "new_patient_nationality",
+            label: "apInputs.add_new.nationality.label",
+            options: [
+              {
+                value: "egypt",
+                label: "apInputs.add_new.nationality.options.egypt",
+              },
+              {
+                value: "palestine",
+                label: "apInputs.add_new.nationality.options.palestine",
+              },
+              {
+                value: "china",
+                label: "apInputs.add_new.nationality.options.china",
+              },
+              {
+                value: "australia",
+                label: "apInputs.add_new.nationality.options.australia",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
+          },
+        ],
+      },
+      {
+        category: "field",
+        fieldType: "number",
+        id: "new_patient_tax",
+        testId: "new_patient_tax",
+        name: "new_patient_tax",
+        schemaName: "new_patient_tax",
+        label: "apInputs.add_new.tax.label",
+        validation: [{ type: "required", required: false }],
+      },
+      {
+        category: "field",
+        fieldType: "number",
+        id: "new_patient_national_id",
+        testId: "new_patient_national_id",
+        name: "new_patient_national_id",
+        schemaName: "new_patient_national_id",
+        label: "apInputs.add_new.national_id.label",
+        validation: [{ type: "required", required: false }],
+      },
+      {
+        category: "field",
+        fieldType: "textarea",
+        id: "new_patient_patient_details",
+        testId: "new_patient_patient_details",
+        name: "new_patient_patient_details",
+        schemaName: "new_patient_patient_details",
+        label: "apInputs.add_new.patient_details.label",
+        placeholder: "apInputs.add_new.patient_details.placeholder",
+        validation: [{ type: "required", required: false }],
+      },
+      {
+        category: "UI",
+        type: "title",
+        text: "apInputs.add_new.insurance_details_title.text",
+        level: 3,
+      },
+      {
+        category: "field",
+        fieldType: "text",
+        id: "new_patient_insurance_company",
+        testId: "new_patient_insurance_company",
+        name: "new_patient_insurance_company",
+        schemaName: "new_patient_insurance_company",
+        label: "apInputs.add_new.insurance_company.label",
+        placeholder: "apInputs.add_new.insurance_company.placeholder",
+        validation: [{ type: "required", required: false }],
+      },
+      {
+        category: "UI",
+        type: "title",
+        text: "apInputs.add_new.referral_title.text",
+        level: 3,
+      },
+      {
+        category: "layout",
+        type: "hStack",
+        gap: 0.5,
+        children: [
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_referral_source",
+            testId: "new_patient_referral_source",
+            name: "new_patient_referral_source",
+            schemaName: "new_patient_referral_source",
+            label: "apInputs.add_new.referral_source.label",
+            options: [
+              {
+                value: "user",
+                label: "apInputs.add_new.referral_source.options.user",
+              },
+              {
+                value: "patient",
+                label: "apInputs.add_new.referral_source.options.patient",
+              },
+              {
+                value: "facebook",
+                label: "apInputs.add_new.referral_source.options.facebook",
+              },
+              {
+                value: "instagram",
+                label: "apInputs.add_new.referral_source.options.instagram",
+              },
+              {
+                value: "twitter",
+                label: "apInputs.add_new.referral_source.options.twitter",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_referral_details",
+            testId: "new_patient_referral_details",
+            name: "new_patient_referral_details",
+            schemaName: "new_patient_referral_details",
+            label: "apInputs.add_new.referral_details.label",
+            options: [],
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_referral_user",
+            testId: "new_patient_referral_user",
+            name: "new_patient_referral_user",
+            schemaName: "new_patient_referral_user",
+            label: "apInputs.add_new.referral_user.label",
+            options: [
+              {
+                value: "ahmed_taha",
+                label: "Ahmed Taha",
+              },
+              {
+                value: "assistant",
+                label: "assistant",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
+            visibility: [
+              {
+                field: "new_patient_referral_source",
+                value: "user",
+              },
+            ],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_referral_patient",
+            testId: "new_patient_referral_patient",
+            name: "new_patient_referral_patient",
+            schemaName: "new_patient_referral_patient",
+            label: "apInputs.add_new.referral_patient.label",
+            options: [
+              {
+                value: "zaki_badr",
+                label: "Zaki Badr",
+              },
+              {
+                value: "mhmd_taha",
+                label: "Mhmd Taha",
+              },
+              {
+                value: "hamed_zaki",
+                label: "Hamed Zaki",
+              },
+              {
+                value: "patient_tow",
+                label: "Patient Tow",
+              },
+              {
+                value: "patient_one",
+                label: "Patient One",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
+            visibility: [
+              {
+                field: "new_patient_referral_source",
+                value: "patient",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        category: "UI",
+        type: "title",
+        text: "apInputs.add_new.emergency_contact_title.text",
+        level: 3,
+      },
+      {
+        category: "layout",
+        type: "hStack",
+        gap: 0.5,
+        children: [
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_emergency_first_name",
+            testId: "new_patient_emergency_first_name",
+            name: "new_patient_emergency_first_name",
+            schemaName: "new_patient_emergency_first_name",
+            label: "apInputs.add_new.emergency_first_name.label",
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_emergency_last_name",
+            testId: "new_patient_emergency_last_name",
+            name: "new_patient_emergency_last_name",
+            schemaName: "new_patient_emergency_last_name",
+            label: "apInputs.add_new.emergency_last_name.label",
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_emergency_phone",
+            testId: "new_patient_emergency_phone",
+            name: "new_patient_emergency_phone",
+            schemaName: "new_patient_emergency_phone",
+            label: "apInputs.add_new.emergency_phone.label",
+            validation: [{ type: "required", required: false }],
+          },
+        ],
+      },
+      {
+        category: "layout",
+        type: "hStack",
+        gap: 0.5,
+        children: [
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_emergency_secondary_phone",
+            testId: "new_patient_emergency_secondary_phone",
+            name: "new_patient_emergency_secondary_phone",
+            schemaName: "new_patient_emergency_secondary_phone",
+            label: "apInputs.add_new.emergency_secondary_phone.label",
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient_emergency_address",
+            testId: "new_patient_emergency_address",
+            name: "new_patient_emergency_address",
+            schemaName: "new_patient_emergency_address",
+            label: "apInputs.add_new.emergency_address.label",
+            validation: [{ type: "required", required: false }],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_emergency_relationship",
+            testId: "new_patient_emergency_relationship",
+            name: "new_patient_emergency_relationship",
+            schemaName: "new_patient_emergency_relationship",
+            label: "apInputs.add_new.emergency_relationship.label",
+            options: [
+              {
+                value: "spouse",
+                label: "apInputs.add_new.emergency_relationship.options.spouse",
+              },
+              {
+                value: "parent",
+                label: "apInputs.add_new.emergency_relationship.options.parent",
+              },
+              {
+                value: "partner",
+                label:
+                  "apInputs.add_new.emergency_relationship.options.partner",
+              },
+              {
+                value: "friend",
+                label: "apInputs.add_new.emergency_relationship.options.friend",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
+          },
+        ],
+      },
+    ],
+  },
+  // end new patient form config
+
   {
     category: "layout",
     type: "hStack",

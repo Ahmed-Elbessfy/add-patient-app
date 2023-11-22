@@ -212,8 +212,8 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
         <Switch
           data-testid={testId}
           id={id}
-          checkedChildren={props.checkedChildren}
-          unCheckedChildren={props.unCheckedChildren}
+          checkedChildren={t(props.checkedChildren)}
+          unCheckedChildren={t(props.unCheckedChildren)}
           defaultChecked={props.defaultChecked}
           onChange={(checked: boolean) => onChange(checked)}
         />
