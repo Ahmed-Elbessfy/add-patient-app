@@ -9,6 +9,18 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "field",
         fieldType: "text",
+        id: "test_patient_name",
+        testId: "test_patient_name",
+        name: "test_patient_name",
+        schemaName: "test_patient_name",
+        label: "apInputs.test_patient_name.label",
+        placeholder: "apInputs.test_patient_name.placeholder",
+        validation: [{ type: "crequired", required: true }],
+        errorTransKey: "apInputs.test_patient_name.errorMsg",
+      },
+      {
+        category: "field",
+        fieldType: "text",
         id: "patient_name",
         testId: "patient_name",
         name: "patient_name",

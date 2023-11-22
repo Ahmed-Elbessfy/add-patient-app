@@ -20,6 +20,7 @@ import {
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
+import { useTranslation } from "react-i18next";
 
 const { Title, Text, Link } = Typography;
 
@@ -109,6 +110,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     defaultValues: defaultValuesObject,
   });
   // render items recursively config
+  const { t } = useTranslation("lang");
   const renderItems = (fieldsConfig: Item[]): JSX.Element => {
     return (
       <>
@@ -149,7 +151,14 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                             onChange={field.onChange}
                             status={error ? "error" : undefined}
                           />
-                          <p>{error && error.message}</p>
+                          <p>{error && !item.errorTransKey && error.message}</p>
+                          {/* this is temporary for testing but after complete configuration, I will improve it   */}
+                          <p>
+                            {error &&
+                              error.message &&
+                              item.errorTransKey &&
+                              t(error.message)}
+                          </p>
                         </div>
                       )}
                     </>

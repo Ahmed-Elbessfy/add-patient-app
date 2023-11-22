@@ -98,6 +98,11 @@
       "label": "Patient",
       "placeholder": "Please choose or add new patient"
     },
+    "test_patient_name": {
+      "label": "Patient",
+      "placeholder": "Please choose or add new patient",
+      "errorMsg": "test patient name is required"
+    },
     "add_new": {
       "patient_details_title": {
         "text": "Patients Details"

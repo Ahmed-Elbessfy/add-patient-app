@@ -15,6 +15,7 @@ type FieldValidation = {
 };
 
 export type SchemaName =
+  | "test_patient_name"
   | "patient_name"
   | "switch_input_method"
   | "doctor"
@@ -109,6 +110,7 @@ interface ItemField {
     [x: number]: unknown;
   }>;
   visibility?: visibilityRule[];
+  errorTransKey?: string;
 }
 
 export interface FieldText extends ItemField {

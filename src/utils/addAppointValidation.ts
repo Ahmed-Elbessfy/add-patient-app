@@ -6,6 +6,22 @@ import {
 } from "../features/AddAppointmentForm/AddAppointmentForm.constants";
 
 // VAlidation errors messages functions
+const validateCRequired = (validationSchema, field) => {
+  const rule = {
+    fieldName: field.name,
+  };
+
+  // check if the field is Required, since not all fields are required
+  const fieldRequiredStatus = field.validation.find(
+    (rule) => rule.type === "crequired"
+  ).required;
+
+  return fieldRequiredStatus
+    ? validationSchema.required(
+        ERROR_MESSAGES[VALIDATION_RULE_TYPES.CREQUIRED](field.errorTransKey)
+      )
+    : validationSchema;
+};
 const validateRequired = (validationSchema, field) => {
   const rule = {
     fieldName: field.name,
@@ -99,6 +115,7 @@ const validateTimeLaterThan = (validationSchema, field) => {
 };
 
 const validationRules = {
+  [VALIDATION_RULE_TYPES.CREQUIRED]: validateCRequired,
   [VALIDATION_RULE_TYPES.REQUIRED]: validateRequired,
   [VALIDATION_RULE_TYPES.EARLIER_THAN]: validateEarlierThan,
   [VALIDATION_RULE_TYPES.LATER_THAN]: validateLaterThan,

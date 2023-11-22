@@ -97,6 +97,11 @@
       "label": "اسم المريض",
       "placeholder": "برجاء اختيار او اضافة مريض "
     },
+    "test_patient_name": {
+      "label": "اسم المريض",
+      "placeholder": "برجاء اختيار او اضافة مريض ",
+      "errorMsg": "برجاء اضافة اسم المريض"
+    },
     "add_new": {
       "patient_details_title": {
         "text": "بيانات المريض"

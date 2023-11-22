@@ -14,6 +14,7 @@ export const INPUT_TYPES = {
 };
 
 export const VALIDATION_RULE_TYPES = {
+  CREQUIRED: "crequired",
   REQUIRED: "required",
   EARLIER_THAN: "earlier_than",
   LATER_THAN: "later_than",
@@ -22,6 +23,7 @@ export const VALIDATION_RULE_TYPES = {
 };
 
 export const ERROR_MESSAGES = {
+  [VALIDATION_RULE_TYPES.CREQUIRED]: (errorTransKey: string) => errorTransKey,
   [VALIDATION_RULE_TYPES.REQUIRED]: ({ fieldName }: ValidationRule) =>
     `${fieldName} field is required`,
   [VALIDATION_RULE_TYPES.EARLIER_THAN]: ({ fieldName, date }: ValidationRule) =>
