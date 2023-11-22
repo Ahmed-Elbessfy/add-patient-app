@@ -98,6 +98,179 @@
       "label": "Patient",
       "placeholder": "Please choose or add new patient"
     },
+    "add_new": {
+      "patient_details_title": {
+        "text": "Patients Details"
+      },
+      "id": {
+        "label": "ID"
+      },
+      "first_name": {
+        "label": "First Name"
+      },
+      "last_name": {
+        "label": "Last Name"
+      },
+      "phone": {
+        "label": "Phone Number"
+      },
+      "secondary_phone": {
+        "label": "Secondary Phone Number"
+      },
+      "country": {
+        "label": "Country",
+        "options": {
+          "egypt": "Egypt - مصر",
+          "palestine": "Palestine - فلسطين",
+          "china": "China - الصين",
+          "australia ": "Australia - أستراليا"
+        }
+      },
+      "birthDate": {
+        "label": "Date of Birth",
+        "placeholder": "DD/MM/YYYY"
+      },
+      "age": {
+        "label": "Age"
+      },
+      "title": {
+        "label": "Title"
+      },
+      "gender": {
+        "label": "Gender",
+        "options": {
+          "male": "Male",
+          "female": "Female"
+        }
+      },
+      "email": {
+        "label": "Email"
+      },
+      "address": {
+        "label": "Address"
+      },
+      "assigned_practitioner": {
+        "label": "Assigned Practitioner",
+        "options": {
+          "ahmed_taha": "Ahmed Taha",
+          "assistant": "assistant"
+        }
+      },
+      "price_list_group": {
+        "label": "Price List Group",
+        "options": {
+          "price_list_group_1": "Price List Group 1",
+          "price_list_group_2": "Price List Group 2",
+          "price_list_group_3": "Price List Group 3"
+        }
+      },
+      "patient_tags": {
+        "label": "Patient Tags",
+        "options": {
+          "diamond": "Diamond",
+          "gold": "Gold",
+          "platinum": "Platinum",
+          "silver": "Silver",
+          "vip": "VIP",
+          "friends": "Friends",
+          "family": "Family",
+          "colleague": "Colleague"
+        }
+      },
+      "martial_status": {
+        "label": "Martial Status",
+        "options": {
+          "married": "Married",
+          "single": "Single",
+          "divorced": "Divorced",
+          "separated": "Separated",
+          "widowed": "widowed"
+        }
+      },
+      "job": {
+        "label": "Job",
+        "options": {
+          "job_1": "Job 1",
+          "job_2": "Job 2",
+          "job_3": "Job 3",
+          "job_4": "Job 4",
+          "job_5": "Job 5",
+          "job_6": "Job 6"
+        }
+      },
+      "nationality": {
+        "label": "Nationality",
+        "options": {
+          "egypt": "Egypt - مصر",
+          "palestine": "Palestine - فلسطين",
+          "china": "China - الصين",
+          "australia ": "Australia - أستراليا"
+        }
+      },
+      "tax": {
+        "label": "Tax"
+      },
+      "national_id": {
+        "label": "National ID"
+      },
+      "patients_details": {
+        "label": "Patients Details",
+        "placeholder": "Add extra details here"
+      },
+      "upload_image": {
+        "text": "Upload Image"
+      },
+      "insurance_details_title": {
+        "text": "Insurance Details"
+      },
+      "insurance_company": {
+        "label": "Insurance Company",
+        "placeholder": "PLease choose a company or add new"
+      },
+      "referral_title": {
+        "text": "How Did You Hear About Us?"
+      },
+      "referral_source": {
+        "label": "PLease select",
+        "options": {
+          "user": "User",
+          "patient": "Patient",
+          "facebook": "Facebook",
+          "instagram": "Instagram",
+          "twitter": "Twitter"
+        }
+      },
+      "referral_details": {
+        "label": "Details"
+      },
+      "emergency_contact_title": {
+        "text": "Emergency Contact"
+      },
+      "emergency_first_name": {
+        "label": "First Name"
+      },
+      "emergency_last_name": {
+        "label": "Last Name"
+      },
+      "emergency_phone": {
+        "label": "Phone Number"
+      },
+      "emergency_secondary_phone": {
+        "label": "Secondary Phone Number"
+      },
+      "emergency_address": {
+        "label": "Address"
+      },
+      "emergency_relationship": {
+        "label": "Relationship",
+        "options": {
+          "spouse": "Spouse",
+          "parent": "Parent",
+          "partner": "Partner",
+          "friend": "Friend"
+        }
+      }
+    },
     "doctor": {
       "label": "Doctor",
       "placeholder": "Select a doctor",
