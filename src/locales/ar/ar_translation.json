@@ -97,6 +97,196 @@
       "label": "اسم المريض",
       "placeholder": "برجاء اختيار او اضافة مريض "
     },
+    "add_new": {
+      "patient_details_title": {
+        "text": "بيانات المريض"
+      },
+      "id": {
+        "label": "الرمز التعريفي"
+      },
+      "first_name": {
+        "label": "الاسم الأول"
+      },
+      "last_name": {
+        "label": "الاسم الأخير"
+      },
+      "phone": {
+        "label": "رقم هاتف"
+      },
+      "secondary_phone": {
+        "label": "رقم هاتف ثانوي"
+      },
+      "country": {
+        "label": "البلد",
+        "options": {
+          "egypt": "Egypt - مصر",
+          "palestine": "Palestine - فلسطين",
+          "china": "China - الصين",
+          "australia": "Australia - أستراليا"
+        }
+      },
+      "switch_date_age": {
+        "checked": "تاريخ",
+        "unchecked": "عمر"
+      },
+      "birthDate": {
+        "label": "تاريخ الميلاد",
+        "placeholder": "DD/MM/YYYY"
+      },
+      "age": {
+        "label": "العمر"
+      },
+      "title": {
+        "label": "اللقب",
+        "options": {
+          "mr": "Mr",
+          "mrs": "Mrs",
+          "miss": "Miss",
+          "ms": "Ms",
+          "dr": "Dr"
+        }
+      },
+      "gender": {
+        "label": "الجنس",
+        "options": {
+          "male": "ذكر",
+          "female": "أنثى"
+        }
+      },
+      "email": {
+        "label": "البريد الالكتروني"
+      },
+      "address": {
+        "label": "العنوان"
+      },
+      "assigned_practitioner": {
+        "label": "الطبيب المعالج",
+        "options": {
+          "ahmed_taha": "Ahmed Taha",
+          "assistant": "assistant"
+        }
+      },
+      "price_list_group": {
+        "label": "مجموعة قوائم الأسعار",
+        "options": {
+          "price_list_group_1": "مجموعة أسعار 1",
+          "price_list_group_2": "مجموعة أسعار 2",
+          "price_list_group_3": "مجموعة أسعار 3"
+        }
+      },
+      "patient_tags": {
+        "label": "تصنيف العميل",
+        "options": {
+          "diamond": "ماسي",
+          "gold": "ذهبي",
+          "platinum": "بلاتينيوم",
+          "silver": "فضي",
+          "vip": "شخصية هامة",
+          "friends": "صديق",
+          "family": "عائلة",
+          "colleague": "زميل عمل"
+        }
+      },
+      "martial_status": {
+        "label": "الحالة الاجتماعية",
+        "options": {
+          "married": "متزوج",
+          "single": "وحيد",
+          "divorced": "مطلق",
+          "separated": "منفصل",
+          "widowed": "أرمل"
+        }
+      },
+      "job": {
+        "label": "الوظيفة",
+        "options": {
+          "job_1": "وظيفة 1",
+          "job_2": "وظيفة 2",
+          "job_3": "وظيفة 3",
+          "job_4": "وظيفة 4",
+          "job_5": "وظيفة 5",
+          "job_6": "وظيفة 6"
+        }
+      },
+      "nationality": {
+        "label": "الجنسية",
+        "options": {
+          "egypt": "Egypt - مصر",
+          "palestine": "Palestine - فلسطين",
+          "china": "China - الصين",
+          "australia": "Australia - أستراليا"
+        }
+      },
+      "tax": {
+        "label": "الضريبة"
+      },
+      "national_id": {
+        "label": "الرقم القومي"
+      },
+      "patient_details": {
+        "label": "تفاصيل المريض",
+        "placeholder": "أضف تفاصيل اضافية هنا"
+      },
+      "upload_image": {
+        "text": "ارفاق صورة"
+      },
+      "insurance_details_title": {
+        "text": "تفاصيل التأمين"
+      },
+      "insurance_company": {
+        "label": "شركة التأمين",
+        "placeholder": "برجاء اختيار شركة او أضف شركة جديدة"
+      },
+      "referral_title": {
+        "text": "كيف تعرفت على Detnolize ؟"
+      },
+      "referral_source": {
+        "label": "برجاء اختيار ",
+        "options": {
+          "user": "مستخدم",
+          "patient": "مريض",
+          "facebook": "فيسبوك",
+          "instagram": "انستجرام",
+          "twitter": "تويتر"
+        }
+      },
+      "referral_details": {
+        "label": "تفاصيل"
+      },
+      "referral_user": {
+        "label": "برجاء اختيار مستخدم"
+      },
+      "referral_patient": {
+        "label": "برجاء اختيار مريض"
+      },
+      "emergency_contact_title": {
+        "text": "جهة اتصال في حالة الطوارئ"
+      },
+      "emergency_first_name": {
+        "label": "الاسم الأول"
+      },
+      "emergency_last_name": {
+        "label": "الاسم الأخير"
+      },
+      "emergency_phone": {
+        "label": "رقم الهاتف"
+      },
+      "emergency_secondary_phone": {
+        "label": "رقم الهاتف الثانوي"
+      },
+      "emergency_address": {
+        "label": "العنوان"
+      },
+      "emergency_relationship": {
+        "label": "صلة بالمريض",
+        "options": {
+          "spouse": "زوج/زوجة",
+          "parent": "والد/والدة",
+          "partner": "شريك",
+          "friend": "صديق"
+        }
+      }
+    },
     "doctor": {
       "label": "اسم طبيب",
       "placeholder": "برجاء اختيار طبيب",
