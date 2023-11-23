@@ -52,7 +52,7 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "UI",
         type: "title",
-        title: "apInputs.add_new.diagnostic_fees_title.text",
+        title: "apInputs.add_new.patient_details_title.text",
         level: 3,
       },
       {
