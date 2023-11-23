@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Flex } from "antd";
+import { Flex, Row } from "antd";
 import {
   Item,
   ItemLayout,
@@ -16,24 +16,24 @@ const AddAppointmentSection: FC<Props> = (props: Props) => {
   const produceStyle = (type: string) => {
     if (type === "box") {
       return {
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        gridGap: `${gap}rem`,
-        padding: props.padding ? `${props.padding}rem` : "inherit",
+        // gridGap: `${gap}rem`,
+        // padding: props.padding ? `${props.padding}rem` : "inherit",
+        width: "100%",
       };
     } else {
       return {
-        display: "flex",
-        gridGap: `${gap}rem`,
+        width: "100%",
       };
     }
   };
 
   return (
     <section style={produceStyle(type)}>
-      <Flex justify="space-around" align="center">
+      <Row gutter={16} align="middle">
+        {/* <Flex justify="space-around" align="center" > */}
         {renderItems(children)}
-      </Flex>
+        {/* </Flex> */}
+      </Row>
     </section>
   );
 };

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Alert, Button, Typography } from "antd";
+import { Alert, Button, Col, Typography } from "antd";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs from "dayjs";
@@ -126,13 +126,25 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                 render={({ field, fieldState: { error } }) => {
                   return (
                     <>
-                      {/* in case there is a visibility rule:
+                      <Col md={8} sm={24} style={{ textAlign: "left" }}>
+                        {/* in case there is a visibility rule:
                           - check if it is fulfilled first, if yse render field
                           - if not render field normally
                       */}
-                      {item.visibility ? (
-                        watch(item.visibility[0].field) ===
-                          item.visibility[0].value && (
+                        {item.visibility ? (
+                          watch(item.visibility[0].field) ===
+                            item.visibility[0].value && (
+                            <div>
+                              <AddAppointmentFields
+                                {...item}
+                                clearErrors={clearErrors}
+                                onChange={field.onChange}
+                                status={error ? "error" : undefined}
+                              />
+                              <p>{error && error.message}</p>
+                            </div>
+                          )
+                        ) : (
                           <div>
                             <AddAppointmentFields
                               {...item}
@@ -140,27 +152,19 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                               onChange={field.onChange}
                               status={error ? "error" : undefined}
                             />
-                            <p>{error && error.message}</p>
+                            <p>
+                              {error && !item.errorTransKey && error.message}
+                            </p>
+                            {/* this is temporary for testing but after complete configuration, I will improve it   */}
+                            <p>
+                              {error &&
+                                error.message &&
+                                item.errorTransKey &&
+                                t(error.message)}
+                            </p>
                           </div>
-                        )
-                      ) : (
-                        <div>
-                          <AddAppointmentFields
-                            {...item}
-                            clearErrors={clearErrors}
-                            onChange={field.onChange}
-                            status={error ? "error" : undefined}
-                          />
-                          <p>{error && !item.errorTransKey && error.message}</p>
-                          {/* this is temporary for testing but after complete configuration, I will improve it   */}
-                          <p>
-                            {error &&
-                              error.message &&
-                              item.errorTransKey &&
-                              t(error.message)}
-                          </p>
-                        </div>
-                      )}
+                        )}
+                      </Col>
                     </>
                   );
                 }}
@@ -183,7 +187,11 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
               // Title UI Item
               case "title": {
                 const { level, title } = item as UITitle;
-                return <Title level={level}>{t(title)}</Title>;
+                return (
+                  <Col span={24}>
+                    <Title level={level}>{t(title)}</Title>;
+                  </Col>
+                );
               }
               // Text UI Item
               case "text": {

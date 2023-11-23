@@ -104,6 +104,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           data-testid={testId}
           id={id}
           status={status}
+          style={{ width: "100%" }}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
           }
@@ -119,6 +120,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           status={status}
           onChange={(value: string) => onChange(value)}
           defaultValue={props.defaultValue}
+          style={{ width: "100%" }}
         >
           {props.options &&
             props.options.map((option, ind) => {
@@ -158,6 +160,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           data-testid={testId}
           id={id}
           status={status}
+          style={{ width: "100%" }}
           disabledDate={(current) =>
             props.dateLimit
               ? disabledDate(
@@ -190,6 +193,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           data-testid={testId}
           id={id}
           status={status}
+          style={{ width: "100%" }}
           use12Hours={props.use12Hours}
           defaultValue={formatTime(props.defaultValue)}
           onChange={(time: Dayjs | null) => {
