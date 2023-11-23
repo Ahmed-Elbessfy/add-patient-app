@@ -183,17 +183,17 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
               // Title UI Item
               case "title": {
                 const { level, title } = item as UITitle;
-                return <Title level={level}>{title}</Title>;
+                return <Title level={level}>{t(title)}</Title>;
               }
               // Text UI Item
               case "text": {
                 const { text } = item as UIText;
-                return <Text>{text}</Text>;
+                return <Text>{t(text)}</Text>;
               }
               // Link UI Item
               case "link": {
                 const { text, url } = item as UILink;
-                return <Link href={url}>{text}</Link>;
+                return <Link href={url}>{t(text)}</Link>;
               }
               // Alert UI Item
               case "alert": {
@@ -201,8 +201,8 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                   item as UIAlert;
                 return (
                   <Alert
-                    message={message}
-                    description={description}
+                    message={t(message)}
+                    description={t(description)}
                     type={alertType}
                     showIcon={showIcon}
                   />

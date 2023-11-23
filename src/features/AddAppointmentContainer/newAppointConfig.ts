@@ -52,7 +52,7 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "UI",
         type: "title",
-        text: "apInputs.add_new.diagnostic_fees_title.text",
+        title: "apInputs.add_new.diagnostic_fees_title.text",
         level: 3,
       },
       {
@@ -531,7 +531,7 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "UI",
         type: "title",
-        text: "apInputs.add_new.insurance_details_title.text",
+        title: "apInputs.add_new.insurance_details_title.text",
         level: 3,
       },
       {
@@ -548,7 +548,7 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "UI",
         type: "title",
-        text: "apInputs.add_new.referral_title.text",
+        title: "apInputs.add_new.referral_title.text",
         level: 3,
       },
       {
@@ -668,7 +668,7 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "UI",
         type: "title",
-        text: "apInputs.add_new.emergency_contact_title.text",
+        title: "apInputs.add_new.emergency_contact_title.text",
         level: 3,
       },
       {
@@ -998,7 +998,7 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "UI",
     type: "title",
-    text: "apInputs.diagnostic_fees_title.text",
+    title: "apInputs.diagnostic_fees_title.text",
     level: 3,
   },
   {
@@ -1123,7 +1123,7 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "UI",
     type: "title",
-    text: "apInputs.mobile_notification.text",
+    title: "apInputs.mobile_notification.text",
     level: 3,
   },
   {
