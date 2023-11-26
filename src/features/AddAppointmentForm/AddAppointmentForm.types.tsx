@@ -1,4 +1,7 @@
-import { Item } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import {
+  Item,
+  SchemaName,
+} from "../AddAppointmentFields/AddAppointmentInputs.type";
 
 export interface AddAppointmentFormProps {
   fieldsConfig: Item[];
@@ -10,3 +13,8 @@ export type ValidationRule = {
   date?: string;
   targetField?: string;
 };
+
+export type DefaultValueObjectFormat = Record<
+  SchemaName,
+  string | number | boolean | undefined | Dayjs
+>;

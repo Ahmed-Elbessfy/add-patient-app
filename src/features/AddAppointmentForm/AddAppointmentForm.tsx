@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs from "dayjs";
 import type { Dayjs } from "dayjs";
+import { useTranslation } from "react-i18next";
 import { parseValidation } from "../../utils/addAppointValidation";
 import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
 import {
@@ -19,8 +20,10 @@ import {
   SchemaName,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
-import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
-import { useTranslation } from "react-i18next";
+import {
+  AddAppointmentFormProps,
+  DefaultValueObjectFormat,
+} from "./AddAppointmentForm.types";
 
 const { Title, Text, Link } = Typography;
 
@@ -31,10 +34,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   // Schema Config
   const shape: yup.ObjectShape = {};
   // default values config
-  const defaultValuesObject: Record<
+  const defaultValuesObject: DefaultValueObjectFormat = {} as Record<
     SchemaName,
     string | number | boolean | undefined | Dayjs
-  > = {};
+  >;
 
   // build schema & default values
   const configValidation = (itemsData: Item[]) => {
