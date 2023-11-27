@@ -24,8 +24,8 @@ export const VALIDATION_RULE_TYPES = {
 
 export const ERROR_MESSAGES = {
   [VALIDATION_RULE_TYPES.CREQUIRED]: (errorTransKey: string) => errorTransKey,
-  [VALIDATION_RULE_TYPES.REQUIRED]: ({ fieldName }: ValidationRule) =>
-    `${fieldName} field is required`,
+  [VALIDATION_RULE_TYPES.REQUIRED]: (errorMsgKey:string) =>
+    errorMsgKey,
   [VALIDATION_RULE_TYPES.EARLIER_THAN]: ({ fieldName, date }: ValidationRule) =>
     `${fieldName} must be earlier than ${date}`,
   [VALIDATION_RULE_TYPES.LATER_THAN]: ({ fieldName, date }: ValidationRule) =>

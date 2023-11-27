@@ -27,7 +27,15 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "patient_name",
         label: "apInputs.patient_name.label",
         placeholder: "apInputs.patient_name.placeholder",
-        validation: [{ type: "required", required: true }],
+        validation: [
+          {
+            type: "required",
+            required: true,
+            defaultErrorMsg: "apInputs.patient_name.errorMsgs.required.default",
+            customErrorMsg: "apInputs.patient_name.errorMsgs.required.custom",
+            useCustomErrorMsg: false,
+          },
+        ],
       },
       {
         category: "field",
@@ -39,7 +47,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         checkedChildren: "no qr",
         unCheckedChildren: "QR",
         defaultChecked: false,
-        validation: [{ type: "required", required: true }],
+        validation: [],
       },
     ],
   },
@@ -78,7 +86,17 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_first_name",
             schemaName: "new_patient_first_name",
             label: "apInputs.add_new.first_name.label",
-            validation: [{ type: "required", required: true }],
+            validation: [
+              {
+                type: "required",
+                required: true,
+                defaultErrorMsg:
+                  "apInputs.add_new.first_name.errorMsgs.required.default",
+                customErrorMsg:
+                  "apInputs.add_new.first_name.errorMsgs.required.custom",
+                useCustomErrorMsg: false,
+              },
+            ],
           },
           {
             category: "field",
@@ -88,7 +106,17 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_last_name",
             schemaName: "new_patient_last_name",
             label: "apInputs.add_new.last_name.label",
-            validation: [{ type: "required", required: true }],
+            validation: [
+              {
+                type: "required",
+                required: true,
+                defaultErrorMsg:
+                  "apInputs.add_new.last_name.errorMsgs.required.default",
+                customErrorMsg:
+                  "apInputs.add_new.last_name.errorMsgs.required.custom",
+                useCustomErrorMsg: false,
+              },
+            ],
           },
         ],
       },
@@ -214,7 +242,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                     unCheckedChildren:
                       "apInputs.add_new.switch_date_age.unchecked",
                     defaultChecked: false,
-                    validation: [{ type: "required", required: true }],
+                    validation: [],
                   },
                 ],
               },
@@ -794,7 +822,15 @@ export const addAppointmentFieldsConfig: Item[] = [
           { value: "ahmed", label: "apInputs.doctor.options.ahmed" },
           { value: "taha", label: "apInputs.doctor.options.taha" },
         ],
-        validation: [{ type: "required", required: true }],
+        validation: [
+          {
+            type: "required",
+            required: true,
+            defaultErrorMsg: "apInputs.doctor.errorMsgs.required.default",
+            customErrorMsg: "apInputs.doctor.errorMsgs.required.custom",
+            useCustomErrorMsg: false,
+          },
+        ],
       },
       {
         category: "field",
@@ -811,7 +847,15 @@ export const addAppointmentFieldsConfig: Item[] = [
           { value: "room_3", label: "apInputs.room.options.room_3" },
           { value: "room_4", label: "apInputs.room.options.room_4" },
         ],
-        validation: [{ type: "required", required: true }],
+        validation: [
+          {
+            type: "required",
+            required: true,
+            defaultErrorMsg: "apInputs.room.errorMsgs.required.default",
+            customErrorMsg: "apInputs.room.errorMsgs.required.custom",
+            useCustomErrorMsg: false,
+          },
+        ],
       },
       {
         category: "field",
@@ -835,7 +879,15 @@ export const addAppointmentFieldsConfig: Item[] = [
           { value: "canceled", label: "apInputs.status.options.canceled" },
           { value: "no_show", label: "apInputs.status.options.no_show" },
         ],
-        validation: [{ type: "required", required: true }],
+        validation: [
+          {
+            type: "required",
+            required: true,
+            defaultErrorMsg: "apInputs.status.errorMsgs.required.default",
+            customErrorMsg: "apInputs.status.errorMsgs.required.custom",
+            useCustomErrorMsg: false,
+          },
+        ],
       },
     ],
   },
@@ -855,7 +907,13 @@ export const addAppointmentFieldsConfig: Item[] = [
         defaultValue: "today",
         format: "DD/MM/YYYY",
         validation: [
-          { type: "required", required: true },
+          {
+            type: "required",
+            required: true,
+            defaultErrorMsg: "apInputs.day.errorMsgs.required.default",
+            customErrorMsg: "apInputs.day.errorMsgs.required.custom",
+            useCustomErrorMsg: false,
+          },
           {
             type: "later_than",
             date: "today",
@@ -874,6 +932,13 @@ export const addAppointmentFieldsConfig: Item[] = [
         defaultValue: "now",
         format: "hh:mm a",
         validation: [
+          {
+            type: "required",
+            required: true,
+            defaultErrorMsg: "apInputs.start_time.errorMsgs.required.default",
+            customErrorMsg: "apInputs.start_time.errorMsgs.required.custom",
+            useCustomErrorMsg: false,
+          },
           { type: "required", required: true },
           { type: "time_earlier_than", fields: ["end_time"] },
         ],
@@ -890,6 +955,13 @@ export const addAppointmentFieldsConfig: Item[] = [
         use12Hours: true,
         format: "hh:mm a",
         validation: [
+          {
+            type: "required",
+            required: true,
+            defaultErrorMsg: "apInputs.end_time.errorMsgs.required.default",
+            customErrorMsg: "apInputs.end_time.errorMsgs.required.custom",
+            useCustomErrorMsg: false,
+          },
           { type: "required", required: true },
           { type: "time_later_than", fields: ["start_time"] },
         ],
@@ -928,7 +1000,15 @@ export const addAppointmentFieldsConfig: Item[] = [
           { value: "emergency", label: "apInputs.type.options.emergency" },
           { value: "endo", label: "apInputs.type.options.endo" },
         ],
-        validation: [{ type: "required", required: true }],
+        validation: [
+          {
+            type: "required",
+            required: true,
+            defaultErrorMsg: "apInputs.type.errorMsgs.required.default",
+            customErrorMsg: "apInputs.type.errorMsgs.required.custom",
+            useCustomErrorMsg: false,
+          },
+        ],
       },
       {
         category: "field",

@@ -12,6 +12,9 @@ type FieldValidation = {
   required?: boolean;
   date?: string;
   fields?: SchemaName[];
+  defaultErrorMsg?: string;
+  customErrorMsg?: string;
+  useCustomErrorMsg?: boolean;
 };
 
 export type SchemaName =

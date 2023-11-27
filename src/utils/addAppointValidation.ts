@@ -23,18 +23,15 @@ const validateCRequired = (validationSchema, field) => {
     : validationSchema;
 };
 const validateRequired = (validationSchema, field) => {
-  const rule = {
-    fieldName: field.name,
-  };
+  const { required, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
+    field.validation.find((rule) => rule.type === "required");
+
+  const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
   // check if the field is Required, since not all fields are required
-  const fieldRequiredStatus = field.validation.find(
-    (rule) => rule.type === "required"
-  ).required;
-
-  return fieldRequiredStatus
+  return required
     ? validationSchema.required(
-        ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED](rule)
+        ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED](errorMsgKey)
       )
     : validationSchema;
 };

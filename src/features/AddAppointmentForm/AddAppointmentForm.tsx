@@ -4,7 +4,6 @@ import { Alert, Button, Col, Typography } from "antd";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs from "dayjs";
-import type { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
 import { parseValidation } from "../../utils/addAppointValidation";
 import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
@@ -17,13 +16,13 @@ import {
   UILink,
   UIText,
   UITitle,
-  SchemaName,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 import {
   AddAppointmentFormProps,
   DefaultValueObjectFormat,
 } from "./AddAppointmentForm.types";
+import { StyledError } from "./AddAppointmentForm.styled";
 
 const { Title, Text, Link } = Typography;
 
@@ -34,10 +33,8 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   // Schema Config
   const shape: yup.ObjectShape = {};
   // default values config
-  const defaultValuesObject: DefaultValueObjectFormat = {} as Record<
-    SchemaName,
-    string | number | boolean | undefined | Dayjs
-  >;
+  const defaultValuesObject: DefaultValueObjectFormat =
+    {} as DefaultValueObjectFormat;
 
   // build schema & default values
   const configValidation = (itemsData: Item[]) => {
@@ -144,7 +141,9 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                                 onChange={field.onChange}
                                 status={error ? "error" : undefined}
                               />
-                              <p>{error && error.message}</p>
+                              <StyledError>
+                                {error && error.message && t(error.message)}
+                              </StyledError>
                             </div>
                           )
                         ) : (
@@ -155,16 +154,9 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                               onChange={field.onChange}
                               status={error ? "error" : undefined}
                             />
-                            <p>
-                              {error && !item.errorTransKey && error.message}
-                            </p>
-                            {/* this is temporary for testing but after complete configuration, I will improve it   */}
-                            <p>
-                              {error &&
-                                error.message &&
-                                item.errorTransKey &&
-                                t(error.message)}
-                            </p>
+                            <StyledError>
+                              {error && error.message && t(error.message)}
+                            </StyledError>
                           </div>
                         )}
                       </Col>

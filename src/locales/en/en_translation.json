@@ -96,7 +96,13 @@
   "apInputs": {
     "patient_name": {
       "label": "Patient",
-      "placeholder": "Please choose or add new patient"
+      "placeholder": "Please choose or add new patient",
+      "errorMsgs": {
+        "required": {
+          "default": "Patient name is required",
+          "custom": ""
+        }
+      }
     },
     "test_patient_name": {
       "label": "Patient",
@@ -111,10 +117,22 @@
         "label": "ID"
       },
       "first_name": {
-        "label": "First Name"
+        "label": "First Name",
+        "errorMsgs": {
+          "required": {
+            "default": "Patient first name is required",
+            "custom": ""
+          }
+        }
       },
       "last_name": {
-        "label": "Last Name"
+        "label": "Last Name",
+        "errorMsgs": {
+          "required": {
+            "default": "Patient last name is required",
+            "custom": ""
+          }
+        }
       },
       "phone": {
         "label": "Phone Number"
@@ -137,7 +155,13 @@
       },
       "birthDate": {
         "label": "Date of Birth",
-        "placeholder": "DD/MM/YYYY"
+        "placeholder": "DD/MM/YYYY",
+        "errorMsgs": {
+          "earlierThan": {
+            "default": "Patient last name is required",
+            "custom": ""
+          }
+        }
       },
       "age": {
         "label": "Age"
@@ -299,6 +323,12 @@
       "options": {
         "ahmed": "Ahmed",
         "taha": "Taha"
+      },
+      "errorMsgs": {
+        "required": {
+          "default": "Doctor is required",
+          "custom": ""
+        }
       }
     },
     "room": {
@@ -308,6 +338,12 @@
         "room_2": "Room 2",
         "room_3": "Room 3",
         "room_4": "Room 4"
+      },
+      "errorMsgs": {
+        "required": {
+          "default": "Room is required",
+          "custom": ""
+        }
       }
     },
     "status": {
@@ -321,16 +357,43 @@
         "delayed": "Delayed",
         "canceled": "Canceled",
         "no_show": "No Show"
+      },
+      "errorMsgs": {
+        "required": {
+          "default": "Status is required",
+          "custom": ""
+        }
       }
     },
     "day": {
+      "label": "Day",
+      "errorMsgs": {
+        "required": {
+          "default": "Day of appointment is required",
+          "custom": ""
+        },
       "label": "Day"
+      }
     },
     "start_time": {
+      "label": "Start",
+      "errorMsgs": {
+        "required": {
+          "default": "Start time of appointment is required",
+          "custom": ""
+        },
       "label": "Start"
+      }
     },
     "end_time": {
+      "label": "End",
+      "errorMsgs": {
+        "required": {
+          "default": "End time of appointment is required",
+          "custom": ""
+        },
       "label": "End"
+      }
     },
     "type": {
       "label": "Type",
@@ -342,6 +405,12 @@
         "extended_treatment": "Extended Treatment",
         "emergency": "Emergency",
         "endo": "Endo"
+      },
+      "errorMsgs": {
+        "required": {
+          "default": "Appointment type is required",
+          "custom": ""
+        }
       }
     },
     "subtype": {
