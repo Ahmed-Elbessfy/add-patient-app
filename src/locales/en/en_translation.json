@@ -135,10 +135,22 @@
         }
       },
       "phone": {
-        "label": "Phone Number"
+        "label": "Phone Number",
+        "errorMsgs": {
+          "pattern": {
+            "default": "Please enter a valid egyptian phone number",
+            "custom": ""
+          }
+        }
       },
       "secondary_phone": {
-        "label": "Secondary Phone Number"
+        "label": "Secondary Phone Number",
+        "errorMsgs": {
+          "pattern": {
+            "default": "Please enter a valid egyptian phone number",
+            "custom": ""
+          }
+        }
       },
       "country": {
         "label": "Country",
@@ -158,13 +170,23 @@
         "placeholder": "DD/MM/YYYY",
         "errorMsgs": {
           "earlierThan": {
-            "default": "Patient last name is required",
+            "default": "Birth date should be before today",
             "custom": ""
           }
         }
       },
       "age": {
-        "label": "Age"
+        "label": "Age",
+        "errorMsgs": {
+          "minimum": {
+            "default": "Age need to be more than 1",
+            "custom": ""
+          },
+          "maximum": {
+            "default": "Age need to be less than 200",
+            "custom": ""
+          }
+        }
       },
       "title": {
         "label": "Title",
@@ -184,7 +206,13 @@
         }
       },
       "email": {
-        "label": "Email"
+        "label": "Email",
+        "errorMsgs": {
+          "pattern": {
+            "default": "Please enter a valid email",
+            "custom": ""
+          }
+        }
       },
       "address": {
         "label": "Address"
@@ -299,10 +327,22 @@
         "label": "Last Name"
       },
       "emergency_phone": {
-        "label": "Phone Number"
+        "label": "Phone Number",
+        "errorMsgs": {
+          "pattern": {
+            "default": "Please enter a valid egyptian phone number",
+            "custom": ""
+          }
+        }
       },
       "emergency_secondary_phone": {
-        "label": "Secondary Phone Number"
+        "label": "Secondary Phone Number",
+        "errorMsgs": {
+          "pattern": {
+            "default": "Please enter a valid egyptian phone number",
+            "custom": ""
+          }
+        }
       },
       "emergency_address": {
         "label": "Address"
@@ -372,7 +412,10 @@
           "default": "Day of appointment is required",
           "custom": ""
         },
-      "label": "Day"
+        "laterThan": {
+          "default": "Appointment day needs to be today or in the future",
+          "custom": ""
+        }
       }
     },
     "start_time": {
@@ -382,7 +425,10 @@
           "default": "Start time of appointment is required",
           "custom": ""
         },
-      "label": "Start"
+        "time_earlier_than": {
+          "default": "Please select time before END time",
+          "custom": ""
+        }
       }
     },
     "end_time": {
@@ -392,7 +438,10 @@
           "default": "End time of appointment is required",
           "custom": ""
         },
-      "label": "End"
+        "time_later_than": {
+          "default": "Please select time after START time",
+          "custom": ""
+        }
       }
     },
     "type": {
@@ -424,7 +473,13 @@
     },
     "created": {
       "label": "Created",
-      "placeholder": "pick a date"
+      "placeholder": "pick a date",
+      "errorMsgs": {
+        "earlierThan": {
+          "default": "Creation date should be before Today",
+          "custom": ""
+        }
+      }
     },
     "assistants": {
       "label": "Assistants",

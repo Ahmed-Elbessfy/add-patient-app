@@ -20,24 +20,26 @@ export const VALIDATION_RULE_TYPES = {
   LATER_THAN: "later_than",
   TIME_EARLIER_THAN: "time_earlier_than",
   TIME_LATER_THAN: "time_later_than",
+  HAS_PATTERN: "hasPattern",
+  MINIMUM: "minimum",
+  MAXIMUM: "maximum",
 };
 
+// if error messages continue to be kind of systematic for any type of validation rule, we can consider removing this object and return the error Translation Key directly
+// will need to check with Anas first
 export const ERROR_MESSAGES = {
   [VALIDATION_RULE_TYPES.CREQUIRED]: (errorTransKey: string) => errorTransKey,
-  [VALIDATION_RULE_TYPES.REQUIRED]: (errorMsgKey:string) =>
-    errorMsgKey,
-  [VALIDATION_RULE_TYPES.EARLIER_THAN]: ({ fieldName, date }: ValidationRule) =>
-    `${fieldName} must be earlier than ${date}`,
-  [VALIDATION_RULE_TYPES.LATER_THAN]: ({ fieldName, date }: ValidationRule) =>
-    `${fieldName} must be after ${date}`,
-  [VALIDATION_RULE_TYPES.TIME_EARLIER_THAN]: ({
-    fieldName,
-    targetField,
-  }: ValidationRule) => `${fieldName} must be before ${targetField}`,
-  [VALIDATION_RULE_TYPES.TIME_LATER_THAN]: ({
-    fieldName,
-    targetField,
-  }: ValidationRule) => `${fieldName} must be after ${targetField}`,
+  [VALIDATION_RULE_TYPES.REQUIRED]: (errorMsgKey: string) => errorMsgKey,
+  [VALIDATION_RULE_TYPES.EARLIER_THAN]: (errorTransKey: string) =>
+    errorTransKey,
+  [VALIDATION_RULE_TYPES.LATER_THAN]: (errorTransKey: string) => errorTransKey,
+  [VALIDATION_RULE_TYPES.TIME_EARLIER_THAN]: (errorTransKey: string) =>
+    errorTransKey,
+  [VALIDATION_RULE_TYPES.TIME_LATER_THAN]: (errorTransKey: string) =>
+    errorTransKey,
+  [VALIDATION_RULE_TYPES.HAS_PATTERN]: (errorTransKey: string) => errorTransKey,
+  [VALIDATION_RULE_TYPES.MINIMUM]: (errorTransKey: string) => errorTransKey,
+  [VALIDATION_RULE_TYPES.MAXIMUM]: (errorTransKey: string) => errorTransKey,
 };
 
 export const INPUT_VALIDATION_TYPES = {

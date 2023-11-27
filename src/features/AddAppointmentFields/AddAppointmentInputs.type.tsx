@@ -15,6 +15,9 @@ type FieldValidation = {
   defaultErrorMsg?: string;
   customErrorMsg?: string;
   useCustomErrorMsg?: boolean;
+  pattern?: RegExp;
+  minimum?: number;
+  maximum?: number;
 };
 
 export type SchemaName =

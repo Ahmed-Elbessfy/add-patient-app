@@ -133,7 +133,19 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_phone",
             schemaName: "new_patient_phone",
             label: "apInputs.add_new.phone.label",
-            validation: [{ type: "required", required: false }],
+            validation: [
+              { type: "required", required: false },
+              {
+                type: "hasPattern",
+                pattern:
+                  /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
+                defaultErrorMsg:
+                  "apInputs.add_new.phone.errorMsgs.pattern.default",
+                customErrorMsg:
+                  "apInputs.add_new.phone.errorMsgs.pattern.custom",
+                useCustomErrorMsg: false,
+              },
+            ],
           },
           {
             category: "field",
@@ -143,7 +155,19 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_secondary_phone",
             schemaName: "new_patient_secondary_phone",
             label: "apInputs.add_new.secondary_phone.label",
-            validation: [{ type: "required", required: false }],
+            validation: [
+              { type: "required", required: false },
+              {
+                type: "hasPattern",
+                pattern:
+                  /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
+                defaultErrorMsg:
+                  "apInputs.add_new.secondary_phone.errorMsgs.pattern.default",
+                customErrorMsg:
+                  "apInputs.add_new.secondary_phone.errorMsgs.pattern.custom",
+                useCustomErrorMsg: false,
+              },
+            ],
           },
           {
             category: "field",
@@ -201,8 +225,17 @@ export const addAppointmentFieldsConfig: Item[] = [
                   {
                     type: "earlier_than",
                     date: "today",
+                    defaultErrorMsg:
+                      "apInputs.add_new.birthDate.errorMsgs.earlierThan.default",
+                    customErrorMsg:
+                      "apInputs.add_new.birthDate.errorMsgs.earlierThan.custom",
+                    useCustomErrorMsg: false,
                   },
                 ],
+                dateLimit: {
+                  status: "after",
+                  date: "today",
+                },
                 visibility: [
                   {
                     field: "new_patient_switch_date_age",
@@ -217,13 +250,33 @@ export const addAppointmentFieldsConfig: Item[] = [
                 children: [
                   {
                     category: "field",
-                    fieldType: "text",
+                    fieldType: "number",
                     id: "new_patient_age",
                     testId: "new_patient_age",
                     name: "new_patient_age",
                     schemaName: "new_patient_age",
                     label: "apInputs.add_new.age.label",
-                    validation: [{ type: "required", required: false }],
+                    validation: [
+                      { type: "required", required: false },
+                      {
+                        type: "minimum",
+                        minimum: 1,
+                        defaultErrorMsg:
+                          "apInputs.add_new.age.errorMsgs.minimum.default",
+                        customErrorMsg:
+                          "apInputs.add_new.age.errorMsgs.minimum.custom",
+                        useCustomErrorMsg: false,
+                      },
+                      {
+                        type: "maximum",
+                        maximum: 200,
+                        defaultErrorMsg:
+                          "apInputs.add_new.age.errorMsgs.maximum.default",
+                        customErrorMsg:
+                          "apInputs.add_new.age.errorMsgs.maximum.custom",
+                        useCustomErrorMsg: false,
+                      },
+                    ],
                     visibility: [
                       {
                         field: "new_patient_switch_date_age",
@@ -315,7 +368,19 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_email",
             schemaName: "new_patient_email",
             label: "apInputs.add_new.email.label",
-            validation: [{ type: "required", required: false }],
+            validation: [
+              { type: "required", required: false },
+              {
+                type: "hasPattern",
+                pattern:
+                  /^[A-Za-z0-9,-_.]{3,}@[A-Za-z0-9]{3,}\.[A-Za-z0-9]{3,}$/,
+                defaultErrorMsg:
+                  "apInputs.add_new.email.errorMsgs.pattern.default",
+                customErrorMsg:
+                  "apInputs.add_new.email.errorMsgs.pattern.custom",
+                useCustomErrorMsg: false,
+              },
+            ],
           },
           {
             category: "field",
@@ -740,7 +805,19 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_emergency_phone",
             schemaName: "new_patient_emergency_phone",
             label: "apInputs.add_new.emergency_phone.label",
-            validation: [{ type: "required", required: false }],
+            validation: [
+              { type: "required", required: false },
+              {
+                type: "hasPattern",
+                pattern:
+                  /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
+                defaultErrorMsg:
+                  "apInputs.add_new.emergency_phone.errorMsgs.pattern.default",
+                customErrorMsg:
+                  "apInputs.add_new.emergency_phone.errorMsgs.pattern.custom",
+                useCustomErrorMsg: false,
+              },
+            ],
           },
         ],
       },
@@ -757,7 +834,19 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_emergency_secondary_phone",
             schemaName: "new_patient_emergency_secondary_phone",
             label: "apInputs.add_new.emergency_secondary_phone.label",
-            validation: [{ type: "required", required: false }],
+            validation: [
+              { type: "required", required: false },
+              {
+                type: "hasPattern",
+                pattern:
+                  /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
+                defaultErrorMsg:
+                  "apInputs.add_new.emergency_secondary_phone.errorMsgs.pattern.default",
+                customErrorMsg:
+                  "apInputs.add_new.emergency_secondary_phone.errorMsgs.pattern.custom",
+                useCustomErrorMsg: false,
+              },
+            ],
           },
           {
             category: "field",
@@ -917,6 +1006,9 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             type: "later_than",
             date: "today",
+            defaultErrorMsg: "apInputs.day.errorMsgs.laterThan.default",
+            customErrorMsg: "apInputs.day.errorMsgs.laterThan.custom",
+            useCustomErrorMsg: false,
           },
         ],
       },
@@ -939,8 +1031,15 @@ export const addAppointmentFieldsConfig: Item[] = [
             customErrorMsg: "apInputs.start_time.errorMsgs.required.custom",
             useCustomErrorMsg: false,
           },
-          { type: "required", required: true },
-          { type: "time_earlier_than", fields: ["end_time"] },
+          {
+            type: "time_earlier_than",
+            fields: ["end_time"],
+            defaultErrorMsg:
+              "apInputs.start_time.errorMsgs.time_earlier_than.default",
+            customErrorMsg:
+              "apInputs.start_time.errorMsgs.time_earlier_than.custom",
+            useCustomErrorMsg: false,
+          },
         ],
       },
       {
@@ -962,8 +1061,15 @@ export const addAppointmentFieldsConfig: Item[] = [
             customErrorMsg: "apInputs.end_time.errorMsgs.required.custom",
             useCustomErrorMsg: false,
           },
-          { type: "required", required: true },
-          { type: "time_later_than", fields: ["start_time"] },
+          {
+            type: "time_later_than",
+            fields: ["start_time"],
+            defaultErrorMsg:
+              "apInputs.end_time.errorMsgs.time_later_than.default",
+            customErrorMsg:
+              "apInputs.end_time.errorMsgs.time_later_than.custom",
+            useCustomErrorMsg: false,
+          },
         ],
       },
     ],
@@ -1042,6 +1148,9 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             type: "earlier_than",
             date: "today",
+            defaultErrorMsg: "apInputs.created.errorMsgs.earlierThan.default",
+            customErrorMsg: "apInputs.created.errorMsgs.earlierThan.custom",
+            useCustomErrorMsg: false,
           },
         ],
         dateLimit: {
