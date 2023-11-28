@@ -95,7 +95,13 @@
   "apInputs": {
     "patient_name": {
       "label": "اسم المريض",
-      "placeholder": "برجاء اختيار او اضافة مريض "
+      "placeholder": "برجاء اختيار او اضافة مريض ",
+      "errorMsgs": {
+        "required": {
+          "default": "برجاء اضافة اسم المريض",
+          "custom": ""
+        }
+      }
     },
     "test_patient_name": {
       "label": "اسم المريض",
@@ -110,16 +116,40 @@
         "label": "الرمز التعريفي"
       },
       "first_name": {
-        "label": "الاسم الأول"
+        "label": "الاسم الأول",
+        "errorMsgs": {
+          "required": {
+            "default": "برجاء اضافة اسم المريض الاول",
+            "custom": ""
+          }
+        }
       },
       "last_name": {
-        "label": "الاسم الأخير"
+        "label": "الاسم الأخير",
+        "errorMsgs": {
+          "required": {
+            "default": "برجاء اضافة اسم المريض الأخير",
+            "custom": ""
+          }
+        }
       },
       "phone": {
-        "label": "رقم هاتف"
+        "label": "رقم هاتف",
+        "errorMsgs": {
+          "pattern": {
+            "default": "برجاء اضافة رقم هاتف مصري صحيح",
+            "custom": ""
+          }
+        }
       },
       "secondary_phone": {
-        "label": "رقم هاتف ثانوي"
+        "label": "رقم هاتف ثانوي",
+        "errorMsgs": {
+          "pattern": {
+            "default": "برجاء اضافة رقم هاتف مصري ثانوي صحيح",
+            "custom": ""
+          }
+        }
       },
       "country": {
         "label": "البلد",
@@ -136,10 +166,26 @@
       },
       "birthDate": {
         "label": "تاريخ الميلاد",
-        "placeholder": "DD/MM/YYYY"
+        "placeholder": "DD/MM/YYYY",
+        "errorMsgs": {
+          "earlierThan": {
+            "default": "تاريخ الميلاد يجب أن يكون تاريخ سابق",
+            "custom": ""
+          }
+        }
       },
       "age": {
-        "label": "العمر"
+        "label": "العمر",
+        "errorMsgs": {
+          "minimum": {
+            "default": "عمر المريض يجب أن يزيد عن 1 عام",
+            "custom": ""
+          },
+          "maximum": {
+            "default": "عمر المريض يجب أن يقل عن 200 عام",
+            "custom": ""
+          }
+        }
       },
       "title": {
         "label": "اللقب",
@@ -159,7 +205,13 @@
         }
       },
       "email": {
-        "label": "البريد الالكتروني"
+        "label": "البريد الالكتروني",
+        "errorMsgs": {
+          "pattern": {
+            "default": "برجاء اضافة بريد الكتروني صحيح",
+            "custom": ""
+          }
+        }
       },
       "address": {
         "label": "العنوان"
@@ -274,10 +326,22 @@
         "label": "الاسم الأخير"
       },
       "emergency_phone": {
-        "label": "رقم الهاتف"
+        "label": "رقم الهاتف",
+        "errorMsgs": {
+          "pattern": {
+            "default": "برجاء اضافة رقم هاتف مصري صحيح",
+            "custom": ""
+          }
+        }
       },
       "emergency_secondary_phone": {
-        "label": "رقم الهاتف الثانوي"
+        "label": "رقم الهاتف الثانوي",
+        "errorMsgs": {
+          "pattern": {
+            "default": "برجاء اضافة رقم هاتف مصري ثانوي صحيح",
+            "custom": ""
+          }
+        }
       },
       "emergency_address": {
         "label": "العنوان"
@@ -298,6 +362,12 @@
       "options": {
         "ahmed": "Ahmed",
         "taha": "Taha"
+      },
+      "errorMsgs": {
+        "required": {
+          "default": "برجاء اختيار طبيب",
+          "custom": ""
+        }
       }
     },
     "room": {
@@ -307,6 +377,12 @@
         "room_2": "غرفة 2",
         "room_3": "غرفة 3",
         "room_4": "غرفة 4"
+      },
+      "errorMsgs": {
+        "required": {
+          "default": "برجاء اختيار غرفة",
+          "custom": ""
+        }
       }
     },
     "status": {
@@ -320,16 +396,52 @@
         "delayed": "متأخر",
         "canceled": "ملغي",
         "no_show": "لم يحضر المريض"
+      },
+      "errorMsgs": {
+        "required": {
+          "default": "برجاء تحديد نوع الحجز",
+          "custom": ""
+        }
       }
     },
     "day": {
-      "label": "يوم"
+      "label": "يوم",
+      "errorMsgs": {
+        "required": {
+          "default": "برجاء تحديد يوم جلسة الكشف",
+          "custom": ""
+        },
+        "laterThan": {
+          "default": "يوم الكشف يجب أن يكون اليوم أو في المستقبل",
+          "custom": ""
+        }
+      }
     },
     "start_time": {
-      "label": "وقت البداية"
+      "label": "وقت البداية",
+      "errorMsgs": {
+        "required": {
+          "default": "برجاء تحديد وقت بداية الجلسة",
+          "custom": ""
+        },
+        "time_earlier_than": {
+          "default": "ميعاد بداية الجلسة يجب أن يكون قبل ميعاد نهاية الجلسة",
+          "custom": ""
+        }
+      }
     },
     "end_time": {
-      "label": "وقت الانتهاء"
+      "label": "وقت الانتهاء",
+      "errorMsgs": {
+        "required": {
+          "default": "برجاء تحديد وقت نهاية الجلسة",
+          "custom": ""
+        },
+        "time_later_than": {
+          "default": "ميعاد نهاية الجلسة يجب أن يكون بعد ميعاد بداية الجلسة",
+          "custom": ""
+        }
+      }
     },
     "type": {
       "label": "نوع الكشف",
@@ -341,6 +453,12 @@
         "extended_treatment": "علاج اضافي",
         "emergency": "طوارئ",
         "endo": "اندو"
+      },
+      "errorMsgs": {
+        "required": {
+          "default": "برجاء اختيار نوع الكشف",
+          "custom": ""
+        }
       }
     },
     "subtype": {
@@ -354,7 +472,13 @@
     },
     "created": {
       "label": "تاريخ التسجيل",
-      "placeholder": "حدد تاريخ"
+      "placeholder": "حدد تاريخ",
+      "errorMsgs": {
+        "earlierThan": {
+          "default": "ميعاد تاريخ التسجيل يجب أن يكون سابق لليوم",
+          "custom": ""
+        }
+      }
     },
     "assistants": {
       "label": "المساعدين",
@@ -368,7 +492,7 @@
       "placeholder": "أضف تفاصيل أخرى"
     },
     "diagnostic_fees_title": {
-      "text": "تماليف الكشف"
+      "text": "تكاليف الكشف"
     },
     "diagnostic_fees": {
       "options": {
