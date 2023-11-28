@@ -127,6 +127,7 @@ interface ItemField {
 
 export interface FieldText extends ItemField {
   fieldType: "text";
+  defaultValue?: string;
 }
 
 export interface FieldNumber extends ItemField {
@@ -162,6 +163,7 @@ export interface FieldTime extends ItemField {
 
 export interface FieldTextArea extends ItemField {
   fieldType: "textarea";
+  defaultValue?: string;
 }
 
 export interface FieldSwitch extends ItemField {

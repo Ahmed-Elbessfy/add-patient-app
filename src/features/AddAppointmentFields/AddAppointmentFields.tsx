@@ -76,6 +76,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           id={id}
           status={status}
           disabled={isDisabled}
+          defaultValue={props.defaultValue}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
           }
@@ -92,6 +93,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           id={id}
           status={status}
           disabled={isDisabled}
+          defaultValue={props.defaultValue}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
           }
@@ -109,6 +111,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           status={status}
           disabled={isDisabled}
           style={{ width: "100%" }}
+          defaultValue={props.defaultValue}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
           }
