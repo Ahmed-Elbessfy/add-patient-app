@@ -164,6 +164,8 @@ export interface FieldTime extends ItemField {
 export interface FieldTextArea extends ItemField {
   fieldType: "textarea";
   defaultValue?: string;
+  maxLength?: number;
+  showCount: boolean;
 }
 
 export interface FieldSwitch extends ItemField {

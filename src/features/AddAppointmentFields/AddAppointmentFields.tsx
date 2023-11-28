@@ -14,6 +14,8 @@ import type { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
 import { FieldConfig } from "./AddAppointmentInputs.type";
 
+const { TextArea } = Input;
+
 const AddAppointmentFields: FC<FieldConfig> = (props) => {
   // console.log(props);
   const {
@@ -102,17 +104,18 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
 
       {/* Textarea Input  */}
       {fieldType === "textarea" && (
-        <Input
-          type={fieldType}
+        <TextArea
           name={name}
           placeholder={placeholder && t(placeholder)}
           data-testid={testId}
           id={id}
           status={status}
           disabled={isDisabled}
+          maxLength={props.maxLength}
+          showCount={props.showCount}
           style={{ width: "100%" }}
           defaultValue={props.defaultValue}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
             onChange(e.target.value)
           }
         />

@@ -627,6 +627,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "new_patient_patient_details",
         label: "apInputs.add_new.patient_details.label",
         placeholder: "apInputs.add_new.patient_details.placeholder",
+        maxLength: 1000,
+        showCount: true,
         validation: [{ type: "required", required: false }],
       },
       {
@@ -1190,6 +1192,8 @@ export const addAppointmentFieldsConfig: Item[] = [
     schemaName: "description",
     label: "apInputs.description.label",
     placeholder: "apInputs.description.placeholder",
+    maxLength: 1000,
+    showCount: true,
     validation: [{ type: "required", required: false }],
   },
   {
