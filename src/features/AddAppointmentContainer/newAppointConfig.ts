@@ -1228,7 +1228,7 @@ export const addAppointmentFieldsConfig: Item[] = [
     schemaName: "collected_diagnostic_fees",
     defaultValue: 100,
     validation: [{ type: "required", required: false }],
-    visibility: [
+    disability: [
       {
         field: "diagnostic_fees",
         value: "collected",
@@ -1280,7 +1280,7 @@ export const addAppointmentFieldsConfig: Item[] = [
       },
     ],
     validation: [{ type: "required", required: false }],
-    visibility: [
+    disability: [
       {
         field: "diagnostic_fees",
         value: "collected",
@@ -1310,7 +1310,7 @@ export const addAppointmentFieldsConfig: Item[] = [
       },
     ],
     validation: [{ type: "required", required: false }],
-    visibility: [
+    disability: [
       {
         field: "diagnostic_fees",
         value: "collected",

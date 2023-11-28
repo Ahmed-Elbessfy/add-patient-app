@@ -100,6 +100,11 @@ type visibilityRule = {
   value: string | number | boolean;
 };
 
+type disabilityRule = {
+  field: SchemaName;
+  value: string | number | boolean;
+};
+
 interface ItemField {
   category: itemCategory;
   id: string;
@@ -116,6 +121,7 @@ interface ItemField {
     [x: number]: unknown;
   }>;
   visibility?: visibilityRule[];
+  disability?: disabilityRule[];
   errorTransKey?: string;
 }
 
@@ -179,7 +185,11 @@ type FieldOnChange = {
   onChange: (value: FieldElement["value"]) => void;
 };
 
-export type FieldConfig = FormFieldConfig & FieldOnChange;
+type FieldDisability = {
+  isDisabled: boolean;
+};
+
+export type FieldConfig = FormFieldConfig & FieldOnChange & FieldDisability;
 
 /*
 **********************************************************

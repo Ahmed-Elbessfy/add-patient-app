@@ -27,6 +27,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
     status,
     clearErrors,
     validation,
+    isDisabled,
   } = props;
 
   // set disabled date for Date Picker Input
@@ -74,6 +75,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           data-testid={testId}
           id={id}
           status={status}
+          disabled={isDisabled}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
           }
@@ -89,6 +91,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           data-testid={testId}
           id={id}
           status={status}
+          disabled={isDisabled}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
           }
@@ -104,6 +107,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           data-testid={testId}
           id={id}
           status={status}
+          disabled={isDisabled}
           style={{ width: "100%" }}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
@@ -118,6 +122,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           data-testid={testId}
           id={id}
           status={status}
+          disabled={isDisabled}
           onChange={(value: string) => onChange(value)}
           defaultValue={props.defaultValue}
           style={{ width: "100%" }}
@@ -138,6 +143,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
         <Radio.Group
           name={name}
           data-testid={testId}
+          disabled={isDisabled}
           onChange={({ target: { value } }: RadioChangeEvent) =>
             onChange(value)
           }
@@ -161,6 +167,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           id={id}
           status={status}
           style={{ width: "100%" }}
+          disabled={isDisabled}
           disabledDate={(current) =>
             props.dateLimit
               ? disabledDate(
@@ -194,6 +201,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           id={id}
           status={status}
           style={{ width: "100%" }}
+          disabled={isDisabled}
           use12Hours={props.use12Hours}
           defaultValue={formatTime(props.defaultValue)}
           onChange={(time: Dayjs | null) => {
@@ -216,6 +224,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
         <Switch
           data-testid={testId}
           id={id}
+          disabled={isDisabled}
           checkedChildren={t(props.checkedChildren)}
           unCheckedChildren={t(props.unCheckedChildren)}
           defaultChecked={props.defaultChecked}

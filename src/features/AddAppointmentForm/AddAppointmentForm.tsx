@@ -140,6 +140,12 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                                 clearErrors={clearErrors}
                                 onChange={field.onChange}
                                 status={error ? "error" : undefined}
+                                isDisabled={
+                                  item.disability
+                                    ? watch(item.disability[0].field) !==
+                                      item.disability[0].value
+                                    : false
+                                }
                               />
                               <StyledError>
                                 {error && error.message && t(error.message)}
@@ -153,6 +159,12 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                               clearErrors={clearErrors}
                               onChange={field.onChange}
                               status={error ? "error" : undefined}
+                              isDisabled={
+                                item.disability
+                                  ? watch(item.disability[0].field) !==
+                                    item.disability[0].value
+                                  : false
+                              }
                             />
                             <StyledError>
                               {error && error.message && t(error.message)}

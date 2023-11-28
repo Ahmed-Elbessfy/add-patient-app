@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import dayjs from "dayjs";
-import { ValidationRule } from "./AddAppointmentForm.types";
+// import { ValidationRule } from "./AddAppointmentForm.types";
 
 export const INPUT_TYPES = {
   INPUT_TEXT: "text",
