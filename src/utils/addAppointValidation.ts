@@ -119,11 +119,11 @@ const validatePattern = (validationSchema, field) => {
 const validateMinimum = (validationSchema, field) => {
   const { minimum, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "minimum")[0];
-  console.log("minimum : ", minimum);
+
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
   // accepted format "YYYY/MM/DD"
-  return validationSchema.max(
+  return validationSchema.min(
     minimum,
     ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](errorMsgKey)
   );
@@ -132,7 +132,6 @@ const validateMinimum = (validationSchema, field) => {
 const validateMaximum = (validationSchema, field) => {
   const { maximum, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "maximum")[0];
-  console.log("maximum : ", maximum);
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
