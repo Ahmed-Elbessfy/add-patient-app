@@ -443,6 +443,10 @@
         }
       }
     },
+    "alert_content": {
+      "label": "تنبيه",
+      "placeholder": "محنوى التنبيه"
+    },
     "type": {
       "label": "نوع الكشف",
       "options": {

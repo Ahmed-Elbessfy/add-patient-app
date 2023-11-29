@@ -444,6 +444,10 @@
         }
       }
     },
+    "alert_content": {
+      "label": "Alert",
+      "placeholder": "Alert details"
+    },
     "type": {
       "label": "Type",
       "options": {

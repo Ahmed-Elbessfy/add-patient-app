@@ -21,6 +21,9 @@ type FieldValidation = {
 };
 
 export type SchemaName =
+  | "urgent_tag"
+  | "alert_form"
+  | "note_form"
   | "test_patient_name"
   | "patient_name"
   | "switch_input_method"
@@ -30,6 +33,7 @@ export type SchemaName =
   | "day"
   | "start_time"
   | "end_time"
+  | "alert_content"
   | "type"
   | "subtype"
   | "created"
