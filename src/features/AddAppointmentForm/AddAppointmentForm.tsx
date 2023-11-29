@@ -111,6 +111,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   });
   // render items recursively config
   const { t } = useTranslation("lang");
+
   const renderItems = (fieldsConfig: Item[]): JSX.Element => {
     return (
       <>
@@ -182,7 +183,11 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
           // Layout Render
           if (fieldConfig.category === "layout") {
             const item = fieldConfig as ItemLayout;
-            return (
+            return item.visibility ? (
+              watch(item.visibility[0].field) === item.visibility[0].value && (
+                <AddAppointmentSection renderItems={renderItems} {...item} />
+              )
+            ) : (
               <AddAppointmentSection renderItems={renderItems} {...item} />
             );
           }
@@ -196,25 +201,54 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                 const { level, title } = item as UITitle;
                 return (
                   <Col span={24}>
-                    <Title level={level}>{t(title)}</Title>;
+                    {item.visibility ? (
+                      watch(item.visibility[0].field) ===
+                        item.visibility[0].value && (
+                        <Title level={level}>{t(title)}</Title>
+                      )
+                    ) : (
+                      <Title level={level}>{t(title)}</Title>
+                    )}
                   </Col>
                 );
               }
               // Text UI Item
               case "text": {
                 const { text } = item as UIText;
-                return <Text>{t(text)}</Text>;
+                return item.visibility ? (
+                  watch(item.visibility[0].field) ===
+                    item.visibility[0].value && <Text>{t(text)}</Text>
+                ) : (
+                  <Text>{t(text)}</Text>
+                );
               }
               // Link UI Item
               case "link": {
                 const { text, url } = item as UILink;
-                return <Link href={url}>{t(text)}</Link>;
+                return item.visibility ? (
+                  watch(item.visibility[0].field) ===
+                    item.visibility[0].value && (
+                    <Link href={url}>{t(text)}</Link>
+                  )
+                ) : (
+                  <Link href={url}>{t(text)}</Link>
+                );
               }
               // Alert UI Item
               case "alert": {
                 const { description, message, alertType, showIcon } =
                   item as UIAlert;
-                return (
+                return item.visibility ? (
+                  watch(item.visibility[0].field) ===
+                    item.visibility[0].value && (
+                    <Alert
+                      message={t(message)}
+                      description={t(description)}
+                      type={alertType}
+                      showIcon={showIcon}
+                    />
+                  )
+                ) : (
                   <Alert
                     message={t(message)}
                     description={t(description)}

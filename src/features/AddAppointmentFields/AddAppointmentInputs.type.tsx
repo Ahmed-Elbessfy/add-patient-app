@@ -215,6 +215,7 @@ export type LayoutBase = {
   children: ChildrenType[];
   gap: number;
   padding?: number;
+  visibility?: visibilityRule[];
 };
 
 export interface LayoutHStack extends LayoutBase {
@@ -239,6 +240,7 @@ type UIType = "title" | "text" | "link" | "alert";
 export type UIBase = {
   category: itemCategory;
   type: UIType;
+  visibility?: visibilityRule[];
 };
 
 export interface UITitle extends UIBase {
