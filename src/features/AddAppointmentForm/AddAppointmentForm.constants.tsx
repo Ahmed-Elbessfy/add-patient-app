@@ -14,7 +14,6 @@ export const INPUT_TYPES = {
 };
 
 export const VALIDATION_RULE_TYPES = {
-  CREQUIRED: "crequired",
   REQUIRED: "required",
   EARLIER_THAN: "earlier_than",
   LATER_THAN: "later_than",
@@ -28,7 +27,6 @@ export const VALIDATION_RULE_TYPES = {
 // if error messages continue to be kind of systematic for any type of validation rule, we can consider removing this object and return the error Translation Key directly
 // will need to check with Anas first
 export const ERROR_MESSAGES = {
-  [VALIDATION_RULE_TYPES.CREQUIRED]: (errorTransKey: string) => errorTransKey,
   [VALIDATION_RULE_TYPES.REQUIRED]: (errorMsgKey: string) => errorMsgKey,
   [VALIDATION_RULE_TYPES.EARLIER_THAN]: (errorTransKey: string) =>
     errorTransKey,
