@@ -103,10 +103,15 @@
         }
       }
     },
-    "test_patient_name": {
-      "label": "اسم المريض",
-      "placeholder": "برجاء اختيار او اضافة مريض ",
-      "errorMsg": "برجاء اضافة اسم المريض"
+    "note_title": {
+      "label": "عنوان الملاحظة",
+      "placeholder": "أضف عنوان الملاحظة",
+      "errorMsgs": {
+        "required": {
+          "default": "برجاء اضافة عنوان الملاحظة",
+          "custom": ""
+        }
+      }
     },
     "add_new": {
       "patient_details_title": {
@@ -404,6 +409,20 @@
         }
       }
     },
+    "notified_doctor": {
+      "label": "إرسال إلى",
+      "placeholder": "برجاء اختيار طبيب",
+      "options": {
+        "ahmed": "Ahmed",
+        "taha": "Taha"
+      },
+      "errorMsgs": {
+        "required": {
+          "default": "برجاء اختيار طبيب",
+          "custom": ""
+        }
+      }
+    },
     "day": {
       "label": "يوم",
       "errorMsgs": {
@@ -493,6 +512,10 @@
     },
     "description": {
       "label": "وصف",
+      "placeholder": "أضف تفاصيل أخرى"
+    },
+    "note_content": {
+      "label": "محتوى الملاحظة",
       "placeholder": "أضف تفاصيل أخرى"
     },
     "diagnostic_fees_title": {

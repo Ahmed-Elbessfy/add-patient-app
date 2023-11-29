@@ -48,6 +48,7 @@ export const addAppointmentFieldsConfig: Item[] = [
     category: "layout",
     type: "box",
     gap: 0.5,
+    visibility: [{ field: "note_form", value: false }],
     children: [
       {
         category: "field",
@@ -79,6 +80,33 @@ export const addAppointmentFieldsConfig: Item[] = [
         unCheckedChildren: "QR",
         defaultChecked: false,
         validation: [],
+      },
+    ],
+  },
+  {
+    category: "layout",
+    type: "box",
+    gap: 0.5,
+    visibility: [{ field: "note_form", value: true }],
+    children: [
+      {
+        category: "field",
+        fieldType: "text",
+        id: "note_title",
+        testId: "note_title",
+        name: "note_title",
+        schemaName: "note_title",
+        label: "apInputs.note_title.label",
+        placeholder: "apInputs.note_title.placeholder",
+        validation: [
+          {
+            type: "required",
+            required: true,
+            defaultErrorMsg: "apInputs.note_title.errorMsgs.required.default",
+            customErrorMsg: "apInputs.note_title.errorMsgs.required.custom",
+            useCustomErrorMsg: false,
+          },
+        ],
       },
     ],
   },
@@ -930,6 +958,7 @@ export const addAppointmentFieldsConfig: Item[] = [
     category: "layout",
     type: "hStack",
     gap: 0.5,
+    visibility: [{ field: "note_form", value: false }],
     children: [
       {
         category: "field",
@@ -1007,6 +1036,64 @@ export const addAppointmentFieldsConfig: Item[] = [
             required: true,
             defaultErrorMsg: "apInputs.status.errorMsgs.required.default",
             customErrorMsg: "apInputs.status.errorMsgs.required.custom",
+            useCustomErrorMsg: false,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    category: "layout",
+    type: "hStack",
+    gap: 0.5,
+    visibility: [{ field: "note_form", value: true }],
+    children: [
+      {
+        category: "field",
+        fieldType: "select",
+        id: "notified_doctor",
+        testId: "notified_doctor",
+        name: "notified_doctor",
+        schemaName: "notified_doctor",
+        label: "apInputs.notified_doctor.label",
+        placeholder: "apInputs.notified_doctor.placeholder",
+        options: [
+          { value: "ahmed", label: "apInputs.notified_doctor.options.ahmed" },
+          { value: "taha", label: "apInputs.notified_doctor.options.taha" },
+        ],
+        validation: [
+          {
+            type: "required",
+            required: true,
+            defaultErrorMsg:
+              "apInputs.notified_doctor.errorMsgs.required.default",
+            customErrorMsg:
+              "apInputs.notified_doctor.errorMsgs.required.custom",
+            useCustomErrorMsg: false,
+          },
+        ],
+      },
+      {
+        category: "field",
+        fieldType: "select",
+        id: "room",
+        testId: "room",
+        name: "room",
+        schemaName: "room",
+        label: "apInputs.room.label",
+        defaultValue: "room_1",
+        options: [
+          { value: "room_1", label: "apInputs.room.options.room_1" },
+          { value: "room_2", label: "apInputs.room.options.room_2" },
+          { value: "room_3", label: "apInputs.room.options.room_3" },
+          { value: "room_4", label: "apInputs.room.options.room_4" },
+        ],
+        validation: [
+          {
+            type: "required",
+            required: true,
+            defaultErrorMsg: "apInputs.room.errorMsgs.required.default",
+            customErrorMsg: "apInputs.room.errorMsgs.required.custom",
             useCustomErrorMsg: false,
           },
         ],
@@ -1247,12 +1334,28 @@ export const addAppointmentFieldsConfig: Item[] = [
     maxLength: 1000,
     showCount: true,
     validation: [{ type: "required", required: false }],
+    visibility: [{ field: "note_form", value: false }],
+  },
+  {
+    category: "field",
+    fieldType: "textarea",
+    id: "note_content",
+    testId: "note_content",
+    name: "note_content",
+    schemaName: "note_content",
+    label: "apInputs.note_content.label",
+    placeholder: "apInputs.note_content.placeholder",
+    maxLength: 1000,
+    showCount: true,
+    validation: [{ type: "required", required: false }],
+    visibility: [{ field: "note_form", value: true }],
   },
   {
     category: "UI",
     type: "title",
     title: "apInputs.diagnostic_fees_title.text",
     level: 3,
+    visibility: [{ field: "note_form", value: false }],
   },
   {
     category: "field",
@@ -1274,6 +1377,7 @@ export const addAppointmentFieldsConfig: Item[] = [
       },
     ],
     validation: [{ type: "required", required: false }],
+    visibility: [{ field: "note_form", value: false }],
   },
   {
     category: "field",
@@ -1290,6 +1394,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         value: "collected",
       },
     ],
+    visibility: [{ field: "note_form", value: false }],
   },
   {
     category: "field",
@@ -1342,6 +1447,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         value: "collected",
       },
     ],
+    visibility: [{ field: "note_form", value: false }],
   },
   {
     category: "field",
@@ -1372,6 +1478,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         value: "collected",
       },
     ],
+    visibility: [{ field: "note_form", value: false }],
   },
   {
     category: "UI",

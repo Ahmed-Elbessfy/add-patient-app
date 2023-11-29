@@ -104,10 +104,15 @@
         }
       }
     },
-    "test_patient_name": {
-      "label": "Patient",
-      "placeholder": "Please choose or add new patient",
-      "errorMsg": "test patient name is required"
+    "note_title": {
+      "label": "Note Title",
+      "placeholder": "Please add note title",
+      "errorMsgs": {
+        "required": {
+          "default": "Note title is required",
+          "custom": ""
+        }
+      }
     },
     "add_new": {
       "patient_details_title": {
@@ -405,6 +410,20 @@
         }
       }
     },
+    "notified_doctor": {
+      "label": "Notify",
+      "placeholder": "Select a doctor to notify",
+      "options": {
+        "ahmed": "Ahmed",
+        "taha": "Taha"
+      },
+      "errorMsgs": {
+        "required": {
+          "default": "Notified doctor is required",
+          "custom": ""
+        }
+      }
+    },
     "day": {
       "label": "Day",
       "errorMsgs": {
@@ -494,6 +513,10 @@
     },
     "description": {
       "label": "Description",
+      "placeholder": "Add extra details here"
+    },
+    "note_content": {
+      "label": "Note",
       "placeholder": "Add extra details here"
     },
     "diagnostic_fees_title": {
