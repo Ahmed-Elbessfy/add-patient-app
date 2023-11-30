@@ -7,6 +7,10 @@ type itemCategory = "field" | "layout" | "UI";
 **********************************************************
 */
 
+export type requiredConditions = {
+  field: string;
+  value: string | number | boolean;
+};
 type FieldValidation = {
   type: string;
   required?: boolean;
@@ -18,6 +22,7 @@ type FieldValidation = {
   pattern?: RegExp;
   minimum?: number;
   maximum?: number;
+  requiredConditions?: requiredConditions[];
 };
 
 export type SchemaName =

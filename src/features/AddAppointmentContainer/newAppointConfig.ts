@@ -161,8 +161,11 @@ export const addAppointmentFieldsConfig: Item[] = [
             label: "apInputs.add_new.first_name.label",
             validation: [
               {
-                type: "required",
+                type: "requiredIf",
                 required: true,
+                requiredConditions: [{
+                  field:"show_add_patient",value:true
+                }],
                 defaultErrorMsg:
                   "apInputs.add_new.first_name.errorMsgs.required.default",
                 customErrorMsg:

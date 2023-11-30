@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import dayjs from "dayjs";
+import { requiredConditions } from "../AddAppointmentFields/AddAppointmentInputs.type";
 // import { ValidationRule } from "./AddAppointmentForm.types";
 
 export const INPUT_TYPES = {
@@ -15,6 +16,7 @@ export const INPUT_TYPES = {
 
 export const VALIDATION_RULE_TYPES = {
   REQUIRED: "required",
+  REQUIRED_IF: "requiredIf",
   EARLIER_THAN: "earlier_than",
   LATER_THAN: "later_than",
   TIME_EARLIER_THAN: "time_earlier_than",
@@ -28,6 +30,7 @@ export const VALIDATION_RULE_TYPES = {
 // will need to check with Anas first
 export const ERROR_MESSAGES = {
   [VALIDATION_RULE_TYPES.REQUIRED]: (errorMsgKey: string) => errorMsgKey,
+  [VALIDATION_RULE_TYPES.REQUIRED_IF]: (errorMsgKey: string) => errorMsgKey,
   [VALIDATION_RULE_TYPES.EARLIER_THAN]: (errorTransKey: string) =>
     errorTransKey,
   [VALIDATION_RULE_TYPES.LATER_THAN]: (errorTransKey: string) => errorTransKey,
@@ -62,6 +65,7 @@ declare module "yup" {
   interface StringSchema {
     isTimeEarlierThan(message: string, targetField: string): this;
     isTimeLaterThan(message: string, targetField: string): this;
+    requiredIf(message: string, requiredConditions: requiredConditions): this;
   }
 }
 
@@ -120,6 +124,31 @@ yup.addMethod(
 
         // Compare the input time to the target time
         return parsedTime.isAfter(parsedTargetTime, "minute");
+      },
+    });
+  }
+);
+
+// Required If
+// used if field is required based another field or fields values
+
+yup.addMethod(
+  yup.string,
+  "requiredIf",
+  function ({ errorMsg, requiredConditions }) {
+    console.log("req:    ", requiredConditions);
+    return this.test({
+      name: "requiredIf",
+      message: errorMsg || "Invalid time",
+      exclusive: true,
+      test: function (__, context) {
+        console.log("context : ", context);
+        for (const rule of requiredConditions) {
+          console.log(rule.field, context.parent[rule.field]);
+          if (rule.value !== context.parent[rule.value]) return false;
+        }
+        // Compare the input time to the target time
+        return true;
       },
     });
   }

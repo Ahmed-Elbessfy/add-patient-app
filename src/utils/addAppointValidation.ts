@@ -20,6 +20,36 @@ const validateRequired = (validationSchema, field) => {
     : validationSchema;
 };
 
+const validateRequiredIf = (validationSchema, field) => {
+  const {
+    requiredConditions,
+    defaultErrorMsg,
+    customErrorMsg,
+    useCustomErrorMsg,
+  } = field.validation.filter((rule) => rule.type === "requiredIf")[0];
+
+  const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
+
+  console.log(requiredConditions, Object.keys(requiredConditions[0]));
+  return validationSchema.when(Object.keys(requiredConditions[0]), {
+    is: (...fields) => {
+      console.log("field : ", fields);
+      return true;
+    },
+    then: (schema) => {
+      schema.required(
+        ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED_IF](errorMsgKey)
+      );
+    },
+  });
+  // console.log(requiredConditions);
+  // check if the field is Required, since not all fields are required
+  // return validationSchema.requiredIf({
+  //   requiredConditions,
+  //   errorMsg: ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED](errorMsgKey),
+  // });
+};
+
 const validateEarlierThan = (validationSchema, field) => {
   const { date, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "earlier_than")[0];
@@ -128,6 +158,7 @@ const validateMaximum = (validationSchema, field) => {
 
 const validationRules = {
   [VALIDATION_RULE_TYPES.REQUIRED]: validateRequired,
+  [VALIDATION_RULE_TYPES.REQUIRED_IF]: validateRequiredIf,
   [VALIDATION_RULE_TYPES.EARLIER_THAN]: validateEarlierThan,
   [VALIDATION_RULE_TYPES.LATER_THAN]: validateLaterThan,
   [VALIDATION_RULE_TYPES.TIME_EARLIER_THAN]: validateTimeEarlierThan,
