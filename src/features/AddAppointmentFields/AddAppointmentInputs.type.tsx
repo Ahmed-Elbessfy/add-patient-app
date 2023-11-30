@@ -25,6 +25,7 @@ export type SchemaName =
   | "alert_form"
   | "note_form"
   | "patient_name"
+  | "show_add_patient"
   | "switch_input_method"
   | "note_title"
   | "doctor"

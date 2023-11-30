@@ -72,6 +72,19 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "field",
         fieldType: "switch",
+        id: "show_add_patient",
+        testId: "show_add_patient",
+        name: "show_add_patient",
+        schemaName: "show_add_patient",
+        checkedChildren: "hide",
+        unCheckedChildren: "show",
+        defaultChecked: false,
+        validation: [],
+        disability: [{ field: "switch_input_method", value: false }],
+      },
+      {
+        category: "field",
+        fieldType: "switch",
         id: "switch_input_method",
         testId: "switch_input_method",
         name: "switch_input_method",
@@ -115,6 +128,7 @@ export const addAppointmentFieldsConfig: Item[] = [
     category: "layout",
     type: "box",
     gap: 0.5,
+    visibility: [{ field: "show_add_patient", value: true }],
     children: [
       {
         category: "UI",
