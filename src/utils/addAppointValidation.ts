@@ -30,24 +30,26 @@ const validateRequiredIf = (validationSchema, field) => {
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
-  console.log(requiredConditions, Object.keys(requiredConditions[0]));
-  return validationSchema.when(Object.keys(requiredConditions[0]), {
-    is: (...fields) => {
-      console.log("field : ", fields);
-      return true;
-    },
-    then: (schema) => {
-      schema.required(
-        ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED_IF](errorMsgKey)
-      );
-    },
-  });
-  // console.log(requiredConditions);
-  // check if the field is Required, since not all fields are required
-  // return validationSchema.requiredIf({
-  //   requiredConditions,
-  //   errorMsg: ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED](errorMsgKey),
-  // });
+  // WHEN method is used to watch for required condition fields and validate on change
+  // IS parameters is the values of the fields accepted as first parameter of WHEN method
+  // and with the same order.
+  // Order is important since fields value is compared to the same order in the required conditions.
+  // Used index to match order
+  return validationSchema.when(
+    requiredConditions.map((condition) => condition.field),
+    {
+      is: (...fields) => {
+        return requiredConditions.every(
+          (condition, ind) => condition.value === fields[ind]
+        );
+      },
+      then: (schema) => {
+        return schema.required(
+          ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED_IF](errorMsgKey)
+        );
+      },
+    }
+  );
 };
 
 const validateEarlierThan = (validationSchema, field) => {

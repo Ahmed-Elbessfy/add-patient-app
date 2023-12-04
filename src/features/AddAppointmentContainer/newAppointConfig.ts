@@ -59,10 +59,25 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "patient_name",
         label: "apInputs.patient_name.label",
         placeholder: "apInputs.patient_name.placeholder",
+        disability: [
+          { field: "show_add_patient", value: false },
+          { field: "switch_input_method", value: false },
+        ],
+
         validation: [
           {
-            type: "required",
+            type: "requiredIf",
             required: true,
+            requiredConditions: [
+              {
+                field: "note_form",
+                value: false,
+              },
+              {
+                field: "show_add_patient",
+                value: false,
+              },
+            ],
             defaultErrorMsg: "apInputs.patient_name.errorMsgs.required.default",
             customErrorMsg: "apInputs.patient_name.errorMsgs.required.custom",
             useCustomErrorMsg: false,
@@ -113,8 +128,14 @@ export const addAppointmentFieldsConfig: Item[] = [
         placeholder: "apInputs.note_title.placeholder",
         validation: [
           {
-            type: "required",
+            type: "requiredIf",
             required: true,
+            requiredConditions: [
+              {
+                field: "note_form",
+                value: true,
+              },
+            ],
             defaultErrorMsg: "apInputs.note_title.errorMsgs.required.default",
             customErrorMsg: "apInputs.note_title.errorMsgs.required.custom",
             useCustomErrorMsg: false,
@@ -163,9 +184,12 @@ export const addAppointmentFieldsConfig: Item[] = [
               {
                 type: "requiredIf",
                 required: true,
-                requiredConditions: [{
-                  field:"show_add_patient",value:true
-                }],
+                requiredConditions: [
+                  {
+                    field: "show_add_patient",
+                    value: true,
+                  },
+                ],
                 defaultErrorMsg:
                   "apInputs.add_new.first_name.errorMsgs.required.default",
                 customErrorMsg:
@@ -184,8 +208,14 @@ export const addAppointmentFieldsConfig: Item[] = [
             label: "apInputs.add_new.last_name.label",
             validation: [
               {
-                type: "required",
+                type: "requiredIf",
                 required: true,
+                requiredConditions: [
+                  {
+                    field: "show_add_patient",
+                    value: true,
+                  },
+                ],
                 defaultErrorMsg:
                   "apInputs.add_new.last_name.errorMsgs.required.default",
                 customErrorMsg:
@@ -992,8 +1022,14 @@ export const addAppointmentFieldsConfig: Item[] = [
         ],
         validation: [
           {
-            type: "required",
+            type: "requiredIf",
             required: true,
+            requiredConditions: [
+              {
+                field: "note_form",
+                value: false,
+              },
+            ],
             defaultErrorMsg: "apInputs.doctor.errorMsgs.required.default",
             customErrorMsg: "apInputs.doctor.errorMsgs.required.custom",
             useCustomErrorMsg: false,
@@ -1049,8 +1085,14 @@ export const addAppointmentFieldsConfig: Item[] = [
         ],
         validation: [
           {
-            type: "required",
+            type: "requiredIf",
             required: true,
+            requiredConditions: [
+              {
+                field: "note_form",
+                value: false,
+              },
+            ],
             defaultErrorMsg: "apInputs.status.errorMsgs.required.default",
             customErrorMsg: "apInputs.status.errorMsgs.required.custom",
             useCustomErrorMsg: false,
@@ -1080,8 +1122,14 @@ export const addAppointmentFieldsConfig: Item[] = [
         ],
         validation: [
           {
-            type: "required",
+            type: "requiredIf",
             required: true,
+            requiredConditions: [
+              {
+                field: "note_form",
+                value: true,
+              },
+            ],
             defaultErrorMsg:
               "apInputs.notified_doctor.errorMsgs.required.default",
             customErrorMsg:
