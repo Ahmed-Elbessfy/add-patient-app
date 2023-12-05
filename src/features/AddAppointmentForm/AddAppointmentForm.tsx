@@ -23,9 +23,9 @@ import {
   AddAppointmentFormProps,
   DefaultValueObjectFormat,
 } from "./AddAppointmentForm.types";
-import { StyledError } from "./AddAppointmentForm.styled";
+import { StyledError, StyledTitle } from "./AddAppointmentForm.styled";
 
-const { Title, Text, Link } = Typography;
+const { Text, Link } = Typography;
 
 const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   fieldsConfig,
@@ -215,10 +215,14 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                     {item.visibility ? (
                       watch(item.visibility[0].field) ===
                         item.visibility[0].value && (
-                        <Title level={level}>{t(title)}</Title>
+                        <StyledTitle level={level}>
+                          <strong>{t(title)}</strong>
+                        </StyledTitle>
                       )
                     ) : (
-                      <Title level={level}>{t(title)}</Title>
+                      <StyledTitle level={level}>
+                        <strong>{t(title)}</strong>
+                      </StyledTitle>
                     )}
                   </Col>
                 );
