@@ -60,8 +60,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.patient_name.label",
         placeholder: "apInputs.patient_name.placeholder",
         disability: [
-          { field: "show_add_patient", value: false },
-          { field: "switch_input_method", value: false },
+          { field: "show_add_patient", value: true },
+          { field: "switch_input_method", value: true },
         ],
 
         validation: [
@@ -95,7 +95,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         unCheckedChildren: "show",
         defaultChecked: false,
         validation: [],
-        disability: [{ field: "switch_input_method", value: false }],
+        disability: [{ field: "switch_input_method", value: true }],
       },
       {
         category: "field",
@@ -1456,7 +1456,11 @@ export const addAppointmentFieldsConfig: Item[] = [
     disability: [
       {
         field: "diagnostic_fees",
-        value: "collected",
+        value: "none",
+      },
+      {
+        field: "diagnostic_fees",
+        value: "add_to_next_invoice",
       },
     ],
     visibility: [{ field: "note_form", value: false }],
@@ -1509,7 +1513,11 @@ export const addAppointmentFieldsConfig: Item[] = [
     disability: [
       {
         field: "diagnostic_fees",
-        value: "collected",
+        value: "none",
+      },
+      {
+        field: "diagnostic_fees",
+        value: "add_to_next_invoice",
       },
     ],
     visibility: [{ field: "note_form", value: false }],
@@ -1540,7 +1548,11 @@ export const addAppointmentFieldsConfig: Item[] = [
     disability: [
       {
         field: "diagnostic_fees",
-        value: "collected",
+        value: "none",
+      },
+      {
+        field: "diagnostic_fees",
+        value: "add_to_next_invoice",
       },
     ],
     visibility: [{ field: "note_form", value: false }],

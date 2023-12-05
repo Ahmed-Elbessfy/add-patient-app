@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { parseValidation } from "../../utils/addAppointValidation";
 import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
 import {
+  DisabilityRule,
   FormFieldConfig,
   Item,
   ItemLayout,
@@ -112,6 +113,18 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   // render items recursively config
   const { t } = useTranslation("lang");
 
+  // configure if field is disabled or not
+  const isDisabled = (disabilityRules: DisabilityRule[]) => {
+    const [...currentValues] = watch(disabilityRules.map((rule) => rule.field));
+
+    // if any condition met, disable field
+    for (let i = 0; i < currentValues.length; i++) {
+      if (currentValues[i] === disabilityRules[i].value) return true;
+    }
+    // No condition is meet so don't disable field
+    return false;
+  };
+
   const renderItems = (fieldsConfig: Item[]): JSX.Element => {
     return (
       <>
@@ -143,8 +156,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                                 status={error ? "error" : undefined}
                                 isDisabled={
                                   item.disability
-                                    ? watch(item.disability[0].field) !==
-                                      item.disability[0].value
+                                    ? isDisabled(item.disability)
                                     : false
                                 }
                               />
@@ -162,8 +174,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                               status={error ? "error" : undefined}
                               isDisabled={
                                 item.disability
-                                  ? watch(item.disability[0].field) !==
-                                    item.disability[0].value
+                                  ? isDisabled(item.disability)
                                   : false
                               }
                             />
