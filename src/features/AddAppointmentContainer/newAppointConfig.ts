@@ -558,49 +558,57 @@ export const addAppointmentFieldsConfig: Item[] = [
         ],
       },
       {
-        category: "field",
-        fieldType: "select",
-        id: "new_patient_patient_tags",
-        testId: "new_patient_patient_tags",
-        name: "new_patient_patient_tags",
-        schemaName: "new_patient_patient_tags",
-        label: "apInputs.add_new.patient_tags.label",
-        options: [
+        category: "layout",
+        type: "hStack",
+        gap: 0.5,
+        children: [
           {
-            value: "diamond",
-            label: "apInputs.add_new.patient_tags.options.diamond",
-          },
-          {
-            value: "gold",
-            label: "apInputs.add_new.patient_tags.options.gold",
-          },
-          {
-            value: "platinum",
-            label: "apInputs.add_new.patient_tags.options.platinum",
-          },
-          {
-            value: "silver",
-            label: "apInputs.add_new.patient_tags.options.silver",
-          },
-          {
-            value: "vip",
-            label: "apInputs.add_new.patient_tags.options.vip",
-          },
-          {
-            value: "friends",
-            label: "apInputs.add_new.patient_tags.options.friends",
-          },
-          {
-            value: "family",
-            label: "apInputs.add_new.patient_tags.options.family",
-          },
-          {
-            value: "colleague",
-            label: "apInputs.add_new.patient_tags.options.colleague",
+            category: "field",
+            fieldType: "select",
+            id: "new_patient_patient_tags",
+            testId: "new_patient_patient_tags",
+            name: "new_patient_patient_tags",
+            schemaName: "new_patient_patient_tags",
+            label: "apInputs.add_new.patient_tags.label",
+            options: [
+              {
+                value: "diamond",
+                label: "apInputs.add_new.patient_tags.options.diamond",
+              },
+              {
+                value: "gold",
+                label: "apInputs.add_new.patient_tags.options.gold",
+              },
+              {
+                value: "platinum",
+                label: "apInputs.add_new.patient_tags.options.platinum",
+              },
+              {
+                value: "silver",
+                label: "apInputs.add_new.patient_tags.options.silver",
+              },
+              {
+                value: "vip",
+                label: "apInputs.add_new.patient_tags.options.vip",
+              },
+              {
+                value: "friends",
+                label: "apInputs.add_new.patient_tags.options.friends",
+              },
+              {
+                value: "family",
+                label: "apInputs.add_new.patient_tags.options.family",
+              },
+              {
+                value: "colleague",
+                label: "apInputs.add_new.patient_tags.options.colleague",
+              },
+            ],
+            validation: [{ type: "required", required: false }],
           },
         ],
-        validation: [{ type: "required", required: false }],
       },
+
       {
         category: "layout",
         type: "hStack",
