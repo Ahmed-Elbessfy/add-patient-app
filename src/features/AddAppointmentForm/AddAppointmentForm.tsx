@@ -110,8 +110,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     mode: "onChange",
     defaultValues: defaultValuesObject,
   });
+
   // render items recursively config
-  const { t } = useTranslation("lang");
+  // get current language for content direction
+  const { t, i18n } = useTranslation("lang");
 
   // configure if field is disabled or not
   const isDisabled = (disabilityRules: DisabilityRule[]) => {
@@ -140,7 +142,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                 render={({ field, fieldState: { error } }) => {
                   return (
                     <>
-                      <Col md={8} sm={24} style={{ textAlign: "left" }}>
+                      <Col md={8} sm={24} style={{ textAlign: "start" }}>
                         {/* in case there is a visibility rule:
                           - check if it is fulfilled first, if yse render field
                           - if not render field normally
@@ -280,7 +282,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      style={{ direction: i18n.language == "ar" ? "rtl" : "ltr" }}
+    >
       {renderItems(fieldsConfig)}
       <Button type="primary" htmlType="submit">
         submit
