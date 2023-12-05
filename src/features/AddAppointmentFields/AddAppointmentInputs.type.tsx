@@ -107,12 +107,12 @@ type Option = {
   value: string;
 };
 
-type visibilityRule = {
+type VisibilityRule = {
   field: SchemaName;
   value: string | number | boolean;
 };
 
-type disabilityRule = {
+export type DisabilityRule = {
   field: SchemaName;
   value: string | number | boolean;
 };
@@ -132,8 +132,8 @@ interface ItemField {
     [x: string]: unknown;
     [x: number]: unknown;
   }>;
-  visibility?: visibilityRule[];
-  disability?: disabilityRule[];
+  visibility?: VisibilityRule[];
+  disability?: DisabilityRule[];
   errorTransKey?: string;
 }
 
@@ -223,7 +223,7 @@ export type LayoutBase = {
   children: ChildrenType[];
   gap: number;
   padding?: number;
-  visibility?: visibilityRule[];
+  visibility?: VisibilityRule[];
 };
 
 export interface LayoutHStack extends LayoutBase {
@@ -248,7 +248,7 @@ type UIType = "title" | "text" | "link" | "alert";
 export type UIBase = {
   category: itemCategory;
   type: UIType;
-  visibility?: visibilityRule[];
+  visibility?: VisibilityRule[];
 };
 
 export interface UITitle extends UIBase {
