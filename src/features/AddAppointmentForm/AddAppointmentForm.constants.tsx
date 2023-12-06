@@ -1,7 +1,5 @@
 import * as yup from "yup";
 import dayjs from "dayjs";
-import { requiredConditions } from "../AddAppointmentFields/AddAppointmentInputs.type";
-// import { ValidationRule } from "./AddAppointmentForm.types";
 
 export const INPUT_TYPES = {
   INPUT_TEXT: "text",
@@ -65,7 +63,6 @@ declare module "yup" {
   interface StringSchema {
     isTimeEarlierThan(message: string, targetField: string): this;
     isTimeLaterThan(message: string, targetField: string): this;
-    requiredIf(message: string, requiredConditions: requiredConditions): this;
   }
 }
 
@@ -124,31 +121,6 @@ yup.addMethod(
 
         // Compare the input time to the target time
         return parsedTime.isAfter(parsedTargetTime, "minute");
-      },
-    });
-  }
-);
-
-// Required If
-// used if field is required based another field or fields values
-
-yup.addMethod(
-  yup.string,
-  "requiredIf",
-  function ({ errorMsg, requiredConditions }) {
-    console.log("req:    ", requiredConditions);
-    return this.test({
-      name: "requiredIf",
-      message: errorMsg || "Invalid time",
-      exclusive: true,
-      test: function (__, context) {
-        console.log("context : ", context);
-        for (const rule of requiredConditions) {
-          console.log(rule.field, context.parent[rule.field]);
-          if (rule.value !== context.parent[rule.value]) return false;
-        }
-        // Compare the input time to the target time
-        return true;
       },
     });
   }
