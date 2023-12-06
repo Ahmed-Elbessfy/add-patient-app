@@ -4,29 +4,34 @@ import {
   VALIDATION_RULE_TYPES,
   INPUT_VALIDATION_TYPES,
 } from "../features/AddAppointmentForm/AddAppointmentForm.constants";
+import {
+  FieldValidation,
+  FormFieldConfig,
+  Rule,
+} from "../features/AddAppointmentFields/AddAppointmentInputs.type";
 
 // VAlidation errors messages functions
-const validateRequired = (validationSchema, field) => {
-  const { required, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
-    field.validation.find((rule) => rule.type === "required");
+const validateRequired = (validationSchema, field: FormFieldConfig) => {
+  const { defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
+    field.validation.filter((rule) => rule.type === "required")[0];
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
   // check if the field is Required, since not all fields are required
-  return required
-    ? validationSchema.required(
-        ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED](errorMsgKey)
-      )
-    : validationSchema;
+  return validationSchema.required(
+    ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED](errorMsgKey)
+  );
 };
 
-const validateRequiredIf = (validationSchema, field) => {
+const validateRequiredIf = (validationSchema, field: FormFieldConfig) => {
   const {
     requiredConditions,
     defaultErrorMsg,
     customErrorMsg,
     useCustomErrorMsg,
-  } = field.validation.filter((rule) => rule.type === "requiredIf")[0];
+  } = field.validation.filter(
+    (rule: FieldValidation) => rule.type === "requiredIf"
+  )[0];
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
@@ -36,11 +41,15 @@ const validateRequiredIf = (validationSchema, field) => {
   // Order is important since fields value is compared to the same order in the required conditions.
   // Used index to match order
   return validationSchema.when(
-    requiredConditions.map((condition) => condition.field),
+    requiredConditions &&
+      requiredConditions.map((condition: Rule) => condition.field),
     {
       is: (...fields) => {
-        return requiredConditions.every(
-          (condition, ind) => condition.value === fields[ind]
+        return (
+          requiredConditions &&
+          requiredConditions.every(
+            (condition: Rule, ind: number) => condition.value === fields[ind]
+          )
         );
       },
       then: (schema) => {
@@ -52,14 +61,14 @@ const validateRequiredIf = (validationSchema, field) => {
   );
 };
 
-const validateEarlierThan = (validationSchema, field) => {
+const validateEarlierThan = (validationSchema, field: FormFieldConfig) => {
   const { date, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "earlier_than")[0];
 
   const formattedDate =
     date === "today"
       ? dayjs().format("YYYY/MM/DD")
-      : date.split("/").reverse().join("/");
+      : date && date.split("/").reverse().join("/");
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
@@ -70,14 +79,14 @@ const validateEarlierThan = (validationSchema, field) => {
   );
 };
 
-const validateLaterThan = (validationSchema, field) => {
+const validateLaterThan = (validationSchema, field: FormFieldConfig) => {
   const { date, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "later_than")[0];
 
   const formattedDate =
     date === "today"
       ? dayjs().format("YYYY/MM/DD")
-      : date.split("/").reverse().join("/");
+      : date && date.split("/").reverse().join("/");
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
@@ -88,11 +97,12 @@ const validateLaterThan = (validationSchema, field) => {
   );
 };
 
-const validateTimeEarlierThan = (validationSchema, field) => {
+const validateTimeEarlierThan = (validationSchema, field: FormFieldConfig) => {
   const { fields, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "time_earlier_than")[0];
 
-  const targetField = fields[0];
+  // make sure that if fields exist, get target field value
+  const targetField = fields && fields[0];
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
@@ -103,10 +113,12 @@ const validateTimeEarlierThan = (validationSchema, field) => {
   });
 };
 
-const validateTimeLaterThan = (validationSchema, field) => {
+const validateTimeLaterThan = (validationSchema, field: FormFieldConfig) => {
   const { fields, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "time_later_than")[0];
-  const targetField = fields[0];
+
+  // make sure that if fields exist, get target field value
+  const targetField = fields && fields[0];
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
@@ -117,7 +129,7 @@ const validateTimeLaterThan = (validationSchema, field) => {
   });
 };
 
-const validatePattern = (validationSchema, field) => {
+const validatePattern = (validationSchema, field: FormFieldConfig) => {
   const { pattern, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "hasPattern")[0];
 
@@ -132,7 +144,7 @@ const validatePattern = (validationSchema, field) => {
   );
 };
 
-const validateMinimum = (validationSchema, field) => {
+const validateMinimum = (validationSchema, field: FormFieldConfig) => {
   const { minimum, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "minimum")[0];
 
@@ -145,7 +157,7 @@ const validateMinimum = (validationSchema, field) => {
   );
 };
 
-const validateMaximum = (validationSchema, field) => {
+const validateMaximum = (validationSchema, field: FormFieldConfig) => {
   const { maximum, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "maximum")[0];
 
@@ -171,7 +183,7 @@ const validationRules = {
 };
 
 // creating a schema
-export const parseValidation = (input) => {
+export const parseValidation = (input: FormFieldConfig) => {
   // if field of unknown or handled type
   if (!INPUT_VALIDATION_TYPES[input.fieldType]) {
     throw Error(`Unknown input type of type ${input.fieldType}`);

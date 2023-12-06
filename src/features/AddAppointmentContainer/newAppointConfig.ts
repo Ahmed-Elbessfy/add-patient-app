@@ -67,7 +67,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "requiredIf",
-            required: true,
             requiredConditions: [
               {
                 field: "note_form",
@@ -130,7 +129,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "requiredIf",
-            required: true,
             requiredConditions: [
               {
                 field: "note_form",
@@ -171,7 +169,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_id",
             schemaName: "new_patient_id",
             label: "apInputs.add_new.id.label",
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
           {
             category: "field",
@@ -184,7 +182,6 @@ export const addAppointmentFieldsConfig: Item[] = [
             validation: [
               {
                 type: "requiredIf",
-                required: true,
                 requiredConditions: [
                   {
                     field: "show_add_patient",
@@ -210,7 +207,6 @@ export const addAppointmentFieldsConfig: Item[] = [
             validation: [
               {
                 type: "requiredIf",
-                required: true,
                 requiredConditions: [
                   {
                     field: "show_add_patient",
@@ -241,7 +237,6 @@ export const addAppointmentFieldsConfig: Item[] = [
             schemaName: "new_patient_phone",
             label: "apInputs.add_new.phone.label",
             validation: [
-              { type: "required", required: false },
               {
                 type: "hasPattern",
                 pattern:
@@ -263,7 +258,6 @@ export const addAppointmentFieldsConfig: Item[] = [
             schemaName: "new_patient_secondary_phone",
             label: "apInputs.add_new.secondary_phone.label",
             validation: [
-              { type: "required", required: false },
               {
                 type: "hasPattern",
                 pattern:
@@ -303,7 +297,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "apInputs.add_new.country.options.australia",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
         ],
       },
@@ -328,7 +322,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 placeholder: "apInputs.add_new.birthDate.placeholder",
                 format: "DD/MM/YYYY",
                 validation: [
-                  { type: "required", required: false },
                   {
                     type: "earlier_than",
                     date: "today",
@@ -364,7 +357,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                     schemaName: "new_patient_age",
                     label: "apInputs.add_new.age.label",
                     validation: [
-                      { type: "required", required: false },
                       {
                         type: "minimum",
                         minimum: 1,
@@ -438,7 +430,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "apInputs.add_new.title.options.dr",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
           {
             category: "field",
@@ -458,7 +450,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "apInputs.add_new.gender.options.female",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
         ],
       },
@@ -476,7 +468,6 @@ export const addAppointmentFieldsConfig: Item[] = [
             schemaName: "new_patient_email",
             label: "apInputs.add_new.email.label",
             validation: [
-              { type: "required", required: false },
               {
                 type: "hasPattern",
                 pattern:
@@ -497,7 +488,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_address",
             schemaName: "new_patient_address",
             label: "apInputs.add_new.address.label",
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
         ],
       },
@@ -526,7 +517,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                   "apInputs.add_new.assigned_practitioner.options.assistant",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
           {
             category: "field",
@@ -554,7 +545,7 @@ export const addAppointmentFieldsConfig: Item[] = [
               },
             ],
 
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
         ],
       },
@@ -605,7 +596,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "apInputs.add_new.patient_tags.options.colleague",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
         ],
       },
@@ -645,7 +636,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "apInputs.add_new.martial_status.options.widowed",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
           {
             category: "field",
@@ -681,7 +672,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "apInputs.add_new.job.options.job_6",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
           {
             category: "field",
@@ -709,7 +700,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "apInputs.add_new.nationality.options.australia",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
         ],
       },
@@ -721,7 +712,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "new_patient_tax",
         schemaName: "new_patient_tax",
         label: "apInputs.add_new.tax.label",
-        validation: [{ type: "required", required: false }],
+        validation: [],
       },
       {
         category: "field",
@@ -731,7 +722,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "new_patient_national_id",
         schemaName: "new_patient_national_id",
         label: "apInputs.add_new.national_id.label",
-        validation: [{ type: "required", required: false }],
+        validation: [],
       },
       {
         category: "field",
@@ -744,7 +735,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         placeholder: "apInputs.add_new.patient_details.placeholder",
         maxLength: 1000,
         showCount: true,
-        validation: [{ type: "required", required: false }],
+        validation: [],
       },
       {
         category: "UI",
@@ -761,7 +752,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "new_patient_insurance_company",
         label: "apInputs.add_new.insurance_company.label",
         placeholder: "apInputs.add_new.insurance_company.placeholder",
-        validation: [{ type: "required", required: false }],
+        validation: [],
       },
       {
         category: "UI",
@@ -804,7 +795,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "apInputs.add_new.referral_source.options.twitter",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
           {
             category: "field",
@@ -815,7 +806,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             schemaName: "new_patient_referral_details",
             label: "apInputs.add_new.referral_details.label",
             options: [],
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
           {
             category: "field",
@@ -835,7 +826,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "assistant",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
             visibility: [
               {
                 field: "new_patient_referral_source",
@@ -873,7 +864,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "Patient One",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
             visibility: [
               {
                 field: "new_patient_referral_source",
@@ -902,7 +893,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_emergency_first_name",
             schemaName: "new_patient_emergency_first_name",
             label: "apInputs.add_new.emergency_first_name.label",
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
           {
             category: "field",
@@ -912,7 +903,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_emergency_last_name",
             schemaName: "new_patient_emergency_last_name",
             label: "apInputs.add_new.emergency_last_name.label",
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
           {
             category: "field",
@@ -923,7 +914,6 @@ export const addAppointmentFieldsConfig: Item[] = [
             schemaName: "new_patient_emergency_phone",
             label: "apInputs.add_new.emergency_phone.label",
             validation: [
-              { type: "required", required: false },
               {
                 type: "hasPattern",
                 pattern:
@@ -952,7 +942,6 @@ export const addAppointmentFieldsConfig: Item[] = [
             schemaName: "new_patient_emergency_secondary_phone",
             label: "apInputs.add_new.emergency_secondary_phone.label",
             validation: [
-              { type: "required", required: false },
               {
                 type: "hasPattern",
                 pattern:
@@ -973,7 +962,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient_emergency_address",
             schemaName: "new_patient_emergency_address",
             label: "apInputs.add_new.emergency_address.label",
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
           {
             category: "field",
@@ -1002,7 +991,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "apInputs.add_new.emergency_relationship.options.friend",
               },
             ],
-            validation: [{ type: "required", required: false }],
+            validation: [],
           },
         ],
       },
@@ -1032,7 +1021,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "requiredIf",
-            required: true,
             requiredConditions: [
               {
                 field: "note_form",
@@ -1063,7 +1051,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            required: true,
             defaultErrorMsg: "apInputs.room.errorMsgs.required.default",
             customErrorMsg: "apInputs.room.errorMsgs.required.custom",
             useCustomErrorMsg: false,
@@ -1095,7 +1082,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "requiredIf",
-            required: true,
             requiredConditions: [
               {
                 field: "note_form",
@@ -1132,7 +1118,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "requiredIf",
-            required: true,
             requiredConditions: [
               {
                 field: "note_form",
@@ -1165,7 +1150,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            required: true,
             defaultErrorMsg: "apInputs.room.errorMsgs.required.default",
             customErrorMsg: "apInputs.room.errorMsgs.required.custom",
             useCustomErrorMsg: false,
@@ -1192,7 +1176,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            required: true,
             defaultErrorMsg: "apInputs.day.errorMsgs.required.default",
             customErrorMsg: "apInputs.day.errorMsgs.required.custom",
             useCustomErrorMsg: false,
@@ -1220,7 +1203,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            required: true,
             defaultErrorMsg: "apInputs.start_time.errorMsgs.required.default",
             customErrorMsg: "apInputs.start_time.errorMsgs.required.custom",
             useCustomErrorMsg: false,
@@ -1250,7 +1232,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            required: true,
             defaultErrorMsg: "apInputs.end_time.errorMsgs.required.default",
             customErrorMsg: "apInputs.end_time.errorMsgs.required.custom",
             useCustomErrorMsg: false,
@@ -1284,7 +1265,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         placeholder: "apInputs.alert_content.placeholder",
         maxLength: 1000,
         showCount: true,
-        validation: [{ type: "required", required: false }],
+        validation: [],
         visibility: [{ field: "alert_form", value: true }],
       },
     ],
@@ -1324,7 +1305,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            required: true,
             defaultErrorMsg: "apInputs.type.errorMsgs.required.default",
             customErrorMsg: "apInputs.type.errorMsgs.required.custom",
             useCustomErrorMsg: false,
@@ -1346,7 +1326,7 @@ export const addAppointmentFieldsConfig: Item[] = [
           { value: "subtype_3", label: "apInputs.subtype.options.subtype_3" },
           { value: "subtype_4", label: "apInputs.subtype.options.subtype_4" },
         ],
-        validation: [{ type: "required", required: false }],
+        validation: [],
       },
       {
         category: "field",
@@ -1359,7 +1339,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         placeholder: "apInputs.created.placeholder",
         format: "DD/MM/YYYY",
         validation: [
-          { type: "required", required: false },
           {
             type: "earlier_than",
             date: "today",
@@ -1394,7 +1373,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.assistants.options.assistant_2",
       },
     ],
-    validation: [{ type: "required", required: false }],
+    validation: [],
   },
   {
     category: "field",
@@ -1407,7 +1386,7 @@ export const addAppointmentFieldsConfig: Item[] = [
     placeholder: "apInputs.description.placeholder",
     maxLength: 1000,
     showCount: true,
-    validation: [{ type: "required", required: false }],
+    validation: [],
     visibility: [{ field: "note_form", value: false }],
   },
   {
@@ -1421,7 +1400,7 @@ export const addAppointmentFieldsConfig: Item[] = [
     placeholder: "apInputs.note_content.placeholder",
     maxLength: 1000,
     showCount: true,
-    validation: [{ type: "required", required: false }],
+    validation: [],
     visibility: [{ field: "note_form", value: true }],
   },
   {
@@ -1450,7 +1429,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.diagnostic_fees.options.add_to_next_invoice",
       },
     ],
-    validation: [{ type: "required", required: false }],
+    validation: [],
     visibility: [{ field: "note_form", value: false }],
   },
   {
@@ -1461,7 +1440,7 @@ export const addAppointmentFieldsConfig: Item[] = [
     name: "collected_diagnostic_fees",
     schemaName: "collected_diagnostic_fees",
     defaultValue: 100,
-    validation: [{ type: "required", required: false }],
+    validation: [],
     disability: [
       {
         field: "diagnostic_fees",
@@ -1518,7 +1497,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.collected_diagnostic_fees_options.options.other",
       },
     ],
-    validation: [{ type: "required", required: false }],
+    validation: [],
     disability: [
       {
         field: "diagnostic_fees",
@@ -1553,7 +1532,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.collected_diagnostic_fees_subtype.options.subtype_2",
       },
     ],
-    validation: [{ type: "required", required: false }],
+    validation: [],
     disability: [
       {
         field: "diagnostic_fees",
@@ -1585,7 +1564,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "reminder_before",
         schemaName: "reminder_before",
         label: "apInputs.reminder_before.label",
-        validation: [{ type: "required", required: false }],
+        validation: [],
       },
       {
         category: "field",
@@ -1614,7 +1593,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             label: "apInputs.reminder_before_interval.options.months",
           },
         ],
-        validation: [{ type: "required", required: false }],
+        validation: [],
       },
     ],
   },

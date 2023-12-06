@@ -7,14 +7,13 @@ type itemCategory = "field" | "layout" | "UI";
 **********************************************************
 */
 
-type FieldValidation = {
+export type FieldValidation = {
   type: string;
-  required?: boolean;
+  defaultErrorMsg: string;
+  customErrorMsg: string;
+  useCustomErrorMsg: boolean;
   date?: string;
   fields?: SchemaName[];
-  defaultErrorMsg?: string;
-  customErrorMsg?: string;
-  useCustomErrorMsg?: boolean;
   pattern?: RegExp;
   minimum?: number;
   maximum?: number;
