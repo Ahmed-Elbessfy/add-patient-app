@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { parseValidation } from "../../utils/addAppointValidation";
 import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
 import {
-  DisabilityRule,
+  Rule,
   FormFieldConfig,
   Item,
   ItemLayout,
@@ -116,12 +116,12 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   const { t, i18n } = useTranslation("lang");
 
   // configure if field is disabled or not
-  const isDisabled = (disabilityRules: DisabilityRule[]) => {
-    const [...currentValues] = watch(disabilityRules.map((rule) => rule.field));
+  const isMatched = (rules: Rule[]) => {
+    const [...currentValues] = watch(rules.map((rule) => rule.field));
 
     // if any condition met, disable field
     for (let i = 0; i < currentValues.length; i++) {
-      if (currentValues[i] === disabilityRules[i].value) return true;
+      if (currentValues[i] === rules[i].value) return true;
     }
     // No condition is meet so don't disable field
     return false;
@@ -148,8 +148,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                           - if not render field normally
                       */}
                         {item.visibility ? (
-                          watch(item.visibility[0].field) ===
-                            item.visibility[0].value && (
+                          isMatched(item.visibility) && (
                             <div>
                               <AddAppointmentFields
                                 {...item}
@@ -158,7 +157,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                                 status={error ? "error" : undefined}
                                 isDisabled={
                                   item.disability
-                                    ? isDisabled(item.disability)
+                                    ? isMatched(item.disability)
                                     : false
                                 }
                               />
@@ -176,7 +175,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                               status={error ? "error" : undefined}
                               isDisabled={
                                 item.disability
-                                  ? isDisabled(item.disability)
+                                  ? isMatched(item.disability)
                                   : false
                               }
                             />
@@ -197,7 +196,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
           if (fieldConfig.category === "layout") {
             const item = fieldConfig as ItemLayout;
             return item.visibility ? (
-              watch(item.visibility[0].field) === item.visibility[0].value && (
+              isMatched(item.visibility) && (
                 <AddAppointmentSection renderItems={renderItems} {...item} />
               )
             ) : (
@@ -215,8 +214,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                 return (
                   <Col span={24}>
                     {item.visibility ? (
-                      watch(item.visibility[0].field) ===
-                        item.visibility[0].value && (
+                      isMatched(item.visibility) && (
                         <StyledTitle level={level}>
                           <strong>{t(title)}</strong>
                         </StyledTitle>
@@ -233,8 +231,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
               case "text": {
                 const { text } = item as UIText;
                 return item.visibility ? (
-                  watch(item.visibility[0].field) ===
-                    item.visibility[0].value && <Text>{t(text)}</Text>
+                  isMatched(item.visibility) && <Text>{t(text)}</Text>
                 ) : (
                   <Text>{t(text)}</Text>
                 );
@@ -243,8 +240,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
               case "link": {
                 const { text, url } = item as UILink;
                 return item.visibility ? (
-                  watch(item.visibility[0].field) ===
-                    item.visibility[0].value && (
+                  isMatched(item.visibility) && (
                     <Link href={url}>{t(text)}</Link>
                   )
                 ) : (
@@ -256,8 +252,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                 const { description, message, alertType, showIcon } =
                   item as UIAlert;
                 return item.visibility ? (
-                  watch(item.visibility[0].field) ===
-                    item.visibility[0].value && (
+                  isMatched(item.visibility) && (
                     <Alert
                       message={t(message)}
                       description={t(description)}

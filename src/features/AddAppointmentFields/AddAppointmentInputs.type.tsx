@@ -7,10 +7,6 @@ type itemCategory = "field" | "layout" | "UI";
 **********************************************************
 */
 
-export type requiredConditions = {
-  field: string;
-  value: string | number | boolean;
-};
 type FieldValidation = {
   type: string;
   required?: boolean;
@@ -22,7 +18,7 @@ type FieldValidation = {
   pattern?: RegExp;
   minimum?: number;
   maximum?: number;
-  requiredConditions?: requiredConditions[];
+  requiredConditions?: Rule[];
 };
 
 export type SchemaName =
@@ -107,13 +103,8 @@ type Option = {
   value: string;
 };
 
-type VisibilityRule = {
-  field: SchemaName;
-  value: string | number | boolean;
-};
-
-export type DisabilityRule = {
-  field: SchemaName;
+export type Rule = {
+  field: string;
   value: string | number | boolean;
 };
 
@@ -132,8 +123,8 @@ interface ItemField {
     [x: string]: unknown;
     [x: number]: unknown;
   }>;
-  visibility?: VisibilityRule[];
-  disability?: DisabilityRule[];
+  visibility?: Rule[];
+  disability?: Rule[];
   errorTransKey?: string;
 }
 
@@ -223,7 +214,7 @@ export type LayoutBase = {
   children: ChildrenType[];
   gap: number;
   padding?: number;
-  visibility?: VisibilityRule[];
+  visibility?: Rule[];
 };
 
 export interface LayoutHStack extends LayoutBase {
@@ -248,7 +239,7 @@ type UIType = "title" | "text" | "link" | "alert";
 export type UIBase = {
   category: itemCategory;
   type: UIType;
-  visibility?: VisibilityRule[];
+  visibility?: Rule[];
 };
 
 export interface UITitle extends UIBase {
