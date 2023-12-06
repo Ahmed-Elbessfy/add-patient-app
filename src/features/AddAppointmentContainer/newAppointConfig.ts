@@ -108,6 +108,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         unCheckedChildren: "QR",
         defaultChecked: false,
         validation: [],
+        disability: [{ field: "show_add_patient", value: true }],
       },
     ],
   },
