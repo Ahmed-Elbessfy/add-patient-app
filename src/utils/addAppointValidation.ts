@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { StringSchema, NumberSchema, AnyObject } from "yup";
 import {
   ERROR_MESSAGES,
   VALIDATION_RULE_TYPES,
@@ -10,8 +11,16 @@ import {
   Rule,
 } from "../features/AddAppointmentFields/AddAppointmentInputs.type";
 
+type SchemaType =
+  | (StringSchema<string | undefined, AnyObject, undefined, ""> &
+      NumberSchema<number | undefined, AnyObject, undefined, "">)
+  | AnyObject;
+
 // VAlidation errors messages functions
-const validateRequired = (validationSchema, field: FormFieldConfig) => {
+const validateRequired = (
+  validationSchema: SchemaType,
+  field: FormFieldConfig
+) => {
   const { defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "required")[0];
 
@@ -23,7 +32,10 @@ const validateRequired = (validationSchema, field: FormFieldConfig) => {
   );
 };
 
-const validateRequiredIf = (validationSchema, field: FormFieldConfig) => {
+const validateRequiredIf = (
+  validationSchema: SchemaType,
+  field: FormFieldConfig
+) => {
   const {
     requiredConditions,
     defaultErrorMsg,
@@ -52,7 +64,7 @@ const validateRequiredIf = (validationSchema, field: FormFieldConfig) => {
           )
         );
       },
-      then: (schema) => {
+      then: (schema: SchemaType) => {
         return schema.required(
           ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED_IF](errorMsgKey)
         );
@@ -61,7 +73,10 @@ const validateRequiredIf = (validationSchema, field: FormFieldConfig) => {
   );
 };
 
-const validateEarlierThan = (validationSchema, field: FormFieldConfig) => {
+const validateEarlierThan = (
+  validationSchema: SchemaType,
+  field: FormFieldConfig
+) => {
   const { date, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "earlier_than")[0];
 
@@ -79,7 +94,10 @@ const validateEarlierThan = (validationSchema, field: FormFieldConfig) => {
   );
 };
 
-const validateLaterThan = (validationSchema, field: FormFieldConfig) => {
+const validateLaterThan = (
+  validationSchema: SchemaType,
+  field: FormFieldConfig
+) => {
   const { date, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "later_than")[0];
 
@@ -97,7 +115,10 @@ const validateLaterThan = (validationSchema, field: FormFieldConfig) => {
   );
 };
 
-const validateTimeEarlierThan = (validationSchema, field: FormFieldConfig) => {
+const validateTimeEarlierThan = (
+  validationSchema: SchemaType,
+  field: FormFieldConfig
+) => {
   const { fields, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "time_earlier_than")[0];
 
@@ -113,7 +134,10 @@ const validateTimeEarlierThan = (validationSchema, field: FormFieldConfig) => {
   });
 };
 
-const validateTimeLaterThan = (validationSchema, field: FormFieldConfig) => {
+const validateTimeLaterThan = (
+  validationSchema: SchemaType,
+  field: FormFieldConfig
+) => {
   const { fields, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "time_later_than")[0];
 
@@ -129,7 +153,10 @@ const validateTimeLaterThan = (validationSchema, field: FormFieldConfig) => {
   });
 };
 
-const validatePattern = (validationSchema, field: FormFieldConfig) => {
+const validatePattern = (
+  validationSchema: SchemaType,
+  field: FormFieldConfig
+) => {
   const { pattern, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "hasPattern")[0];
 
@@ -144,29 +171,41 @@ const validatePattern = (validationSchema, field: FormFieldConfig) => {
   );
 };
 
-const validateMinimum = (validationSchema, field: FormFieldConfig) => {
+const validateMinimum = (
+  validationSchema: SchemaType,
+  field: FormFieldConfig
+) => {
   const { minimum, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "minimum")[0];
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
   // accepted format "YYYY/MM/DD"
-  return validationSchema.min(
-    minimum,
-    ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](errorMsgKey)
+  return (
+    minimum &&
+    validationSchema.min(
+      minimum,
+      ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](errorMsgKey)
+    )
   );
 };
 
-const validateMaximum = (validationSchema, field: FormFieldConfig) => {
+const validateMaximum = (
+  validationSchema: SchemaType,
+  field: FormFieldConfig
+) => {
   const { maximum, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "maximum")[0];
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
   // accepted format "YYYY/MM/DD"
-  return validationSchema.max(
-    maximum,
-    ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](errorMsgKey)
+  return (
+    maximum &&
+    validationSchema.max(
+      maximum,
+      ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](errorMsgKey)
+    )
   );
 };
 
