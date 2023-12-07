@@ -91,7 +91,8 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
         }
 
         // config schema
-        shape[currentItem.schemaName] = parseValidation(item);
+        // use currentItem since its type is FormFieldConfig same as accepted by parseValidation parameter type
+        shape[currentItem.schemaName] = parseValidation(currentItem);
       }
 
       if (item.category === "layout") {

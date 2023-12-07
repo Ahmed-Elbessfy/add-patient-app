@@ -222,6 +222,7 @@ const validationRules = {
 };
 
 // creating a schema
+// use FormFieldConfig type since it is the type of field have required properties for building schema, no need for onChange or Disability features but it can be used if needed with using the FieldConfig type
 export const parseValidation = (input: FormFieldConfig) => {
   // if field of unknown or handled type
   if (!INPUT_VALIDATION_TYPES[input.fieldType]) {
