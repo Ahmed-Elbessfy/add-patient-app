@@ -3,9 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Alert, Button, Col, Typography } from "antd";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
-import { parseValidation } from "../../utils/addAppointValidation";
 import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
 import {
   Rule,
@@ -19,11 +17,9 @@ import {
   UITitle,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
-import {
-  AddAppointmentFormProps,
-  DefaultValueObjectFormat,
-} from "./AddAppointmentForm.types";
+import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
 import { StyledError, StyledTitle } from "./AddAppointmentForm.styled";
+import { configValidation } from "../../utils/addAppointUtils";
 
 const { Text, Link } = Typography;
 
@@ -31,79 +27,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   fieldsConfig,
   onSubmit,
 }) => {
-  // Schema Config
-  const shape: yup.ObjectShape = {};
-  // default values config
-  const defaultValuesObject: DefaultValueObjectFormat =
-    {} as DefaultValueObjectFormat;
-
   // build schema & default values
-  const configValidation = (itemsData: Item[]) => {
-    itemsData.forEach((item: Item) => {
-      if (item.category === "field") {
-        const currentItem = item as FormFieldConfig;
-        /********************
-        config default values FOR FORM STATE which gets validated
-        default value for each field input is for the displayed value for user
-         ********************/
+  const { shape, defaultValuesObject } = configValidation(fieldsConfig);
 
-        if ("defaultChecked" in item) {
-          defaultValuesObject[item.schemaName] = item.defaultChecked;
-        }
-
-        if ("defaultValue" in item)
-          defaultValuesObject[item.schemaName] = item.defaultValue;
-
-        // custom case for date picker default value
-        if (
-          "defaultValue" in item &&
-          item.fieldType === "datePicker" &&
-          item.defaultValue === "today"
-        ) {
-          // accepted format "YYYY/MM/DD"
-          defaultValuesObject[item.schemaName] = dayjs().format("YYYY/MM/DD");
-        }
-
-        // custom case for time picker default value
-        if (
-          "defaultValue" in item &&
-          item.fieldType === "timePicker" &&
-          item.defaultValue === "now"
-        ) {
-          // Target Format hh:mm a
-          const currentHour = new Date().getHours();
-          defaultValuesObject[item.schemaName] = dayjs()
-            .hour(currentHour + 1)
-            .minute(0)
-            .format("hh:mm a");
-        }
-        if (
-          "defaultValue" in item &&
-          item.fieldType === "timePicker" &&
-          item.defaultValue === "next"
-        ) {
-          // Target Format hh:mm a
-          const currentHour = new Date().getHours();
-          defaultValuesObject[item.schemaName] = dayjs()
-            .hour(currentHour + 1)
-            .minute(30)
-            .format("hh:mm a");
-        }
-
-        // config schema
-        // use currentItem since its type is FormFieldConfig same as accepted by parseValidation parameter type
-        shape[currentItem.schemaName] = parseValidation(currentItem);
-      }
-
-      if (item.category === "layout") {
-        const currentItem = item as ItemLayout;
-        configValidation(currentItem.children);
-      }
-    });
-    return shape;
-  };
-
-  const schemaShape: yup.ObjectShape = configValidation(fieldsConfig);
+  const schemaShape: yup.ObjectShape = shape;
   const schema = yup.object().shape(schemaShape);
 
   const { control, handleSubmit, clearErrors, watch } = useForm({
@@ -112,7 +39,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     defaultValues: defaultValuesObject,
   });
 
-  // render items recursively config
   // get current language for content direction
   const { t, i18n } = useTranslation("lang");
 
@@ -128,6 +54,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     return false;
   };
 
+  // render items recursively config
   const renderItems = (fieldsConfig: Item[]): JSX.Element => {
     return (
       <>
