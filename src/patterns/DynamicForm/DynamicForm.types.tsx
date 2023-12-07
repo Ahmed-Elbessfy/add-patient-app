@@ -7,14 +7,9 @@ import {
 } from "../DynamicInput/DynamicInput.types";
 
 export interface DynamicFormOutput {
-  name: string;
-  age: number;
-  email: string;
-  phone: string;
-  gender: string;
-  country: string;
-  human: string;
-  preferredMeals: string[];
+  
+  [x: string]: unknown;
+  [x: number]: unknown;
 }
 
 export type InputConfigOptions = DynamicFormFieldConfig | ItemLayout | ItemUI;
