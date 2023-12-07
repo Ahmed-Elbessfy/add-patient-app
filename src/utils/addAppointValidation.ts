@@ -16,6 +16,8 @@ type SchemaType =
       NumberSchema<number | undefined, AnyObject, undefined, "">)
   | AnyObject;
 
+type CustomRuleFields = string | number | boolean;
+
 // VAlidation errors messages functions
 const validateRequired = (
   validationSchema: SchemaType,
@@ -56,7 +58,7 @@ const validateRequiredIf = (
     requiredConditions &&
       requiredConditions.map((condition: Rule) => condition.field),
     {
-      is: (...fields) => {
+      is: (...fields: CustomRuleFields[]) => {
         return (
           requiredConditions &&
           requiredConditions.every(
