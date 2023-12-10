@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { StringSchema, NumberSchema, AnyObject } from "yup";
 import {
   ERROR_MESSAGES,
@@ -10,6 +9,7 @@ import {
   FormFieldConfig,
   Rule,
 } from "../features/AddAppointmentFields/AddAppointmentInputs.type";
+import { formatDateTime } from "./addAppointUtils";
 
 type SchemaType =
   | (StringSchema<string | undefined, AnyObject, undefined, ""> &
@@ -82,10 +82,7 @@ const validateEarlierThan = (
   const { date, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "earlier_than")[0];
 
-  const formattedDate =
-    date === "today"
-      ? dayjs().format("YYYY/MM/DD")
-      : date && date.split("/").reverse().join("/");
+  const formattedDate = date && formatDateTime(date);
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 
@@ -103,10 +100,7 @@ const validateLaterThan = (
   const { date, defaultErrorMsg, customErrorMsg, useCustomErrorMsg } =
     field.validation.filter((rule) => rule.type === "later_than")[0];
 
-  const formattedDate =
-    date === "today"
-      ? dayjs().format("YYYY/MM/DD")
-      : date && date.split("/").reverse().join("/");
+  const formattedDate = date && formatDateTime(date);
 
   const errorMsgKey = useCustomErrorMsg ? customErrorMsg : defaultErrorMsg;
 

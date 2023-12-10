@@ -12,12 +12,12 @@ import {
 import dayjs from "dayjs";
 import type { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
+import { formatDateTime } from "../../utils/addAppointUtils";
 import { FieldConfig } from "./AddAppointmentInputs.type";
 
 const { TextArea } = Input;
 
 const AddAppointmentFields: FC<FieldConfig> = (props) => {
-  // console.log(props);
   const {
     fieldType,
     label,
@@ -34,32 +34,11 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
 
   // set disabled date for Date Picker Input
   const disabledDate = (current: Dayjs, status: string, limit: string) => {
-    if (limit !== "today") {
-      return status === "before"
-        ? current.isBefore(dayjs(limit), "day")
-        : current.isAfter(dayjs(limit), "day");
+    const lim = formatDateTime(limit);
+    if (status === "before") {
+      return current.isBefore(dayjs(lim), "day");
     } else {
-      return status === "before"
-        ? current.isBefore(dayjs(), "day")
-        : current.isAfter(dayjs(), "day");
-    }
-  };
-
-  // Time Picker
-  // this format matches New Appointment requirements but MAY NOT BE APPLICABLE in others cases. I will work on when I get full requirements
-  // currently, it produces next hour as start time & next Hour + 30 minutes as End time
-  const formatTime = (time: string = "now") => {
-    const currentHour = new Date().getHours();
-    if (time === "now") {
-      return dayjs()
-        .hour(currentHour + 1)
-        .minute(0);
-    }
-
-    if (time === "next") {
-      return dayjs()
-        .hour(currentHour + 1)
-        .minute(30);
+      return current.isAfter(dayjs(lim), "day");
     }
   };
 
@@ -184,11 +163,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
               : false
           }
           defaultValue={
-            props.defaultValue
-              ? props.defaultValue === "today"
-                ? dayjs()
-                : dayjs(props.defaultValue)
-              : undefined
+            props.defaultValue ? formatDateTime(props.defaultValue) : undefined
           }
           onChange={(value: DatePickerProps["value"]) => {
             // accepted format "YYYY/MM/DD"
@@ -209,7 +184,9 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           style={{ width: "100%" }}
           disabled={isDisabled}
           use12Hours={props.use12Hours}
-          defaultValue={formatTime(props.defaultValue)}
+          defaultValue={
+            props.defaultValue ? formatDateTime(props.defaultValue) : undefined
+          }
           onChange={(time: Dayjs | null) => {
             // submit input value to form state
             onChange(dayjs(time).format(props.format));

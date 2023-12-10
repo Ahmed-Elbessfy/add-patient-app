@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import dayjs, { ManipulateType } from "dayjs";
 import { ObjectShape } from "yup";
 import {
   Item,
@@ -32,39 +32,16 @@ export const configValidation = (itemsData: Item[]) => {
         defaultValuesObject[item.schemaName] = item.defaultValue;
 
       // custom case for date picker default value
-      if (
-        "defaultValue" in item &&
-        item.fieldType === "datePicker" &&
-        item.defaultValue === "today"
-      ) {
-        // accepted format "YYYY/MM/DD"
-        defaultValuesObject[item.schemaName] = dayjs().format("YYYY/MM/DD");
+      if ("defaultValue" in item && item.fieldType === "datePicker") {
+        defaultValuesObject[item.schemaName] =
+          item.defaultValue && formatDateTime(item.defaultValue);
       }
 
       // custom case for time picker default value
-      if (
-        "defaultValue" in item &&
-        item.fieldType === "timePicker" &&
-        item.defaultValue === "now"
-      ) {
-        // Target Format hh:mm a
-        const currentHour = new Date().getHours();
-        defaultValuesObject[item.schemaName] = dayjs()
-          .hour(currentHour + 1)
-          .minute(0)
-          .format("hh:mm a");
-      }
-      if (
-        "defaultValue" in item &&
-        item.fieldType === "timePicker" &&
-        item.defaultValue === "next"
-      ) {
-        // Target Format hh:mm a
-        const currentHour = new Date().getHours();
-        defaultValuesObject[item.schemaName] = dayjs()
-          .hour(currentHour + 1)
-          .minute(30)
-          .format("hh:mm a");
+      if ("defaultValue" in item && item.fieldType === "timePicker") {
+        defaultValuesObject[item.schemaName] =
+          item.defaultValue &&
+          formatDateTime(item.defaultValue).format("hh:mm a");
       }
 
       // config schema
@@ -78,4 +55,29 @@ export const configValidation = (itemsData: Item[]) => {
     }
   });
   return { shape, defaultValuesObject };
+};
+
+// Formatting date and time
+export const formatDateTime = (time: string) => {
+  const regex =
+      /(?<dir>add|subtract) (?<count>\d+) (?<unit>d|w|M|Q|y|h|m|s|ms)/,
+    match = regex.exec(time);
+
+  if (match !== null) {
+    const { groups } = match;
+    const { dir, count, unit } = groups as {
+      dir: "add" | "subtract";
+      count: string;
+      unit: ManipulateType;
+    };
+
+    // this configure assumes that TIME is always will need to be ceiled up to next hour
+    const value = ["h", "m", "ms", "s"].includes(unit)
+      ? dayjs().add(1, "hour").startOf("hour")[dir](parseInt(count), unit)
+      : dayjs()[dir](parseInt(count), unit);
+
+    return value;
+  } else {
+    return dayjs(time);
+  }
 };

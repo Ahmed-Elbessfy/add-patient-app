@@ -324,7 +324,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 validation: [
                   {
                     type: "earlier_than",
-                    date: "today",
+                    date: "add 0 day",
                     defaultErrorMsg:
                       "apInputs.add_new.birthDate.errorMsgs.earlierThan.default",
                     customErrorMsg:
@@ -334,7 +334,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 ],
                 dateLimit: {
                   status: "after",
-                  date: "today",
+                  date: "add 0 day",
                 },
                 visibility: [
                   {
@@ -1171,7 +1171,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "day",
         schemaName: "day",
         label: "apInputs.day.label",
-        defaultValue: "today",
+        defaultValue: "add 0 day",
         format: "DD/MM/YYYY",
         validation: [
           {
@@ -1182,7 +1182,7 @@ export const addAppointmentFieldsConfig: Item[] = [
           },
           {
             type: "later_than",
-            date: "today",
+            date: "add 0 day",
             defaultErrorMsg: "apInputs.day.errorMsgs.laterThan.default",
             customErrorMsg: "apInputs.day.errorMsgs.laterThan.custom",
             useCustomErrorMsg: false,
@@ -1198,7 +1198,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "start_time",
         label: "apInputs.start_time.label",
         use12Hours: true,
-        defaultValue: "now",
+        defaultValue: "12/10/2023 14:00", // testing time format: date can be today with format MM/DD/YYYY
         format: "hh:mm a",
         validation: [
           {
@@ -1226,7 +1226,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "end_time",
         schemaName: "end_time",
         label: "apInputs.end_time.label",
-        defaultValue: "next",
+        defaultValue: "add 30 minute",
         use12Hours: true,
         format: "hh:mm a",
         validation: [
@@ -1341,7 +1341,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "earlier_than",
-            date: "today",
+            date: "add 0 day",
             defaultErrorMsg: "apInputs.created.errorMsgs.earlierThan.default",
             customErrorMsg: "apInputs.created.errorMsgs.earlierThan.custom",
             useCustomErrorMsg: false,
@@ -1349,7 +1349,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         ],
         dateLimit: {
           status: "after",
-          date: "today",
+          date: "add 0 day",
         },
       },
     ],
