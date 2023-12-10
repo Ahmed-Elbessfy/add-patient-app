@@ -24,7 +24,7 @@ const withI18n = (Story, context) => {
 
   // When locale Global changes
   // set new locale in i18n
-  const { i18n } = useTranslation("lang");
+  const { i18n } = useTranslation("translation");
   useEffect(() => {
     i18n.changeLanguage(locale);
   }, [locale]);

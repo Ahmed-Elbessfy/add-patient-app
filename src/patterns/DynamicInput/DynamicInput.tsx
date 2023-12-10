@@ -20,7 +20,7 @@ import {
 
 const DynamicInput: FC<DynamicFieldConfig> = (props) => {
   const { fieldType, label, id, name, placeholder, testId, onChange } = props;
-  const { t } = useTranslation("lang");
+  const { t } = useTranslation("translation");
 
   return (
     <>

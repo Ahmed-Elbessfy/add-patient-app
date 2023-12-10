@@ -34,7 +34,7 @@ const AddPatientForm: FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const { t } = useTranslation("lang");
+  const { t } = useTranslation("translation");
   // submitting data to server
   const [createPatient] = useMutation(ADD_PATIENT, { variables: { data: {} } });
   const onSubmit = (data: AddPatientFormInterface) => {

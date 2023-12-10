@@ -12,7 +12,7 @@ const SwitchLangBtn = loadable(
 );
 function App() {
   // configure i18n
-  const { i18n } = useTranslation("lang");
+  const { i18n } = useTranslation("translation");
   return (
     <>
       <ConfigProvider direction={i18n.language == "ar" ? "rtl" : "ltr"}>

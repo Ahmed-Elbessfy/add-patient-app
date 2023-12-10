@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import dayjs from "dayjs";
+import i18next from "i18next";
 
 export const INPUT_TYPES = {
   INPUT_TEXT: "text",
@@ -27,18 +28,39 @@ export const VALIDATION_RULE_TYPES = {
 // if error messages continue to be kind of systematic for any type of validation rule, we can consider removing this object and return the error Translation Key directly
 // will need to check with Anas first
 export const ERROR_MESSAGES = {
-  [VALIDATION_RULE_TYPES.REQUIRED]: (errorMsgKey: string) => errorMsgKey,
-  [VALIDATION_RULE_TYPES.REQUIRED_IF]: (errorMsgKey: string) => errorMsgKey,
-  [VALIDATION_RULE_TYPES.EARLIER_THAN]: (errorTransKey: string) =>
-    errorTransKey,
-  [VALIDATION_RULE_TYPES.LATER_THAN]: (errorTransKey: string) => errorTransKey,
-  [VALIDATION_RULE_TYPES.TIME_EARLIER_THAN]: (errorTransKey: string) =>
-    errorTransKey,
-  [VALIDATION_RULE_TYPES.TIME_LATER_THAN]: (errorTransKey: string) =>
-    errorTransKey,
-  [VALIDATION_RULE_TYPES.HAS_PATTERN]: (errorTransKey: string) => errorTransKey,
-  [VALIDATION_RULE_TYPES.MINIMUM]: (errorTransKey: string) => errorTransKey,
-  [VALIDATION_RULE_TYPES.MAXIMUM]: (errorTransKey: string) => errorTransKey,
+  [VALIDATION_RULE_TYPES.REQUIRED]: (fieldName: string) =>
+    i18next.t("error_messages.required", { fieldName }),
+  [VALIDATION_RULE_TYPES.REQUIRED_IF]: (fieldName: string) =>
+    i18next.t("error_messages.requiredIf", { fieldName }),
+  [VALIDATION_RULE_TYPES.EARLIER_THAN]: (
+    fieldName: string,
+    limitDate: string
+  ) => i18next.t("error_messages.earlier_than", { fieldName, limitDate }),
+  [VALIDATION_RULE_TYPES.LATER_THAN]: (fieldName: string, limitDate: string) =>
+    i18next.t("error_messages.later_than", { fieldName, limitDate }),
+  [VALIDATION_RULE_TYPES.TIME_EARLIER_THAN]: (
+    fieldName: string,
+    targetField: string
+  ) =>
+    i18next.t("error_messages.time_earlier_than", { fieldName, targetField }),
+  [VALIDATION_RULE_TYPES.TIME_LATER_THAN]: (
+    fieldName: string,
+    targetField: string
+  ) => i18next.t("error_messages.time_later_than", { fieldName, targetField }),
+  [VALIDATION_RULE_TYPES.HAS_PATTERN]: (fieldName: string) =>
+    i18next.t("error_messages.pattern", {
+      fieldName,
+    }),
+  [VALIDATION_RULE_TYPES.MINIMUM]: (fieldName: string, minimum: number) =>
+    i18next.t("error_messages.minimum", {
+      fieldName,
+      minimum,
+    }),
+  [VALIDATION_RULE_TYPES.MAXIMUM]: (fieldName: string, maximum: number) =>
+    i18next.t("error_messages.maximum", {
+      fieldName,
+      maximum,
+    }),
 };
 
 export const INPUT_VALIDATION_TYPES = {

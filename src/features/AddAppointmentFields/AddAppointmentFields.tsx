@@ -42,7 +42,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
     }
   };
 
-  const { t } = useTranslation("lang");
+  const { t } = useTranslation("translation");
 
   return (
     <>

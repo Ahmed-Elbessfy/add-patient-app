@@ -564,5 +564,16 @@
       }
     }
   },
-  "formSubmitBtn": "Add Patient"
+  "formSubmitBtn": "Add Patient",
+  "error_messages": {
+    "required": "{{fieldName}} is required",
+    "requiredIf": "{{fieldName}} is required",
+    "earlier_than": "{{fieldName}} must be earlier than {{limitDate}}",
+    "later_than": "{{fieldName}} must be later than {{limitDate}}",
+    "time_earlier_than": "{{fieldName}} must be earlier than {{targetField}}",
+    "time_later_than": "{{fieldName}} must be later than {{targetField}}",
+    "pattern": "Please enter a valid {{fieldName}}",
+    "minimum": "{{fieldName}} must be more than {{minimum}}",
+    "maximum": "{{fieldName}} must be more than {{maximum}}"
+  }
 }

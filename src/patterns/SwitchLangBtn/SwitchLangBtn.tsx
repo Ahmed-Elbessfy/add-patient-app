@@ -3,7 +3,7 @@ import { Select } from "antd";
 import { useTranslation } from "react-i18next";
 
 const SwitchLangBtn: FC = () => {
-  const { i18n } = useTranslation("lang");
+  const { i18n } = useTranslation("translation");
 
   return (
     <Select

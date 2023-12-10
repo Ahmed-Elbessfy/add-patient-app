@@ -40,7 +40,7 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
   });
 
   // for header & error messages
-  const { t } = useTranslation("lang");
+  const { t } = useTranslation("translation");
 
   const renderItems = (inputsConfig: InputConfigOptions[]): JSX.Element => {
     return (

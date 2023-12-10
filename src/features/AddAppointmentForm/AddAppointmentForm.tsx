@@ -40,7 +40,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   });
 
   // get current language for content direction
-  const { t, i18n } = useTranslation("lang");
+  const { t, i18n } = useTranslation("translation");
 
   // configure if field is disabled or not
   const isMatched = (rules: Rule[]) => {
