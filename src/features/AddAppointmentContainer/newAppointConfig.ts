@@ -77,9 +77,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 value: false,
               },
             ],
-            defaultErrorMsg: "apInputs.patient_name.errorMsgs.required.default",
-            customErrorMsg: "apInputs.patient_name.errorMsgs.required.custom",
-            useCustomErrorMsg: false,
           },
         ],
       },
@@ -135,9 +132,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 value: true,
               },
             ],
-            defaultErrorMsg: "apInputs.note_title.errorMsgs.required.default",
-            customErrorMsg: "apInputs.note_title.errorMsgs.required.custom",
-            useCustomErrorMsg: false,
           },
         ],
       },
@@ -188,11 +182,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                     value: true,
                   },
                 ],
-                defaultErrorMsg:
-                  "apInputs.add_new.first_name.errorMsgs.required.default",
-                customErrorMsg:
-                  "apInputs.add_new.first_name.errorMsgs.required.custom",
-                useCustomErrorMsg: false,
               },
             ],
           },
@@ -213,11 +202,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                     value: true,
                   },
                 ],
-                defaultErrorMsg:
-                  "apInputs.add_new.last_name.errorMsgs.required.default",
-                customErrorMsg:
-                  "apInputs.add_new.last_name.errorMsgs.required.custom",
-                useCustomErrorMsg: false,
               },
             ],
           },
@@ -241,11 +225,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 type: "hasPattern",
                 pattern:
                   /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
-                defaultErrorMsg:
-                  "apInputs.add_new.phone.errorMsgs.pattern.default",
-                customErrorMsg:
-                  "apInputs.add_new.phone.errorMsgs.pattern.custom",
-                useCustomErrorMsg: false,
               },
             ],
           },
@@ -262,11 +241,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 type: "hasPattern",
                 pattern:
                   /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
-                defaultErrorMsg:
-                  "apInputs.add_new.secondary_phone.errorMsgs.pattern.default",
-                customErrorMsg:
-                  "apInputs.add_new.secondary_phone.errorMsgs.pattern.custom",
-                useCustomErrorMsg: false,
               },
             ],
           },
@@ -325,11 +299,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                   {
                     type: "earlier_than",
                     date: "add 0 day",
-                    defaultErrorMsg:
-                      "apInputs.add_new.birthDate.errorMsgs.earlierThan.default",
-                    customErrorMsg:
-                      "apInputs.add_new.birthDate.errorMsgs.earlierThan.custom",
-                    useCustomErrorMsg: false,
                   },
                 ],
                 dateLimit: {
@@ -360,20 +329,10 @@ export const addAppointmentFieldsConfig: Item[] = [
                       {
                         type: "minimum",
                         minimum: 1,
-                        defaultErrorMsg:
-                          "apInputs.add_new.age.errorMsgs.minimum.default",
-                        customErrorMsg:
-                          "apInputs.add_new.age.errorMsgs.minimum.custom",
-                        useCustomErrorMsg: false,
                       },
                       {
                         type: "maximum",
                         maximum: 200,
-                        defaultErrorMsg:
-                          "apInputs.add_new.age.errorMsgs.maximum.default",
-                        customErrorMsg:
-                          "apInputs.add_new.age.errorMsgs.maximum.custom",
-                        useCustomErrorMsg: false,
                       },
                     ],
                     visibility: [
@@ -472,11 +431,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 type: "hasPattern",
                 pattern:
                   /^[A-Za-z0-9,-_.]{3,}@[A-Za-z0-9]{3,}\.[A-Za-z0-9]{3,}$/,
-                defaultErrorMsg:
-                  "apInputs.add_new.email.errorMsgs.pattern.default",
-                customErrorMsg:
-                  "apInputs.add_new.email.errorMsgs.pattern.custom",
-                useCustomErrorMsg: false,
               },
             ],
           },
@@ -918,11 +872,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 type: "hasPattern",
                 pattern:
                   /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
-                defaultErrorMsg:
-                  "apInputs.add_new.emergency_phone.errorMsgs.pattern.default",
-                customErrorMsg:
-                  "apInputs.add_new.emergency_phone.errorMsgs.pattern.custom",
-                useCustomErrorMsg: false,
               },
             ],
           },
@@ -946,11 +895,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 type: "hasPattern",
                 pattern:
                   /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
-                defaultErrorMsg:
-                  "apInputs.add_new.emergency_secondary_phone.errorMsgs.pattern.default",
-                customErrorMsg:
-                  "apInputs.add_new.emergency_secondary_phone.errorMsgs.pattern.custom",
-                useCustomErrorMsg: false,
               },
             ],
           },
@@ -1027,9 +971,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 value: false,
               },
             ],
-            defaultErrorMsg: "apInputs.doctor.errorMsgs.required.default",
-            customErrorMsg: "apInputs.doctor.errorMsgs.required.custom",
-            useCustomErrorMsg: false,
           },
         ],
       },
@@ -1051,9 +992,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            defaultErrorMsg: "apInputs.room.errorMsgs.required.default",
-            customErrorMsg: "apInputs.room.errorMsgs.required.custom",
-            useCustomErrorMsg: false,
           },
         ],
       },
@@ -1088,9 +1026,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 value: false,
               },
             ],
-            defaultErrorMsg: "apInputs.status.errorMsgs.required.default",
-            customErrorMsg: "apInputs.status.errorMsgs.required.custom",
-            useCustomErrorMsg: false,
           },
         ],
       },
@@ -1124,11 +1059,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 value: true,
               },
             ],
-            defaultErrorMsg:
-              "apInputs.notified_doctor.errorMsgs.required.default",
-            customErrorMsg:
-              "apInputs.notified_doctor.errorMsgs.required.custom",
-            useCustomErrorMsg: false,
           },
         ],
       },
@@ -1150,9 +1080,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            defaultErrorMsg: "apInputs.room.errorMsgs.required.default",
-            customErrorMsg: "apInputs.room.errorMsgs.required.custom",
-            useCustomErrorMsg: false,
           },
         ],
       },
@@ -1176,16 +1103,10 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            defaultErrorMsg: "apInputs.day.errorMsgs.required.default",
-            customErrorMsg: "apInputs.day.errorMsgs.required.custom",
-            useCustomErrorMsg: false,
           },
           {
             type: "later_than",
             date: "add 0 day",
-            defaultErrorMsg: "apInputs.day.errorMsgs.laterThan.default",
-            customErrorMsg: "apInputs.day.errorMsgs.laterThan.custom",
-            useCustomErrorMsg: false,
           },
         ],
       },
@@ -1203,20 +1124,12 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            defaultErrorMsg: "apInputs.start_time.errorMsgs.required.default",
-            customErrorMsg: "apInputs.start_time.errorMsgs.required.custom",
-            useCustomErrorMsg: false,
           },
           {
             type: "time_earlier_than",
             fields: [
               { field: "end_time", fieldLabel: "apInputs.end_time.label" },
             ],
-            defaultErrorMsg:
-              "apInputs.start_time.errorMsgs.time_earlier_than.default",
-            customErrorMsg:
-              "apInputs.start_time.errorMsgs.time_earlier_than.custom",
-            useCustomErrorMsg: false,
           },
         ],
       },
@@ -1234,20 +1147,12 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            defaultErrorMsg: "apInputs.end_time.errorMsgs.required.default",
-            customErrorMsg: "apInputs.end_time.errorMsgs.required.custom",
-            useCustomErrorMsg: false,
           },
           {
             type: "time_later_than",
             fields: [
               { field: "start_time", fieldLabel: "apInputs.start_time.label" },
             ],
-            defaultErrorMsg:
-              "apInputs.end_time.errorMsgs.time_later_than.default",
-            customErrorMsg:
-              "apInputs.end_time.errorMsgs.time_later_than.custom",
-            useCustomErrorMsg: false,
           },
         ],
       },
@@ -1309,9 +1214,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [
           {
             type: "required",
-            defaultErrorMsg: "apInputs.type.errorMsgs.required.default",
-            customErrorMsg: "apInputs.type.errorMsgs.required.custom",
-            useCustomErrorMsg: false,
           },
         ],
       },
@@ -1346,9 +1248,6 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             type: "earlier_than",
             date: "add 0 day",
-            defaultErrorMsg: "apInputs.created.errorMsgs.earlierThan.default",
-            customErrorMsg: "apInputs.created.errorMsgs.earlierThan.custom",
-            useCustomErrorMsg: false,
           },
         ],
         dateLimit: {

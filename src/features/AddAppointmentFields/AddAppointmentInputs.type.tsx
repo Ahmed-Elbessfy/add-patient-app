@@ -15,9 +15,6 @@ type FieldValidationField = {
 
 export type FieldValidation = {
   type: string;
-  defaultErrorMsg: string;
-  customErrorMsg: string;
-  useCustomErrorMsg: boolean;
   date?: string;
   fields?: FieldValidationField[];
   pattern?: RegExp;
