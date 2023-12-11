@@ -1209,7 +1209,9 @@ export const addAppointmentFieldsConfig: Item[] = [
           },
           {
             type: "time_earlier_than",
-            fields: ["end_time"],
+            fields: [
+              { field: "end_time", fieldLabel: "apInputs.end_time.label" },
+            ],
             defaultErrorMsg:
               "apInputs.start_time.errorMsgs.time_earlier_than.default",
             customErrorMsg:
@@ -1238,7 +1240,9 @@ export const addAppointmentFieldsConfig: Item[] = [
           },
           {
             type: "time_later_than",
-            fields: ["start_time"],
+            fields: [
+              { field: "start_time", fieldLabel: "apInputs.start_time.label" },
+            ],
             defaultErrorMsg:
               "apInputs.end_time.errorMsgs.time_later_than.default",
             customErrorMsg:

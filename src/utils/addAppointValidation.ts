@@ -1,6 +1,4 @@
-import { SchemaName } from "./../features/AddAppointmentFields/AddAppointmentInputs.type";
 import { StringSchema, NumberSchema, AnyObject } from "yup";
-// import i18next from "i18next";
 import {
   ERROR_MESSAGES,
   VALIDATION_RULE_TYPES,
@@ -27,11 +25,14 @@ const validateRequired = (
 ) => {
   const isRequired = field.validation.find((rule) => rule.type === "required");
 
+  // Translate field name
+  const fieldName = field.label;
+
   // check if the field is Required, since not all fields are required
   return (
     isRequired &&
     validationSchema.required(
-      ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED](field.schemaName)
+      ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED](fieldName)
     )
   );
 };
@@ -43,6 +44,9 @@ const validateRequiredIf = (
   const { requiredConditions } = field.validation.filter(
     (rule: FieldValidation) => rule.type === "requiredIf"
   )[0];
+
+  // Translate field name
+  const fieldName = field.label;
 
   // WHEN method is used to watch for required condition fields and validate on change
   // IS parameters is the values of the fields accepted as first parameter of WHEN method
@@ -63,7 +67,7 @@ const validateRequiredIf = (
       },
       then: (schema: SchemaType) => {
         return schema.required(
-          ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED_IF](field.schemaName)
+          ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED_IF](fieldName)
         );
       },
     }
@@ -80,13 +84,17 @@ const validateEarlierThan = (
 
   const formattedDate = date && formatDateTime(date);
 
+  // Translate field name
+  const fieldName = field.label;
+
   // accepted format "YYYY/MM/DD"
   return (
     formattedDate &&
+    fieldName &&
     validationSchema.max(
       formattedDate,
       ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](
-        field.schemaName,
+        fieldName,
         formattedDate.format("DD/MM/YYYY")
       )
     )
@@ -103,13 +111,17 @@ const validateLaterThan = (
 
   const formattedDate = date && formatDateTime(date);
 
+  // Translate field name
+  const fieldName = field.label;
+
   // accepted format "YYYY/MM/DD"
   return (
     formattedDate &&
+    fieldName &&
     validationSchema.min(
       formattedDate,
       ERROR_MESSAGES[VALIDATION_RULE_TYPES.LATER_THAN](
-        field.schemaName,
+        fieldName,
         formattedDate.format("DD/MM/YYYY")
       )
     )
@@ -125,15 +137,21 @@ const validateTimeEarlierThan = (
   )[0];
 
   // make sure that if fields exist, get target field value
-  const targetField = fields && fields[0];
+  const targetField = fields && fields[0].field;
+
+  // Translate field name & target field
+  const fieldName = field.label,
+    targetFieldLabel = fields && fields[0].fieldLabel;
 
   return (
     targetField &&
+    fieldName &&
+    targetFieldLabel &&
     validationSchema.isTimeEarlierThan({
       targetField,
       errorMsg: ERROR_MESSAGES[VALIDATION_RULE_TYPES.TIME_EARLIER_THAN](
-        field.schemaName,
-        targetField
+        fieldName,
+        targetFieldLabel
       ),
     })
   );
@@ -148,15 +166,21 @@ const validateTimeLaterThan = (
   )[0];
 
   // make sure that if fields exist, get target field value
-  const targetField = fields && fields[0];
+  const targetField = fields && fields[0].field;
+
+  // Translate field name & target field
+  const fieldName = field.label,
+    targetFieldLabel = fields && fields[0].fieldLabel;
 
   return (
     targetField &&
+    fieldName &&
+    targetFieldLabel &&
     validationSchema.isTimeLaterThan({
       targetField,
       errorMsg: ERROR_MESSAGES[VALIDATION_RULE_TYPES.TIME_LATER_THAN](
-        field.schemaName,
-        targetField
+        fieldName,
+        targetFieldLabel
       ),
     })
   );
@@ -170,11 +194,15 @@ const validatePattern = (
     (rule) => rule.type === "hasPattern"
   )[0];
 
+  // Translate field name
+  const fieldName = field.label;
+
   return (
     pattern &&
+    fieldName &&
     validationSchema.matches(
       pattern,
-      ERROR_MESSAGES[VALIDATION_RULE_TYPES.HAS_PATTERN](field.SchemaName)
+      ERROR_MESSAGES[VALIDATION_RULE_TYPES.HAS_PATTERN](fieldName)
     )
   );
 };
@@ -187,15 +215,16 @@ const validateMinimum = (
     (rule) => rule.type === "minimum"
   )[0];
 
+  // Translate field name
+  const fieldName = field.label;
+
   // accepted format "YYYY/MM/DD"
   return (
     minimum &&
+    fieldName &&
     validationSchema.min(
       minimum,
-      ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](
-        field.schemaName,
-        minimum
-      )
+      ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](fieldName, minimum)
     )
   );
 };
@@ -208,15 +237,16 @@ const validateMaximum = (
     (rule) => rule.type === "maximum"
   )[0];
 
+  // Translate field name
+  const fieldName = field.label;
+
   // accepted format "YYYY/MM/DD"
   return (
     maximum &&
+    fieldName &&
     validationSchema.max(
       maximum,
-      ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](
-        field.schemaName,
-        maximum
-      )
+      ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](fieldName, maximum)
     )
   );
 };

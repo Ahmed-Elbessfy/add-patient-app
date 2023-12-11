@@ -7,13 +7,19 @@ type itemCategory = "field" | "layout" | "UI";
 **********************************************************
 */
 
+// fieldLabel is used for Error Messages translation
+type FieldValidationField = {
+  field: SchemaName;
+  fieldLabel: string;
+};
+
 export type FieldValidation = {
   type: string;
   defaultErrorMsg: string;
   customErrorMsg: string;
   useCustomErrorMsg: boolean;
   date?: string;
-  fields?: SchemaName[];
+  fields?: FieldValidationField[];
   pattern?: RegExp;
   minimum?: number;
   maximum?: number;

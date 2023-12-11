@@ -25,42 +25,95 @@ export const VALIDATION_RULE_TYPES = {
   MAXIMUM: "maximum",
 };
 
-// if error messages continue to be kind of systematic for any type of validation rule, we can consider removing this object and return the error Translation Key directly
-// will need to check with Anas first
 export const ERROR_MESSAGES = {
-  [VALIDATION_RULE_TYPES.REQUIRED]: (fieldName: string) =>
-    i18next.t("error_messages.required", { fieldName }),
-  [VALIDATION_RULE_TYPES.REQUIRED_IF]: (fieldName: string) =>
-    i18next.t("error_messages.requiredIf", { fieldName }),
+  [VALIDATION_RULE_TYPES.REQUIRED]: (fieldName: string) => {
+    // Translate field name
+    const field = i18next.t(fieldName);
+
+    return i18next.t("error_messages.required", { fieldName: field });
+  },
+  [VALIDATION_RULE_TYPES.REQUIRED_IF]: (fieldName: string) => {
+    // Translate field name
+    const field = i18next.t(fieldName);
+
+    return i18next.t("error_messages.requiredIf", { fieldName: field });
+  },
   [VALIDATION_RULE_TYPES.EARLIER_THAN]: (
     fieldName: string,
     limitDate: string
-  ) => i18next.t("error_messages.earlier_than", { fieldName, limitDate }),
-  [VALIDATION_RULE_TYPES.LATER_THAN]: (fieldName: string, limitDate: string) =>
-    i18next.t("error_messages.later_than", { fieldName, limitDate }),
+  ) => {
+    // Translate field name
+    const field = i18next.t(fieldName);
+
+    return i18next.t("error_messages.earlier_than", {
+      fieldName: field,
+      limitDate,
+    });
+  },
+  [VALIDATION_RULE_TYPES.LATER_THAN]: (
+    fieldName: string,
+    limitDate: string
+  ) => {
+    // Translate field name
+    const field = i18next.t(fieldName);
+
+    return i18next.t("error_messages.later_than", {
+      fieldName: field,
+      limitDate,
+    });
+  },
   [VALIDATION_RULE_TYPES.TIME_EARLIER_THAN]: (
     fieldName: string,
-    targetField: string
-  ) =>
-    i18next.t("error_messages.time_earlier_than", { fieldName, targetField }),
+    targetFieldLabel: string
+  ) => {
+    // Translate field name & target field
+    const field = i18next.t(fieldName),
+      targetField = i18next.t(targetFieldLabel);
+
+    return i18next.t("error_messages.time_earlier_than", {
+      fieldName: field,
+      targetField,
+    });
+  },
   [VALIDATION_RULE_TYPES.TIME_LATER_THAN]: (
     fieldName: string,
-    targetField: string
-  ) => i18next.t("error_messages.time_later_than", { fieldName, targetField }),
-  [VALIDATION_RULE_TYPES.HAS_PATTERN]: (fieldName: string) =>
-    i18next.t("error_messages.pattern", {
-      fieldName,
-    }),
-  [VALIDATION_RULE_TYPES.MINIMUM]: (fieldName: string, minimum: number) =>
-    i18next.t("error_messages.minimum", {
-      fieldName,
+    targetFieldLabel: string
+  ) => {
+    // Translate field name & target field
+    const field = i18next.t(fieldName),
+      targetField = i18next.t(targetFieldLabel);
+
+    return i18next.t("error_messages.time_later_than", {
+      fieldName: field,
+      targetField,
+    });
+  },
+  [VALIDATION_RULE_TYPES.HAS_PATTERN]: (fieldName: string) => {
+    // Translate field name & target field
+    const field = i18next.t(fieldName);
+
+    return i18next.t("error_messages.pattern", {
+      fieldName: field,
+    });
+  },
+  [VALIDATION_RULE_TYPES.MINIMUM]: (fieldName: string, minimum: number) => {
+    // Translate field name & target field
+    const field = i18next.t(fieldName);
+
+    return i18next.t("error_messages.minimum", {
+      fieldName: field,
       minimum,
-    }),
-  [VALIDATION_RULE_TYPES.MAXIMUM]: (fieldName: string, maximum: number) =>
-    i18next.t("error_messages.maximum", {
-      fieldName,
+    });
+  },
+  [VALIDATION_RULE_TYPES.MAXIMUM]: (fieldName: string, maximum: number) => {
+    // Translate field name & target field
+    const field = i18next.t(fieldName);
+
+    return i18next.t("error_messages.maximum", {
+      fieldName: field,
       maximum,
-    }),
+    });
+  },
 };
 
 export const INPUT_VALIDATION_TYPES = {

@@ -193,7 +193,9 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
             // clear validation error
             // Get fields that needs clearing error
             const fields = validation.reduce<string[]>((acc, current) => {
-              if (current.fields) acc.push(...current.fields);
+              if (current.fields) {
+                acc.push(...current.fields.map((field) => field.field));
+              }
               return acc;
             }, []);
 
