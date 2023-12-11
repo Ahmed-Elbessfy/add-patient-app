@@ -224,7 +224,7 @@ const validateMinimum = (
     fieldName &&
     validationSchema.min(
       minimum,
-      ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](fieldName, minimum)
+      ERROR_MESSAGES[VALIDATION_RULE_TYPES.MINIMUM](fieldName, minimum)
     )
   );
 };
@@ -246,7 +246,7 @@ const validateMaximum = (
     fieldName &&
     validationSchema.max(
       maximum,
-      ERROR_MESSAGES[VALIDATION_RULE_TYPES.EARLIER_THAN](fieldName, maximum)
+      ERROR_MESSAGES[VALIDATION_RULE_TYPES.MAXIMUM](fieldName, maximum)
     )
   );
 };
