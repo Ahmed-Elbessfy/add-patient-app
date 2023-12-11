@@ -1,6 +1,6 @@
 import { FieldElement, UseFormClearErrors } from "react-hook-form";
 
-type itemCategory = "field" | "layout" | "UI";
+type itemCategory = "field" | "layout" | "UI" | "form";
 /*
 **********************************************************
                     Category: Field
@@ -54,39 +54,39 @@ export type SchemaName =
   | "collected_diagnostic_fees_subtype"
   | "reminder_before"
   | "reminder_before_interval"
-  | "new_patient_id"
-  | "new_patient_first_name"
-  | "new_patient_last_name"
-  | "new_patient_phone"
-  | "new_patient_secondary_phone"
-  | "new_patient_country"
-  | "new_patient_birthDate"
-  | "new_patient_age"
-  | "new_patient_switch_date_age"
-  | "new_patient_title"
-  | "new_patient_gender"
-  | "new_patient_email"
-  | "new_patient_address"
-  | "new_patient_assigned_practitioner"
-  | "new_patient_price_list_group"
-  | "new_patient_patient_tags"
-  | "new_patient_martial_status"
-  | "new_patient_job"
-  | "new_patient_nationality"
-  | "new_patient_tax"
-  | "new_patient_national_id"
-  | "new_patient_patient_details"
-  | "new_patient_insurance_company"
-  | "new_patient_referral_source"
-  | "new_patient_referral_details"
-  | "new_patient_referral_user"
-  | "new_patient_referral_patient"
-  | "new_patient_emergency_first_name"
-  | "new_patient_emergency_last_name"
-  | "new_patient_emergency_phone"
-  | "new_patient_emergency_secondary_phone"
-  | "new_patient_emergency_address"
-  | "new_patient_emergency_relationship";
+  | "new_patient.id"
+  | "new_patient.first_name"
+  | "new_patient.last_name"
+  | "new_patient.phone"
+  | "new_patient.secondary_phone"
+  | "new_patient.country"
+  | "new_patient.birthDate"
+  | "new_patient.age"
+  | "new_patient.switch_date_age"
+  | "new_patient.title"
+  | "new_patient.gender"
+  | "new_patient.email"
+  | "new_patient.address"
+  | "new_patient.assigned_practitioner"
+  | "new_patient.price_list_group"
+  | "new_patient.patient_tags"
+  | "new_patient.martial_status"
+  | "new_patient.job"
+  | "new_patient.nationality"
+  | "new_patient.tax"
+  | "new_patient.national_id"
+  | "new_patient.patient_details"
+  | "new_patient.insurance_company"
+  | "new_patient.referral_source"
+  | "new_patient.referral_details"
+  | "new_patient.referral_user"
+  | "new_patient.referral_patient"
+  | "new_patient.emergency_first_name"
+  | "new_patient.emergency_last_name"
+  | "new_patient.emergency_phone"
+  | "new_patient.emergency_secondary_phone"
+  | "new_patient.emergency_address"
+  | "new_patient.emergency_relationship";
 
 type fieldTypeValues =
   | "text"
@@ -235,6 +235,18 @@ export type ItemLayout = LayoutHStack | LayoutBox;
 
 /*
 **********************************************************
+                    Category: Form
+**********************************************************
+*/
+
+export type ItemForm = {
+  category: itemCategory;
+  children: ChildrenType[];
+  visibility?: Rule[];
+};
+
+/*
+**********************************************************
                       Category: UI
 **********************************************************
 */
@@ -280,4 +292,4 @@ export interface UIAlert extends UIBase {
 
 export type ItemUI = UITitle | UIText | UILink | UIAlert;
 
-export type Item = FormFieldConfig | ItemLayout | ItemUI;
+export type Item = FormFieldConfig | ItemLayout | ItemUI | ItemForm;

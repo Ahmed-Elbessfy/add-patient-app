@@ -49,11 +49,12 @@ export const configValidation = (itemsData: Item[]) => {
       shape[currentItem.schemaName] = parseValidation(currentItem);
     }
 
-    if (item.category === "layout") {
+    if (item.category === "layout" || item.category === "form") {
       const currentItem = item as ItemLayout;
       configValidation(currentItem.children);
     }
   });
+
   return { shape, defaultValuesObject };
 };
 

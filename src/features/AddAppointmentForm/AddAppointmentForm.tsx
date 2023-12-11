@@ -15,6 +15,7 @@ import {
   UILink,
   UIText,
   UITitle,
+  ItemForm,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
@@ -132,6 +133,17 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
             );
           }
 
+          // Form Render
+          if (fieldConfig.category === "form") {
+            const item = fieldConfig as ItemForm;
+            return item.visibility ? (
+              isMatched(item.visibility) && (
+                <AddAppointmentSection renderItems={renderItems} {...item} />
+              )
+            ) : (
+              <AddAppointmentSection renderItems={renderItems} {...item} />
+            );
+          }
           // UI Render
           if (fieldConfig.category === "UI") {
             const item = fieldConfig as ItemUI;

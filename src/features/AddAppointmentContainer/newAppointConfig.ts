@@ -145,7 +145,7 @@ export const addAppointmentFieldsConfig: Item[] = [
   },
   // start new patient form config
   {
-    category: "layout",
+    category: "form",
     type: "box",
     gap: 0.5,
     visibility: [{ field: "show_add_patient", value: true }],
@@ -164,20 +164,20 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_id",
-            testId: "new_patient_id",
-            name: "new_patient_id",
-            schemaName: "new_patient_id",
+            id: "new_patient.id",
+            testId: "new_patient.id",
+            name: "new_patient.id",
+            schemaName: "new_patient.id",
             label: "apInputs.add_new.id.label",
             validation: [],
           },
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_first_name",
-            testId: "new_patient_first_name",
-            name: "new_patient_first_name",
-            schemaName: "new_patient_first_name",
+            id: "new_patient.first_name",
+            testId: "new_patient.first_name",
+            name: "new_patient.first_name",
+            schemaName: "new_patient.first_name",
             label: "apInputs.add_new.first_name.label",
             validation: [
               {
@@ -199,10 +199,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_last_name",
-            testId: "new_patient_last_name",
-            name: "new_patient_last_name",
-            schemaName: "new_patient_last_name",
+            id: "new_patient.last_name",
+            testId: "new_patient.last_name",
+            name: "new_patient.last_name",
+            schemaName: "new_patient.last_name",
             label: "apInputs.add_new.last_name.label",
             validation: [
               {
@@ -231,10 +231,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_phone",
-            testId: "new_patient_phone",
-            name: "new_patient_phone",
-            schemaName: "new_patient_phone",
+            id: "new_patient.phone",
+            testId: "new_patient.phone",
+            name: "new_patient.phone",
+            schemaName: "new_patient.phone",
             label: "apInputs.add_new.phone.label",
             validation: [
               {
@@ -252,10 +252,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_secondary_phone",
-            testId: "new_patient_secondary_phone",
-            name: "new_patient_secondary_phone",
-            schemaName: "new_patient_secondary_phone",
+            id: "new_patient.secondary_phone",
+            testId: "new_patient.secondary_phone",
+            name: "new_patient.secondary_phone",
+            schemaName: "new_patient.secondary_phone",
             label: "apInputs.add_new.secondary_phone.label",
             validation: [
               {
@@ -273,10 +273,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_country",
-            testId: "new_patient_country",
-            name: "new_patient_country",
-            schemaName: "new_patient_country",
+            id: "new_patient.country",
+            testId: "new_patient.country",
+            name: "new_patient.country",
+            schemaName: "new_patient.country",
             label: "apInputs.add_new.country.label",
             defaultValue: "egypt",
             options: [
@@ -314,10 +314,10 @@ export const addAppointmentFieldsConfig: Item[] = [
               {
                 category: "field",
                 fieldType: "datePicker",
-                id: "new_patient_birthDate",
-                testId: "new_patient_birthDate",
-                name: "new_patient_birthDate",
-                schemaName: "new_patient_birthDate",
+                id: "new_patient.birthDate",
+                testId: "new_patient.birthDate",
+                name: "new_patient.birthDate",
+                schemaName: "new_patient.birthDate",
                 label: "apInputs.add_new.birthDate.label",
                 placeholder: "apInputs.add_new.birthDate.placeholder",
                 format: "DD/MM/YYYY",
@@ -338,7 +338,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 },
                 visibility: [
                   {
-                    field: "new_patient_switch_date_age",
+                    field: "new_patient.switch_date_age",
                     value: false,
                   },
                 ],
@@ -351,10 +351,10 @@ export const addAppointmentFieldsConfig: Item[] = [
                   {
                     category: "field",
                     fieldType: "number",
-                    id: "new_patient_age",
-                    testId: "new_patient_age",
-                    name: "new_patient_age",
-                    schemaName: "new_patient_age",
+                    id: "new_patient.age",
+                    testId: "new_patient.age",
+                    name: "new_patient.age",
+                    schemaName: "new_patient.age",
                     label: "apInputs.add_new.age.label",
                     validation: [
                       {
@@ -378,7 +378,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                     ],
                     visibility: [
                       {
-                        field: "new_patient_switch_date_age",
+                        field: "new_patient.switch_date_age",
                         value: true,
                       },
                     ],
@@ -386,10 +386,10 @@ export const addAppointmentFieldsConfig: Item[] = [
                   {
                     category: "field",
                     fieldType: "switch",
-                    id: "new_patient_switch_date_age",
-                    testId: "new_patient_switch_date_age",
-                    name: "new_patient_switch_date_age",
-                    schemaName: "new_patient_switch_date_age",
+                    id: "new_patient.switch_date_age",
+                    testId: "new_patient.switch_date_age",
+                    name: "new_patient.switch_date_age",
+                    schemaName: "new_patient.switch_date_age",
                     checkedChildren: "apInputs.add_new.switch_date_age.checked",
                     unCheckedChildren:
                       "apInputs.add_new.switch_date_age.unchecked",
@@ -403,10 +403,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_title",
-            testId: "new_patient_title",
-            name: "new_patient_title",
-            schemaName: "new_patient_title",
+            id: "new_patient.title",
+            testId: "new_patient.title",
+            name: "new_patient.title",
+            schemaName: "new_patient.title",
             label: "apInputs.add_new.title.label",
             options: [
               {
@@ -435,10 +435,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_gender",
-            testId: "new_patient_gender",
-            name: "new_patient_gender",
-            schemaName: "new_patient_gender",
+            id: "new_patient.gender",
+            testId: "new_patient.gender",
+            name: "new_patient.gender",
+            schemaName: "new_patient.gender",
             label: "apInputs.add_new.gender.label",
             options: [
               {
@@ -462,10 +462,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_email",
-            testId: "new_patient_email",
-            name: "new_patient_email",
-            schemaName: "new_patient_email",
+            id: "new_patient.email",
+            testId: "new_patient.email",
+            name: "new_patient.email",
+            schemaName: "new_patient.email",
             label: "apInputs.add_new.email.label",
             validation: [
               {
@@ -483,10 +483,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_address",
-            testId: "new_patient_address",
-            name: "new_patient_address",
-            schemaName: "new_patient_address",
+            id: "new_patient.address",
+            testId: "new_patient.address",
+            name: "new_patient.address",
+            schemaName: "new_patient.address",
             label: "apInputs.add_new.address.label",
             validation: [],
           },
@@ -500,10 +500,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_assigned_practitioner",
-            testId: "new_patient_assigned_practitioner",
-            name: "new_patient_assigned_practitioner",
-            schemaName: "new_patient_assigned_practitioner",
+            id: "new_patient.assigned_practitioner",
+            testId: "new_patient.assigned_practitioner",
+            name: "new_patient.assigned_practitioner",
+            schemaName: "new_patient.assigned_practitioner",
             label: "apInputs.add_new.assigned_practitioner.label",
             options: [
               {
@@ -522,10 +522,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_price_list_group",
-            testId: "new_patient_price_list_group",
-            name: "new_patient_price_list_group",
-            schemaName: "new_patient_price_list_group",
+            id: "new_patient.price_list_group",
+            testId: "new_patient.price_list_group",
+            name: "new_patient.price_list_group",
+            schemaName: "new_patient.price_list_group",
             label: "apInputs.add_new.price_list_group.label",
             options: [
               {
@@ -557,10 +557,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_patient_tags",
-            testId: "new_patient_patient_tags",
-            name: "new_patient_patient_tags",
-            schemaName: "new_patient_patient_tags",
+            id: "new_patient.patient_tags",
+            testId: "new_patient.patient_tags",
+            name: "new_patient.patient_tags",
+            schemaName: "new_patient.patient_tags",
             label: "apInputs.add_new.patient_tags.label",
             options: [
               {
@@ -609,10 +609,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_martial_status",
-            testId: "new_patient_martial_status",
-            name: "new_patient_martial_status",
-            schemaName: "new_patient_martial_status",
+            id: "new_patient.martial_status",
+            testId: "new_patient.martial_status",
+            name: "new_patient.martial_status",
+            schemaName: "new_patient.martial_status",
             label: "apInputs.add_new.martial_status.label",
             options: [
               {
@@ -641,10 +641,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_job",
-            testId: "new_patient_job",
-            name: "new_patient_job",
-            schemaName: "new_patient_job",
+            id: "new_patient.job",
+            testId: "new_patient.job",
+            name: "new_patient.job",
+            schemaName: "new_patient.job",
             label: "apInputs.add_new.job.label",
             options: [
               {
@@ -677,10 +677,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_nationality",
-            testId: "new_patient_nationality",
-            name: "new_patient_nationality",
-            schemaName: "new_patient_nationality",
+            id: "new_patient.nationality",
+            testId: "new_patient.nationality",
+            name: "new_patient.nationality",
+            schemaName: "new_patient.nationality",
             label: "apInputs.add_new.nationality.label",
             options: [
               {
@@ -707,30 +707,30 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "field",
         fieldType: "number",
-        id: "new_patient_tax",
-        testId: "new_patient_tax",
-        name: "new_patient_tax",
-        schemaName: "new_patient_tax",
+        id: "new_patient.tax",
+        testId: "new_patient.tax",
+        name: "new_patient.tax",
+        schemaName: "new_patient.tax",
         label: "apInputs.add_new.tax.label",
         validation: [],
       },
       {
         category: "field",
         fieldType: "number",
-        id: "new_patient_national_id",
-        testId: "new_patient_national_id",
-        name: "new_patient_national_id",
-        schemaName: "new_patient_national_id",
+        id: "new_patient.national_id",
+        testId: "new_patient.national_id",
+        name: "new_patient.national_id",
+        schemaName: "new_patient.national_id",
         label: "apInputs.add_new.national_id.label",
         validation: [],
       },
       {
         category: "field",
         fieldType: "textarea",
-        id: "new_patient_patient_details",
-        testId: "new_patient_patient_details",
-        name: "new_patient_patient_details",
-        schemaName: "new_patient_patient_details",
+        id: "new_patient.patient_details",
+        testId: "new_patient.patient_details",
+        name: "new_patient.patient_details",
+        schemaName: "new_patient.patient_details",
         label: "apInputs.add_new.patient_details.label",
         placeholder: "apInputs.add_new.patient_details.placeholder",
         maxLength: 1000,
@@ -746,10 +746,10 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "field",
         fieldType: "text",
-        id: "new_patient_insurance_company",
-        testId: "new_patient_insurance_company",
-        name: "new_patient_insurance_company",
-        schemaName: "new_patient_insurance_company",
+        id: "new_patient.insurance_company",
+        testId: "new_patient.insurance_company",
+        name: "new_patient.insurance_company",
+        schemaName: "new_patient.insurance_company",
         label: "apInputs.add_new.insurance_company.label",
         placeholder: "apInputs.add_new.insurance_company.placeholder",
         validation: [],
@@ -768,10 +768,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_referral_source",
-            testId: "new_patient_referral_source",
-            name: "new_patient_referral_source",
-            schemaName: "new_patient_referral_source",
+            id: "new_patient.referral_source",
+            testId: "new_patient.referral_source",
+            name: "new_patient.referral_source",
+            schemaName: "new_patient.referral_source",
             label: "apInputs.add_new.referral_source.label",
             options: [
               {
@@ -800,10 +800,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_referral_details",
-            testId: "new_patient_referral_details",
-            name: "new_patient_referral_details",
-            schemaName: "new_patient_referral_details",
+            id: "new_patient.referral_details",
+            testId: "new_patient.referral_details",
+            name: "new_patient.referral_details",
+            schemaName: "new_patient.referral_details",
             label: "apInputs.add_new.referral_details.label",
             options: [],
             validation: [],
@@ -811,10 +811,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_referral_user",
-            testId: "new_patient_referral_user",
-            name: "new_patient_referral_user",
-            schemaName: "new_patient_referral_user",
+            id: "new_patient.referral_user",
+            testId: "new_patient.referral_user",
+            name: "new_patient.referral_user",
+            schemaName: "new_patient.referral_user",
             label: "apInputs.add_new.referral_user.label",
             options: [
               {
@@ -829,7 +829,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             validation: [],
             visibility: [
               {
-                field: "new_patient_referral_source",
+                field: "new_patient.referral_source",
                 value: "user",
               },
             ],
@@ -837,10 +837,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_referral_patient",
-            testId: "new_patient_referral_patient",
-            name: "new_patient_referral_patient",
-            schemaName: "new_patient_referral_patient",
+            id: "new_patient.referral_patient",
+            testId: "new_patient.referral_patient",
+            name: "new_patient.referral_patient",
+            schemaName: "new_patient.referral_patient",
             label: "apInputs.add_new.referral_patient.label",
             options: [
               {
@@ -867,7 +867,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             validation: [],
             visibility: [
               {
-                field: "new_patient_referral_source",
+                field: "new_patient.referral_source",
                 value: "patient",
               },
             ],
@@ -888,30 +888,30 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_emergency_first_name",
-            testId: "new_patient_emergency_first_name",
-            name: "new_patient_emergency_first_name",
-            schemaName: "new_patient_emergency_first_name",
+            id: "new_patient.emergency_first_name",
+            testId: "new_patient.emergency_first_name",
+            name: "new_patient.emergency_first_name",
+            schemaName: "new_patient.emergency_first_name",
             label: "apInputs.add_new.emergency_first_name.label",
             validation: [],
           },
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_emergency_last_name",
-            testId: "new_patient_emergency_last_name",
-            name: "new_patient_emergency_last_name",
-            schemaName: "new_patient_emergency_last_name",
+            id: "new_patient.emergency_last_name",
+            testId: "new_patient.emergency_last_name",
+            name: "new_patient.emergency_last_name",
+            schemaName: "new_patient.emergency_last_name",
             label: "apInputs.add_new.emergency_last_name.label",
             validation: [],
           },
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_emergency_phone",
-            testId: "new_patient_emergency_phone",
-            name: "new_patient_emergency_phone",
-            schemaName: "new_patient_emergency_phone",
+            id: "new_patient.emergency_phone",
+            testId: "new_patient.emergency_phone",
+            name: "new_patient.emergency_phone",
+            schemaName: "new_patient.emergency_phone",
             label: "apInputs.add_new.emergency_phone.label",
             validation: [
               {
@@ -936,10 +936,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_emergency_secondary_phone",
-            testId: "new_patient_emergency_secondary_phone",
-            name: "new_patient_emergency_secondary_phone",
-            schemaName: "new_patient_emergency_secondary_phone",
+            id: "new_patient.emergency_secondary_phone",
+            testId: "new_patient.emergency_secondary_phone",
+            name: "new_patient.emergency_secondary_phone",
+            schemaName: "new_patient.emergency_secondary_phone",
             label: "apInputs.add_new.emergency_secondary_phone.label",
             validation: [
               {
@@ -957,20 +957,20 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "field",
             fieldType: "text",
-            id: "new_patient_emergency_address",
-            testId: "new_patient_emergency_address",
-            name: "new_patient_emergency_address",
-            schemaName: "new_patient_emergency_address",
+            id: "new_patient.emergency_address",
+            testId: "new_patient.emergency_address",
+            name: "new_patient.emergency_address",
+            schemaName: "new_patient.emergency_address",
             label: "apInputs.add_new.emergency_address.label",
             validation: [],
           },
           {
             category: "field",
             fieldType: "select",
-            id: "new_patient_emergency_relationship",
-            testId: "new_patient_emergency_relationship",
-            name: "new_patient_emergency_relationship",
-            schemaName: "new_patient_emergency_relationship",
+            id: "new_patient.emergency_relationship",
+            testId: "new_patient.emergency_relationship",
+            name: "new_patient.emergency_relationship",
+            schemaName: "new_patient.emergency_relationship",
             label: "apInputs.add_new.emergency_relationship.label",
             options: [
               {
