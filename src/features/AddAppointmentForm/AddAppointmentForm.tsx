@@ -20,7 +20,10 @@ import {
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
 import { StyledError, StyledTitle } from "./AddAppointmentForm.styled";
-import { configValidation } from "../../utils/addAppointUtils";
+import {
+  configValidation,
+  setDefaultValues,
+} from "../../utils/addAppointUtils";
 
 const { Text, Link } = Typography;
 
@@ -37,7 +40,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   const { control, handleSubmit, clearErrors, watch } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
-    defaultValues: defaultValuesObject,
+    defaultValues: setDefaultValues(fieldsConfig),
   });
 
   // get current language for content direction
