@@ -26,7 +26,6 @@ export const configValidation = (itemsData: Item[]) => {
       if (!currentItem.schemaName.match(/\./g)) {
         shape[currentItem.schemaName] = parseValidation(currentItem);
       } else {
-        // shape[currentItem.schemaName] = validationSchema;
         const formPath = currentItem.schemaName.split(".");
 
         // console.log(formPath, shape[formPath[0]]);
@@ -40,15 +39,12 @@ export const configValidation = (itemsData: Item[]) => {
             [formPath[1]]: parseValidation(currentItem),
           });
         }
-        // shape[currentItem.schemaName] = yup.object().shape({
-        //   [formPath[0]]: yup.object().shape({
-        //     ...shape[formPath[0]],
-        //     [formPath[1]]: parseValidation(currentItem),
-        //   }),
-        //   [formPath[1]]: parseValidation(currentItem),
-        // });
 
-        // console.log(shape);
+        // console.log("patient name: ", shape.patient_name);
+        // console.log(
+        //   "new patient first name : ",
+        //   shape.new_patient.fields.first_name
+        // );
       }
     }
 

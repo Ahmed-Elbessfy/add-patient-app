@@ -1500,4 +1500,24 @@ export const addAppointmentFieldsConfig: Item[] = [
       },
     ],
   },
+  {
+    category: "field",
+    fieldType: "text",
+    id: "new_patient.first_name",
+    testId: "new_patient.first_name",
+    name: "new_patient.first_name",
+    schemaName: "new_patient.first_name",
+    label: "apInputs.add_new.first_name.label",
+    validation: [
+      {
+        type: "requiredIf",
+        requiredConditions: [
+          {
+            field: "show_add_patient",
+            value: false,
+          },
+        ],
+      },
+    ],
+  },
 ];

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Alert, Button, Col, Typography } from "antd";
 import * as yup from "yup";
@@ -32,12 +32,12 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   onSubmit,
 }) => {
   // build schema & default values
-  const { shape, defaultValuesObject } = configValidation(fieldsConfig);
+  const shape = configValidation(fieldsConfig);
 
   const schemaShape: yup.ObjectShape = shape;
   const schema = yup.object().shape(schemaShape);
 
-  const { control, handleSubmit, clearErrors, watch } = useForm({
+  const { control, handleSubmit, clearErrors, watch, getValues } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
     defaultValues: setDefaultValues(fieldsConfig),
@@ -57,6 +57,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     // No condition is meet so don't disable field
     return false;
   };
+
+  useEffect(() => {
+    console.log(getValues());
+  });
 
   // render items recursively config
   const renderItems = (fieldsConfig: Item[]): JSX.Element => {
