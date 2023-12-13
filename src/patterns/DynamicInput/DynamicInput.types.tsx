@@ -25,7 +25,11 @@ export type schemaTypes =
   | "pastDate"
   | "futureDate"
   | "childrenNumber"
-  | "childrenNames";
+  | "childrenNames"
+  | "parentName"
+  | "parentAge"
+  | "child.childName"
+  | "child.childAge";
 
 type fieldValidationForm = {
   type: string;

@@ -1,5 +1,5 @@
-import { FC, useState } from "react";
-import { Alert, Button, Col, Flex, Grid, Row, Typography } from "antd";
+import { FC, useEffect, useState } from "react";
+import { Alert, Button, Col, Flex, Grid, Input, Row, Typography } from "antd";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -34,8 +34,32 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
   // });
   const localSchema = yup.object().shape(localSchemaShape);
 
-  const { handleSubmit, control } = useForm({
-    resolver: yupResolver(localSchema),
+  const childSchema = yup.object().shape({
+    childName: yup.string().required(),
+    childAge: yup.number().required().min(5).max(17),
+  });
+
+  const parentSchema = yup.object().shape({
+    parentName: yup.string().required(),
+    parentAge: yup.string().required().min(37),
+    child: childSchema,
+  });
+
+  const addressSchema = yup.object().shape({
+    street: yup.string().required("Street is required"),
+    city: yup.string().required("City is required"),
+  });
+
+  const userSchema = yup.object().shape({
+    name__: yup.string().required("Name is required"),
+    age: yup.number().required().min(5).max(17),
+
+    email__: yup.string().email("Invalid email").required("Email is required"),
+    address__: addressSchema, // Nested schema
+  });
+
+  const { handleSubmit, control, formState, getValues } = useForm({
+    resolver: yupResolver(parentSchema),
     mode: "onChange",
   });
 
@@ -49,6 +73,7 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
           // Field render
           if (inputConfig.category === "field") {
             const currentItem = inputConfig as DynamicFormFieldConfig;
+            // console.log(currentItem);
             return (
               <Controller
                 key={currentItem.id}
@@ -116,130 +141,80 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
       </>
     );
   };
-  const style: React.CSSProperties = {
-    background: "#0092ff",
-    padding: "8px 0",
-  };
-  const [showGrid, setShowGrid] = useState<boolean>(true);
+
+  useEffect(() => {
+    console.log(getValues(), formState);
+  }, [formState, getValues]);
+  // const style: React.CSSProperties = {
+  //   background: "#0092ff",
+  //   padding: "8px 0",
+  // };
+  // const [showGrid, setShowGrid] = useState<boolean>(true);
   // console.log(errors);
+
   return (
     <>
-      <Button onClick={() => setShowGrid((prev) => !prev)}>+</Button>
-      <div style={{ display: showGrid ? "block" : "none" }}>
-        <Row gutter={16}>
-          <Col className="gutter-row" span={6}>
-            <div style={style}>col-6</div>
-          </Col>
-          <Col className="gutter-row" span={6}>
-            <div style={style}>col-6</div>
-          </Col>
-          <Col className="gutter-row" span={6}>
-            <div style={style}>col-6</div>
-          </Col>
-          <Col className="gutter-row" span={6}>
-            <div style={style}>col-6</div>
-          </Col>
-        </Row>
-        <Row gutter={16}>
-          <Col
-            className="gutter-row"
-            style={{ background: "skyblue", height: "4rem" }}
-            span={6}
-          >
-            <div>span -6</div>
-          </Col>
-          <Col
-            className="gutter-row"
-            style={{ background: "skyblue", height: "4rem" }}
-            span={6}
-          >
-            <div>span -6</div>
-          </Col>
-          <Col
-            className="gutter-row"
-            style={{ background: "skyblue", height: "4rem" }}
-            span={6}
-          >
-            <div>span -6</div>
-          </Col>
-          <Col
-            className="gutter-row"
-            style={{ background: "skyblue", height: "4rem" }}
-            span={6}
-          >
-            <div>span -6</div>
-          </Col>
-        </Row>
-        <Row gutter={24} align="middle" style={{ height: "4rem" }}>
-          <Col
-            className="gutter-row"
-            span={8}
-            style={{ border: "2px solid gray" }}
-          >
-            <div style={{ background: "skyblue" }}>span -8</div>
-          </Col>
-          <Col
-            className="gutter-row"
-            span={8}
-            style={{ border: "2px solid gray" }}
-          >
-            <div style={{ background: "skyblue" }}>span -8</div>
-          </Col>
-          <Col
-            className="gutter-row"
-            span={8}
-            style={{ border: "2px solid gray" }}
-          >
-            <div style={{ background: "skyblue" }}>span -8</div>
-          </Col>
-        </Row>
-        <Row gutter={16} style={{ height: "4rem" }}>
-          <Col className="gutter-row" span={12}>
-            span -12
-            <Row
-              gutter={24}
-              align="middle"
-              style={{ height: "4rem", border: "2px solid gray" }}
-            >
-              <Col md={12} sm={24}>
-                {/* <Flex
-                justify="space-around"
-                align="center"
-                style={{ background: "skyblue", height: "3rem" }}
-              >
-                12 span - 12
-              </Flex> */}
-                <div style={{ background: "skyblue" }}>12 span - 12</div>
-              </Col>
-              <Col md={12} sm={24}>
-                {/* <Flex
-                justify="space-around"
-                align="center"
-                style={{ background: "skyblue", height: "3rem" }}
-                >
-                12 span - 12
-              </Flex> */}
-                <div style={{ background: "skyblue" }}>12 span - 12</div>
-              </Col>
-            </Row>
-          </Col>
-          <Col className="gutter-row" span={12}>
-            span -12
-          </Col>
-        </Row>
-      </div>
-      {/* <Row>
-        <Col
-          className="gutter-row"
-          style={{ background: "skyblue", height: "4rem" }}
-          span={24}
-        >
-          span -24
-        </Col>
-      </Row> */}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {renderItems([
+          {
+            category: "field",
+            fieldType: "text",
+            name: "parentName",
+            schemaName: "parentName",
+            testId: "parentName",
+            id: "parentName",
+            placeholder: "formInputs.nameInput.text",
+            label: "formInputs.nameInput.text",
+            validation: [],
+            visibility: true,
+          },
+          {
+            category: "field",
+            fieldType: "number",
+            name: "parentAge",
+            schemaName: "parentAge",
+            testId: "parentAge",
+            id: "parentAge",
+            placeholder: "formInputs.ageInput.text",
+            label: "formInputs.ageInput.text",
+            validation: [],
+            visibility: true,
+          },
+          {
+            category: "field",
+            fieldType: "text",
+            name: "childName",
+            schemaName: "child.childName",
+            testId: "childName",
+            id: "childName",
+            placeholder: "formInputs.nameInput.text",
+            label: "formInputs.nameInput.text",
+            validation: [],
+            visibility: true,
+          },
+          {
+            category: "field",
+            fieldType: "number",
+            name: "childAge",
+            schemaName: "child.childAge",
+            testId: "childAge",
+            id: "childAge",
+            placeholder: "formInputs.ageInput.text",
+            label: "formInputs.ageInput.text",
+            validation: [],
+            visibility: true,
+          },
+        ])}
+        {JSON.stringify(formState)}
+        <Button type="primary" htmlType="submit" data-testid="submitBtn">
+          Add Patient
+        </Button>
+      </form>
+      <>{console.log(formState, getValues())}</>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1>{t(heading)}</h1>
-        {renderItems(inputsConfig)}
+
+        {/* {renderItems(inputsConfig)} */}
         <Button type="primary" htmlType="submit" data-testid="submitBtn">
           Add Patient
         </Button>
