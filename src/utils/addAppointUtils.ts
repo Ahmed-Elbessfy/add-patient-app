@@ -1,15 +1,16 @@
 import dayjs, { ManipulateType } from "dayjs";
-import { ObjectShape } from "yup";
+import * as yup from "yup";
 import {
   Item,
   ItemLayout,
   FormFieldConfig,
+  ItemForm,
 } from "../features/AddAppointmentFields/AddAppointmentInputs.type";
 import { DefaultValueObjectFormat } from "../features/AddAppointmentForm/AddAppointmentForm.types";
 import { parseValidation } from "./addAppointValidation";
 
 // Schema Config
-const shape: ObjectShape = {};
+const shape: yup.ObjectShape = {};
 // default values config
 const defaultValuesObject: DefaultValueObjectFormat =
   {} as DefaultValueObjectFormat;
@@ -19,6 +20,56 @@ export const configValidation = (itemsData: Item[]) => {
   itemsData.forEach((item: Item) => {
     if (item.category === "field") {
       const currentItem = item as FormFieldConfig;
+
+      // config schema
+      // use currentItem since its type is FormFieldConfig same as accepted by parseValidation parameter type
+      if (!currentItem.schemaName.match(/\./g)) {
+        shape[currentItem.schemaName] = parseValidation(currentItem);
+      } else {
+        // shape[currentItem.schemaName] = validationSchema;
+        const formPath = currentItem.schemaName.split(".");
+
+        // console.log(formPath, shape[formPath[0]]);
+        if (shape[formPath[0]]) {
+          shape[formPath[0]] = yup.object().shape({
+            ...shape[formPath[0]].fields,
+            [formPath[1]]: parseValidation(currentItem),
+          });
+        } else {
+          shape[formPath[0]] = yup.object().shape({
+            [formPath[1]]: parseValidation(currentItem),
+          });
+        }
+        // shape[currentItem.schemaName] = yup.object().shape({
+        //   [formPath[0]]: yup.object().shape({
+        //     ...shape[formPath[0]],
+        //     [formPath[1]]: parseValidation(currentItem),
+        //   }),
+        //   [formPath[1]]: parseValidation(currentItem),
+        // });
+
+        // console.log(shape);
+      }
+    }
+
+    if (item.category === "layout") {
+      const currentItem = item as ItemLayout;
+      configValidation(currentItem.children);
+    }
+
+    if (item.category === "form") {
+      const currentItem = item as ItemForm;
+      configValidation(currentItem.children);
+    }
+  });
+
+  return shape;
+};
+
+// build schema & default values
+export const setDefaultValues = (itemsData: Item[]) => {
+  itemsData.forEach((item: Item) => {
+    if (item.category === "field") {
       /********************
         config default values FOR FORM STATE which gets validated
         default value for each field input is for the displayed value for user
@@ -28,34 +79,35 @@ export const configValidation = (itemsData: Item[]) => {
         defaultValuesObject[item.schemaName] = item.defaultChecked;
       }
 
-      if ("defaultValue" in item)
+      if ("defaultValue" in item) {
+        // custom case for date picker default value
+        if (item.fieldType === "datePicker") {
+          defaultValuesObject[item.schemaName] =
+            item.defaultValue && formatDateTime(item.defaultValue);
+        }
+
+        // custom case for time picker default value
+        if (item.fieldType === "timePicker") {
+          defaultValuesObject[item.schemaName] =
+            item.defaultValue &&
+            formatDateTime(item.defaultValue).format("hh:mm a");
+        }
         defaultValuesObject[item.schemaName] = item.defaultValue;
-
-      // custom case for date picker default value
-      if ("defaultValue" in item && item.fieldType === "datePicker") {
-        defaultValuesObject[item.schemaName] =
-          item.defaultValue && formatDateTime(item.defaultValue);
       }
-
-      // custom case for time picker default value
-      if ("defaultValue" in item && item.fieldType === "timePicker") {
-        defaultValuesObject[item.schemaName] =
-          item.defaultValue &&
-          formatDateTime(item.defaultValue).format("hh:mm a");
-      }
-
-      // config schema
-      // use currentItem since its type is FormFieldConfig same as accepted by parseValidation parameter type
-      shape[currentItem.schemaName] = parseValidation(currentItem);
     }
 
-    if (item.category === "layout" || item.category === "form") {
+    if (item.category === "layout") {
       const currentItem = item as ItemLayout;
-      configValidation(currentItem.children);
+      setDefaultValues(currentItem.children);
+    }
+
+    if (item.category === "form") {
+      const currentItem = item as ItemForm;
+      setDefaultValues(currentItem.children);
     }
   });
 
-  return { shape, defaultValuesObject };
+  return defaultValuesObject;
 };
 
 // Formatting date and time
