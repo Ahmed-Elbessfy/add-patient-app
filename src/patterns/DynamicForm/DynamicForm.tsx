@@ -41,7 +41,7 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
 
   const parentSchema = yup.object().shape({
     parentName: yup.string().required(),
-    parentAge: yup.string().required().min(37),
+    parentAge: yup.number().required().min(15),
     child: childSchema,
   });
 
@@ -58,7 +58,7 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
     address__: addressSchema, // Nested schema
   });
 
-  const { handleSubmit, control, formState, getValues } = useForm({
+  const { handleSubmit, control, errors } = useForm({
     resolver: yupResolver(parentSchema),
     mode: "onChange",
   });
@@ -142,9 +142,6 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
     );
   };
 
-  useEffect(() => {
-    console.log(getValues(), formState);
-  }, [formState, getValues]);
   // const style: React.CSSProperties = {
   //   background: "#0092ff",
   //   padding: "8px 0",
@@ -205,12 +202,11 @@ const DynamicForm: FC<DynamicFormConfiguration> = ({
             visibility: true,
           },
         ])}
-        {JSON.stringify(formState)}
         <Button type="primary" htmlType="submit" data-testid="submitBtn">
           Add Patient
         </Button>
       </form>
-      <>{console.log(formState, getValues())}</>
+      <>{console.log(errors)}</>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1>{t(heading)}</h1>
 
