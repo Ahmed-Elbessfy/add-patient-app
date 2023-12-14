@@ -28,6 +28,7 @@ export type SchemaName =
   | "alert_form"
   | "note_form"
   | "patient_name"
+  | "new_patient.show_add_patient"
   | "show_add_patient"
   | "switch_input_method"
   | "note_title"
@@ -83,7 +84,8 @@ export type SchemaName =
   | "new_patient.emergency_phone"
   | "new_patient.emergency_secondary_phone"
   | "new_patient.emergency_address"
-  | "new_patient.emergency_relationship";
+  | "new_patient.emergency_relationship"
+  | "new_patient_first_name";
 
 type fieldTypeValues =
   | "text"

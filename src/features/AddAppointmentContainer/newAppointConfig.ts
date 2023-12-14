@@ -151,6 +151,19 @@ export const addAppointmentFieldsConfig: Item[] = [
         level: 3,
       },
       {
+        category: "field",
+        fieldType: "switch",
+        id: "new_patient.show_add_patient",
+        testId: "new_patient.show_add_patient",
+        name: "new_patient.show_add_patient",
+        schemaName: "new_patient.show_add_patient",
+        checkedChildren: "hide",
+        unCheckedChildren: "show",
+        defaultChecked: false,
+        validation: [],
+        disability: [{ field: "switch_input_method", value: true }],
+      },
+      {
         category: "layout",
         type: "hStack",
         gap: 0.5,
@@ -182,6 +195,10 @@ export const addAppointmentFieldsConfig: Item[] = [
                     value: true,
                   },
                 ],
+              },
+              {
+                type: "minimum",
+                minimum: 3,
               },
             ],
           },
@@ -221,6 +238,15 @@ export const addAppointmentFieldsConfig: Item[] = [
             schemaName: "new_patient.phone",
             label: "apInputs.add_new.phone.label",
             validation: [
+              {
+                type: "requiredIf",
+                requiredConditions: [
+                  {
+                    field: "show_add_patient",
+                    value: true,
+                  },
+                ],
+              },
               {
                 type: "hasPattern",
                 pattern:
@@ -1503,10 +1529,10 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "field",
     fieldType: "text",
-    id: "new_patient.first_name",
-    testId: "new_patient.first_name",
-    name: "new_patient.first_name",
-    schemaName: "new_patient.first_name",
+    id: "new_patient_first_name",
+    testId: "new_patient_first_name",
+    name: "new_patient_first_name",
+    schemaName: "new_patient_first_name",
     label: "apInputs.add_new.first_name.label",
     validation: [
       {
@@ -1514,7 +1540,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         requiredConditions: [
           {
             field: "show_add_patient",
-            value: false,
+            value: true,
           },
         ],
       },
