@@ -28,7 +28,6 @@ export const configValidation = (itemsData: Item[]) => {
       } else {
         const formPath = currentItem.schemaName.split(".");
 
-        // console.log(formPath, shape[formPath[0]]);
         if (shape[formPath[0]]) {
           shape[formPath[0]] = yup.object().shape({
             ...shape[formPath[0]].fields,
@@ -39,12 +38,6 @@ export const configValidation = (itemsData: Item[]) => {
             [formPath[1]]: parseValidation(currentItem),
           });
         }
-
-        // console.log("patient name: ", shape.patient_name);
-        // console.log(
-        //   "new patient first name : ",
-        //   shape.new_patient.fields.first_name
-        // );
       }
     }
 
@@ -66,29 +59,54 @@ export const configValidation = (itemsData: Item[]) => {
 export const setDefaultValues = (itemsData: Item[]) => {
   itemsData.forEach((item: Item) => {
     if (item.category === "field") {
+      const currentItem = item as FormFieldConfig;
       /********************
         config default values FOR FORM STATE which gets validated
         default value for each field input is for the displayed value for user
          ********************/
 
-      if ("defaultChecked" in item) {
-        defaultValuesObject[item.schemaName] = item.defaultChecked;
-      }
+      if ("defaultValue" in currentItem || "defaultChecked" in currentItem) {
+        // placeholder to set default value instead of setting its value each time
+        let currentDefaultValue: string | number | boolean | dayjs.Dayjs =
+          "defaultValue" in currentItem
+            ? currentItem.defaultValue
+            : currentItem.defaultChecked;
 
-      if ("defaultValue" in item) {
+        //     }
         // custom case for date picker default value
-        if (item.fieldType === "datePicker") {
-          defaultValuesObject[item.schemaName] =
-            item.defaultValue && formatDateTime(item.defaultValue);
+        if (currentItem.fieldType === "datePicker") {
+          currentDefaultValue =
+            currentItem.defaultValue &&
+            formatDateTime(currentItem.defaultValue);
         }
 
         // custom case for time picker default value
-        if (item.fieldType === "timePicker") {
-          defaultValuesObject[item.schemaName] =
-            item.defaultValue &&
-            formatDateTime(item.defaultValue).format("hh:mm a");
+        if (currentItem.fieldType === "timePicker") {
+          currentDefaultValue =
+            currentItem.defaultValue &&
+            formatDateTime(currentItem.defaultValue).format("hh:mm a");
         }
-        defaultValuesObject[item.schemaName] = item.defaultValue;
+
+        // configuration for nested default values object
+        if (!currentItem.name.match(/\./)) {
+          // if no nested forms
+          defaultValuesObject[currentItem.schemaName] = currentDefaultValue;
+        } else {
+          // if there are nested form
+          const path = currentItem.name.split(".");
+          // if there is already a nested object with path[0] name, add properties to current nest object
+          if (defaultValuesObject[path[0]]) {
+            defaultValuesObject[path[0]] = {
+              ...defaultValuesObject[path[0]],
+              [path[1]]: currentDefaultValue,
+            };
+          } else {
+            // if there is no a nested object with path[0] name, create new nested object and add path[1] property and value
+            defaultValuesObject[path[0]] = {
+              [path[1]]: currentDefaultValue,
+            };
+          }
+        }
       }
     }
 
