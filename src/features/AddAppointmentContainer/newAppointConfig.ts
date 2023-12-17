@@ -60,7 +60,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.patient_name.label",
         placeholder: "apInputs.patient_name.placeholder",
         disability: [
-          { field: "show_add_patient", value: true },
+          { field: "new_patient.show_add_patient", value: true }, // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
           { field: "switch_input_method", value: true },
         ],
 
@@ -73,20 +73,33 @@ export const addAppointmentFieldsConfig: Item[] = [
                 value: false,
               },
               {
-                field: "show_add_patient",
+                field: "new_patient.show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
                 value: false,
               },
             ],
           },
         ],
       },
+      // {
+      //   category: "field",
+      //   fieldType: "switch",
+      //   id: "show_add_patient",
+      //   testId: "show_add_patient",
+      //   name: "show_add_patient",
+      //   schemaName: "show_add_patient",
+      //   checkedChildren: "hide",
+      //   unCheckedChildren: "show",
+      //   defaultChecked: false,
+      //   validation: [],
+      //   disability: [{ field: "switch_input_method", value: true }],
+      // },
       {
         category: "field",
         fieldType: "switch",
-        id: "show_add_patient",
-        testId: "show_add_patient",
-        name: "show_add_patient",
-        schemaName: "show_add_patient",
+        id: "new_patient.show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+        testId: "new_patient.show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+        name: "new_patient.show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+        schemaName: "new_patient.show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
         checkedChildren: "hide",
         unCheckedChildren: "show",
         defaultChecked: false,
@@ -104,7 +117,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         unCheckedChildren: "QR",
         defaultChecked: false,
         validation: [],
-        disability: [{ field: "show_add_patient", value: true }],
+        disability: [{ field: "new_patient.show_add_patient", value: true }], // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
       },
     ],
   },
@@ -142,7 +155,7 @@ export const addAppointmentFieldsConfig: Item[] = [
     category: "form",
     type: "box",
     gap: 0.5,
-    visibility: [{ field: "show_add_patient", value: true }],
+    visibility: [{ field: "new_patient.show_add_patient", value: true }], // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
     children: [
       {
         category: "UI",
@@ -150,19 +163,19 @@ export const addAppointmentFieldsConfig: Item[] = [
         title: "apInputs.add_new.patient_details_title.text",
         level: 3,
       },
-      {
-        category: "field",
-        fieldType: "switch",
-        id: "new_patient.show_add_patient",
-        testId: "new_patient.show_add_patient",
-        name: "new_patient.show_add_patient",
-        schemaName: "new_patient.show_add_patient",
-        checkedChildren: "hide",
-        unCheckedChildren: "show",
-        defaultChecked: false,
-        validation: [],
-        disability: [{ field: "switch_input_method", value: true }],
-      },
+      // {
+      //   category: "field",
+      //   fieldType: "switch",
+      //   id: "new_patient.show_add_patient",
+      //   testId: "new_patient.show_add_patient",
+      //   name: "new_patient.show_add_patient",
+      //   schemaName: "new_patient.show_add_patient",
+      //   checkedChildren: "hide",
+      //   unCheckedChildren: "show",
+      //   defaultChecked: false,
+      //   validation: [],
+      //   disability: [{ field: "switch_input_method", value: true }],
+      // },
       {
         category: "layout",
         type: "hStack",
@@ -238,15 +251,6 @@ export const addAppointmentFieldsConfig: Item[] = [
             schemaName: "new_patient.phone",
             label: "apInputs.add_new.phone.label",
             validation: [
-              {
-                type: "requiredIf",
-                requiredConditions: [
-                  {
-                    field: "show_add_patient",
-                    value: true,
-                  },
-                ],
-              },
               {
                 type: "hasPattern",
                 pattern:
@@ -1523,26 +1527,6 @@ export const addAppointmentFieldsConfig: Item[] = [
           },
         ],
         validation: [],
-      },
-    ],
-  },
-  {
-    category: "field",
-    fieldType: "text",
-    id: "new_patient_first_name",
-    testId: "new_patient_first_name",
-    name: "new_patient_first_name",
-    schemaName: "new_patient_first_name",
-    label: "apInputs.add_new.first_name.label",
-    validation: [
-      {
-        type: "requiredIf",
-        requiredConditions: [
-          {
-            field: "show_add_patient",
-            value: true,
-          },
-        ],
       },
     ],
   },
