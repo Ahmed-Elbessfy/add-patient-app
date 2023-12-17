@@ -74,7 +74,12 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                 render={({ field, fieldState: { error } }) => {
                   return (
                     <>
-                      <Col md={8} sm={24} style={{ textAlign: "start" }}>
+                      <Col
+                        style={{
+                          textAlign: "start",
+                          flex: item.flex ? item.flex : undefined,
+                        }}
+                      >
                         {/* in case there is a visibility rule:
                           - check if it is fulfilled first, if yse render field
                           - if not render field normally
