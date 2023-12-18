@@ -81,7 +81,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                         xl={item.xl && item.xl}
                         style={{
                           textAlign: "start",
-                          flex: item.flex ? item.flex : undefined,
                         }}
                       >
                         {/* in case there is a visibility rule:
