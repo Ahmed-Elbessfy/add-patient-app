@@ -63,6 +63,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "patient_name",
         label: "apInputs.patient_name.label",
         placeholder: "apInputs.patient_name.placeholder",
+        md: 12,
         disability: [
           { field: "new_patient.show_add_patient", value: true }, // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
           { field: "switch_input_method", value: true },
@@ -195,7 +196,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.id",
             schemaName: "new_patient.id",
             label: "apInputs.add_new.id.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             validation: [],
           },
           {
@@ -206,7 +208,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.first_name",
             schemaName: "new_patient.first_name",
             label: "apInputs.add_new.first_name.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             validation: [
               {
                 type: "requiredIf",
@@ -231,7 +234,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.last_name",
             schemaName: "new_patient.last_name",
             label: "apInputs.add_new.last_name.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             validation: [
               {
                 type: "requiredIf",
@@ -259,7 +263,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.phone",
             schemaName: "new_patient.phone",
             label: "apInputs.add_new.phone.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             validation: [
               {
                 type: "hasPattern",
@@ -276,7 +281,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.secondary_phone",
             schemaName: "new_patient.secondary_phone",
             label: "apInputs.add_new.secondary_phone.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             validation: [
               {
                 type: "hasPattern",
@@ -294,7 +300,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             schemaName: "new_patient.country",
             label: "apInputs.add_new.country.label",
             defaultValue: "egypt",
-            flex: 1,
+            sm: 24,
+            md: 8,
             options: [
               {
                 value: "egypt",
@@ -318,6 +325,19 @@ export const addAppointmentFieldsConfig: Item[] = [
         ],
       },
       {
+        category: "field",
+        fieldType: "switch",
+        id: "new_patient.switch_date_age",
+        testId: "new_patient.switch_date_age",
+        name: "new_patient.switch_date_age",
+        schemaName: "new_patient.switch_date_age",
+        checkedChildren: "apInputs.add_new.switch_date_age.checked",
+        unCheckedChildren: "apInputs.add_new.switch_date_age.unchecked",
+        defaultChecked: false,
+        validation: [],
+      },
+
+      {
         category: "layout",
         type: "hStack",
         gap: 0.5,
@@ -330,6 +350,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.age",
             schemaName: "new_patient.age",
             label: "apInputs.add_new.age.label",
+            sm: 24,
+            md: 8,
             validation: [
               {
                 type: "minimum",
@@ -357,6 +379,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             label: "apInputs.add_new.birthDate.label",
             placeholder: "apInputs.add_new.birthDate.placeholder",
             format: "DD/MM/YYYY",
+            sm: 24,
+            md: 8,
             validation: [
               {
                 type: "earlier_than",
@@ -374,18 +398,6 @@ export const addAppointmentFieldsConfig: Item[] = [
               },
             ],
           },
-          {
-            category: "field",
-            fieldType: "switch",
-            id: "new_patient.switch_date_age",
-            testId: "new_patient.switch_date_age",
-            name: "new_patient.switch_date_age",
-            schemaName: "new_patient.switch_date_age",
-            checkedChildren: "apInputs.add_new.switch_date_age.checked",
-            unCheckedChildren: "apInputs.add_new.switch_date_age.unchecked",
-            defaultChecked: false,
-            validation: [],
-          },
 
           {
             category: "field",
@@ -395,8 +407,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.title",
             schemaName: "new_patient.title",
             label: "apInputs.add_new.title.label",
-            flex: 1,
-
+            sm: 24,
+            md: 8,
             options: [
               {
                 value: "mr",
@@ -429,7 +441,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.gender",
             schemaName: "new_patient.gender",
             label: "apInputs.add_new.gender.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             options: [
               {
                 value: "male",
@@ -457,7 +470,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.email",
             schemaName: "new_patient.email",
             label: "apInputs.add_new.email.label",
-            flex: 1,
+            sm: 24,
+            md: 12,
             validation: [
               {
                 type: "hasPattern",
@@ -474,7 +488,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.address",
             schemaName: "new_patient.address",
             label: "apInputs.add_new.address.label",
-            flex: 1,
+            sm: 24,
+            md: 12,
             validation: [],
           },
         ],
@@ -492,7 +507,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.assigned_practitioner",
             schemaName: "new_patient.assigned_practitioner",
             label: "apInputs.add_new.assigned_practitioner.label",
-            flex: 1,
+            sm: 24,
+            md: 12,
 
             options: [
               {
@@ -516,7 +532,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.price_list_group",
             schemaName: "new_patient.price_list_group",
             label: "apInputs.add_new.price_list_group.label",
-            flex: 1,
+            sm: 24,
+            md: 12,
             options: [
               {
                 value: "price_list_group_1",
@@ -552,7 +569,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.patient_tags",
             schemaName: "new_patient.patient_tags",
             label: "apInputs.add_new.patient_tags.label",
-            flex: 1,
+            sm: 24,
             options: [
               {
                 value: "diamond",
@@ -605,7 +622,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.martial_status",
             schemaName: "new_patient.martial_status",
             label: "apInputs.add_new.martial_status.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             options: [
               {
                 value: "married",
@@ -638,7 +656,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.job",
             schemaName: "new_patient.job",
             label: "apInputs.add_new.job.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             options: [
               {
                 value: "job_1",
@@ -675,7 +694,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.nationality",
             schemaName: "new_patient.nationality",
             label: "apInputs.add_new.nationality.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             options: [
               {
                 value: "egypt",
@@ -711,20 +731,29 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.tax",
             schemaName: "new_patient.tax",
             label: "apInputs.add_new.tax.label",
-            flex: 1,
+            sm: 24,
             validation: [],
           },
         ],
       },
       {
-        category: "field",
-        fieldType: "number",
-        id: "new_patient.national_id",
-        testId: "new_patient.national_id",
-        name: "new_patient.national_id",
-        schemaName: "new_patient.national_id",
-        label: "apInputs.add_new.national_id.label",
-        validation: [],
+        category: "layout",
+        type: "box",
+        gap: 0.5,
+        children: [
+          {
+            category: "field",
+            fieldType: "number",
+            id: "new_patient.national_id",
+            testId: "new_patient.national_id",
+            name: "new_patient.national_id",
+            schemaName: "new_patient.national_id",
+            label: "apInputs.add_new.national_id.label",
+            sm: 24,
+            md: 8,
+            validation: [],
+          },
+        ],
       },
       {
         category: "layout",
@@ -740,7 +769,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             schemaName: "new_patient.patient_details",
             label: "apInputs.add_new.patient_details.label",
             placeholder: "apInputs.add_new.patient_details.placeholder",
-            flex: 1,
+            sm: 24,
             maxLength: 1000,
             showCount: true,
             validation: [],
@@ -762,6 +791,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "new_patient.insurance_company",
         label: "apInputs.add_new.insurance_company.label",
         placeholder: "apInputs.add_new.insurance_company.placeholder",
+        sm: 24,
+        md: 14,
         validation: [],
       },
       {
@@ -783,7 +814,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.referral_source",
             schemaName: "new_patient.referral_source",
             label: "apInputs.add_new.referral_source.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             options: [
               {
                 value: "user",
@@ -816,7 +848,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.referral_details",
             schemaName: "new_patient.referral_details",
             label: "apInputs.add_new.referral_details.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             options: [],
             validation: [],
           },
@@ -828,7 +861,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.referral_user",
             schemaName: "new_patient.referral_user",
             label: "apInputs.add_new.referral_user.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             options: [
               {
                 value: "ahmed_taha",
@@ -855,7 +889,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.referral_patient",
             schemaName: "new_patient.referral_patient",
             label: "apInputs.add_new.referral_patient.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             options: [
               {
                 value: "zaki_badr",
@@ -907,7 +942,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.emergency_first_name",
             schemaName: "new_patient.emergency_first_name",
             label: "apInputs.add_new.emergency_first_name.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             validation: [],
           },
           {
@@ -918,7 +954,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.emergency_last_name",
             schemaName: "new_patient.emergency_last_name",
             label: "apInputs.add_new.emergency_last_name.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             validation: [],
           },
           {
@@ -929,7 +966,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.emergency_phone",
             schemaName: "new_patient.emergency_phone",
             label: "apInputs.add_new.emergency_phone.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             validation: [
               {
                 type: "hasPattern",
@@ -953,7 +991,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.emergency_secondary_phone",
             schemaName: "new_patient.emergency_secondary_phone",
             label: "apInputs.add_new.emergency_secondary_phone.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             validation: [
               {
                 type: "hasPattern",
@@ -970,7 +1009,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.emergency_address",
             schemaName: "new_patient.emergency_address",
             label: "apInputs.add_new.emergency_address.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             validation: [],
           },
           {
@@ -981,7 +1021,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.emergency_relationship",
             schemaName: "new_patient.emergency_relationship",
             label: "apInputs.add_new.emergency_relationship.label",
-            flex: 1,
+            sm: 24,
+            md: 8,
             options: [
               {
                 value: "spouse",
@@ -1026,7 +1067,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "doctor",
         label: "apInputs.doctor.label",
         placeholder: "apInputs.doctor.placeholder",
-        flex: 1,
+        sm: 24,
+        md: 8,
         options: [
           { value: "ahmed", label: "apInputs.doctor.options.ahmed" },
           { value: "taha", label: "apInputs.doctor.options.taha" },
@@ -1052,7 +1094,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "room",
         label: "apInputs.room.label",
         defaultValue: "room_1",
-        flex: 1,
+        sm: 24,
+        md: 8,
         options: [
           { value: "room_1", label: "apInputs.room.options.room_1" },
           { value: "room_2", label: "apInputs.room.options.room_2" },
@@ -1074,7 +1117,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "status",
         label: "apInputs.status.label",
         defaultValue: "open",
-        flex: 1,
+        sm: 24,
+        md: 8,
         options: [
           { value: "open", label: "apInputs.status.options.open" },
           { value: "confirmed", label: "apInputs.status.options.confirmed" },
@@ -1117,7 +1161,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "notified_doctor",
         label: "apInputs.notified_doctor.label",
         placeholder: "apInputs.notified_doctor.placeholder",
-        flex: 1,
+        sm: 24,
+        md: 8,
         options: [
           { value: "ahmed", label: "apInputs.notified_doctor.options.ahmed" },
           { value: "taha", label: "apInputs.notified_doctor.options.taha" },
@@ -1143,7 +1188,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "room",
         label: "apInputs.room.label",
         defaultValue: "room_1",
-        flex: 1,
+        sm: 24,
+        md: 8,
         options: [
           { value: "room_1", label: "apInputs.room.options.room_1" },
           { value: "room_2", label: "apInputs.room.options.room_2" },
@@ -1173,7 +1219,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.day.label",
         defaultValue: "add 0 day",
         format: "DD/MM/YYYY",
-        flex: 1,
+        sm: 24,
+        md: 8,
         validation: [
           {
             type: "required",
@@ -1195,7 +1242,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         use12Hours: true,
         defaultValue: "12/10/2023 14:00", // testing time format: date can be today with format MM/DD/YYYY
         format: "hh:mm a",
-        flex: 1,
+        sm: 24,
+        md: 8,
         validation: [
           {
             type: "required",
@@ -1219,7 +1267,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         defaultValue: "add 30 minute",
         use12Hours: true,
         format: "hh:mm a",
-        flex: 1,
+        sm: 24,
+        md: 8,
         validation: [
           {
             type: "required",
@@ -1250,7 +1299,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         placeholder: "apInputs.alert_content.placeholder",
         maxLength: 1000,
         showCount: true,
-        flex: 1,
+        sm: 24,
+        md: 8,
         validation: [],
         visibility: [{ field: "alert_form", value: true }],
       },
@@ -1270,7 +1320,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "type",
         label: "apInputs.type.label",
         defaultValue: "examination",
-        flex: 1,
+        sm: 24,
+        md: 8,
         options: [
           { value: "examination", label: "apInputs.type.options.examination" },
           { value: "follow_up", label: "apInputs.type.options.follow_up" },
@@ -1304,7 +1355,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "subtype",
         label: "apInputs.subtype.label",
         defaultValue: "",
-        flex: 1,
+        sm: 24,
+        md: 8,
         options: [
           { value: "subtype_1", label: "apInputs.subtype.options.subtype_1" },
           { value: "subtype_2", label: "apInputs.subtype.options.subtype_2" },
@@ -1323,7 +1375,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.created.label",
         placeholder: "apInputs.created.placeholder",
         format: "DD/MM/YYYY",
-        flex: 1,
+        sm: 24,
+        md: 8,
         validation: [
           {
             type: "earlier_than",
@@ -1346,7 +1399,8 @@ export const addAppointmentFieldsConfig: Item[] = [
     schemaName: "assistants",
     label: "apInputs.assistants.label",
     defaultValue: "",
-    flex: 1,
+    sm: 24,
+    md: 8,
     options: [
       {
         value: "assistant_1",
@@ -1370,7 +1424,8 @@ export const addAppointmentFieldsConfig: Item[] = [
     placeholder: "apInputs.description.placeholder",
     maxLength: 1000,
     showCount: true,
-    flex: 1,
+    sm: 24,
+    md: 8,
     validation: [],
     visibility: [{ field: "note_form", value: false }],
   },
@@ -1385,7 +1440,8 @@ export const addAppointmentFieldsConfig: Item[] = [
     placeholder: "apInputs.note_content.placeholder",
     maxLength: 1000,
     showCount: true,
-    flex: 1,
+    sm: 24,
+    md: 8,
     validation: [],
     visibility: [{ field: "note_form", value: true }],
   },
@@ -1430,7 +1486,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "collected_diagnostic_fees",
         schemaName: "collected_diagnostic_fees",
         defaultValue: 100,
-        flex: 1,
+        sm: 24,
+        md: 8,
         validation: [],
         disability: [
           {
@@ -1452,7 +1509,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "collected_diagnostic_fees_options",
         schemaName: "collected_diagnostic_fees_options",
         defaultValue: "cash",
-        flex: 1,
+        sm: 24,
+        md: 8,
         options: [
           {
             value: "cash",
@@ -1511,7 +1569,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "collected_diagnostic_fees_subtype",
         schemaName: "collected_diagnostic_fees_subtype",
         defaultValue: "",
-        flex: 1,
+        sm: 24,
+        md: 8,
         options: [
           {
             value: "",
@@ -1562,7 +1621,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "reminder_before",
         schemaName: "reminder_before",
         label: "apInputs.reminder_before.label",
-        flex: 1,
+        sm: 24,
+        md: 8,
         validation: [],
       },
       {
@@ -1574,7 +1634,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         schemaName: "reminder_before_interval",
         label: "apInputs.reminder_before_interval.label",
         defaultValue: "minutes",
-        flex: 1,
+        sm: 24,
+        md: 8,
         options: [
           {
             value: "minutes",

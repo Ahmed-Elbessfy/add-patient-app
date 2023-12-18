@@ -75,6 +75,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                   return (
                     <>
                       <Col
+                        sm={item.sm && item.sm}
+                        md={item.md && item.md}
+                        lg={item.lg && item.lg}
+                        xl={item.xl && item.xl}
                         style={{
                           textAlign: "start",
                           flex: item.flex ? item.flex : undefined,
@@ -86,7 +90,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                       */}
                         {item.visibility ? (
                           isMatched(item.visibility) && (
-                            <div>
+                            <>
                               <AddAppointmentFields
                                 {...item}
                                 clearErrors={clearErrors}
@@ -101,10 +105,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                               <StyledError>
                                 {error && error.message && t(error.message)}
                               </StyledError>
-                            </div>
+                            </>
                           )
                         ) : (
-                          <div>
+                          <>
                             <AddAppointmentFields
                               {...item}
                               clearErrors={clearErrors}
@@ -119,7 +123,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                             <StyledError>
                               {error && error.message && t(error.message)}
                             </StyledError>
-                          </div>
+                          </>
                         )}
                       </Col>
                     </>

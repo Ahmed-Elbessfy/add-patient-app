@@ -131,6 +131,11 @@ interface ItemField {
   disability?: Rule[];
   errorTransKey?: string;
   flex?: number;
+  // layout values
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
 }
 
 export interface FieldText extends ItemField {
