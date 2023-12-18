@@ -323,91 +323,70 @@ export const addAppointmentFieldsConfig: Item[] = [
         gap: 0.5,
         children: [
           {
-            category: "layout",
-            type: "box",
-            gap: 0.5,
-            children: [
+            category: "field",
+            fieldType: "number",
+            id: "new_patient.age",
+            testId: "new_patient.age",
+            name: "new_patient.age",
+            schemaName: "new_patient.age",
+            label: "apInputs.add_new.age.label",
+            validation: [
               {
-                category: "layout",
-                type: "box",
-                gap: 0.5,
-                children: [
-                  {
-                    category: "field",
-                    fieldType: "datePicker",
-                    id: "new_patient.birthDate",
-                    testId: "new_patient.birthDate",
-                    name: "new_patient.birthDate",
-                    schemaName: "new_patient.birthDate",
-                    label: "apInputs.add_new.birthDate.label",
-                    placeholder: "apInputs.add_new.birthDate.placeholder",
-                    format: "DD/MM/YYYY",
-                    validation: [
-                      {
-                        type: "earlier_than",
-                        date: "add 0 day",
-                      },
-                    ],
-                    dateLimit: {
-                      status: "after",
-                      date: "add 0 day",
-                    },
-                    visibility: [
-                      {
-                        field: "new_patient.switch_date_age",
-                        value: false,
-                      },
-                    ],
-                  },
-                ],
+                type: "minimum",
+                minimum: 1,
               },
               {
-                category: "layout",
-                type: "box",
-                gap: 0.5,
-                children: [
-                  {
-                    category: "field",
-                    fieldType: "number",
-                    id: "new_patient.age",
-                    testId: "new_patient.age",
-                    name: "new_patient.age",
-                    schemaName: "new_patient.age",
-                    label: "apInputs.add_new.age.label",
-                    validation: [
-                      {
-                        type: "minimum",
-                        minimum: 1,
-                      },
-                      {
-                        type: "maximum",
-                        maximum: 200,
-                      },
-                    ],
-                    visibility: [
-                      {
-                        field: "new_patient.switch_date_age",
-                        value: true,
-                      },
-                    ],
-                  },
-                  {
-                    category: "field",
-                    fieldType: "switch",
-                    id: "new_patient.switch_date_age",
-                    testId: "new_patient.switch_date_age",
-                    name: "new_patient.switch_date_age",
-                    schemaName: "new_patient.switch_date_age",
-                    checkedChildren: "apInputs.add_new.switch_date_age.checked",
-                    unCheckedChildren:
-                      "apInputs.add_new.switch_date_age.unchecked",
-                    defaultChecked: false,
-                    validation: [],
-                  },
-                ],
+                type: "maximum",
+                maximum: 200,
+              },
+            ],
+            visibility: [
+              {
+                field: "new_patient.switch_date_age",
+                value: true,
               },
             ],
           },
+          {
+            category: "field",
+            fieldType: "datePicker",
+            id: "new_patient.birthDate",
+            testId: "new_patient.birthDate",
+            name: "new_patient.birthDate",
+            schemaName: "new_patient.birthDate",
+            label: "apInputs.add_new.birthDate.label",
+            placeholder: "apInputs.add_new.birthDate.placeholder",
+            format: "DD/MM/YYYY",
+            validation: [
+              {
+                type: "earlier_than",
+                date: "add 0 day",
+              },
+            ],
+            dateLimit: {
+              status: "after",
+              date: "add 0 day",
+            },
+            visibility: [
+              {
+                field: "new_patient.switch_date_age",
+                value: false,
+              },
+            ],
+          },
+          {
+            category: "field",
+            fieldType: "switch",
+            id: "new_patient.switch_date_age",
+            testId: "new_patient.switch_date_age",
+            name: "new_patient.switch_date_age",
+            schemaName: "new_patient.switch_date_age",
+            checkedChildren: "apInputs.add_new.switch_date_age.checked",
+            unCheckedChildren: "apInputs.add_new.switch_date_age.unchecked",
+            defaultChecked: false,
+            validation: [],
+          },
+
           {
             category: "field",
             fieldType: "select",

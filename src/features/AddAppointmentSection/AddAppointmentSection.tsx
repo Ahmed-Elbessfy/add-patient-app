@@ -29,7 +29,7 @@ const AddAppointmentSection: FC<Props> = (props: Props) => {
   // };
 
   return (
-    <section style={{width:"100%", flex: props.flex ? props.flex : undefined }}>
+    <section style={{ width: "100%" }}>
       <Row gutter={16} align="middle" justify={props.justify}>
         {/* <Flex justify="space-around" align="center" > */}
         {renderItems(children)}
