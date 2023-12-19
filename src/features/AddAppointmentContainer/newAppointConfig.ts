@@ -64,7 +64,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.patient_name.label",
         placeholder: "apInputs.patient_name.placeholder",
         disability: [
-          { field: "new_patient.show_add_patient", value: true }, // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+          { field: "show_add_patient", value: true }, // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
           { field: "switch_input_method", value: true },
         ],
 
@@ -77,7 +77,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 value: false,
               },
               {
-                field: "new_patient.show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+                field: "show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
                 value: false,
               },
             ],
@@ -100,10 +100,10 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "field",
         fieldType: "switch",
-        id: "new_patient.show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
-        testId: "new_patient.show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
-        name: "new_patient.show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
-        schemaName: "new_patient.show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+        id: "show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+        testId: "show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+        name: "show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+        schemaName: "show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
         checkedChildren: "hide",
         unCheckedChildren: "show",
         defaultChecked: false,
@@ -121,7 +121,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         unCheckedChildren: "QR",
         defaultChecked: false,
         validation: [],
-        disability: [{ field: "new_patient.show_add_patient", value: true }], // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+        disability: [{ field: "show_add_patient", value: true }], // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
       },
     ],
   },
@@ -159,9 +159,8 @@ export const addAppointmentFieldsConfig: Item[] = [
   // start new patient form config
   {
     category: "form",
-    type: "box",
-    gap: 0.5,
-    visibility: [{ field: "new_patient.show_add_patient", value: true }], // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+    name: "new_patient",
+    visibility: [{ field: "show_add_patient", value: true }], // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
     children: [
       {
         category: "UI",
@@ -1007,6 +1006,7 @@ export const addAppointmentFieldsConfig: Item[] = [
       },
     ],
   },
+
   // end new patient form config
 
   {

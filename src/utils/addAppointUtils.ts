@@ -26,18 +26,20 @@ export const configValidation = (itemsData: Item[]) => {
       if (!currentItem.schemaName.match(/\./g)) {
         shape[currentItem.schemaName] = parseValidation(currentItem);
       } else {
+        // console.log(currentItem);
+        // shape[currentItem.schemaName] = parseValidation(currentItem);
         const formPath = currentItem.schemaName.split(".");
+        console.log(
+          "current Nested object: ",
+          formPath[0],
+          shape[formPath[0]].fields
+        );
+        console.log("shape : ", shape);
 
-        if (shape[formPath[0]]) {
-          shape[formPath[0]] = yup.object().shape({
-            ...shape[formPath[0]].fields,
-            [formPath[1]]: parseValidation(currentItem),
-          });
-        } else {
-          shape[formPath[0]] = yup.object().shape({
-            [formPath[1]]: parseValidation(currentItem),
-          });
-        }
+        shape[formPath[0]].fields = {
+          ...shape[formPath[0]].fields,
+          [formPath[1]]: parseValidation(currentItem),
+        };
       }
     }
 
@@ -48,10 +50,38 @@ export const configValidation = (itemsData: Item[]) => {
 
     if (item.category === "form") {
       const currentItem = item as ItemForm;
-      configValidation(currentItem.children);
+
+      // If form, create new item of schema with name of form name property
+      shape[currentItem.name] = yup.object().when(
+        currentItem.visibility?.map((rule) => rule.field),
+        {
+          is: (...fields) => {
+            // if visible
+            return currentItem.visibility?.every(
+              (rule, ind) => rule.value === fields[ind]
+            );
+          },
+          then: (schema) => {
+            // return schema item
+            console.log(schema);
+            console.log(configValidation(currentItem.children));
+            return yup.object().shape(configValidation(currentItem.children));
+          },
+        }
+      );
+      shape[currentItem.name].fields = {
+        id__: yup.object().required(),
+      };
+      // console.log(
+      //   "--------------------------------------------------------------------------------",
+      //   shape[currentItem.name].fields,
+      //   shape[currentItem.name]
+      // );
+      // console.log(shape[currentItem.name].fields);
+      // configValidation(currentItem.children);
     }
   });
-
+  // console.log("new patient : ", shape["new_patient"]);
   return shape;
 };
 

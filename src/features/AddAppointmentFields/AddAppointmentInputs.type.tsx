@@ -269,6 +269,7 @@ export type ItemLayout = LayoutHStack | LayoutBox;
 
 export type ItemForm = {
   category: itemCategory;
+  name: string;
   children: ChildrenType[];
   visibility?: Rule[];
 };
