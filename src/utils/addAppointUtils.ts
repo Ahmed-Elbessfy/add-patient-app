@@ -23,10 +23,10 @@ export const configValidation = (itemsData: Item[]) => {
 
       // config schema
       // use currentItem since its type is FormFieldConfig same as accepted by parseValidation parameter type
-      if (!currentItem.schemaName.match(/\./g)) {
-        shape[currentItem.schemaName] = parseValidation(currentItem);
+      if (!currentItem.name.match(/\./g)) {
+        shape[currentItem.name] = parseValidation(currentItem);
       } else {
-        const formPath = currentItem.schemaName.split(".");
+        const formPath = currentItem.name.split(".");
 
         // approach 1
         shape[formPath[0]].fields = {
@@ -124,7 +124,7 @@ export const setDefaultValues = (itemsData: Item[]) => {
         // configuration for nested default values object
         if (!currentItem.name.match(/\./)) {
           // if no nested forms
-          defaultValuesObject[currentItem.schemaName] = currentDefaultValue;
+          defaultValuesObject[currentItem.name] = currentDefaultValue;
         } else {
           // if there are nested form
           const path = currentItem.name.split(".");

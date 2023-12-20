@@ -117,8 +117,7 @@ interface ItemField {
   id: string;
   testId: string;
   fieldType: fieldTypeValues;
-  name: string;
-  schemaName: SchemaName;
+  name: SchemaName;
   label?: string;
   placeholder?: string;
   validation: FieldValidation[];
