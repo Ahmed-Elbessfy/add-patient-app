@@ -58,14 +58,6 @@ const validateRequiredIf = (
       requiredConditions.map((condition: Rule) => condition.field),
     {
       is: (...fields: CustomRuleFields[]) => {
-        // console.log(
-        //   field.name,
-        //   field.validation,
-        //   fields,
-        //   requiredConditions,
-        //   requiredConditions.map((condition: Rule) => condition.field)
-        // );
-
         return (
           requiredConditions &&
           requiredConditions.every(
