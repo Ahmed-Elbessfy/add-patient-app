@@ -175,7 +175,14 @@ export const formatDateTime = (time: string) => {
     // this configure assumes that TIME is always will need to be ceiled up to next hour
     const value = ["h", "m", "ms", "s"].includes(unit)
       ? dayjs().add(1, "hour").startOf("hour")[dir](parseInt(count), unit)
-      : dayjs()[dir](parseInt(count), unit);
+      : // date validation takes into consideration current time & shows wrong indication that current day is later than limit due to using time into consideration
+        // also, could not use dayjs since comparison is done by "min" yup method
+        dayjs()
+          [dir](parseInt(count), unit)
+          .hour(0)
+          .minute(0)
+          .second(0)
+          .millisecond(0);
 
     return value;
   } else {
