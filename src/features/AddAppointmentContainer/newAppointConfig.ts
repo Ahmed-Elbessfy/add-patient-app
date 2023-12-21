@@ -136,7 +136,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         placeholder: "apInputs.note_title.placeholder",
         validation: [
           {
-            type: "requiredIf",
+            type: "requiredIfTest",
             requiredConditions: [
               {
                 field: "note_form",
@@ -197,7 +197,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             flex: 1,
             validation: [
               {
-                type: "requiredIf",
+                type: "requiredIfTest",
                 requiredConditions: [
                   {
                     field: "show_add_patient",
@@ -221,7 +221,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             flex: 1,
             validation: [
               {
-                type: "requiredIf",
+                type: "requiredIfTest",
                 requiredConditions: [
                   {
                     field: "show_add_patient",

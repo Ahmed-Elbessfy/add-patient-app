@@ -210,7 +210,7 @@ export type FieldConfig = FormFieldConfig & FieldOnChange & FieldDisability;
 
 type LayoutType = "hStack" | "box";
 
-type ChildrenType = FormFieldConfig | ItemLayout | ItemUI;
+type ChildrenType = FormFieldConfig | ItemLayout | ItemUI | ItemForm;
 
 export type LayoutBase = {
   category: itemCategory;
