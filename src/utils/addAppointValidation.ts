@@ -26,7 +26,7 @@ const validateRequired = (
   field: FormFieldConfig
 ) => {
   const isRequired = field.validation.find((rule) => rule.type === "required");
-
+  if (field.name === "new_patient") console.log(field.name);
   // Translate field name
   const fieldName = field.label;
 
@@ -37,36 +37,6 @@ const validateRequired = (
       ERROR_MESSAGES[VALIDATION_RULE_TYPES.REQUIRED](fieldName)
     )
   );
-};
-
-const validateRequiredIfTest = (
-  validationSchema: SchemaType,
-  field: FormFieldConfig
-) => {
-  const { requiredConditions } = field.validation.filter(
-    (rule: FieldValidation) => rule.type === "requiredIfTest"
-  )[0];
-
-  // Translate field name
-  const fieldName = field.label;
-
-  // console.log(
-  //   field.name,
-  //   requiredConditions
-  //   // yup.ref("show_add_patient"),
-  //   // yup.ref("new_patient.switch_date_age")
-  // );
-
-  return validationSchema.test({
-    name: "requiredIfTest",
-    test: function (value) {
-      const fieldValue = this.resolve(yup.ref("show_add_patient")),
-        fi = this.resolve(yup.ref("new_patient.switch_date_age"));
-      console.log(field.name, fi, fieldValue, value);
-
-      return true;
-    },
-  });
 };
 
 const validateRequiredIf = (
@@ -290,7 +260,6 @@ const validateMaximum = (
 const validationRules = {
   [VALIDATION_RULE_TYPES.REQUIRED]: validateRequired,
   [VALIDATION_RULE_TYPES.REQUIRED_IF]: validateRequiredIf,
-  [VALIDATION_RULE_TYPES.REQUIRED_IF_TEST]: validateRequiredIfTest,
   [VALIDATION_RULE_TYPES.EARLIER_THAN]: validateEarlierThan,
   [VALIDATION_RULE_TYPES.LATER_THAN]: validateLaterThan,
   [VALIDATION_RULE_TYPES.TIME_EARLIER_THAN]: validateTimeEarlierThan,

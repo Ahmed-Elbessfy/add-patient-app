@@ -75,6 +75,7 @@ export type SchemaName =
   | "new_patient.national_id"
   | "new_patient.patient_details"
   | "new_patient.insurance_company"
+  | "new_patient.new_insurance_company.name"
   | "new_patient.referral_source"
   | "new_patient.referral_details"
   | "new_patient.referral_user"

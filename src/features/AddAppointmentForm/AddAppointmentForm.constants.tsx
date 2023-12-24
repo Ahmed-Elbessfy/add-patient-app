@@ -16,7 +16,6 @@ export const INPUT_TYPES = {
 export const VALIDATION_RULE_TYPES = {
   REQUIRED: "required",
   REQUIRED_IF: "requiredIf",
-  REQUIRED_IF_TEST: "requiredIfTest",
   EARLIER_THAN: "earlier_than",
   LATER_THAN: "later_than",
   TIME_EARLIER_THAN: "time_earlier_than",
@@ -34,12 +33,6 @@ export const ERROR_MESSAGES = {
     return i18next.t("error_messages.required", { fieldName: field });
   },
   [VALIDATION_RULE_TYPES.REQUIRED_IF]: (fieldName: string) => {
-    // Translate field name
-    const field = i18next.t(fieldName);
-
-    return i18next.t("error_messages.requiredIf", { fieldName: field });
-  },
-  [VALIDATION_RULE_TYPES.REQUIRED_IF_TEST]: (fieldName: string) => {
     // Translate field name
     const field = i18next.t(fieldName);
 

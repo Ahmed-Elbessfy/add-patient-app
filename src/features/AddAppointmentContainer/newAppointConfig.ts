@@ -136,7 +136,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         placeholder: "apInputs.note_title.placeholder",
         validation: [
           {
-            type: "requiredIfTest",
+            type: "requiredIf",
             requiredConditions: [
               {
                 field: "note_form",
@@ -197,13 +197,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             flex: 1,
             validation: [
               {
-                type: "requiredIfTest",
-                requiredConditions: [
-                  {
-                    field: "show_add_patient",
-                    value: true,
-                  },
-                ],
+                type: "required",
               },
               {
                 type: "minimum",
@@ -221,13 +215,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             flex: 1,
             validation: [
               {
-                type: "requiredIfTest",
-                requiredConditions: [
-                  {
-                    field: "show_add_patient",
-                    value: true,
-                  },
-                ],
+                type: "required",
               },
             ],
           },
@@ -730,6 +718,20 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.add_new.insurance_company.label",
         placeholder: "apInputs.add_new.insurance_company.placeholder",
         validation: [],
+      },
+      {
+        category: "form",
+        name: "new_insurance_company",
+        children: [
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient.new_insurance_company.name",
+            testId: "new_patient.new_insurance_company.name",
+            name: "new_patient.new_insurance_company.name",
+            validation: [],
+          },
+        ],
       },
       {
         category: "UI",
@@ -1502,7 +1504,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "reminder_before",
         label: "apInputs.reminder_before.label",
         flex: 1,
-        validation: [],
+        validation: [{ type: "minimum", minimum: 1 }],
       },
       {
         category: "field",
@@ -1536,3 +1538,32 @@ export const addAppointmentFieldsConfig: Item[] = [
     ],
   },
 ];
+
+// [{
+//   "doctor":"doctorSchema",
+//   "patient_name":"patient_name-schema",
+//   "new_patient.first_name":"new_patient-first_name-schema",
+//   "new_patient.last_name":"new_patient-last_name-schema",
+//   "new_patient.insurance_company.name": "new_patient-insurance_company-name-schema",
+//   "day":"day-schema",
+//   "reminder":"reminder-schema"
+// }
+// ]
+
+// [
+//   "patient_name": "patient_name-schema",
+
+//   "doctor": "doctorSchema",
+//   "new_patient":{
+//     fields: {
+//       "first_name":"new_patient-first_name-schema",
+//       "last_name": "new_patient-last_name-schema",
+//       fields: {
+//         "insurance_company":  "new_patient-insurance_company-name-schema",
+//        }
+//       }
+//     },
+//   "day":"day-schema"
+//   "reminder":"reminder-schema"
+
+// ]

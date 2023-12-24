@@ -15,6 +15,18 @@ const shape: yup.ObjectShape = {};
 const defaultValuesObject: DefaultValueObjectFormat =
   {} as DefaultValueObjectFormat;
 
+const configShape = (item: Item, shape: yup.ObjectSchema) => {
+  if (item.category === "field") {
+    const name = item.name.split(".").at(-1);
+    shape = {
+      ...shape,
+      [name]: parseValidation(item),
+    };
+  }
+
+  return shape;
+};
+
 // build schema & default values
 export const configValidation = (itemsData: Item[]) => {
   itemsData.forEach((item: Item) => {
@@ -29,10 +41,40 @@ export const configValidation = (itemsData: Item[]) => {
         const formPath = currentItem.name.split(".");
 
         // approach 1
-        shape[formPath[0]].fields = {
-          ...shape[formPath[0]].fields,
-          [formPath[1]]: parseValidation(currentItem),
-        };
+        // shape[formPath[0]].fields = {
+        //   ...shape[formPath[0]].fields,
+        //   [formPath[1]]: parseValidation(currentItem),
+        // };
+
+        const currentItemSchema = parseValidation(currentItem);
+        let shapePlaceholder = shape;
+
+        for (let i = 0; i < formPath.length - 1; i++) {
+          console.log(shapePlaceholder, i, formPath);
+          if (shapePlaceholder[formPath[i]]) {
+            shapePlaceholder[formPath[i]].fields = {
+              ...shapePlaceholder[formPath[i]].fields,
+              [formPath[formPath.length - 1]]: currentItemSchema,
+            };
+          } else {
+            shapePlaceholder[formPath[i]] = yup.object().shape({});
+          }
+
+          // move one step down
+          shapePlaceholder = shapePlaceholder[formPath[i]];
+        }
+
+        // formPath.forEach((key: string) => {
+        //   // if (!shapePlaceholder[key])
+        //   // shapePlaceholder[key] = yup.object().shape({});
+        //   console.log(formPath);
+        //   console.log("shape placeholder : ", shape, shapePlaceholder[key]);
+        //   // shape[key].fields = {
+        //   //   ...shape[key].fields,
+
+        //   // }
+        //   shapePlaceholder = shapePlaceholder[key].fields;
+        // });
 
         // approach 4
         // shape[formPath[0]] = yup.object().shape({
@@ -87,6 +129,47 @@ export const configValidation = (itemsData: Item[]) => {
   });
 
   return shape;
+};
+
+export const buildNestedObject = (config: Item[]) => {
+  const result = {};
+
+  const processItem = (item, level) => {
+    console.log(item.name);
+    const keys = item.name.split(".");
+    let currentLevel = level;
+
+    keys.forEach((key, index) => {
+      if (!currentLevel[key]) {
+        currentLevel[key] = {};
+      }
+
+      if (index === keys.length - 1) {
+        if (item.category === "field") {
+          // If it's a field, set the key to a placeholder string
+          currentLevel[key] = `parse ${item.name} schema`;
+        } else if (item.category === "form") {
+          // If it's a form, create a 'fields' property at the current level
+          currentLevel[key] = { fields: {} };
+          processItems(item.children, currentLevel[key].fields);
+        }
+      }
+
+      currentLevel = currentLevel[key];
+    });
+  };
+
+  const processItems = (items, level) => {
+    items.forEach((item) => {
+      if (item.category !== "layout") {
+        processItem(item, level);
+      }
+    });
+  };
+
+  processItems(config, result);
+
+  return result;
 };
 
 // build schema & default values
