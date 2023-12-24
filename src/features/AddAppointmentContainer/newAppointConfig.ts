@@ -724,12 +724,209 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "new_insurance_company",
         children: [
           {
-            category: "field",
-            fieldType: "text",
-            id: "new_patient.new_insurance_company.name",
-            testId: "new_patient.new_insurance_company.name",
-            name: "new_patient.new_insurance_company.name",
-            validation: [],
+            category: "layout",
+            type: "box",
+            gap: 0.5,
+            children: [
+              {
+                category: "field",
+                fieldType: "text",
+                id: "new_patient.new_insurance_company.name",
+                testId: "new_patient.new_insurance_company.name",
+                name: "new_patient.new_insurance_company.name",
+                label: "Company Name",
+                validation: [
+                  {
+                    type: "required",
+                  },
+                ],
+              },
+              {
+                category: "field",
+                fieldType: "text",
+                id: "new_patient.new_insurance_company.phone",
+                testId: "new_patient.new_insurance_company.phone",
+                name: "new_patient.new_insurance_company.phone",
+                label: "Company Number",
+                validation: [
+                  {
+                    type: "hasPattern",
+                    pattern:
+                      /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            category: "layout",
+            type: "box",
+            gap: 0.5,
+            children: [
+              {
+                category: "field",
+                fieldType: "number",
+                id: "new_patient.new_insurance_company.limit",
+                testId: "new_patient.new_insurance_company.limit",
+                name: "new_patient.new_insurance_company.limit",
+                label: "Insurance Limit",
+                validation: [
+                  {
+                    type: "required",
+                  },
+                ],
+              },
+              {
+                category: "field",
+                fieldType: "checkbox",
+                id: "new_patient.new_insurance_company.isUnlimited",
+                testId: "new_patient.new_insurance_company.isUnlimited",
+                name: "new_patient.new_insurance_company.isUnlimited",
+                label: "unlimited",
+                validation: [],
+              },
+              {
+                category: "field",
+                fieldType: "number",
+                id: "new_patient.new_insurance_company.discount",
+                testId: "new_patient.new_insurance_company.discount",
+                name: "new_patient.new_insurance_company.discount",
+                label: "Insurance Discount",
+                validation: [
+                  {
+                    type: "required",
+                  },
+                ],
+              },
+              {
+                category: "field",
+                fieldType: "checkbox",
+                id: "new_patient.new_insurance_company.fullDiscount",
+                testId: "new_patient.new_insurance_company.fullDiscount",
+                name: "new_patient.new_insurance_company.fullDiscount",
+                label: "100%",
+                validation: [],
+              },
+            ],
+          },
+          {
+            category: "layout",
+            type: "box",
+            gap: 0.5,
+            children: [
+              {
+                category: "field",
+                fieldType: "text",
+                id: "new_patient.new_insurance_company.type",
+                testId: "new_patient.new_insurance_company.type",
+                name: "new_patient.new_insurance_company.type",
+                label: "Member/Policy #",
+                validation: [],
+              },
+              {
+                category: "field",
+                fieldType: "text",
+                id: "new_patient.new_insurance_company.group",
+                testId: "new_patient.new_insurance_company.group",
+                name: "new_patient.new_insurance_company.group",
+                label: "Group #",
+                validation: [],
+              },
+              {
+                category: "field",
+                fieldType: "text",
+                id: "new_patient.new_insurance_company.crt",
+                testId: "new_patient.new_insurance_company.crt",
+                name: "new_patient.new_insurance_company.crt",
+                label: "CRT #",
+                validation: [],
+              },
+            ],
+          },
+          {
+            category: "layout",
+            type: "box",
+            gap: 0.5,
+            children: [
+              {
+                category: "field",
+                fieldType: "datePicker",
+                id: "new_patient.new_insurance_company.expiryDate",
+                testId: "new_patient.new_insurance_company.expiryDate",
+                name: "new_patient.new_insurance_company.expiryDate",
+                label: "Insurance Card Expiry Date",
+                format: "DD/MM/YYYY",
+                validation: [],
+              },
+              {
+                category: "field",
+                fieldType: "select",
+                id: "new_patient.new_insurance_company.startMonth",
+                testId: "new_patient.new_insurance_company.startMonth",
+                name: "new_patient.new_insurance_company.startMonth",
+                label: "Insurance Start Month",
+                options: [
+                  {
+                    value: "january",
+                    label: "January",
+                  },
+                  {
+                    value: "february",
+                    label: "February",
+                  },
+                  {
+                    value: "march",
+                    label: "March",
+                  },
+                  {
+                    value: "april",
+                    label: "April",
+                  },
+                  {
+                    value: "may",
+                    label: "May",
+                  },
+                  {
+                    value: "june",
+                    label: "June",
+                  },
+                  {
+                    value: "july",
+                    label: "July",
+                  },
+                  {
+                    value: "august",
+                    label: "August",
+                  },
+                  {
+                    value: "september",
+                    label: "September",
+                  },
+                  {
+                    value: "october",
+                    label: "October",
+                  },
+                  {
+                    value: "november",
+                    label: "November",
+                  },
+                  {
+                    value: "december",
+                    label: "December",
+                  },
+                ],
+                validation: [],
+              },
+              {
+                category: "field",
+                fieldType: "checkbox",
+                id: "new_patient.new_insurance_company.requireApproval",
+                testId: "new_patient.new_insurance_company.requireApproval",
+                name: "new_patient.new_insurance_company.requireApproval",
+                label: "unlimited",
+                validation: [],
+              },
+            ],
           },
         ],
       },
