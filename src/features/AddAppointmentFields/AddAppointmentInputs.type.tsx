@@ -96,7 +96,8 @@ type fieldTypeValues =
   | "timePicker"
   | "textarea"
   | "radio"
-  | "switch";
+  | "switch"
+  | "checkbox";
 
 type DateLimitRule = {
   status: string;
@@ -183,6 +184,10 @@ export interface FieldSwitch extends ItemField {
   defaultChecked: boolean;
 }
 
+export interface FieldCheckbox extends ItemField {
+  fieldType: "checkbox";
+}
+
 export type FormFieldConfig =
   | FieldText
   | FieldNumber
@@ -191,6 +196,7 @@ export type FormFieldConfig =
   | FieldDate
   | FieldTime
   | FieldSwitch
+  | FieldCheckbox
   | FieldTextArea;
 
 type FieldOnChange = {

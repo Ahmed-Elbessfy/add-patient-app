@@ -8,7 +8,9 @@ import {
   DatePickerProps,
   TimePicker,
   Switch,
+  Checkbox,
 } from "antd";
+import { CheckboxChangeEvent } from "antd/es/checkbox";
 import dayjs from "dayjs";
 import type { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
@@ -46,14 +48,15 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
 
   return (
     <>
-      {label && <label>{t(label)}</label>}
+      {/* checkbox has customization for label to be used as text  */}
+      {label && fieldType !== "checkbox" && <label>{t(label)}</label>}
       {/* Text Input  */}
       {fieldType === "text" && (
         <Input
           type={fieldType}
           name={name}
           placeholder={placeholder && t(placeholder)}
-          data-testid={testId}
+          data-id={id}
           id={id}
           status={status}
           disabled={isDisabled}
@@ -215,6 +218,16 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           defaultChecked={props.defaultChecked}
           onChange={(checked: boolean) => onChange(checked)}
         />
+      )}
+
+      {fieldType === "checkbox" && (
+        <Checkbox
+          data-testid={testId}
+          id={id}
+          onChange={(e: CheckboxChangeEvent) => onChange(e.target.value)}
+        >
+          {label}
+        </Checkbox>
       )}
     </>
   );

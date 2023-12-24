@@ -11,6 +11,7 @@ export const INPUT_TYPES = {
   INPUT_DATEPICKER: "datePicker",
   INPUT_TIMEPICKER: "timePicker",
   INPUT_SWITCH: "switch",
+  INPUT_CHECKBOX: "checkbox",
 };
 
 export const VALIDATION_RULE_TYPES = {
@@ -125,6 +126,7 @@ export const INPUT_VALIDATION_TYPES = {
   [INPUT_TYPES.INPUT_DATEPICKER]: yup.date(),
   [INPUT_TYPES.INPUT_TIMEPICKER]: yup.string(),
   [INPUT_TYPES.INPUT_SWITCH]: yup.boolean(),
+  [INPUT_TYPES.INPUT_CHECKBOX]: yup.boolean(),
 };
 
 /**********************************************************************
