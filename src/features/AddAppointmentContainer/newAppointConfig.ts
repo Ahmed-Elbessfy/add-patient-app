@@ -721,7 +721,7 @@ export const addAppointmentFieldsConfig: Item[] = [
       },
       {
         category: "form",
-        name: "new_insurance_company",
+        name: "new_patient.new_insurance_company",
         children: [
           {
             category: "layout",

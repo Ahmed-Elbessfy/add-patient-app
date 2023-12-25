@@ -31,13 +31,14 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   fieldsConfig,
   onSubmit,
 }) => {
+  // Schema Config
+  const shape: yup.ObjectShape = {};
   // build schema & default values
-  const shape = configValidation(fieldsConfig);
+  const schemaShape = configValidation(fieldsConfig, shape);
 
-  const schemaShape: yup.ObjectShape = shape;
   // console.log(shape);
   const schema = yup.object().shape(schemaShape);
-  console.log("final schema : ", schema);
+  // console.log("final schema : ", schema);
   const { control, handleSubmit, clearErrors, watch, formState, getValues } =
     useForm({
       resolver: yupResolver(schema),

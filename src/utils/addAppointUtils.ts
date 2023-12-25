@@ -9,170 +9,59 @@ import {
 import { DefaultValueObjectFormat } from "../features/AddAppointmentForm/AddAppointmentForm.types";
 import { parseValidation } from "./addAppointValidation";
 
-// Schema Config
-const shape: yup.ObjectShape = {};
 // default values config
 const defaultValuesObject: DefaultValueObjectFormat =
   {} as DefaultValueObjectFormat;
 
-const configShape = (item: Item, shape: yup.ObjectSchema) => {
-  if (item.category === "field") {
-    const name = item.name.split(".").at(-1);
-    shape = {
-      ...shape,
-      [name]: parseValidation(item),
-    };
-  }
-
-  return shape;
-};
-
+// Schema Config
 // build schema & default values
-export const configValidation = (itemsData: Item[]) => {
+export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
+  // console.log("current : ", shape);
   itemsData.forEach((item: Item) => {
+    // console.log(item);
     if (item.category === "field") {
       const currentItem = item as FormFieldConfig;
-
-      // config schema
-      // use currentItem since its type is FormFieldConfig same as accepted by parseValidation parameter type
-      if (!currentItem.name.match(/\./g)) {
+      // if not nested
+      if (!currentItem.name.includes(".")) {
         shape[currentItem.name] = parseValidation(currentItem);
       } else {
-        const formPath = currentItem.name.split(".");
-
-        // approach 1
-        // shape[formPath[0]].fields = {
-        //   ...shape[formPath[0]].fields,
-        //   [formPath[1]]: parseValidation(currentItem),
-        // };
-
-        const currentItemSchema = parseValidation(currentItem);
-        let shapePlaceholder = shape;
-
-        for (let i = 0; i < formPath.length - 1; i++) {
-          console.log(shapePlaceholder, i, formPath);
-          if (shapePlaceholder[formPath[i]]) {
-            shapePlaceholder[formPath[i]].fields = {
-              ...shapePlaceholder[formPath[i]].fields,
-              [formPath[formPath.length - 1]]: currentItemSchema,
-            };
-          } else {
-            shapePlaceholder[formPath[i]] = yup.object().shape({});
-          }
-
-          // move one step down
-          shapePlaceholder = shapePlaceholder[formPath[i]];
-        }
-
-        // formPath.forEach((key: string) => {
-        //   // if (!shapePlaceholder[key])
-        //   // shapePlaceholder[key] = yup.object().shape({});
-        //   console.log(formPath);
-        //   console.log("shape placeholder : ", shape, shapePlaceholder[key]);
-        //   // shape[key].fields = {
-        //   //   ...shape[key].fields,
-
-        //   // }
-        //   shapePlaceholder = shapePlaceholder[key].fields;
-        // });
-
-        // approach 4
-        // shape[formPath[0]] = yup.object().shape({
-        //   ...shape[formPath[0]].fields,
-        //   [formPath[1]]: parseValidation(currentItem),
-        // });
-
-        // approach 2
-        // shape = {
-        //   ...shape,
-        //   [formPath[0]]: {
-        //     ...[formPath[0]],
-        //     fields: {
-        //       ...[formPath[0]].fields,
-        //       [formPath[1]]: parseValidation(currentItem),
-        //     },
-        //   },
-        // };
-
-        // approach 3
-        // shape[formPath[0]].fields[formPath[1]] = parseValidation(currentItem);
+        // if nested
+        const path = currentItem.name.split(".").reverse();
+        shape[path[0]] = parseValidation(currentItem);
       }
     }
 
     if (item.category === "layout") {
       const currentItem = item as ItemLayout;
-      configValidation(currentItem.children);
+      configValidation(currentItem.children, shape);
     }
 
     if (item.category === "form") {
       const currentItem = item as ItemForm;
+      // configValidation(currentItem.children);
 
-      if (!shape[currentItem.name]) {
-        // If form, create new item of schema with name of form name property
-        shape[currentItem.name] = yup.object().when(
-          currentItem.visibility?.map((rule) => rule.field),
-          {
-            is: (...fields) => {
-              // if visible
-              return currentItem.visibility?.every(
-                (rule, ind) => rule.value === fields[ind]
-              );
-            },
-            then: (schema) => {
-              // return schema item
-              return schema.shape(configValidation(currentItem.children));
-            },
-          }
-        );
+      // create new form shape
+      const newFormShape: yup.ObjectShape = {};
+
+      // get field name to add form schema. Default value is form name, the case if not nested
+      let fieldName: string = currentItem.name;
+
+      // if form is nested inside another form, get last since shape already is inside right scope
+      if (currentItem.name.includes(".")) {
+        fieldName = currentItem.name.split(".").at(-1);
       }
+
+      // add new form schema to current shape
+      shape[fieldName] = yup
+        .object()
+        .shape(configValidation(currentItem.children, newFormShape));
     }
   });
-
+  // console.log("shape after : ", shape);
   return shape;
 };
 
-export const buildNestedObject = (config: Item[]) => {
-  const result = {};
-
-  const processItem = (item, level) => {
-    console.log(item.name);
-    const keys = item.name.split(".");
-    let currentLevel = level;
-
-    keys.forEach((key, index) => {
-      if (!currentLevel[key]) {
-        currentLevel[key] = {};
-      }
-
-      if (index === keys.length - 1) {
-        if (item.category === "field") {
-          // If it's a field, set the key to a placeholder string
-          currentLevel[key] = `parse ${item.name} schema`;
-        } else if (item.category === "form") {
-          // If it's a form, create a 'fields' property at the current level
-          currentLevel[key] = { fields: {} };
-          processItems(item.children, currentLevel[key].fields);
-        }
-      }
-
-      currentLevel = currentLevel[key];
-    });
-  };
-
-  const processItems = (items, level) => {
-    items.forEach((item) => {
-      if (item.category !== "layout") {
-        processItem(item, level);
-      }
-    });
-  };
-
-  processItems(config, result);
-
-  return result;
-};
-
-// build schema & default values
+// build default values
 export const setDefaultValues = (itemsData: Item[]) => {
   itemsData.forEach((item: Item) => {
     if (item.category === "field") {
