@@ -38,7 +38,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
 
   // console.log(shape);
   const schema = yup.object().shape(schemaShape);
-  // console.log("final schema : ", schema);
+  console.log("final schema : ", schema);
   const { control, handleSubmit, clearErrors, watch, formState, getValues } =
     useForm({
       resolver: yupResolver(schema),

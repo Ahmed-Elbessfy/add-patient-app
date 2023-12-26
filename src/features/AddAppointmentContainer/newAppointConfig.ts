@@ -720,8 +720,22 @@ export const addAppointmentFieldsConfig: Item[] = [
         validation: [],
       },
       {
+        category: "field",
+        fieldType: "switch",
+        id: "new_patient.show_add_insurance_company",
+        testId: "new_patient.show_add_insurance_company",
+        name: "new_patient.show_add_insurance_company",
+        checkedChildren: "hide",
+        unCheckedChildren: "show",
+        defaultChecked: false,
+        validation: [],
+      },
+      {
         category: "form",
         name: "new_patient.new_insurance_company",
+        visibility: [
+          { field: "new_patient.show_add_insurance_company", value: true },
+        ],
         children: [
           {
             category: "layout",
@@ -1735,32 +1749,3 @@ export const addAppointmentFieldsConfig: Item[] = [
     ],
   },
 ];
-
-// [{
-//   "doctor":"doctorSchema",
-//   "patient_name":"patient_name-schema",
-//   "new_patient.first_name":"new_patient-first_name-schema",
-//   "new_patient.last_name":"new_patient-last_name-schema",
-//   "new_patient.insurance_company.name": "new_patient-insurance_company-name-schema",
-//   "day":"day-schema",
-//   "reminder":"reminder-schema"
-// }
-// ]
-
-// [
-//   "patient_name": "patient_name-schema",
-
-//   "doctor": "doctorSchema",
-//   "new_patient":{
-//     fields: {
-//       "first_name":"new_patient-first_name-schema",
-//       "last_name": "new_patient-last_name-schema",
-//       fields: {
-//         "insurance_company":  "new_patient-insurance_company-name-schema",
-//        }
-//       }
-//     },
-//   "day":"day-schema"
-//   "reminder":"reminder-schema"
-
-// ]

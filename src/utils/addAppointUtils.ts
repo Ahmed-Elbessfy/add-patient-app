@@ -50,11 +50,27 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
       if (currentItem.name.includes(".")) {
         fieldName = currentItem.name.split(".").at(-1);
       }
-
+      console.log("current item is form : ", item);
       // add new form schema to current shape
-      shape[fieldName] = yup
-        .object()
-        .shape(configValidation(currentItem.children, newFormShape));
+      shape[fieldName] = yup.object().when(
+        currentItem.visibility?.map((rule) => rule.field),
+        {
+          is: (...fields) => {
+            console.log();
+            return currentItem.visibility?.every(
+              (rule, ind) => rule.value === fields[ind]
+            );
+          },
+          then: (schema) => {
+            console.log(schema);
+            return schema.shape(
+              configValidation(currentItem.children, newFormShape)
+            );
+          },
+        }
+      );
+
+      // .shape(configValidation(currentItem.children, newFormShape));
     }
   });
   // console.log("shape after : ", shape);
