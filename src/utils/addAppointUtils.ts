@@ -5,6 +5,7 @@ import {
   ItemLayout,
   FormFieldConfig,
   ItemForm,
+  CustomRuleFields,
 } from "../features/AddAppointmentFields/AddAppointmentInputs.type";
 import { DefaultValueObjectFormat } from "../features/AddAppointmentForm/AddAppointmentForm.types";
 import { parseValidation } from "./addAppointValidation";
@@ -16,9 +17,7 @@ const defaultValuesObject: DefaultValueObjectFormat =
 // Schema Config
 // build schema & default values
 export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
-  // console.log("current : ", shape);
   itemsData.forEach((item: Item) => {
-    // console.log(item);
     if (item.category === "field") {
       const currentItem = item as FormFieldConfig;
       // if not nested
@@ -38,7 +37,6 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
 
     if (item.category === "form") {
       const currentItem = item as ItemForm;
-      // configValidation(currentItem.children);
 
       // create new form shape
       const newFormShape: yup.ObjectShape = {};
@@ -50,19 +48,30 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
       if (currentItem.name.includes(".")) {
         fieldName = currentItem.name.split(".").at(-1);
       }
-      console.log("current item is form : ", item);
+
       // add new form schema to current shape
+      // console.log("shape before condition : ", currentItem.name, shape);
       shape[fieldName] = yup.object().when(
         currentItem.visibility?.map((rule) => rule.field),
         {
-          is: (...fields) => {
-            console.log();
+          is: (...fields: CustomRuleFields[]) => {
+            console.log(
+              "is visible and passed : ",
+              currentItem.name,
+              currentItem.visibility.map((rule) => rule.field),
+              currentItem.visibility?.every(
+                (rule, ind) => rule.value === fields[ind]
+              )
+            );
             return currentItem.visibility?.every(
               (rule, ind) => rule.value === fields[ind]
             );
           },
           then: (schema) => {
-            console.log(schema);
+            console.log(currentItem.name, " should be rendered");
+            // console.log(
+            //   schema.shape(configValidation(currentItem.children, newFormShape))
+            // );
             return schema.shape(
               configValidation(currentItem.children, newFormShape)
             );
@@ -70,10 +79,13 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
         }
       );
 
-      // .shape(configValidation(currentItem.children, newFormShape));
+      // console.log("shape after condition : ", currentItem.name, shape);
+      // shape[fieldName] = yup
+      //   .object()
+      //   .shape(configValidation(currentItem.children, newFormShape));
     }
   });
-  // console.log("shape after : ", shape);
+  // console.log(shape);
   return shape;
 };
 

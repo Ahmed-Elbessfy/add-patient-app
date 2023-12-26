@@ -5,6 +5,7 @@ import {
   INPUT_VALIDATION_TYPES,
 } from "../features/AddAppointmentForm/AddAppointmentForm.constants";
 import {
+  CustomRuleFields,
   FieldValidation,
   FormFieldConfig,
   Rule,
@@ -17,8 +18,6 @@ type SchemaType =
   | (StringSchema<string | undefined, AnyObject, undefined, ""> &
       NumberSchema<number | undefined, AnyObject, undefined, "">)
   | AnyObject;
-
-type CustomRuleFields = string | number | boolean;
 
 // VAlidation errors messages functions
 const validateRequired = (

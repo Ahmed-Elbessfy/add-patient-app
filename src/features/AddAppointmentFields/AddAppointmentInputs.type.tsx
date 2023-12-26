@@ -125,7 +125,7 @@ export type Rule = {
   value: string | number | boolean;
 };
 
-interface ItemField {
+export type CustomRuleFields = string | number | boolean;
   category: itemCategory;
   id: string;
   testId: string;
