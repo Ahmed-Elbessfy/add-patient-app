@@ -75,6 +75,7 @@ export type SchemaName =
   | "new_patient.national_id"
   | "new_patient.patient_details"
   | "new_patient.insurance_company"
+  | "new_patient.show_add_insurance_company"
   | "new_patient.new_insurance_company.name"
   | "new_patient.new_insurance_company.phone"
   | "new_patient.new_insurance_company.limit"

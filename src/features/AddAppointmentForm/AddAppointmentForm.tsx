@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Alert, Button, Col, Typography } from "antd";
 import * as yup from "yup";
@@ -36,20 +36,14 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   // build schema & default values
   const schemaShape = configValidation(fieldsConfig, shape);
 
-  // console.log(shape);
   const schema = yup.object().shape(schemaShape);
-  console.log("final schema : ", schema);
-  const { control, handleSubmit, clearErrors, watch, formState, getValues } =
-    useForm({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-      defaultValues: setDefaultValues(fieldsConfig),
-    });
+  // console.log("final schema : ", schema);
+  const { control, handleSubmit, clearErrors, watch } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+    defaultValues: setDefaultValues(fieldsConfig),
+  });
 
-  useEffect(() => {
-    // console.log(getValues().new_patient);
-    console.log("errors  : ", formState.errors);
-  }, [formState, getValues]);
   // get current language for content direction
   const { t, i18n } = useTranslation("translation");
 
@@ -79,7 +73,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                 name={item.name}
                 control={control}
                 render={({ field, fieldState: { error } }) => {
-                  if (error) console.log(error);
                   return (
                     <>
                       <Col

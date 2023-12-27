@@ -49,43 +49,29 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
         fieldName = currentItem.name.split(".").at(-1);
       }
 
-      // add new form schema to current shape
-      // console.log("shape before condition : ", currentItem.name, shape);
-      shape[fieldName] = yup.object().when(
-        currentItem.visibility?.map((rule) => rule.field),
-        {
-          is: (...fields: CustomRuleFields[]) => {
-            console.log(
-              "is visible and passed : ",
-              currentItem.name,
-              currentItem.visibility.map((rule) => rule.field),
-              currentItem.visibility?.every(
-                (rule, ind) => rule.value === fields[ind]
-              )
-            );
-            return currentItem.visibility?.every(
-              (rule, ind) => rule.value === fields[ind]
-            );
-          },
-          then: (schema) => {
-            console.log(currentItem.name, " should be rendered");
-            // console.log(
-            //   schema.shape(configValidation(currentItem.children, newFormShape))
-            // );
-            return schema.shape(
-              configValidation(currentItem.children, newFormShape)
-            );
-          },
-        }
-      );
+      // get last name of field name to get its value for conditional applying of nested forms validation
+      // full name can't be used since it contains the full path including inheritance from parent form path
+      // In nested form scope, full path as prop names does not exist but the only last prop name so it can be accessed and read
+      const conditionalFields =
+        currentItem.visibility &&
+        currentItem.visibility.map((rule) => rule.field.split(".").at(-1));
 
-      // console.log("shape after condition : ", currentItem.name, shape);
-      // shape[fieldName] = yup
-      //   .object()
-      //   .shape(configValidation(currentItem.children, newFormShape));
+      // add new form schema to current shape
+      shape[fieldName] = yup.object().when(conditionalFields, {
+        is: (...fields: CustomRuleFields[]) => {
+          return currentItem.visibility?.every(
+            (rule, ind) => rule.value === fields[ind]
+          );
+        },
+        then: (schema) => {
+          return schema.shape(
+            configValidation(currentItem.children, newFormShape)
+          );
+        },
+      });
     }
   });
-  // console.log(shape);
+
   return shape;
 };
 
