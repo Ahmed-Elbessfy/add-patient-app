@@ -224,7 +224,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
         <Checkbox
           data-testid={testId}
           id={id}
-          onChange={(e: CheckboxChangeEvent) => onChange(e.target.value)}
+          onChange={(e: CheckboxChangeEvent) => onChange(e.target.checked)}
         >
           {label}
         </Checkbox>
