@@ -786,7 +786,10 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "Insurance Limit",
                 validation: [
                   {
-                    type: "required",
+                disability: [
+                  {
+                    field: "new_patient.new_insurance_company.isUnlimited",
+                    value: true,
                   },
                 ],
               },
@@ -808,7 +811,10 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "Insurance Discount",
                 validation: [
                   {
-                    type: "required",
+                disability: [
+                  {
+                    field: "new_patient.new_insurance_company.fullDiscount",
+                    value: true,
                   },
                 ],
               },
