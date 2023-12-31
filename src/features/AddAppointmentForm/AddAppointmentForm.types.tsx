@@ -1,3 +1,4 @@
+import type { Dayjs } from "dayjs";
 import {
   Item,
   SchemaName,

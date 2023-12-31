@@ -10,9 +10,6 @@ import {
 import { DefaultValueObjectFormat } from "../features/AddAppointmentForm/AddAppointmentForm.types";
 import { parseValidation } from "./addAppointValidation";
 
-// default values config
-const defaultValuesObject: DefaultValueObjectFormat =
-  {} as DefaultValueObjectFormat;
 
 // Schema Config
 // build schema & default values
@@ -75,24 +72,37 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
   return shape;
 };
 
-// build default values
-export const setDefaultValues = (itemsData: Item[]) => {
-  itemsData.forEach((item: Item) => {
+// build default values Object
+export const setDefaultValues = (
+  items: Item[],
+  defaultValues: DefaultValueObjectFormat = {}
+) => {
+  items.forEach((item) => {
     if (item.category === "field") {
       const currentItem = item as FormFieldConfig;
+
       /********************
-        config default values FOR FORM STATE which gets validated
-        default value for each field input is for the displayed value for user
+        - config default values FOR FORM STATE which gets validated
+        - default value for each field input is for the displayed value for user
          ********************/
 
-      if ("defaultValue" in currentItem || "defaultChecked" in currentItem) {
-        // placeholder to set default value instead of setting its value each time
-        let currentDefaultValue: string | number | boolean | dayjs.Dayjs =
-          "defaultValue" in currentItem
-            ? currentItem.defaultValue
-            : currentItem.defaultChecked;
+      // setting default value field name
+      // if nested, get last name
+      // if not nested, get item name
+      const fieldName: string = currentItem.name.includes(".")
+        ? currentItem.name.split(".").slice(-1)[0]
+        : currentItem.name;
 
-        //     }
+      // setting default value field value
+      // double check for typescript
+      if (
+        "defaultValue" in currentItem &&
+        currentItem.defaultValue !== undefined
+      ) {
+        // default state is when default value for any field not time or date,
+        let currentDefaultValue: string | number | dayjs.Dayjs =
+          currentItem.defaultValue;
+
         // custom case for date picker default value
         if (currentItem.fieldType === "datePicker") {
           currentDefaultValue =
@@ -102,46 +112,47 @@ export const setDefaultValues = (itemsData: Item[]) => {
 
         // custom case for time picker default value
         if (currentItem.fieldType === "timePicker") {
-          currentDefaultValue =
-            currentItem.defaultValue &&
-            formatDateTime(currentItem.defaultValue).format("hh:mm a");
+          currentDefaultValue = formatDateTime(currentItem.defaultValue).format(
+            "hh:mm a"
+          );
         }
+        // store current field default value
+        defaultValues[fieldName] = currentDefaultValue;
+      }
 
-        // configuration for nested default values object
-        if (!currentItem.name.match(/\./)) {
-          // if no nested forms
-          defaultValuesObject[currentItem.name] = currentDefaultValue;
-        } else {
-          // if there are nested form
-          const path = currentItem.name.split(".");
-          // if there is already a nested object with path[0] name, add properties to current nest object
-          if (defaultValuesObject[path[0]]) {
-            defaultValuesObject[path[0]] = {
-              ...defaultValuesObject[path[0]],
-              [path[1]]: currentDefaultValue,
-            };
-          } else {
-            // if there is no a nested object with path[0] name, create new nested object and add path[1] property and value
-            defaultValuesObject[path[0]] = {
-              [path[1]]: currentDefaultValue,
-            };
-          }
-        }
+      // setting default value for switch & checkbox fields
+      if ("defaultChecked" in currentItem) {
+        defaultValues[fieldName] = currentItem.defaultChecked;
       }
     }
 
     if (item.category === "layout") {
       const currentItem = item as ItemLayout;
-      setDefaultValues(currentItem.children);
+      setDefaultValues(currentItem.children, defaultValues);
     }
 
     if (item.category === "form") {
       const currentItem = item as ItemForm;
-      setDefaultValues(currentItem.children);
+      const currentFormDefaultObject = {};
+
+      // set embedded form name
+      // if nested, get last name
+      // if not nested, get item name
+      const objName: string = currentItem.name.includes(".")
+        ? currentItem.name.split(".").slice(-1)[0]
+        : currentItem.name;
+
+      defaultValues = {
+        ...defaultValues,
+        [objName]: setDefaultValues(
+          currentItem.children,
+          currentFormDefaultObject
+        ),
+      };
     }
   });
 
-  return defaultValuesObject;
+  return defaultValues;
 };
 
 // Formatting date and time
@@ -163,8 +174,7 @@ export const formatDateTime = (time: string) => {
       ? dayjs().add(1, "hour").startOf("hour")[dir](parseInt(count), unit)
       : // date validation takes into consideration current time & shows wrong indication that current day is later than limit due to using time into consideration
         // also, could not use dayjs since comparison is done by "min" yup method
-        dayjs()
-          [dir](parseInt(count), unit)
+        dayjs()[dir](parseInt(count), unit)
           .hour(0)
           .minute(0)
           .second(0)
