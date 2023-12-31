@@ -786,6 +786,15 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "Insurance Limit",
                 validation: [
                   {
+                    type: "requiredIf",
+                    requiredConditions: [
+                      {
+                        field: "isUnlimited",
+                        value: false,
+                      },
+                    ],
+                  },
+                ],
                 disability: [
                   {
                     field: "new_patient.new_insurance_company.isUnlimited",
@@ -800,6 +809,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 testId: "new_patient.new_insurance_company.isUnlimited",
                 name: "new_patient.new_insurance_company.isUnlimited",
                 label: "unlimited",
+                defaultChecked: false,
                 validation: [],
               },
               {
@@ -811,6 +821,15 @@ export const addAppointmentFieldsConfig: Item[] = [
                 label: "Insurance Discount",
                 validation: [
                   {
+                    type: "requiredIf",
+                    requiredConditions: [
+                      {
+                        field: "fullDiscount",
+                        value: false,
+                      },
+                    ],
+                  },
+                ],
                 disability: [
                   {
                     field: "new_patient.new_insurance_company.fullDiscount",
@@ -824,6 +843,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.fullDiscount",
                 testId: "new_patient.new_insurance_company.fullDiscount",
                 name: "new_patient.new_insurance_company.fullDiscount",
+                defaultChecked: false,
                 label: "100%",
                 validation: [],
               },
@@ -944,6 +964,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 testId: "new_patient.new_insurance_company.requireApproval",
                 name: "new_patient.new_insurance_company.requireApproval",
                 label: "unlimited",
+                defaultChecked: false,
                 validation: [],
               },
             ],

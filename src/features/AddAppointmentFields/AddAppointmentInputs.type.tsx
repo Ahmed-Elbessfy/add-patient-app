@@ -198,6 +198,7 @@ export interface FieldSwitch extends ItemField {
 
 export interface FieldCheckbox extends ItemField {
   fieldType: "checkbox";
+  defaultChecked: boolean;
 }
 
 export type FormFieldConfig =
