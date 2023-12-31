@@ -1,5 +1,24 @@
 import { FieldElement, UseFormClearErrors } from "react-hook-form";
 
+type Customize<T, R> = Omit<T, keyof R> & R; // Check this line
+
+// type BaseInput = {
+//   type: string;
+// };
+
+// type SelectInput = Modify<
+//   BaseInput,
+//   {
+//     type: number;
+//     options: number;
+//   }
+// >;
+
+// export const field: SelectInput = {
+//   type: 1,
+//   options: 1,
+// };
+
 type itemCategory = "field" | "layout" | "UI" | "form";
 /*
 **********************************************************
@@ -127,6 +146,8 @@ export type Rule = {
 };
 
 export type CustomRuleFields = string | number | boolean;
+
+type ItemField = {
   category: itemCategory;
   id: string;
   testId: string;
@@ -144,7 +165,83 @@ export type CustomRuleFields = string | number | boolean;
   disability?: Rule[];
   errorTransKey?: string;
   flex?: number;
-}
+};
+
+export type FieldTextT = Customize<
+  ItemField,
+  {
+    fieldType: "text";
+    defaultValue?: string;
+  }
+>;
+export type FieldNumberT = Customize<
+  ItemField,
+  {
+    fieldType: "number";
+    defaultValue?: number;
+  }
+>;
+export type FieldSelectT = Customize<
+  ItemField,
+  {
+    fieldType: "select";
+    defaultValue?: string;
+    options: Option[];
+  }
+>;
+export type FieldRadioT = Customize<
+  ItemField,
+  {
+    fieldType: "radio";
+    defaultValue?: string;
+    options: Option[];
+  }
+>;
+export type FieldDateT = Customize<
+  ItemField,
+  {
+    fieldType: "datePicker";
+    format: string;
+    defaultValue?: string;
+    dateLimit?: DateLimitRule;
+  }
+>;
+export type FieldTimeT = Customize<
+  ItemField,
+  {
+    fieldType: "timePicker";
+    use12Hours: boolean;
+    format: string;
+    defaultValue?: string;
+  }
+>;
+
+export type FieldTextAreaT = Customize<
+  ItemField,
+  {
+    fieldType: "textarea";
+    defaultValue?: string;
+    maxLength?: number;
+    showCount: boolean;
+  }
+>;
+
+export type FieldSwitchT = Customize<
+  ItemField,
+  {
+    fieldType: "switch";
+    checkedChildren: string;
+    unCheckedChildren: string;
+    defaultChecked: boolean;
+  }
+>;
+
+export type FieldCheckboxT = Customize<
+  ItemField,
+  {
+    fieldType: "checkbox";
+  }
+>;
 
 export interface FieldText extends ItemField {
   fieldType: "text";
