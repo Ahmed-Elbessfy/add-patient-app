@@ -130,7 +130,6 @@ interface ItemField {
   visibility?: Rule[];
   disability?: Rule[];
   errorTransKey?: string;
-  flex?: number;
   // layout values
   sm?: number;
   md?: number;
