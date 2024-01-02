@@ -299,6 +299,56 @@
         "label": "شركة التأمين",
         "placeholder": "برجاء اختيار شركة او أضف شركة جديدة"
       },
+      "new_insurance_company": {
+        "name": {
+          "label": "اسم الشركة"
+        },
+        "phone": {
+          "label": "هاتف الشركة"
+        },
+        "limit": {
+          "label": "حد التأمين"
+        },
+        "unLimitedCheck": {
+          "label": "غير محدود"
+        },
+        "discount": {
+          "label": "خصم التأمين"
+        },
+        "membership": {
+          "label": "عضو/بوليصة #"
+        },
+        "group": {
+          "label": "مجموعة #"
+        },
+        "CRT": {
+          "label": "CRT #"
+        },
+        "expiry_date": {
+          "label": "تاريخ انتهاء التأمين",
+          "placeholder": "DD/MM/YYYY"
+        },
+        "start_month": {
+          "label": "شهر بدء التأمين",
+          "options": {
+            "january": "يناير",
+            "february": "فبراير",
+            "march": "مارس",
+            "april": "إبريل",
+            "may": "مايو",
+            "june": "يونيو",
+            "july": "يوليو",
+            "august": "أغسطس",
+            "september": "سبتمبر",
+            "october": "أكتوبر",
+            "november": "نوفمبر",
+            "december": "ديسمبر"
+          }
+        },
+        "require_approval": {
+          "label": "يتطلب الاعتماد"
+        }
+      },
       "referral_title": {
         "text": "كيف تعرفت على Detnolize ؟"
       },

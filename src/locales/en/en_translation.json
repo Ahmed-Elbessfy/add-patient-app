@@ -300,6 +300,56 @@
         "label": "Insurance Company",
         "placeholder": "PLease choose a company or add new"
       },
+      "new_insurance_company": {
+        "name": {
+          "label": "Company Name"
+        },
+        "phone": {
+          "label": "Company Number"
+        },
+        "limit": {
+          "label": "Company Limit"
+        },
+        "unLimitedCheck": {
+          "label": "Unlimited"
+        },
+        "discount": {
+          "label": "Insurance Discount"
+        },
+        "membership": {
+          "label": "Member/Policy #"
+        },
+        "group": {
+          "label": "Group #"
+        },
+        "CRT": {
+          "label": "CRT #"
+        },
+        "expiry_date": {
+          "label": "Insurance Card Expiry Date",
+          "placeholder": "DD/MM/YYYY"
+        },
+        "start_month": {
+          "label": "Insurance Start Month",
+          "options": {
+            "january": "January",
+            "february": "February",
+            "march": "March",
+            "april": "April",
+            "may": "May",
+            "june": "June",
+            "july": "July",
+            "august": "August",
+            "september": "September",
+            "october": "October",
+            "november": "November",
+            "december": "December"
+          }
+        },
+        "require_approval": {
+          "label": "Approval Required"
+        }
+      },
       "referral_title": {
         "text": "How Did You Hear About Us?"
       },

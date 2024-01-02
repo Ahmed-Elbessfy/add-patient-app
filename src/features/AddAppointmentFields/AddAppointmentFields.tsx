@@ -227,7 +227,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           defaultChecked={props.defaultChecked}
           onChange={(e: CheckboxChangeEvent) => onChange(e.target.checked)}
         >
-          {label}
+          {label && t(label)}
         </Checkbox>
       )}
     </>

@@ -748,7 +748,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.name",
                 testId: "new_patient.new_insurance_company.name",
                 name: "new_patient.new_insurance_company.name",
-                label: "Company Name",
+                label: "apInputs.add_new.new_insurance_company.name.label",
                 validation: [
                   {
                     type: "required",
@@ -761,7 +761,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.phone",
                 testId: "new_patient.new_insurance_company.phone",
                 name: "new_patient.new_insurance_company.phone",
-                label: "Company Number",
+                label: "apInputs.add_new.new_insurance_company.phone.label",
                 validation: [
                   {
                     type: "hasPattern",
@@ -783,7 +783,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.limit",
                 testId: "new_patient.new_insurance_company.limit",
                 name: "new_patient.new_insurance_company.limit",
-                label: "Insurance Limit",
+                label: "apInputs.add_new.new_insurance_company.limit.label",
                 validation: [
                   {
                     type: "requiredIf",
@@ -808,7 +808,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.isUnlimited",
                 testId: "new_patient.new_insurance_company.isUnlimited",
                 name: "new_patient.new_insurance_company.isUnlimited",
-                label: "unlimited",
+                label:
+                  "apInputs.add_new.new_insurance_company.unLimitedCheck.label",
                 defaultChecked: false,
                 validation: [],
               },
@@ -818,7 +819,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.discount",
                 testId: "new_patient.new_insurance_company.discount",
                 name: "new_patient.new_insurance_company.discount",
-                label: "Insurance Discount",
+                label: "apInputs.add_new.new_insurance_company.discount.label",
                 validation: [
                   {
                     type: "requiredIf",
@@ -860,7 +861,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.type",
                 testId: "new_patient.new_insurance_company.type",
                 name: "new_patient.new_insurance_company.type",
-                label: "Member/Policy #",
+                label:
+                  "apInputs.add_new.new_insurance_company.membership.label",
                 validation: [],
               },
               {
@@ -869,7 +871,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.group",
                 testId: "new_patient.new_insurance_company.group",
                 name: "new_patient.new_insurance_company.group",
-                label: "Group #",
+                label: "apInputs.add_new.new_insurance_company.group.label",
                 validation: [],
               },
               {
@@ -878,7 +880,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.crt",
                 testId: "new_patient.new_insurance_company.crt",
                 name: "new_patient.new_insurance_company.crt",
-                label: "CRT #",
+                label: "apInputs.add_new.new_insurance_company.CRT.label",
                 validation: [],
               },
             ],
@@ -894,7 +896,10 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.expiryDate",
                 testId: "new_patient.new_insurance_company.expiryDate",
                 name: "new_patient.new_insurance_company.expiryDate",
-                label: "Insurance Card Expiry Date",
+                label:
+                  "apInputs.add_new.new_insurance_company.expiry_date.label",
+                placeholder:
+                  "apInputs.add_new.new_insurance_company.expiry_date.placeholder",
                 format: "DD/MM/YYYY",
                 validation: [],
               },
@@ -904,55 +909,68 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.startMonth",
                 testId: "new_patient.new_insurance_company.startMonth",
                 name: "new_patient.new_insurance_company.startMonth",
-                label: "Insurance Start Month",
+                label:
+                  "apInputs.add_new.new_insurance_company.start_month.label",
                 options: [
                   {
                     value: "january",
-                    label: "January",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.january",
                   },
                   {
                     value: "february",
-                    label: "February",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.february",
                   },
                   {
                     value: "march",
-                    label: "March",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.march",
                   },
                   {
                     value: "april",
-                    label: "April",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.april",
                   },
                   {
                     value: "may",
-                    label: "May",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.may",
                   },
                   {
                     value: "june",
-                    label: "June",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.june",
                   },
                   {
                     value: "july",
-                    label: "July",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.july",
                   },
                   {
                     value: "august",
-                    label: "August",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.august",
                   },
                   {
                     value: "september",
-                    label: "September",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.september",
                   },
                   {
                     value: "october",
-                    label: "October",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.october",
                   },
                   {
                     value: "november",
-                    label: "November",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.november",
                   },
                   {
                     value: "december",
-                    label: "December",
+                    label:
+                      "apInputs.add_new.new_insurance_company.start_month.options.december",
                   },
                 ],
                 validation: [],
@@ -963,7 +981,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 id: "new_patient.new_insurance_company.requireApproval",
                 testId: "new_patient.new_insurance_company.requireApproval",
                 name: "new_patient.new_insurance_company.requireApproval",
-                label: "unlimited",
+                label:
+                  "apInputs.add_new.new_insurance_company.require_approval.label",
                 defaultChecked: false,
                 validation: [],
               },
