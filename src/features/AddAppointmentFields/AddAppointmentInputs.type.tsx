@@ -166,6 +166,8 @@ type ItemField = {
   disability?: Rule[];
   errorTransKey?: string;
   flex?: number;
+  prefix?: string;
+  suffix?: string;
 };
 
 export type FieldTextT = Customize<

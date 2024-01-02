@@ -670,6 +670,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "new_patient.tax",
             label: "apInputs.add_new.tax.label",
             flex: 1,
+            suffix: "%",
             validation: [],
           },
         ],
@@ -784,6 +785,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 testId: "new_patient.new_insurance_company.limit",
                 name: "new_patient.new_insurance_company.limit",
                 label: "apInputs.add_new.new_insurance_company.limit.label",
+                suffix: "EGP",
                 validation: [
                   {
                     type: "requiredIf",
@@ -820,6 +822,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 testId: "new_patient.new_insurance_company.discount",
                 name: "new_patient.new_insurance_company.discount",
                 label: "apInputs.add_new.new_insurance_company.discount.label",
+                suffix: "%",
                 validation: [
                   {
                     type: "requiredIf",
@@ -1643,6 +1646,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             name: "collected_diagnostic_fees",
             label: "Payment Amount",
             defaultValue: 100,
+            suffix: "EGP",
             flex: 1,
             validation: [],
           },
@@ -1747,6 +1751,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "next_invoice_diagnostic_fees",
             name: "next_invoice_diagnostic_fees",
             label: "Amount",
+            suffix: "EGP",
             defaultValue: 100,
             flex: 1,
             validation: [],

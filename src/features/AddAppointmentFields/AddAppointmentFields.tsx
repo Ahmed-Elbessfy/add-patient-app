@@ -78,6 +78,8 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           status={status}
           disabled={isDisabled}
           defaultValue={props.defaultValue}
+          addonAfter={props.suffix}
+          addonBefore={props.prefix}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
           }
