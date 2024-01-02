@@ -1599,149 +1599,163 @@ export const addAppointmentFieldsConfig: Item[] = [
     visibility: [{ field: "note_form", value: false }],
   },
   {
-    category: "field",
-    fieldType: "radio",
-    id: "diagnostic_fees",
-    testId: "diagnostic_fees",
-    name: "diagnostic_fees",
-    defaultValue: "none",
-    options: [
-      { value: "none", label: "apInputs.diagnostic_fees.options.none" },
-      {
-        value: "collected",
-        label: "apInputs.diagnostic_fees.options.collected",
-      },
-      {
-        value: "add_to_next_invoice",
-        label: "apInputs.diagnostic_fees.options.add_to_next_invoice",
-      },
-    ],
-    validation: [],
-    visibility: [{ field: "note_form", value: false }],
-  },
-  {
     category: "layout",
     type: "box",
     gap: 0.5,
+    visibility: [{ field: "note_form", value: false }],
     children: [
       {
         category: "field",
-        fieldType: "number",
-        id: "collected_diagnostic_fees",
-        testId: "collected_diagnostic_fees",
-        name: "collected_diagnostic_fees",
-        defaultValue: 100,
-        flex: 1,
-        validation: [],
-        disability: [
+        fieldType: "radio",
+        id: "diagnostic_fees",
+        testId: "diagnostic_fees",
+        name: "diagnostic_fees",
+        defaultValue: "none",
+        options: [
+          { value: "none", label: "apInputs.diagnostic_fees.options.none" },
           {
-            field: "diagnostic_fees",
-            value: "none",
+            value: "collected",
+            label: "apInputs.diagnostic_fees.options.collected",
           },
           {
-            field: "diagnostic_fees",
             value: "add_to_next_invoice",
+            label: "apInputs.diagnostic_fees.options.add_to_next_invoice",
           },
         ],
-        visibility: [{ field: "note_form", value: false }],
+        validation: [],
       },
       {
-        category: "field",
-        fieldType: "select",
-        id: "collected_diagnostic_fees_options",
-        testId: "collected_diagnostic_fees_options",
-        name: "collected_diagnostic_fees_options",
-        defaultValue: "cash",
-        flex: 1,
-        options: [
-          {
-            value: "cash",
-            label: "apInputs.collected_diagnostic_fees_options.options.cash",
-          },
-          {
-            value: "card",
-            label: "apInputs.collected_diagnostic_fees_options.options.card",
-          },
-          {
-            value: "insurance",
-            label:
-              "apInputs.collected_diagnostic_fees_options.options.insurance",
-          },
-          {
-            value: "cheque",
-            label: "apInputs.collected_diagnostic_fees_options.options.cheque",
-          },
-          {
-            value: "voucher",
-            label: "apInputs.collected_diagnostic_fees_options.options.voucher",
-          },
-          {
-            value: "bank_transfer",
-            label:
-              "apInputs.collected_diagnostic_fees_options.options.bank_transfer",
-          },
-          {
-            value: "mobile_wallet",
-            label:
-              "apInputs.collected_diagnostic_fees_options.options.mobile_wallet",
-          },
-          {
-            value: "other",
-            label: "apInputs.collected_diagnostic_fees_options.options.other",
-          },
-        ],
-        validation: [],
-        disability: [
+        category: "layout",
+        type: "box",
+        gap: 0.5,
+        visibility: [
           {
             field: "diagnostic_fees",
-            value: "none",
-          },
-          {
-            field: "diagnostic_fees",
-            value: "add_to_next_invoice",
+            value: "collected",
           },
         ],
-        visibility: [{ field: "note_form", value: false }],
+        children: [
+          {
+            category: "field",
+            fieldType: "number",
+            id: "collected_diagnostic_fees",
+            testId: "collected_diagnostic_fees",
+            name: "collected_diagnostic_fees",
+            label: "Payment Amount",
+            defaultValue: 100,
+            flex: 1,
+            validation: [],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "collected_diagnostic_fees_options",
+            testId: "collected_diagnostic_fees_options",
+            name: "collected_diagnostic_fees_options",
+            label: "Payment Method",
+            defaultValue: "cash",
+            flex: 1,
+            options: [
+              {
+                value: "cash",
+                label:
+                  "apInputs.collected_diagnostic_fees_options.options.cash",
+              },
+              {
+                value: "card",
+                label:
+                  "apInputs.collected_diagnostic_fees_options.options.card",
+              },
+              {
+                value: "insurance",
+                label:
+                  "apInputs.collected_diagnostic_fees_options.options.insurance",
+              },
+              {
+                value: "cheque",
+                label:
+                  "apInputs.collected_diagnostic_fees_options.options.cheque",
+              },
+              {
+                value: "voucher",
+                label:
+                  "apInputs.collected_diagnostic_fees_options.options.voucher",
+              },
+              {
+                value: "bank_transfer",
+                label:
+                  "apInputs.collected_diagnostic_fees_options.options.bank_transfer",
+              },
+              {
+                value: "mobile_wallet",
+                label:
+                  "apInputs.collected_diagnostic_fees_options.options.mobile_wallet",
+              },
+              {
+                value: "other",
+                label:
+                  "apInputs.collected_diagnostic_fees_options.options.other",
+              },
+            ],
+            validation: [],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "collected_diagnostic_fees_subtype",
+            testId: "collected_diagnostic_fees_subtype",
+            name: "collected_diagnostic_fees_subtype",
+            label: "Payment Subtype",
+            defaultValue: "",
+            flex: 1,
+            options: [
+              {
+                value: "",
+                label:
+                  "apInputs.collected_diagnostic_fees_subtype.options.subtype",
+              },
+              {
+                value: "subtype_1",
+                label:
+                  "apInputs.collected_diagnostic_fees_subtype.options.subtype_1",
+              },
+              {
+                value: "subtype_2",
+                label:
+                  "apInputs.collected_diagnostic_fees_subtype.options.subtype_2",
+              },
+            ],
+            validation: [],
+          },
+        ],
       },
       {
-        category: "field",
-        fieldType: "select",
-        id: "collected_diagnostic_fees_subtype",
-        testId: "collected_diagnostic_fees_subtype",
-        name: "collected_diagnostic_fees_subtype",
-        defaultValue: "",
-        flex: 1,
-        options: [
-          {
-            value: "",
-            label: "apInputs.collected_diagnostic_fees_subtype.options.subtype",
-          },
-          {
-            value: "subtype_1",
-            label:
-              "apInputs.collected_diagnostic_fees_subtype.options.subtype_1",
-          },
-          {
-            value: "subtype_2",
-            label:
-              "apInputs.collected_diagnostic_fees_subtype.options.subtype_2",
-          },
-        ],
-        validation: [],
-        disability: [
-          {
-            field: "diagnostic_fees",
-            value: "none",
-          },
+        category: "layout",
+        type: "box",
+        gap: 0.5,
+        visibility: [
           {
             field: "diagnostic_fees",
             value: "add_to_next_invoice",
           },
         ],
-        visibility: [{ field: "note_form", value: false }],
+        children: [
+          {
+            category: "field",
+            fieldType: "number",
+            id: "next_invoice_diagnostic_fees",
+            testId: "next_invoice_diagnostic_fees",
+            name: "next_invoice_diagnostic_fees",
+            label: "Amount",
+            defaultValue: 100,
+            flex: 1,
+            validation: [],
+          },
+        ],
       },
     ],
   },
+
   {
     category: "UI",
     type: "title",

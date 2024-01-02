@@ -69,6 +69,7 @@ export type SchemaName =
   | "collected_diagnostic_fees"
   | "collected_diagnostic_fees_options"
   | "collected_diagnostic_fees_subtype"
+  | "next_invoice_diagnostic_fees"
   | "reminder_before"
   | "reminder_before_interval"
   | "new_patient.id"
