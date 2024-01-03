@@ -38,7 +38,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
 
   const schema = yup.object().shape(schemaShape);
   // console.log("final schema : ", schema);
-  const { control, handleSubmit, clearErrors, watch } = useForm({
+  const { control, handleSubmit, clearErrors, watch, resetField } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
     defaultValues: setDefaultValues(fieldsConfig, {}),
@@ -98,6 +98,8 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                                     ? isMatched(item.disability)
                                     : false
                                 }
+                                resetField={resetField}
+                                value={field.value}
                               />
                               <StyledError>
                                 {error && error.message && t(error.message)}
@@ -116,6 +118,8 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                                   ? isMatched(item.disability)
                                   : false
                               }
+                              resetField={resetField}
+                              value={field.value}
                             />
                             <StyledError>
                               {error && error.message && t(error.message)}

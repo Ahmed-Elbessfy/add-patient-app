@@ -103,6 +103,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         defaultChecked: false,
         validation: [],
         disability: [{ field: "switch_input_method", value: true }],
+        emptyFields: ["patient_name"],
       },
       {
         category: "field",
@@ -730,6 +731,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         unCheckedChildren: "show",
         defaultChecked: false,
         validation: [],
+        emptyFields: ["new_patient.insurance_company"],
       },
       {
         category: "form",

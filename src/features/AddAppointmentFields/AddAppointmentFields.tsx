@@ -32,6 +32,8 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
     clearErrors,
     validation,
     isDisabled,
+    resetField,
+    value,
   } = props;
 
   // set disabled date for Date Picker Input
@@ -60,6 +62,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           id={id}
           status={status}
           disabled={isDisabled}
+          value={value}
           defaultValue={props.defaultValue}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value)
@@ -77,6 +80,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           id={id}
           status={status}
           disabled={isDisabled}
+          value={value}
           defaultValue={props.defaultValue}
           addonAfter={props.suffix}
           addonBefore={props.prefix}
@@ -98,6 +102,7 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           maxLength={props.maxLength}
           showCount={props.showCount}
           style={{ width: "100%" }}
+          value={value}
           defaultValue={props.defaultValue}
           onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
             onChange(e.target.value)
@@ -218,7 +223,18 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
           checkedChildren={t(props.checkedChildren)}
           unCheckedChildren={t(props.unCheckedChildren)}
           defaultChecked={props.defaultChecked}
-          onChange={(checked: boolean) => onChange(checked)}
+          onChange={(checked: boolean) => {
+            onChange(checked);
+
+            // reset field accepts only one field
+            // reset method did not work properly
+            // keep error to false to remove errors in case of changing visibility
+            if (resetField && props.emptyFields) {
+              for (const field of props.emptyFields) {
+                resetField(field, { keepError: false });
+              }
+            }
+          }}
         />
       )}
 

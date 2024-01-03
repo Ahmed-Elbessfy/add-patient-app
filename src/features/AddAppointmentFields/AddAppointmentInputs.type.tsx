@@ -1,4 +1,8 @@
-import { FieldElement, UseFormClearErrors } from "react-hook-form";
+import {
+  FieldElement,
+  UseFormClearErrors,
+  UseFormResetField,
+} from "react-hook-form";
 
 type Customize<T, R> = Omit<T, keyof R> & R; // Check this line
 
@@ -168,6 +172,11 @@ type ItemField = {
   flex?: number;
   prefix?: string;
   suffix?: string;
+  emptyFields?: SchemaName[];
+  resetField?: UseFormResetField<{
+    [x: string]: unknown;
+    [x: number]: unknown;
+  }>;
 };
 
 export type FieldTextT = Customize<
@@ -312,15 +321,14 @@ export type FormFieldConfig =
   | FieldCheckbox
   | FieldTextArea;
 
-type FieldOnChange = {
+// properties not added for form configuration and used within the field component
+type FieldComponentProps = {
   onChange: (value: FieldElement["value"]) => void;
-};
-
-type FieldDisability = {
   isDisabled: boolean;
+  value: unknown;
 };
 
-export type FieldConfig = FormFieldConfig & FieldOnChange & FieldDisability;
+export type FieldConfig = FormFieldConfig & FieldComponentProps;
 
 /*
 **********************************************************
