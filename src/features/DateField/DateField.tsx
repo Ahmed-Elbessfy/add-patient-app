@@ -4,20 +4,11 @@ import dayjs from "dayjs";
 import type { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
 import { formatDateTime } from "../../utils/addAppointUtils";
-import { FieldConfig } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import { FieldDateComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
-const DateField: FC<FieldConfig> = (props) => {
-  const {
-    fieldType,
-    label,
-    name,
-    id,
-    placeholder,
-    testId,
-    onChange,
-    status,
-    isDisabled,
-  } = props;
+const DateField: FC<FieldDateComponentProps> = (props) => {
+  const { label, name, id, placeholder, testId, onChange, status, isDisabled } =
+    props;
 
   // set disabled date for Date Picker Input
   const disabledDate = (current: Dayjs, status: string, limit: string) => {
@@ -33,40 +24,34 @@ const DateField: FC<FieldConfig> = (props) => {
 
   return (
     <>
-      {fieldType === "datePicker" && (
-        <>
-          {label && <label>{t(label)}</label>}
+      {label && <label>{t(label)}</label>}
 
-          <DatePicker
-            name={name}
-            format={props.format}
-            placeholder={placeholder && t(placeholder)}
-            data-testid={testId}
-            id={id}
-            status={status}
-            style={{ width: "100%" }}
-            disabled={isDisabled}
-            disabledDate={(current) =>
-              props.dateLimit
-                ? disabledDate(
-                    current,
-                    props.dateLimit.status,
-                    props.dateLimit.date
-                  )
-                : false
-            }
-            defaultValue={
-              props.defaultValue
-                ? formatDateTime(props.defaultValue)
-                : undefined
-            }
-            onChange={(value: DatePickerProps["value"]) => {
-              // accepted format "YYYY/MM/DD"
-              onChange(value);
-            }}
-          />
-        </>
-      )}
+      <DatePicker
+        name={name}
+        format={props.format}
+        placeholder={placeholder && t(placeholder)}
+        data-testid={testId}
+        id={id}
+        status={status}
+        style={{ width: "100%" }}
+        disabled={isDisabled}
+        disabledDate={(current) =>
+          props.dateLimit
+            ? disabledDate(
+                current,
+                props.dateLimit.status,
+                props.dateLimit.date
+              )
+            : false
+        }
+        defaultValue={
+          props.defaultValue ? formatDateTime(props.defaultValue) : undefined
+        }
+        onChange={(value: DatePickerProps["value"]) => {
+          // accepted format "YYYY/MM/DD"
+          onChange(value);
+        }}
+      />
     </>
   );
 };

@@ -338,6 +338,28 @@ export type FieldComponentProps = {
   disabilityFields?: CustomRuleFields[];
 };
 
+export type FieldTextComponentProps = FieldText & FieldComponentProps;
+export type FieldNumberComponentProps = FieldNumber & FieldComponentProps;
+export type FieldTextAreaComponentProps = FieldTextArea & FieldComponentProps;
+export type FieldSelectComponentProps = FieldSelect & FieldComponentProps;
+export type FieldRadioComponentProps = FieldRadio & FieldComponentProps;
+export type FieldDateComponentProps = FieldDate & FieldComponentProps;
+export type FieldTimeComponentProps = FieldTime & FieldComponentProps;
+export type FieldSwitchComponentProps = FieldSwitch & FieldComponentProps;
+export type FieldCheckboxComponentProps = FieldCheckbox & FieldComponentProps;
+export type FieldDualComponentProps = FieldDual & FieldComponentProps;
+
+export type FieldConfig =
+  | FieldTextComponentProps
+  | FieldNumberComponentProps
+  | FieldTextAreaComponentProps
+  | FieldSelectComponentProps
+  | FieldRadioComponentProps
+  | FieldDateComponentProps
+  | FieldTimeComponentProps
+  | FieldSwitchComponentProps
+  | FieldCheckboxComponentProps
+  | FieldDualComponentProps;
 
 /*
 **********************************************************

@@ -1,9 +1,9 @@
 import { ChangeEvent, FC } from "react";
 import { Input } from "antd";
 import { useTranslation } from "react-i18next";
-import { FieldConfig } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import { FieldTextComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
-const TextField: FC<FieldConfig> = (props) => {
+const TextField: FC<FieldTextComponentProps> = (props) => {
   const {
     fieldType,
     label,
@@ -21,26 +21,22 @@ const TextField: FC<FieldConfig> = (props) => {
 
   return (
     <>
-      {fieldType === "text" && (
-        <>
-          {label && <label>{t(label)}</label>}
+      {label && <label>{t(label)}</label>}
 
-          <Input
-            type={fieldType}
-            name={name}
-            placeholder={placeholder && t(placeholder)}
-            data-testid={testId}
-            id={id}
-            status={status}
-            disabled={isDisabled}
-            value={value}
-            defaultValue={props.defaultValue}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              onChange(e.target.value)
-            }
-          />
-        </>
-      )}
+      <Input
+        type={fieldType}
+        name={name}
+        placeholder={placeholder && t(placeholder)}
+        data-testid={testId}
+        id={id}
+        status={status}
+        disabled={isDisabled}
+        value={value}
+        defaultValue={props.defaultValue}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          onChange(e.target.value)
+        }
+      />
     </>
   );
 };
