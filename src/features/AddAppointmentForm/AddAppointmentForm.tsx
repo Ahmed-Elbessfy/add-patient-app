@@ -16,6 +16,7 @@ import {
   UIText,
   UITitle,
   ItemForm,
+  CustomRuleFields,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
@@ -24,6 +25,7 @@ import {
   configValidation,
   setDefaultValues,
 } from "../../utils/addAppointUtils";
+import DualField from "../DualField/DualField";
 
 const { Text, Link } = Typography;
 
@@ -59,170 +61,162 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     return false;
   };
 
+  const watchFields = (rules: Rule[]) => {
+    const currentValues: CustomRuleFields[] = watch(
+      rules.map((rule) => rule.field)
+    );
+
+    return currentValues;
+  };
+  const renderUIItems = (item: ItemUI) => {
+    switch (item.type) {
+      // Title UI Item
+      case "title": {
+        const { level, title } = item as UITitle;
+        return (
+          <Col span={24}>
+            {item.visibility ? (
+              isMatched(item.visibility) && (
+                <StyledTitle level={level}>
+                  <strong>{t(title)}</strong>
+                </StyledTitle>
+              )
+            ) : (
+              <StyledTitle level={level}>
+                <strong>{t(title)}</strong>
+              </StyledTitle>
+            )}
+          </Col>
+        );
+      }
+      // Text UI Item
+      case "text": {
+        const { text } = item as UIText;
+        return item.visibility ? (
+          isMatched(item.visibility) && <Text>{t(text)}</Text>
+        ) : (
+          <Text>{t(text)}</Text>
+        );
+      }
+      // Link UI Item
+      case "link": {
+        const { text, url } = item as UILink;
+        return item.visibility ? (
+          isMatched(item.visibility) && <Link href={url}>{t(text)}</Link>
+        ) : (
+          <Link href={url}>{t(text)}</Link>
+        );
+      }
+      // Alert UI Item
+      case "alert": {
+        const { description, message, alertType, showIcon } = item as UIAlert;
+        return item.visibility ? (
+          isMatched(item.visibility) && (
+            <Alert
+              message={t(message)}
+              description={t(description)}
+              type={alertType}
+              showIcon={showIcon}
+            />
+          )
+        ) : (
+          <Alert
+            message={t(message)}
+            description={t(description)}
+            type={alertType}
+            showIcon={showIcon}
+          />
+        );
+      }
+    }
+  };
+
+  const renderFieldItems = (item: FormFieldConfig) => {
+    return (
+      <Controller
+        key={item.id}
+        name={item.name}
+        control={control}
+        render={({ field, fieldState: { error } }) => {
+          return (
+            <Col
+              style={{
+                textAlign: "start",
+                flex: item.flex ? item.flex : undefined,
+              }}
+            >
+              {/* in case there is a visibility rule:
+                    - check if it is fulfilled first, if yse render field
+                    - if not render field normally
+              */}
+              {
+                <div>
+                  <AddAppointmentFields
+                    {...item}
+                    clearErrors={clearErrors}
+                    onChange={field.onChange}
+                    status={error ? "error" : undefined}
+                    isDisabled={
+                      item.disability ? isMatched(item.disability) : false
+                    }
+                    resetField={resetField}
+                    value={field.value}
+                    visibilityFields={
+                      item.visibility && watchFields(item.visibility)
+                    }
+                  />
+                  <StyledError>
+                    {error && error.message && t(error.message)}
+                  </StyledError>
+                </div>
+              }
+            </Col>
+          );
+        }}
+      />
+    );
+  };
+
+  const renderFormItems = (item: ItemForm) => {
+    return (
+      <AddAppointmentSection
+        renderItems={renderItems}
+        {...item}
+        isVisible={item.visibility ? isMatched(item.visibility) : true}
+      />
+    );
+  };
+
+  const renderLayoutItems = (item: ItemLayout) => {
+    return (
+      <AddAppointmentSection
+        renderItems={renderItems}
+        {...item}
+        isVisible={item.visibility ? isMatched(item.visibility) : true}
+      />
+    );
+  };
   // render items recursively config
   const renderItems = (fieldsConfig: Item[]): JSX.Element => {
     return (
       <>
         {fieldsConfig.map((fieldConfig: Item) => {
-          // Field Render
-          if (fieldConfig.category === "field") {
-            const item = fieldConfig as FormFieldConfig;
-            return (
-              <Controller
-                key={item.id}
-                name={item.name}
-                control={control}
-                render={({ field, fieldState: { error } }) => {
-                  return (
-                    <>
-                      <Col
-                        style={{
-                          textAlign: "start",
-                          flex: item.flex ? item.flex : undefined,
-                        }}
-                      >
-                        {/* in case there is a visibility rule:
-                          - check if it is fulfilled first, if yse render field
-                          - if not render field normally
-                      */}
-                        {item.visibility ? (
-                          isMatched(item.visibility) && (
-                            <div>
-                              <AddAppointmentFields
-                                {...item}
-                                clearErrors={clearErrors}
-                                onChange={field.onChange}
-                                status={error ? "error" : undefined}
-                                isDisabled={
-                                  item.disability
-                                    ? isMatched(item.disability)
-                                    : false
-                                }
-                                resetField={resetField}
-                                value={field.value}
-                              />
-                              <StyledError>
-                                {error && error.message && t(error.message)}
-                              </StyledError>
-                            </div>
-                          )
-                        ) : (
-                          <div>
-                            <AddAppointmentFields
-                              {...item}
-                              clearErrors={clearErrors}
-                              onChange={field.onChange}
-                              status={error ? "error" : undefined}
-                              isDisabled={
-                                item.disability
-                                  ? isMatched(item.disability)
-                                  : false
-                              }
-                              resetField={resetField}
-                              value={field.value}
-                            />
-                            <StyledError>
-                              {error && error.message && t(error.message)}
-                            </StyledError>
-                          </div>
-                        )}
-                      </Col>
-                    </>
-                  );
-                }}
-              />
-            );
-          }
+          switch (fieldConfig.category) {
+            case "field":
+              // Field Render
+              return renderFieldItems(fieldConfig as FormFieldConfig);
 
-          // Layout Render
-          if (fieldConfig.category === "layout") {
-            const item = fieldConfig as ItemLayout;
-            return item.visibility ? (
-              isMatched(item.visibility) && (
-                <AddAppointmentSection renderItems={renderItems} {...item} />
-              )
-            ) : (
-              <AddAppointmentSection renderItems={renderItems} {...item} />
-            );
-          }
+            case "layout":
+              // Layout Render
+              return renderLayoutItems(fieldConfig as ItemLayout);
 
-          // Form Render
-          if (fieldConfig.category === "form") {
-            const item = fieldConfig as ItemForm;
-            return item.visibility ? (
-              isMatched(item.visibility) && (
-                <AddAppointmentSection renderItems={renderItems} {...item} />
-              )
-            ) : (
-              <AddAppointmentSection renderItems={renderItems} {...item} />
-            );
-          }
-          // UI Render
-          if (fieldConfig.category === "UI") {
-            const item = fieldConfig as ItemUI;
-            switch (item.type) {
-              // Title UI Item
-              case "title": {
-                const { level, title } = item as UITitle;
-                return (
-                  <Col span={24}>
-                    {item.visibility ? (
-                      isMatched(item.visibility) && (
-                        <StyledTitle level={level}>
-                          <strong>{t(title)}</strong>
-                        </StyledTitle>
-                      )
-                    ) : (
-                      <StyledTitle level={level}>
-                        <strong>{t(title)}</strong>
-                      </StyledTitle>
-                    )}
-                  </Col>
-                );
-              }
-              // Text UI Item
-              case "text": {
-                const { text } = item as UIText;
-                return item.visibility ? (
-                  isMatched(item.visibility) && <Text>{t(text)}</Text>
-                ) : (
-                  <Text>{t(text)}</Text>
-                );
-              }
-              // Link UI Item
-              case "link": {
-                const { text, url } = item as UILink;
-                return item.visibility ? (
-                  isMatched(item.visibility) && (
-                    <Link href={url}>{t(text)}</Link>
-                  )
-                ) : (
-                  <Link href={url}>{t(text)}</Link>
-                );
-              }
-              // Alert UI Item
-              case "alert": {
-                const { description, message, alertType, showIcon } =
-                  item as UIAlert;
-                return item.visibility ? (
-                  isMatched(item.visibility) && (
-                    <Alert
-                      message={t(message)}
-                      description={t(description)}
-                      type={alertType}
-                      showIcon={showIcon}
-                    />
-                  )
-                ) : (
-                  <Alert
-                    message={t(message)}
-                    description={t(description)}
-                    type={alertType}
-                    showIcon={showIcon}
-                  />
-                );
-              }
-            }
+            case "form":
+              // Form Render
+              return renderFormItems(fieldConfig as ItemForm);
+
+            default:
+              // UI Render
+              return renderUIItems(fieldConfig as ItemUI);
           }
         })}
       </>

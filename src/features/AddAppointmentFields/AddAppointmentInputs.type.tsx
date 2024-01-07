@@ -85,6 +85,7 @@ export type SchemaName =
   | "new_patient.birthDate"
   | "new_patient.age"
   | "new_patient.switch_date_age"
+  | "new_patient.switch_date_age"
   | "new_patient.title"
   | "new_patient.gender"
   | "new_patient.email"
@@ -133,7 +134,8 @@ type fieldTypeValues =
   | "textarea"
   | "radio"
   | "switch"
-  | "checkbox";
+  | "checkbox"
+  | "dualField";
 
 type DateLimitRule = {
   status: string;
@@ -173,10 +175,6 @@ type ItemField = {
   prefix?: string;
   suffix?: string;
   emptyFields?: SchemaName[];
-  resetField?: UseFormResetField<{
-    [x: string]: unknown;
-    [x: number]: unknown;
-  }>;
 };
 
 export type FieldTextT = Customize<
@@ -310,6 +308,11 @@ export interface FieldCheckbox extends ItemField {
   defaultChecked: boolean;
 }
 
+export interface FieldDual extends ItemField {
+  fieldType: "dualField";
+  fieldsOptions: FormFieldConfig[];
+}
+
 export type FormFieldConfig =
   | FieldText
   | FieldNumber
@@ -319,16 +322,22 @@ export type FormFieldConfig =
   | FieldTime
   | FieldSwitch
   | FieldCheckbox
-  | FieldTextArea;
+  | FieldTextArea
+  | FieldDual;
 
 // properties not added for form configuration and used within the field component
-type FieldComponentProps = {
+export type FieldComponentProps = {
   onChange: (value: FieldElement["value"]) => void;
   isDisabled: boolean;
   value: unknown;
+  resetField?: UseFormResetField<{
+    [x: string]: unknown;
+    [x: number]: unknown;
+  }>;
+  visibilityFields?: CustomRuleFields[];
+  disabilityFields?: CustomRuleFields[];
 };
 
-export type FieldConfig = FormFieldConfig & FieldComponentProps;
 
 /*
 **********************************************************
