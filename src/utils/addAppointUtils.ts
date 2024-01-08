@@ -57,7 +57,7 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
 
       // if form is nested inside another form, get last since shape already is inside right scope
       if (currentItem.name.includes(".")) {
-        fieldName = currentItem.name.split(".").at(-1);
+        fieldName = currentItem.name.split(".").slice(-1)[0];
       }
 
       // get last name of field name to get its value for conditional applying of nested forms validation
