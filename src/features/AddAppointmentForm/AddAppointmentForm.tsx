@@ -25,6 +25,7 @@ import {
   UIText,
   UITitle,
   ItemForm,
+  DualFieldConfig,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
@@ -132,6 +133,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     }
   };
 
+  const renderDualFieldItems = (item: DualFieldConfig) => {
+    return <DualField {...item} renderFieldItems={renderFieldItems} />;
+  };
+
   const renderFieldItems = (item: FormFieldConfig) => {
     return (
       <Controller
@@ -221,6 +226,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
               // Field Render
               return renderFieldItems(fieldConfig as FormFieldConfig);
 
+            case "dualField":
+              // Field Render
+              return renderDualFieldItems(fieldConfig as DualFieldConfig);
+
             case "layout":
               // Layout Render
               return renderLayoutItems(fieldConfig as ItemLayout);
@@ -258,7 +267,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
       onSubmit={handleSubmit(onSubmit)}
       style={{ direction: i18n.language == "ar" ? "rtl" : "ltr" }}
     >
-      <DualField />
       <Upload {...uploadProps}>
         <Button type="primary" icon={<UploadOutlined />}>
           Upload Image

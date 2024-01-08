@@ -6,10 +6,10 @@ import {
   FormFieldConfig,
   ItemForm,
   CustomRuleFields,
+  DualFieldConfig,
 } from "../features/AddAppointmentFields/AddAppointmentInputs.type";
 import { DefaultValueObjectFormat } from "../features/AddAppointmentForm/AddAppointmentForm.types";
 import { parseValidation } from "./addAppointValidation";
-
 
 // Schema Config
 // build schema & default values
@@ -25,6 +25,20 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
         const path = currentItem.name.split(".").reverse();
         shape[path[0]] = parseValidation(currentItem);
       }
+    }
+
+    if (item.category === "dualField") {
+      const currentItem = item as DualFieldConfig;
+      currentItem.fieldsConfig.forEach((field) => {
+        // if not nested
+        if (!field.name.includes(".")) {
+          shape[field.name] = parseValidation(field);
+        } else {
+          // if nested
+          const path = field.name.split(".").reverse();
+          shape[path[0]] = parseValidation(field);
+        }
+      });
     }
 
     if (item.category === "layout") {
@@ -175,6 +189,7 @@ export const formatDateTime = (time: string) => {
       : // date validation takes into consideration current time & shows wrong indication that current day is later than limit due to using time into consideration
         // also, could not use dayjs since comparison is done by "min" yup method
         dayjs()[dir](parseInt(count), unit)
+          [dir](parseInt(count), unit)
           .hour(0)
           .minute(0)
           .second(0)

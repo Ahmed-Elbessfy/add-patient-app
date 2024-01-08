@@ -6,24 +6,7 @@ import {
 
 type Customize<T, R> = Omit<T, keyof R> & R; // Check this line
 
-// type BaseInput = {
-//   type: string;
-// };
-
-// type SelectInput = Modify<
-//   BaseInput,
-//   {
-//     type: number;
-//     options: number;
-//   }
-// >;
-
-// export const field: SelectInput = {
-//   type: 1,
-//   options: 1,
-// };
-
-type itemCategory = "field" | "layout" | "UI" | "form";
+type ItemCategory = "field" | "layout" | "UI" | "form" | "dualField";
 /*
 **********************************************************
                     Category: Field
@@ -155,7 +138,7 @@ export type Rule = {
 export type CustomRuleFields = string | number | boolean;
 
 type ItemField = {
-  category: itemCategory;
+  category: ItemCategory;
   id: string;
   testId: string;
   fieldType: fieldTypeValues;
@@ -308,11 +291,6 @@ export interface FieldCheckbox extends ItemField {
   defaultChecked: boolean;
 }
 
-export interface FieldDual extends ItemField {
-  fieldType: "dualField";
-  fieldsOptions: FormFieldConfig[];
-}
-
 export type FormFieldConfig =
   | FieldText
   | FieldNumber
@@ -322,8 +300,7 @@ export type FormFieldConfig =
   | FieldTime
   | FieldSwitch
   | FieldCheckbox
-  | FieldTextArea
-  | FieldDual;
+  | FieldTextArea;
 
 // properties not added for form configuration and used within the field component
 export type FieldComponentProps = {
@@ -345,7 +322,6 @@ export type FieldDateComponentProps = FieldDate & FieldComponentProps;
 export type FieldTimeComponentProps = FieldTime & FieldComponentProps;
 export type FieldSwitchComponentProps = FieldSwitch & FieldComponentProps;
 export type FieldCheckboxComponentProps = FieldCheckbox & FieldComponentProps;
-export type FieldDualComponentProps = FieldDual & FieldComponentProps;
 
 export type FieldConfig =
   | FieldTextComponentProps
@@ -356,8 +332,23 @@ export type FieldConfig =
   | FieldDateComponentProps
   | FieldTimeComponentProps
   | FieldSwitchComponentProps
-  | FieldCheckboxComponentProps
-  | FieldDualComponentProps;
+  | FieldCheckboxComponentProps;
+
+/*
+**********************************************************
+                    Category: Dual Field
+**********************************************************
+*/
+
+export type DualFieldConfig = {
+  category: ItemCategory;
+  testId: string;
+  fieldsConfig: FormFieldConfig[];
+};
+
+export type DualFieldComponentProps = DualFieldConfig & {
+  renderFieldItems: (fieldConfig: FormFieldConfig) => JSX.Element;
+};
 
 /*
 **********************************************************
@@ -367,10 +358,15 @@ export type FieldConfig =
 
 type LayoutType = "hStack" | "box";
 
-type ChildrenType = FormFieldConfig | ItemLayout | ItemUI | ItemForm;
+type ChildrenType =
+  | FormFieldConfig
+  | ItemLayout
+  | ItemUI
+  | ItemForm
+  | DualFieldConfig;
 
 export type LayoutBase = {
-  category: itemCategory;
+  category: ItemCategory;
   type: LayoutType;
   children: ChildrenType[];
   gap: number;
@@ -424,7 +420,7 @@ export type ItemLayout = LayoutHStack | LayoutBox;
 */
 
 export type ItemForm = {
-  category: itemCategory;
+  category: ItemCategory;
   name: string;
   children: ChildrenType[];
   visibility?: Rule[];
@@ -439,7 +435,7 @@ export type ItemForm = {
 type UIType = "title" | "text" | "link" | "alert";
 
 export type UIBase = {
-  category: itemCategory;
+  category: ItemCategory;
   type: UIType;
   visibility?: Rule[];
 };
@@ -477,4 +473,9 @@ export interface UIAlert extends UIBase {
 
 export type ItemUI = UITitle | UIText | UILink | UIAlert;
 
-export type Item = FormFieldConfig | ItemLayout | ItemUI | ItemForm;
+export type Item =
+  | FormFieldConfig
+  | ItemLayout
+  | ItemUI
+  | ItemForm
+  | DualFieldConfig;

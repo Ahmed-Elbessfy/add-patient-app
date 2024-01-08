@@ -290,188 +290,172 @@ export const addAppointmentFieldsConfig: Item[] = [
           },
         ],
       },
-      // {
-      //   category: "field",
-      //   fieldType: "dualField",
-      //   id: "new_patient.switch_date_age",
-      //   testId: "new_patient.switch_date_age",
-      //   name: "new_patient.switch_date_age",
-      //   validation: [],
-      //   fieldsOptions: [
-      //     {
-      //       category: "field",
-      //       fieldType: "number",
-      //       id: "new_patient.age",
-      //       testId: "new_patient.age",
-      //       name: "new_patient.age",
-      //       label: "apInputs.add_new.age.label",
-      //       validation: [
-      //         {
-      //           type: "minimum",
-      //           minimum: 1,
-      //         },
-      //         {
-      //           type: "maximum",
-      //           maximum: 200,
-      //         },
-      //       ],
-      //       visibility: [
-      //         {
-      //           field: "new_patient.switch_date_age",
-      //           value: true,
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       category: "field",
-      //       fieldType: "datePicker",
-      //       id: "new_patient.birthDate",
-      //       testId: "new_patient.birthDate",
-      //       name: "new_patient.birthDate",
-      //       label: "apInputs.add_new.birthDate.label",
-      //       placeholder: "apInputs.add_new.birthDate.placeholder",
-      //       format: "DD/MM/YYYY",
-      //       validation: [
-      //         {
-      //           type: "earlier_than",
-      //           date: "add 0 day",
-      //         },
-      //       ],
-      //       dateLimit: {
-      //         status: "after",
-      //         date: "add 0 day",
-      //       },
-      //       visibility: [
-      //         {
-      //           field: "new_patient.switch_date_age",
-      //           value: false,
-      //         },
-      //       ],
-      //     },
-      //   ],
-      // },
-      // {
-      //   category: "layout",
-      //   type: "hStack",
-      //   gap: 0.5,
-      //   children: [
-      //     {
-      //       category: "field",
-      //       fieldType: "number",
-      //       id: "new_patient.age",
-      //       testId: "new_patient.age",
-      //       name: "new_patient.age",
-      //       label: "apInputs.add_new.age.label",
-      //       validation: [
-      //         {
-      //           type: "minimum",
-      //           minimum: 1,
-      //         },
-      //         {
-      //           type: "maximum",
-      //           maximum: 200,
-      //         },
-      //       ],
-      //       visibility: [
-      //         {
-      //           field: "new_patient.switch_date_age",
-      //           value: true,
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       category: "field",
-      //       fieldType: "datePicker",
-      //       id: "new_patient.birthDate",
-      //       testId: "new_patient.birthDate",
-      //       name: "new_patient.birthDate",
-      //       label: "apInputs.add_new.birthDate.label",
-      //       placeholder: "apInputs.add_new.birthDate.placeholder",
-      //       format: "DD/MM/YYYY",
-      //       validation: [
-      //         {
-      //           type: "earlier_than",
-      //           date: "add 0 day",
-      //         },
-      //       ],
-      //       dateLimit: {
-      //         status: "after",
-      //         date: "add 0 day",
-      //       },
-      //       visibility: [
-      //         {
-      //           field: "new_patient.switch_date_age",
-      //           value: false,
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       category: "field",
-      //       fieldType: "switch",
-      //       id: "new_patient.switch_date_age",
-      //       testId: "new_patient.switch_date_age",
-      //       name: "new_patient.switch_date_age",
-      //       checkedChildren: "apInputs.add_new.switch_date_age.checked",
-      //       unCheckedChildren: "apInputs.add_new.switch_date_age.unchecked",
-      //       defaultChecked: false,
-      //       validation: [],
-      //     },
 
-      //     {
-      //       category: "field",
-      //       fieldType: "select",
-      //       id: "new_patient.title",
-      //       testId: "new_patient.title",
-      //       name: "new_patient.title",
-      //       label: "apInputs.add_new.title.label",
-      //       flex: 1,
+      {
+        category: "layout",
+        type: "hStack",
+        gap: 0.5,
+        children: [
+          // {
+          //   category: "field",
+          //   fieldType: "number",
+          //   id: "new_patient.age",
+          //   testId: "new_patient.age",
+          //   name: "new_patient.age",
+          //   label: "apInputs.add_new.age.label",
+          //   validation: [
+          //     {
+          //       type: "minimum",
+          //       minimum: 1,
+          //     },
+          //     {
+          //       type: "maximum",
+          //       maximum: 200,
+          //     },
+          //   ],
+          //   visibility: [
+          //     {
+          //       field: "new_patient.switch_date_age",
+          //       value: true,
+          //     },
+          //   ],
+          // },
+          // {
+          //   category: "field",
+          //   fieldType: "datePicker",
+          //   id: "new_patient.birthDate",
+          //   testId: "new_patient.birthDate",
+          //   name: "new_patient.birthDate",
+          //   label: "apInputs.add_new.birthDate.label",
+          //   placeholder: "apInputs.add_new.birthDate.placeholder",
+          //   format: "DD/MM/YYYY",
+          //   validation: [
+          //     {
+          //       type: "earlier_than",
+          //       date: "add 0 day",
+          //     },
+          //   ],
+          //   dateLimit: {
+          //     status: "after",
+          //     date: "add 0 day",
+          //   },
+          //   visibility: [
+          //     {
+          //       field: "new_patient.switch_date_age",
+          //       value: false,
+          //     },
+          //   ],
+          // },
+          // {
+          //   category: "field",
+          //   fieldType: "switch",
+          //   id: "new_patient.switch_date_age",
+          //   testId: "new_patient.switch_date_age",
+          //   name: "new_patient.switch_date_age",
+          //   checkedChildren: "apInputs.add_new.switch_date_age.checked",
+          //   unCheckedChildren: "apInputs.add_new.switch_date_age.unchecked",
+          //   defaultChecked: false,
+          //   validation: [],
+          // },
+          {
+            category: "dualField",
+            testId: "new_patient.switch_date_age",
+            fieldsConfig: [
+              {
+                category: "field",
+                fieldType: "number",
+                id: "new_patient.age",
+                testId: "new_patient.age",
+                name: "new_patient.age",
+                label: "apInputs.add_new.age.label",
+                validation: [
+                  {
+                    type: "minimum",
+                    minimum: 1,
+                  },
+                  {
+                    type: "maximum",
+                    maximum: 200,
+                  },
+                ],
+              },
+              {
+                category: "field",
+                fieldType: "datePicker",
+                id: "new_patient.birthDate",
+                testId: "new_patient.birthDate",
+                name: "new_patient.birthDate",
+                label: "apInputs.add_new.birthDate.label",
+                placeholder: "apInputs.add_new.birthDate.placeholder",
+                format: "DD/MM/YYYY",
+                validation: [
+                  {
+                    type: "earlier_than",
+                    date: "add 0 day",
+                  },
+                ],
+                dateLimit: {
+                  status: "after",
+                  date: "add 0 day",
+                },
+              },
+            ],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient.title",
+            testId: "new_patient.title",
+            name: "new_patient.title",
+            label: "apInputs.add_new.title.label",
+            flex: 1,
 
-      //       options: [
-      //         {
-      //           value: "mr",
-      //           label: "apInputs.add_new.title.options.mr",
-      //         },
-      //         {
-      //           value: "mrs",
-      //           label: "apInputs.add_new.title.options.mrs",
-      //         },
-      //         {
-      //           value: "miss",
-      //           label: "apInputs.add_new.title.options.miss",
-      //         },
-      //         {
-      //           value: "ms",
-      //           label: "apInputs.add_new.title.options.ms",
-      //         },
-      //         {
-      //           value: "dr",
-      //           label: "apInputs.add_new.title.options.dr",
-      //         },
-      //       ],
-      //       validation: [],
-      //     },
-      //     {
-      //       category: "field",
-      //       fieldType: "select",
-      //       id: "new_patient.gender",
-      //       testId: "new_patient.gender",
-      //       name: "new_patient.gender",
-      //       label: "apInputs.add_new.gender.label",
-      //       flex: 1,
-      //       options: [
-      //         {
-      //           value: "male",
-      //           label: "apInputs.add_new.gender.options.male",
-      //         },
-      //         {
-      //           value: "female",
-      //           label: "apInputs.add_new.gender.options.female",
-      //         },
-      //       ],
-      //       validation: [],
-      //     },
-      //   ],
-      // },
+            options: [
+              {
+                value: "mr",
+                label: "apInputs.add_new.title.options.mr",
+              },
+              {
+                value: "mrs",
+                label: "apInputs.add_new.title.options.mrs",
+              },
+              {
+                value: "miss",
+                label: "apInputs.add_new.title.options.miss",
+              },
+              {
+                value: "ms",
+                label: "apInputs.add_new.title.options.ms",
+              },
+              {
+                value: "dr",
+                label: "apInputs.add_new.title.options.dr",
+              },
+            ],
+            validation: [],
+          },
+          {
+            category: "field",
+            fieldType: "select",
+            id: "new_patient.gender",
+            testId: "new_patient.gender",
+            name: "new_patient.gender",
+            label: "apInputs.add_new.gender.label",
+            flex: 1,
+            options: [
+              {
+                value: "male",
+                label: "apInputs.add_new.gender.options.male",
+              },
+              {
+                value: "female",
+                label: "apInputs.add_new.gender.options.female",
+              },
+            ],
+            validation: [],
+          },
+        ],
+      },
       {
         category: "layout",
         type: "hStack",
