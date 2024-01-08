@@ -25,7 +25,6 @@ import {
   UIText,
   UITitle,
   ItemForm,
-  CustomRuleFields,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
@@ -70,13 +69,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     return false;
   };
 
-  const watchFields = (rules: Rule[]) => {
-    const currentValues: CustomRuleFields[] = watch(
-      rules.map((rule) => rule.field)
-    );
-
-    return currentValues;
-  };
   const renderUIItems = (item: ItemUI) => {
     switch (item.type) {
       // Title UI Item
@@ -147,6 +139,14 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
         name={item.name}
         control={control}
         render={({ field, fieldState: { error } }) => {
+          const fieldProps = {
+            ...item,
+            clearErrors: clearErrors,
+            onChange: field.onChange,
+            isDisabled: item.disability ? isMatched(item.disability) : false,
+            resetField: resetField,
+            value: field.value,
+          };
           return (
             <Col
               style={{
@@ -160,23 +160,29 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
               */}
               {
                 <div>
-                  <AddAppointmentFields
-                    {...item}
-                    clearErrors={clearErrors}
-                    onChange={field.onChange}
-                    status={error ? "error" : undefined}
-                    isDisabled={
-                      item.disability ? isMatched(item.disability) : false
-                    }
-                    resetField={resetField}
-                    value={field.value}
-                    visibilityFields={
-                      item.visibility && watchFields(item.visibility)
-                    }
-                  />
-                  <StyledError>
-                    {error && error.message && t(error.message)}
-                  </StyledError>
+                  {item.visibility ? (
+                    isMatched(item.visibility) && (
+                      <>
+                        <AddAppointmentFields
+                          {...fieldProps}
+                          status={error ? "error" : undefined}
+                        />
+                        <StyledError>
+                          {error && error.message && t(error.message)}
+                        </StyledError>
+                      </>
+                    )
+                  ) : (
+                    <>
+                      <AddAppointmentFields
+                        {...fieldProps}
+                        status={error ? "error" : undefined}
+                      />
+                      <StyledError>
+                        {error && error.message && t(error.message)}
+                      </StyledError>
+                    </>
+                  )}
                 </div>
               }
             </Col>
@@ -187,22 +193,22 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   };
 
   const renderFormItems = (item: ItemForm) => {
-    return (
-      <AddAppointmentSection
-        renderItems={renderItems}
-        {...item}
-        isVisible={item.visibility ? isMatched(item.visibility) : true}
-      />
+    return item.visibility ? (
+      isMatched(item.visibility) && (
+        <AddAppointmentSection renderItems={renderItems} {...item} />
+      )
+    ) : (
+      <AddAppointmentSection renderItems={renderItems} {...item} />
     );
   };
 
   const renderLayoutItems = (item: ItemLayout) => {
-    return (
-      <AddAppointmentSection
-        renderItems={renderItems}
-        {...item}
-        isVisible={item.visibility ? isMatched(item.visibility) : true}
-      />
+    return item.visibility ? (
+      isMatched(item.visibility) && (
+        <AddAppointmentSection renderItems={renderItems} {...item} />
+      )
+    ) : (
+      <AddAppointmentSection renderItems={renderItems} {...item} />
     );
   };
   // render items recursively config

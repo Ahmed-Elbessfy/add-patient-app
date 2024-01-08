@@ -334,8 +334,6 @@ export type FieldComponentProps = {
     [x: string]: unknown;
     [x: number]: unknown;
   }>;
-  visibilityFields?: CustomRuleFields[];
-  disabilityFields?: CustomRuleFields[];
 };
 
 export type FieldTextComponentProps = FieldText & FieldComponentProps;

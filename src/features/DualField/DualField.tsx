@@ -21,7 +21,6 @@ const DualField: FC = (props) => {
   //   unCheckedChildren: "apInputs.add_new.switch_date_age.unchecked",
   //   defaultChecked: false,
   //   validation: [],
-  //   isVisible: true,
   // };
 
   // const ageData = {

@@ -290,66 +290,66 @@ export const addAppointmentFieldsConfig: Item[] = [
           },
         ],
       },
-      {
-        category: "field",
-        fieldType: "dualField",
-        id: "new_patient.switch_date_age",
-        testId: "new_patient.switch_date_age",
-        name: "new_patient.switch_date_age",
-        validation: [],
-        fieldsOptions: [
-          {
-            category: "field",
-            fieldType: "number",
-            id: "new_patient.age",
-            testId: "new_patient.age",
-            name: "new_patient.age",
-            label: "apInputs.add_new.age.label",
-            validation: [
-              {
-                type: "minimum",
-                minimum: 1,
-              },
-              {
-                type: "maximum",
-                maximum: 200,
-              },
-            ],
-            visibility: [
-              {
-                field: "new_patient.switch_date_age",
-                value: true,
-              },
-            ],
-          },
-          {
-            category: "field",
-            fieldType: "datePicker",
-            id: "new_patient.birthDate",
-            testId: "new_patient.birthDate",
-            name: "new_patient.birthDate",
-            label: "apInputs.add_new.birthDate.label",
-            placeholder: "apInputs.add_new.birthDate.placeholder",
-            format: "DD/MM/YYYY",
-            validation: [
-              {
-                type: "earlier_than",
-                date: "add 0 day",
-              },
-            ],
-            dateLimit: {
-              status: "after",
-              date: "add 0 day",
-            },
-            visibility: [
-              {
-                field: "new_patient.switch_date_age",
-                value: false,
-              },
-            ],
-          },
-        ],
-      },
+      // {
+      //   category: "field",
+      //   fieldType: "dualField",
+      //   id: "new_patient.switch_date_age",
+      //   testId: "new_patient.switch_date_age",
+      //   name: "new_patient.switch_date_age",
+      //   validation: [],
+      //   fieldsOptions: [
+      //     {
+      //       category: "field",
+      //       fieldType: "number",
+      //       id: "new_patient.age",
+      //       testId: "new_patient.age",
+      //       name: "new_patient.age",
+      //       label: "apInputs.add_new.age.label",
+      //       validation: [
+      //         {
+      //           type: "minimum",
+      //           minimum: 1,
+      //         },
+      //         {
+      //           type: "maximum",
+      //           maximum: 200,
+      //         },
+      //       ],
+      //       visibility: [
+      //         {
+      //           field: "new_patient.switch_date_age",
+      //           value: true,
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       category: "field",
+      //       fieldType: "datePicker",
+      //       id: "new_patient.birthDate",
+      //       testId: "new_patient.birthDate",
+      //       name: "new_patient.birthDate",
+      //       label: "apInputs.add_new.birthDate.label",
+      //       placeholder: "apInputs.add_new.birthDate.placeholder",
+      //       format: "DD/MM/YYYY",
+      //       validation: [
+      //         {
+      //           type: "earlier_than",
+      //           date: "add 0 day",
+      //         },
+      //       ],
+      //       dateLimit: {
+      //         status: "after",
+      //         date: "add 0 day",
+      //       },
+      //       visibility: [
+      //         {
+      //           field: "new_patient.switch_date_age",
+      //           value: false,
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
       // {
       //   category: "layout",
       //   type: "hStack",
@@ -876,6 +876,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                   "apInputs.add_new.new_insurance_company.unLimitedCheck.label",
                 defaultChecked: false,
                 validation: [],
+                emptyFields: ["new_patient.new_insurance_company.limit"],
               },
               {
                 category: "field",
@@ -912,6 +913,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 defaultChecked: false,
                 label: "100%",
                 validation: [],
+                emptyFields: ["new_patient.new_insurance_company.discount"],
               },
             ],
           },
