@@ -4,8 +4,17 @@ import { useTranslation } from "react-i18next";
 import { FieldSelectComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
 const SelectField: FC<FieldSelectComponentProps> = (props) => {
-  const { label, id, placeholder, testId, onChange, status, isDisabled } =
-    props;
+  const {
+    label,
+    id,
+    placeholder,
+    testId,
+    onChange,
+    status,
+    isDisabled,
+    defaultValue,
+    options,
+  } = props;
 
   const { t } = useTranslation("translation");
 
@@ -20,11 +29,11 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
         status={status}
         disabled={isDisabled}
         onChange={(value: string) => onChange(value)}
-        defaultValue={props.defaultValue}
+        defaultValue={defaultValue}
         style={{ width: "100%" }}
       >
-        {props.options &&
-          props.options.map((option, ind) => {
+        {options &&
+          options.map((option, ind) => {
             return (
               <Select.Option key={ind} value={option.value}>
                 {t(option.label)}

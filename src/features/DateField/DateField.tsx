@@ -7,8 +7,19 @@ import { formatDateTime } from "../../utils/addAppointUtils";
 import { FieldDateComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
 const DateField: FC<FieldDateComponentProps> = (props) => {
-  const { label, name, id, placeholder, testId, onChange, status, isDisabled } =
-    props;
+  const {
+    label,
+    name,
+    id,
+    placeholder,
+    testId,
+    onChange,
+    status,
+    isDisabled,
+    format,
+    dateLimit,
+    defaultValue,
+  } = props;
 
   // set disabled date for Date Picker Input
   const disabledDate = (current: Dayjs, status: string, limit: string) => {
@@ -28,7 +39,7 @@ const DateField: FC<FieldDateComponentProps> = (props) => {
 
       <DatePicker
         name={name}
-        format={props.format}
+        format={format}
         placeholder={placeholder && t(placeholder)}
         data-testid={testId}
         id={id}
@@ -36,17 +47,11 @@ const DateField: FC<FieldDateComponentProps> = (props) => {
         style={{ width: "100%" }}
         disabled={isDisabled}
         disabledDate={(current) =>
-          props.dateLimit
-            ? disabledDate(
-                current,
-                props.dateLimit.status,
-                props.dateLimit.date
-              )
+          dateLimit
+            ? disabledDate(current, dateLimit.status, dateLimit.date)
             : false
         }
-        defaultValue={
-          props.defaultValue ? formatDateTime(props.defaultValue) : undefined
-        }
+        defaultValue={defaultValue ? formatDateTime(defaultValue) : undefined}
         onChange={(value: DatePickerProps["value"]) => {
           // accepted format "YYYY/MM/DD"
           onChange(value);

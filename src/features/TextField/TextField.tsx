@@ -15,6 +15,7 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
     status,
     isDisabled,
     value,
+    defaultValue,
   } = props;
 
   const { t } = useTranslation("translation");
@@ -32,7 +33,7 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
         status={status}
         disabled={isDisabled}
         value={value}
-        defaultValue={props.defaultValue}
+        defaultValue={defaultValue}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           onChange(e.target.value)
         }

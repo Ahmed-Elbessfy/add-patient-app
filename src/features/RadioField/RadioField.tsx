@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { FieldRadioComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
 const RadioField: FC<FieldRadioComponentProps> = (props) => {
-  const { label, name, testId, onChange, isDisabled } = props;
+  const { label, name, testId, onChange, isDisabled, options } = props;
 
   const { t } = useTranslation("translation");
 
@@ -18,8 +18,8 @@ const RadioField: FC<FieldRadioComponentProps> = (props) => {
         disabled={isDisabled}
         onChange={({ target: { value } }: RadioChangeEvent) => onChange(value)}
       >
-        {props.options &&
-          props.options.map((option, ind) => (
+        {options &&
+          options.map((option, ind) => (
             <Radio key={ind} value={option.value}>
               {t(option.label)}
             </Radio>

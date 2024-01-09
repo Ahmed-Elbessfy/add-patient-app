@@ -15,6 +15,9 @@ const NumberField: FC<FieldNumberComponentProps> = (props) => {
     status,
     isDisabled,
     value,
+    defaultValue,
+    prefix,
+    suffix,
   } = props;
 
   const { t } = useTranslation("translation");
@@ -32,9 +35,9 @@ const NumberField: FC<FieldNumberComponentProps> = (props) => {
         status={status}
         disabled={isDisabled}
         value={value}
-        defaultValue={props.defaultValue}
-        addonAfter={props.suffix}
-        addonBefore={props.prefix}
+        defaultValue={defaultValue}
+        addonAfter={suffix}
+        addonBefore={prefix}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           onChange(e.target.value)
         }
