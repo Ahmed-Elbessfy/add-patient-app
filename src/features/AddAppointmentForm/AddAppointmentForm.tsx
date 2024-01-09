@@ -26,6 +26,7 @@ import {
   UITitle,
   ItemForm,
   DualFieldConfig,
+  CombineFieldConfig,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
@@ -35,6 +36,7 @@ import {
   setDefaultValues,
 } from "../../utils/addAppointUtils";
 import DualField from "../DualField/DualField";
+import CombineField from "../CombineField/CombineField";
 
 const { Text, Link } = Typography;
 
@@ -133,10 +135,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     }
   };
 
-  const renderDualFieldItems = (item: DualFieldConfig) => {
-    return <DualField {...item} renderFieldItems={renderFieldItems} />;
-  };
-
   const renderFieldItems = (item: FormFieldConfig) => {
     return (
       <Controller
@@ -152,6 +150,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
             resetField: resetField,
             value: field.value,
           };
+
           return (
             <Col
               style={{
@@ -197,6 +196,13 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     );
   };
 
+  const renderDualFieldItems = (item: DualFieldConfig) => {
+    return <DualField {...item} renderFieldItems={renderFieldItems} />;
+  };
+
+  const renderCombineFieldItems = (item: CombineFieldConfig) => {
+    return <CombineField {...item} renderFieldItems={renderFieldItems} />;
+  };
   const renderFormItems = (item: ItemForm) => {
     return item.visibility ? (
       isMatched(item.visibility) && (
@@ -229,6 +235,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
             case "dualField":
               // Field Render
               return renderDualFieldItems(fieldConfig as DualFieldConfig);
+
+            case "combineField":
+              // Field Render
+              return renderCombineFieldItems(fieldConfig as CombineFieldConfig);
 
             case "layout":
               // Layout Render
@@ -272,7 +282,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
           Upload Image
         </Button>
       </Upload>
-
       {renderItems(fieldsConfig)}
       <Button type="primary" htmlType="submit">
         submit

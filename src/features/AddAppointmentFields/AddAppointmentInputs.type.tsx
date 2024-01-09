@@ -6,7 +6,13 @@ import {
 
 type Customize<T, R> = Omit<T, keyof R> & R; // Check this line
 
-type ItemCategory = "field" | "layout" | "UI" | "form" | "dualField";
+type ItemCategory =
+  | "field"
+  | "dualField"
+  | "combineField"
+  | "layout"
+  | "UI"
+  | "form";
 /*
 **********************************************************
                     Category: Field
@@ -63,6 +69,8 @@ export type SchemaName =
   | "new_patient.first_name"
   | "new_patient.last_name"
   | "new_patient.phone"
+  | "new_patient.phone_key"
+  | "new_patient.phone_number"
   | "new_patient.secondary_phone"
   | "new_patient.country"
   | "new_patient.birthDate"
@@ -335,10 +343,10 @@ export type FieldConfig =
   | FieldCheckboxComponentProps;
 
 /*
-**********************************************************
-                    Category: Dual Field
-**********************************************************
-*/
+  **********************************************************
+                      Category: Dual Field
+  **********************************************************
+  */
 
 export type DualFieldConfig = {
   category: ItemCategory;
@@ -347,6 +355,29 @@ export type DualFieldConfig = {
 };
 
 export type DualFieldComponentProps = DualFieldConfig & {
+  renderFieldItems: (fieldConfig: FormFieldConfig) => JSX.Element;
+};
+
+/*
+  **********************************************************
+                      Category: Combine Field
+  **********************************************************
+  */
+
+type CombineFieldFieldsConfig = FormFieldConfig & {
+  combineType: "main" | "secondary";
+};
+
+export type CombineFieldConfig = {
+  category: ItemCategory;
+  id: string;
+  testId: string;
+  name: SchemaName;
+  label: string;
+  fieldsConfig: CombineFieldFieldsConfig[];
+};
+
+export type CombineFieldComponentProps = CombineFieldConfig & {
   renderFieldItems: (fieldConfig: FormFieldConfig) => JSX.Element;
 };
 
@@ -360,10 +391,11 @@ type LayoutType = "hStack" | "box";
 
 type ChildrenType =
   | FormFieldConfig
+  | DualFieldConfig
+  | CombineFieldConfig
   | ItemLayout
   | ItemUI
-  | ItemForm
-  | DualFieldConfig;
+  | ItemForm;
 
 export type LayoutBase = {
   category: ItemCategory;
@@ -475,7 +507,8 @@ export type ItemUI = UITitle | UIText | UILink | UIAlert;
 
 export type Item =
   | FormFieldConfig
+  | DualFieldConfig
+  | CombineFieldConfig
   | ItemLayout
   | ItemUI
-  | ItemForm
-  | DualFieldConfig;
+  | ItemForm;
