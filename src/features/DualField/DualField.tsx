@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Switch } from "antd";
+import { Col, Switch } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
 import { DualFieldComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
@@ -12,7 +12,7 @@ const DualField: FC<DualFieldComponentProps> = (props) => {
   const [shownField, setShownField] = useState<string>(firstField);
 
   return (
-    <div style={{ position: "relative", width: "100%" }}>
+    <Col style={{ position: "relative", flex: 1 }}>
       <Switch
         data-testid={testId}
         onChange={() => {
@@ -29,7 +29,7 @@ const DualField: FC<DualFieldComponentProps> = (props) => {
       {fieldsConfig.map((field) => {
         return shownField === field.name && renderFieldItems(field);
       })}
-    </div>
+    </Col>
   );
 };
 
