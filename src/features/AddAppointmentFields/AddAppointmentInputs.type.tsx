@@ -1,7 +1,8 @@
 import {
   FieldElement,
   UseFormClearErrors,
-  UseFormResetField,
+  UseFormGetValues,
+  UseFormSetValue,
 } from "react-hook-form";
 
 type Customize<T, R> = Omit<T, keyof R> & R; // Check this line
@@ -143,7 +144,18 @@ export type Rule = {
   value: string | number | boolean;
 };
 
+type SideEffectActions = {
+  action: "empty" | "useValue" | "updatePhoneKey" | "updatePhoneNumber";
+};
+
 export type CustomRuleFields = string | number | boolean;
+
+type SideEffectFieldConfig = {
+  fieldName: SchemaName;
+  action: SideEffectActions;
+  clearError: boolean;
+  value?: CustomRuleFields;
+};
 
 type ItemField = {
   category: ItemCategory;
@@ -166,6 +178,7 @@ type ItemField = {
   prefix?: string;
   suffix?: string;
   emptyFields?: SchemaName[];
+  modifyFieldsValues?: SideEffectFieldConfig[];
 };
 
 export type FieldTextT = Customize<
@@ -315,9 +328,11 @@ export type FieldComponentProps = {
   onChange: (value: FieldElement["value"]) => void;
   isDisabled: boolean;
   value: unknown;
-  resetField?: UseFormResetField<{
+  setValue?: UseFormSetValue<{
     [x: string]: unknown;
-    [x: number]: unknown;
+  }>;
+  getValues?: UseFormGetValues<{
+    [x: string]: unknown;
   }>;
 };
 

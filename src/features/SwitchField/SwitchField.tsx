@@ -10,7 +10,8 @@ const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
     testId,
     onChange,
     isDisabled,
-    resetField,
+    setValue,
+    clearErrors,
     checkedChildren,
     unCheckedChildren,
     defaultChecked,
@@ -36,9 +37,11 @@ const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
           // reset field accepts only one field
           // reset method did not work properly
           // keep error to false to remove errors in case of changing visibility
-          if (resetField && emptyFields) {
+          if (setValue && emptyFields) {
             for (const field of emptyFields) {
-              resetField(field, { keepError: false });
+              console.log(field);
+              setValue(field, "");
+              clearErrors(field);
             }
           }
         }}

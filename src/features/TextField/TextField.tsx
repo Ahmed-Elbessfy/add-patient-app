@@ -16,6 +16,10 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
     isDisabled,
     value,
     defaultValue,
+    modifyFieldsValues,
+    setValue,
+    getValues,
+    clearErrors,
   } = props;
 
   const { t } = useTranslation("translation");
@@ -34,9 +38,29 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
         disabled={isDisabled}
         value={value}
         defaultValue={defaultValue}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          onChange(e.target.value)
-        }
+        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+          if (modifyFieldsValues) {
+            modifyFieldsValues.forEach((config) => {
+              if (config.action === "empty") setValue(config.fieldName, "");
+
+              if (config.action === "useValue" && config.value)
+                setValue(config.fieldName, config.value);
+
+              if (config.action === "updatePhoneKey") {
+                const currentValue = getValues(config.fieldName)
+                
+              }
+
+              if (config.action === "updatePhoneNumber") {
+              }
+
+              // clearing error if needed
+              if (config.clearError && clearErrors)
+                clearErrors(config.fieldName);
+            });
+          }
+          onChange(e.target.value);
+        }}
       />
     </>
   );

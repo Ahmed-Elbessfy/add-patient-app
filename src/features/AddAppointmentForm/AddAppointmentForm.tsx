@@ -51,11 +51,12 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
 
   const schema = yup.object().shape(schemaShape);
   // console.log("final schema : ", schema);
-  const { control, handleSubmit, clearErrors, watch, resetField } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-    defaultValues: setDefaultValues(fieldsConfig, {}),
-  });
+  const { control, handleSubmit, clearErrors, watch, setValue, getValues } =
+    useForm({
+      resolver: yupResolver(schema),
+      mode: "onChange",
+      defaultValues: setDefaultValues(fieldsConfig, {}),
+    });
 
   // get current language for content direction
   const { t, i18n } = useTranslation("translation");
@@ -147,8 +148,9 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
             clearErrors: clearErrors,
             onChange: field.onChange,
             isDisabled: item.disability ? isMatched(item.disability) : false,
-            resetField: resetField,
             value: field.value,
+            setValue: setValue,
+            getValues: getValues,
           };
 
           return (
