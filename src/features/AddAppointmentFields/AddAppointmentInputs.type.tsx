@@ -179,6 +179,10 @@ type ItemField = {
   suffix?: string;
   emptyFields?: SchemaName[];
   modifyFieldsValues?: SideEffectFieldConfig[];
+  onChangeCustomConfig?: {
+    fieldName: string;
+    action: "updateKey" | "updateNumber";
+  };
 };
 
 export type FieldTextT = Customize<
@@ -387,7 +391,6 @@ export type CombineFieldConfig = {
   category: ItemCategory;
   id: string;
   testId: string;
-  name: SchemaName;
   label: string;
   fieldsConfig: CombineFieldFieldsConfig[];
 };

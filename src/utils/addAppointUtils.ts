@@ -7,6 +7,7 @@ import {
   ItemForm,
   CustomRuleFields,
   DualFieldConfig,
+  CombineFieldConfig,
 } from "../features/AddAppointmentFields/AddAppointmentInputs.type";
 import { DefaultValueObjectFormat } from "../features/AddAppointmentForm/AddAppointmentForm.types";
 import { parseValidation } from "./addAppointValidation";
@@ -140,6 +141,25 @@ export const setDefaultValues = (
       }
     }
 
+    // if (item.category === "combineField") {
+    //   const currentItem = item as CombineFieldConfig;
+    //   const name = currentItem.fieldsConfig[0].name.includes(".")
+    //     ? currentItem.fieldsConfig[0].name.split(".").slice(-1)[0]
+    //     : currentItem.fieldsConfig[0].name;
+
+    //   const firstDefaultValue = currentItem.fieldsConfig[0].defaultValue
+    //     ? currentItem.fieldsConfig[0].defaultValue
+    //     : "";
+
+    //   const secondDefaultValue = currentItem.fieldsConfig[1].defaultValue
+    //     ? currentItem.fieldsConfig[1].defaultValue
+    //     : "";
+
+    //   defaultValues[name] = firstDefaultValue
+    //     .concat("-")
+    //     .concat(secondDefaultValue);
+    // }
+
     if (item.category === "layout") {
       const currentItem = item as ItemLayout;
       setDefaultValues(currentItem.children, defaultValues);
@@ -188,7 +208,8 @@ export const formatDateTime = (time: string) => {
       ? dayjs().add(1, "hour").startOf("hour")[dir](parseInt(count), unit)
       : // date validation takes into consideration current time & shows wrong indication that current day is later than limit due to using time into consideration
         // also, could not use dayjs since comparison is done by "min" yup method
-        dayjs()[dir](parseInt(count), unit)
+        dayjs()
+          [dir](parseInt(count), unit)
           [dir](parseInt(count), unit)
           .hour(0)
           .minute(0)

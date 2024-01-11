@@ -229,43 +229,36 @@ export const addAppointmentFieldsConfig: Item[] = [
         children: [
           {
             category: "combineField",
-            id: "new_patient.phone",
-            testId: "new_patient.phone",
-            name: "new_patient.phone",
-            label: "apInputs.add_new.phone.label",
+            id: "new_patient.combine_phone",
+            testId: "new_patient.combine_phone",
+            label: "apInputs.add_new.combine_phone.label",
             fieldsConfig: [
               {
                 category: "field",
                 combineType: "secondary",
                 fieldType: "text",
-                id: "new_patient.phone_key",
-                testId: "new_patient.phone_key",
-                name: "new_patient.phone_key",
+                id: "new_patient.phone",
+                testId: "new_patient.phone",
+                name: "new_patient.phone",
                 defaultValue: "+20",
-                flex: 1,
-                validation: [
-                  {
-                    type: "hasPattern",
-                    pattern:
-                      /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
-                  },
-                ],
+                onChangeCustomConfig: {
+                  fieldName: "phone",
+                  action: "updateKey",
+                },
+                validation: [],
               },
               {
                 category: "field",
                 combineType: "main",
                 fieldType: "text",
-                id: "new_patient.phone_number",
-                testId: "new_patient.phone_number",
-                name: "new_patient.phone_number",
-                flex: 1,
-                validation: [
-                  {
-                    type: "hasPattern",
-                    pattern:
-                      /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
-                  },
-                ],
+                id: "new_patient.phone",
+                testId: "new_patient.phone",
+                name: "new_patient.phone",
+                onChangeCustomConfig: {
+                  fieldName: "phone",
+                  action: "updateNumber",
+                },
+                validation: [],
               },
             ],
           },

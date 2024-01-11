@@ -20,6 +20,7 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
     setValue,
     getValues,
     clearErrors,
+    onChangeCustomConfig,
   } = props;
 
   const { t } = useTranslation("translation");
@@ -39,27 +40,34 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
         value={value}
         defaultValue={defaultValue}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          if (modifyFieldsValues) {
+          if (modifyFieldsValues && setValue) {
             modifyFieldsValues.forEach((config) => {
               if (config.action === "empty") setValue(config.fieldName, "");
 
               if (config.action === "useValue" && config.value)
                 setValue(config.fieldName, config.value);
 
-              if (config.action === "updatePhoneKey") {
-                const currentValue = getValues(config.fieldName)
-                
-              }
-
-              if (config.action === "updatePhoneNumber") {
-              }
-
               // clearing error if needed
               if (config.clearError && clearErrors)
                 clearErrors(config.fieldName);
             });
           }
-          onChange(e.target.value);
+
+          let value = e.target.value;
+          if (onChangeCustomConfig && getValues) {
+            const { fieldName, action } = onChangeCustomConfig;
+            console.log(fieldName, getValues("new_patient.phone"), getValues());
+            if (action === "updateKey")
+              value = getValues(fieldName)
+                .split("-")
+                .splice(0, 1, e.target.value);
+
+            if (action === "updateNumber")
+              value = getValues(fieldName)
+                .split("-")
+                .splice(1, 1, e.target.value);
+          }
+          onChange(value);
         }}
       />
     </>

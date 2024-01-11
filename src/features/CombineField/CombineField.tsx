@@ -4,9 +4,8 @@ import { Col } from "antd";
 import { t } from "i18next";
 
 const CombineField: FC<CombineFieldComponentProps> = (props) => {
-  const { category, id, testId, name, fieldsConfig, label, renderFieldItems } =
-    props;
-  console.log(category, id, testId, name, fieldsConfig);
+  const { category, id, testId, fieldsConfig, label, renderFieldItems } = props;
+  console.log(category, id, testId, fieldsConfig);
   return (
     <>
       <label>{label && t(label)}</label>
