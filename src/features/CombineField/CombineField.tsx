@@ -4,10 +4,10 @@ import { Col } from "antd";
 import { t } from "i18next";
 
 const CombineField: FC<CombineFieldComponentProps> = (props) => {
-  const { category, id, testId, fieldsConfig, label, renderFieldItems } = props;
-  console.log(category, id, testId, fieldsConfig);
+  const { id, testId, fieldsConfig, label, renderFieldItems } = props;
+
   return (
-    <Col style={{ textAlign: "start" }} md={8}>
+    <Col style={{ textAlign: "start" }} md={8} id={id} data-testid={testId}>
       <label>{label && t(label)}</label>
       <div style={{ display: "flex", width: "100%" }}>
         <span style={{ flex: "20px", margin: " 0-8px" }}>
