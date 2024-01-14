@@ -16,7 +16,7 @@ import { parseValidation } from "./addAppointValidation";
 // build schema & default values
 export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
   itemsData.forEach((item: Item) => {
-    if (item.category === "field") {
+    if (item.category === "field" || item.category === "combineField") {
       const currentItem = item as FormFieldConfig;
       // if not nested
       if (!currentItem.name.includes(".")) {

@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import dayjs from "dayjs";
 import i18next from "i18next";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 
 export const INPUT_TYPES = {
   INPUT_TEXT: "text",
@@ -24,6 +25,7 @@ export const VALIDATION_RULE_TYPES = {
   HAS_PATTERN: "hasPattern",
   MINIMUM: "minimum",
   MAXIMUM: "maximum",
+  IS_VALID_PHONE: "is_valid_phone",
 };
 
 export const ERROR_MESSAGES = {
@@ -115,6 +117,9 @@ export const ERROR_MESSAGES = {
       maximum,
     });
   },
+  [VALIDATION_RULE_TYPES.IS_VALID_PHONE]: (fieldName: string) => {
+    return `${fieldName} is not a valid phone number`;
+  },
 };
 
 export const INPUT_VALIDATION_TYPES = {
@@ -140,6 +145,7 @@ declare module "yup" {
   interface StringSchema {
     isTimeEarlierThan(message: string, targetField: string): this;
     isTimeLaterThan(message: string, targetField: string): this;
+    isValidPhoneNumber(message: string): this;
   }
 }
 
@@ -203,3 +209,19 @@ yup.addMethod(
   }
 );
 
+yup.addMethod(yup.string, "isValidPhoneNumber", function (props) {
+  return this.test({
+    name: "isValidPhoneNumber",
+    message: props.errorMsg || "Invalid Phone Number",
+    exclusive: true,
+    test: function (value) {
+      console.log(value, "is valid rule");
+      if (value) {
+        const parsedNumber = parsePhoneNumberFromString(value);
+        return parsedNumber.isValid() || false;
+      }
+      // in case no value
+      return false;
+    },
+  });
+});

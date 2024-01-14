@@ -100,7 +100,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
         checkedChildren: "hide",
         unCheckedChildren: "show",
-        defaultChecked: false,
+        defaultChecked: true,
         validation: [],
         disability: [{ field: "switch_input_method", value: true }],
         emptyFields: ["patient_name"],
@@ -245,7 +245,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                   fieldName: "new_patient.phone",
                   action: "updateFirstPart",
                 },
-                validation: [],
+                validation: [{ type: "is_valid_phone" }],
               },
               {
                 category: "field",
@@ -257,7 +257,11 @@ export const addAppointmentFieldsConfig: Item[] = [
                   fieldName: "new_patient.phone",
                   action: "updateSecondPart",
                 },
-                validation: [],
+                validation: [
+                  {
+                    type: "is_valid_phone",
+                  },
+                ],
               },
             ],
           },

@@ -12,8 +12,6 @@ import {
 } from "../features/AddAppointmentFields/AddAppointmentInputs.type";
 import { formatDateTime } from "./addAppointUtils";
 
-import * as yup from "yup";
-
 type SchemaType =
   | (StringSchema<string | undefined, AnyObject, undefined, ""> &
       NumberSchema<number | undefined, AnyObject, undefined, "">)
@@ -25,7 +23,6 @@ const validateRequired = (
   field: FormFieldConfig
 ) => {
   const isRequired = field.validation.find((rule) => rule.type === "required");
-  if (field.name === "new_patient") console.log(field.name);
   // Translate field name
   const fieldName = field.label;
 
@@ -256,6 +253,20 @@ const validateMaximum = (
   );
 };
 
+const validatePhoneNumber = (
+  validationSchema: SchemaType,
+  field: FormFieldConfig
+) => {
+  const fieldName = field.label;
+  console.log("validate number ");
+  return (
+    fieldName &&
+    validationSchema.isValidPhoneNumber(
+      ERROR_MESSAGES[VALIDATION_RULE_TYPES.IS_VALID_PHONE](fieldName)
+    )
+  );
+};
+
 const validationRules = {
   [VALIDATION_RULE_TYPES.REQUIRED]: validateRequired,
   [VALIDATION_RULE_TYPES.REQUIRED_IF]: validateRequiredIf,
@@ -266,6 +277,7 @@ const validationRules = {
   [VALIDATION_RULE_TYPES.HAS_PATTERN]: validatePattern,
   [VALIDATION_RULE_TYPES.MINIMUM]: validateMinimum,
   [VALIDATION_RULE_TYPES.MAXIMUM]: validateMaximum,
+  [VALIDATION_RULE_TYPES.IS_VALID_PHONE]: validatePhoneNumber,
 };
 
 // creating a schema
