@@ -180,8 +180,8 @@ type ItemField = {
   emptyFields?: SchemaName[];
   modifyFieldsValues?: SideEffectFieldConfig[];
   onChangeCustomConfig?: {
-    fieldName: string;
-    action: "updateKey" | "updateNumber";
+    fieldName: SchemaName;
+    action: "updateFirstPart" | "updateSecondPart";
   };
 };
 
@@ -336,7 +336,7 @@ export type FieldComponentProps = {
     [x: string]: unknown;
   }>;
   getValues?: UseFormGetValues<{
-    [x: string]: unknown;
+    [x: string]: string; // getValues is used for modification of combine field and combine filed value should always be a string ((Text Fields and easy to modify and concat)) so we can edit its value as configured at TextField configuration
   }>;
 };
 
@@ -383,20 +383,25 @@ export type DualFieldComponentProps = DualFieldConfig & {
   **********************************************************
   */
 
-type CombineFieldFieldsConfig = FormFieldConfig & {
-  combineType: "main" | "secondary";
-};
+/*
+  Notes:
+  - combine field is a field used when we have 2 - and only 2 - inputs that affecting the same form state value. For example: Phone number needs a key and actual number
+  - form state name is the name in combine field name not at the fieldsConfig fields
+  - combine field value is separated with "-" and this is useful to know on modification of its value
+  - So far, combine field is configured to have 2 TEXT fields only as fieldsConfig. If it is required, we can expand its usage to use other field type later upon request
+  */
 
 export type CombineFieldConfig = {
   category: ItemCategory;
+  name: SchemaName;
   id: string;
   testId: string;
   label: string;
-  fieldsConfig: CombineFieldFieldsConfig[];
+  fieldsConfig: FieldText[];
 };
 
 export type CombineFieldComponentProps = CombineFieldConfig & {
-  renderFieldItems: (fieldConfig: FormFieldConfig) => JSX.Element;
+  renderFieldItems: (fieldConfig: FieldText) => JSX.Element;
 };
 
 /*

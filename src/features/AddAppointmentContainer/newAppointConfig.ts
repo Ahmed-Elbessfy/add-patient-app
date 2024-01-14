@@ -229,55 +229,38 @@ export const addAppointmentFieldsConfig: Item[] = [
         children: [
           {
             category: "combineField",
-            id: "new_patient.combine_phone",
-            testId: "new_patient.combine_phone",
-            label: "apInputs.add_new.combine_phone.label",
+            name: "new_patient.phone",
+            id: "new_patient.phone",
+            testId: "new_patient.phone",
+            label: "apInputs.add_new.phone.label",
             fieldsConfig: [
               {
                 category: "field",
-                combineType: "secondary",
                 fieldType: "text",
-                id: "new_patient.phone",
-                testId: "new_patient.phone",
-                name: "new_patient.phone",
+                id: "new_patient.phone_key",
+                testId: "new_patient.phone_key",
+                name: "new_patient.phone_key", // name here is useless but it is a requirement for field item, form state name is at combine field name
                 defaultValue: "+20",
                 onChangeCustomConfig: {
-                  fieldName: "phone",
-                  action: "updateKey",
+                  fieldName: "new_patient.phone",
+                  action: "updateFirstPart",
                 },
                 validation: [],
               },
               {
                 category: "field",
-                combineType: "main",
                 fieldType: "text",
-                id: "new_patient.phone",
-                testId: "new_patient.phone",
-                name: "new_patient.phone",
+                id: "new_patient.phone_number",
+                testId: "new_patient.phone_number",
+                name: "new_patient.phone_number", // name here is useless but it is a requirement for field item, registered name at form state is at combine field name
                 onChangeCustomConfig: {
-                  fieldName: "phone",
-                  action: "updateNumber",
+                  fieldName: "new_patient.phone",
+                  action: "updateSecondPart",
                 },
                 validation: [],
               },
             ],
           },
-          // {
-          //   category: "field",
-          //   fieldType: "text",
-          //   id: "new_patient.phone",
-          //   testId: "new_patient.phone",
-          //   name: "new_patient.phone",
-          //   label: "apInputs.add_new.phone.label",
-          //   flex: 1,
-          //   validation: [
-          //     {
-          //       type: "hasPattern",
-          //       pattern:
-          //         /^(?:\+2|002)?(0111|0114|0112|0155|0101|0109|0106|0100|0120|0128|0127|0122)\d{7}$/,
-          //     },
-          //   ],
-          // },
           {
             category: "field",
             fieldType: "text",

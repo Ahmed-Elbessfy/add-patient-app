@@ -25,6 +25,18 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
 
   const { t } = useTranslation("translation");
 
+  // update combine field value
+  const updateCombineFieldValue = (
+    currentValue: string,
+    ind: number,
+    value: string
+  ) => {
+    const originalValue = currentValue.split("-");
+    originalValue.splice(ind, 1, value);
+
+    return originalValue.join("-");
+  };
+
   return (
     <>
       {label && <label>{t(label)}</label>}
@@ -53,21 +65,31 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
             });
           }
 
+          // set value variable to hold the new value will be registered at form state
+          // value can be used for both combine and non combine fields based on following configuration
           let value = e.target.value;
-          if (onChangeCustomConfig && getValues) {
-            const { fieldName, action } = onChangeCustomConfig;
-            console.log(fieldName, getValues("new_patient.phone"), getValues());
-            if (action === "updateKey")
-              value = getValues(fieldName)
-                .split("-")
-                .splice(0, 1, e.target.value);
 
-            if (action === "updateNumber")
-              value = getValues(fieldName)
-                .split("-")
-                .splice(1, 1, e.target.value);
+          // configuration for combine field (( 2 fields register in one form state value ))
+          if (onChangeCustomConfig && setValue && getValues) {
+            const { fieldName, action } = onChangeCustomConfig;
+
+            // get current value pf combine field
+            const currentValue = getValues(fieldName);
+
+            // update first part only if needed
+            if (action === "updateFirstPart")
+              value = updateCombineFieldValue(currentValue, 0, e.target.value);
+
+            // update second part only if needed
+            if (action === "updateSecondPart")
+              value = updateCombineFieldValue(currentValue, 1, e.target.value);
+
+            // update form state value
+            setValue(fieldName, value);
+          } else {
+            // register non combine field values
+            onChange(value);
           }
-          onChange(value);
         }}
       />
     </>

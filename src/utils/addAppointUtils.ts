@@ -141,24 +141,26 @@ export const setDefaultValues = (
       }
     }
 
-    // if (item.category === "combineField") {
-    //   const currentItem = item as CombineFieldConfig;
-    //   const name = currentItem.fieldsConfig[0].name.includes(".")
-    //     ? currentItem.fieldsConfig[0].name.split(".").slice(-1)[0]
-    //     : currentItem.fieldsConfig[0].name;
+    if (item.category === "combineField") {
+      const currentItem = item as CombineFieldConfig;
+      // get name of combine field to set default value
+      const name = currentItem.name.includes(".")
+        ? currentItem.name.split(".").slice(-1)[0]
+        : currentItem.name;
 
-    //   const firstDefaultValue = currentItem.fieldsConfig[0].defaultValue
-    //     ? currentItem.fieldsConfig[0].defaultValue
-    //     : "";
+      // get value of combine field
+      const firstDefaultValue = currentItem.fieldsConfig[0].defaultValue
+        ? currentItem.fieldsConfig[0].defaultValue
+        : "";
 
-    //   const secondDefaultValue = currentItem.fieldsConfig[1].defaultValue
-    //     ? currentItem.fieldsConfig[1].defaultValue
-    //     : "";
+      const secondDefaultValue = currentItem.fieldsConfig[1].defaultValue
+        ? currentItem.fieldsConfig[1].defaultValue
+        : "";
 
-    //   defaultValues[name] = firstDefaultValue
-    //     .concat("-")
-    //     .concat(secondDefaultValue);
-    // }
+      defaultValues[name] = firstDefaultValue
+        .concat("-")
+        .concat(secondDefaultValue);
+    }
 
     if (item.category === "layout") {
       const currentItem = item as ItemLayout;
