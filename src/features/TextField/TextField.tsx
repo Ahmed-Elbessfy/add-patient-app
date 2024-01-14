@@ -78,11 +78,19 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
 
             // update first part only if needed
             if (action === "updateFirstPart")
-              value = updateCombineFieldValue(currentValue, 0, e.target.value);
+              value = updateCombineFieldValue(
+                currentValue as string,
+                0,
+                e.target.value
+              );
 
             // update second part only if needed
             if (action === "updateSecondPart")
-              value = updateCombineFieldValue(currentValue, 1, e.target.value);
+              value = updateCombineFieldValue(
+                currentValue as string,
+                1,
+                e.target.value
+              );
 
             // update form state value
             setValue(fieldName, value);
