@@ -3,6 +3,7 @@ import {
   UseFormClearErrors,
   UseFormGetValues,
   UseFormSetValue,
+  Control,
 } from "react-hook-form";
 
 type Customize<T, R> = Omit<T, keyof R> & R; // Check this line
@@ -405,6 +406,7 @@ export type CombineFieldConfig = {
 
 export type CombineFieldComponentProps = CombineFieldConfig & {
   renderFieldItems: (fieldConfig: FieldText) => JSX.Element;
+  control: Control<{ [x: string]: unknown; [x: number]: unknown }, unknown>;
 };
 
 /*

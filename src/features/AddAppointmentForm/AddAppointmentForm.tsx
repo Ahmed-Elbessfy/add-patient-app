@@ -13,6 +13,11 @@ import { UploadOutlined } from "@ant-design/icons";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
+import ErrorMsg from "../../patterns/ErrorMsg/ErrorMsg";
+import {
+  configValidation,
+  setDefaultValues,
+} from "../../utils/addAppointUtils";
 import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
 import {
   Rule,
@@ -29,14 +34,10 @@ import {
   CombineFieldConfig,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
-import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
-import { StyledError, StyledTitle } from "./AddAppointmentForm.styled";
-import {
-  configValidation,
-  setDefaultValues,
-} from "../../utils/addAppointUtils";
 import DualField from "../DualField/DualField";
 import CombineField from "../CombineField/CombineField";
+import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
+import { StyledTitle } from "./AddAppointmentForm.styled";
 
 const { Text, Link } = Typography;
 
@@ -48,7 +49,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   const shape: yup.ObjectShape = {};
   // build schema & default values
   const schemaShape = configValidation(fieldsConfig, shape);
-
   const schema = yup.object().shape(schemaShape);
   // console.log("final schema : ", schema);
   const { control, handleSubmit, clearErrors, watch, setValue, getValues } =
@@ -200,7 +200,13 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
 
   
   const renderCombineFieldItems = (item: CombineFieldConfig) => {
-    return <CombineField {...item} renderFieldItems={renderFieldItems} />;
+    return (
+      <CombineField
+        {...item}
+        renderFieldItems={renderFieldItems}
+        control={control}
+      />
+    );
   };
   const renderFormItems = (item: ItemForm) => {
     return item.visibility ? (
