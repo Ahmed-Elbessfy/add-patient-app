@@ -258,12 +258,12 @@ const validatePhoneNumber = (
   field: FormFieldConfig
 ) => {
   const fieldName = field.label;
-  console.log("validate number ");
+
   return (
     fieldName &&
-    validationSchema.isValidPhoneNumber(
-      ERROR_MESSAGES[VALIDATION_RULE_TYPES.IS_VALID_PHONE](fieldName)
-    )
+    validationSchema.isValidPhoneNumber({
+      errorMsg: ERROR_MESSAGES[VALIDATION_RULE_TYPES.IS_VALID_PHONE](fieldName),
+    })
   );
 };
 

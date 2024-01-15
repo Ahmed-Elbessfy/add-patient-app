@@ -229,10 +229,12 @@ export const addAppointmentFieldsConfig: Item[] = [
         children: [
           {
             category: "combineField",
+            fieldType:"combine",
             name: "new_patient.phone",
             id: "new_patient.phone",
             testId: "new_patient.phone",
             label: "apInputs.add_new.phone.label",
+            validation: [{ type: "is_valid_phone" }],
             fieldsConfig: [
               {
                 category: "field",
@@ -245,7 +247,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                   fieldName: "new_patient.phone",
                   action: "updateFirstPart",
                 },
-                validation: [{ type: "is_valid_phone" }],
+                validation: [],
               },
               {
                 category: "field",
@@ -257,11 +259,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                   fieldName: "new_patient.phone",
                   action: "updateSecondPart",
                 },
-                validation: [
-                  {
-                    type: "is_valid_phone",
-                  },
-                ],
+                validation: [],
               },
             ],
           },

@@ -13,6 +13,7 @@ export const INPUT_TYPES = {
   INPUT_TIMEPICKER: "timePicker",
   INPUT_SWITCH: "switch",
   INPUT_CHECKBOX: "checkbox",
+  INPUT_COMBINE: "combine",
 };
 
 export const VALIDATION_RULE_TYPES = {
@@ -118,7 +119,12 @@ export const ERROR_MESSAGES = {
     });
   },
   [VALIDATION_RULE_TYPES.IS_VALID_PHONE]: (fieldName: string) => {
-    return `${fieldName} is not a valid phone number`;
+    // Translate field name & target field
+    const field = i18next.t(fieldName);
+
+    return i18next.t("error_messages.isValidPhone", {
+      fieldName: field,
+    });
   },
 };
 
@@ -132,6 +138,7 @@ export const INPUT_VALIDATION_TYPES = {
   [INPUT_TYPES.INPUT_TIMEPICKER]: yup.string(),
   [INPUT_TYPES.INPUT_SWITCH]: yup.boolean(),
   [INPUT_TYPES.INPUT_CHECKBOX]: yup.boolean(),
+  [INPUT_TYPES.INPUT_COMBINE]: yup.string(),
 };
 
 /**********************************************************************
@@ -209,16 +216,17 @@ yup.addMethod(
   }
 );
 
-yup.addMethod(yup.string, "isValidPhoneNumber", function (props) {
+yup.addMethod(yup.string, "isValidPhoneNumber", function ({ errorMsg }) {
   return this.test({
     name: "isValidPhoneNumber",
-    message: props.errorMsg || "Invalid Phone Number",
+    message: errorMsg || "Invalid Phone Number",
     exclusive: true,
     test: function (value) {
-      console.log(value, "is valid rule");
       if (value) {
         const parsedNumber = parsePhoneNumberFromString(value);
-        return parsedNumber.isValid() || false;
+
+        // in some cases, parsedNumber.isValid() returns undefined and this breaks rule
+        return parsedNumber && parsedNumber.isValid() ? true : false;
       }
       // in case no value
       return false;

@@ -394,11 +394,13 @@ export type DualFieldComponentProps = DualFieldConfig & {
 
 export type CombineFieldConfig = {
   category: ItemCategory;
+  fieldType: string;
   name: SchemaName;
   id: string;
   testId: string;
   label: string;
   fieldsConfig: FieldText[];
+  validation: FieldValidation[];
 };
 
 export type CombineFieldComponentProps = CombineFieldConfig & {
