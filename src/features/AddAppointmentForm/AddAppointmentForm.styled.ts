@@ -2,13 +2,6 @@ import styled from "styled-components";
 import { Typography } from "antd";
 const { Title } = Typography;
 
-export const StyledError = styled.p`
-  height: 1.2rem;
-  color: red;
-  font-size: 0.9rem;
-  margin: 0.5rem;
-`;
-
 export const StyledTitle = styled(Title)`
   color: rgb(0, 119, 185) !important;
   position: relative;

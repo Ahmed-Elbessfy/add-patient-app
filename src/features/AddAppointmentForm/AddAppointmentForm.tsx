@@ -173,9 +173,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                           {...fieldProps}
                           status={error ? "error" : undefined}
                         />
-                        <StyledError>
-                          {error && error.message && t(error.message)}
-                        </StyledError>
+                        <ErrorMsg error={error} />
                       </>
                     )
                   ) : (
@@ -184,9 +182,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
                         {...fieldProps}
                         status={error ? "error" : undefined}
                       />
-                      <StyledError>
-                        {error && error.message && t(error.message)}
-                      </StyledError>
+                      <ErrorMsg error={error} />
                     </>
                   )}
                 </div>
