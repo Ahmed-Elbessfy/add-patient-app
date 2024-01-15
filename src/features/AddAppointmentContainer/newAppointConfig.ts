@@ -103,7 +103,13 @@ export const addAppointmentFieldsConfig: Item[] = [
         defaultChecked: true,
         validation: [],
         disability: [{ field: "switch_input_method", value: true }],
-        emptyFields: ["patient_name"],
+        modifyFieldsValues: [
+          {
+            fieldName: "patient_name",
+            action: "empty",
+            clearError: true,
+          },
+        ],
       },
       {
         category: "field",
@@ -733,7 +739,13 @@ export const addAppointmentFieldsConfig: Item[] = [
         unCheckedChildren: "show",
         defaultChecked: false,
         validation: [],
-        emptyFields: ["new_patient.insurance_company"],
+        modifyFieldsValues: [
+          {
+            fieldName: "new_patient.insurance_company",
+            action: "empty",
+            clearError: true,
+          },
+        ],
       },
       {
         category: "form",
@@ -818,7 +830,13 @@ export const addAppointmentFieldsConfig: Item[] = [
                   "apInputs.add_new.new_insurance_company.unLimitedCheck.label",
                 defaultChecked: false,
                 validation: [],
-                emptyFields: ["new_patient.new_insurance_company.limit"],
+                modifyFieldsValues: [
+                  {
+                    fieldName: "new_patient.new_insurance_company.limit",
+                    action: "empty",
+                    clearError: true,
+                  },
+                ],
               },
               {
                 category: "field",
@@ -855,7 +873,13 @@ export const addAppointmentFieldsConfig: Item[] = [
                 defaultChecked: false,
                 label: "100%",
                 validation: [],
-                emptyFields: ["new_patient.new_insurance_company.discount"],
+                modifyFieldsValues: [
+                  {
+                    fieldName: "new_patient.new_insurance_company.discount",
+                    action: "empty",
+                    clearError: true,
+                  },
+                ],
               },
             ],
           },

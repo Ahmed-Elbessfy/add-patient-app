@@ -10,9 +10,10 @@ const CheckboxField: FC<FieldCheckboxComponentProps> = (props) => {
     id,
     testId,
     onChange,
-    resetField,
     defaultChecked,
-    emptyFields,
+    modifyFieldsValues,
+    setValue,
+    clearErrors,
   } = props;
 
   const { t } = useTranslation("translation");
@@ -25,13 +26,19 @@ const CheckboxField: FC<FieldCheckboxComponentProps> = (props) => {
       onChange={(e: CheckboxChangeEvent) => {
         onChange(e.target.checked);
 
-        // reset field accepts only one field
-        // reset method did not work properly
-        // keep error to false to remove errors in case of changing visibility
-        if (resetField && emptyFields) {
-          for (const field of emptyFields) {
-            resetField(field, { keepError: false });
-          }
+        // Apply side effect
+        // this functionality is used when we need a side effect of changing a checkbox field
+        // and need a change another field value on checkbox change
+        if (modifyFieldsValues && setValue) {
+          modifyFieldsValues.forEach((config) => {
+            if (config.action === "empty") setValue(config.fieldName, "");
+
+            if (config.action === "useValue" && config.value)
+              setValue(config.fieldName, config.value);
+
+            // clearing error if needed
+            if (config.clearError && clearErrors) clearErrors(config.fieldName);
+          });
         }
       }}
     >

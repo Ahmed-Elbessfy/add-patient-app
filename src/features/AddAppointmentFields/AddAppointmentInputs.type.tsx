@@ -145,15 +145,11 @@ export type Rule = {
   value: string | number | boolean;
 };
 
-type SideEffectActions = {
-  action: "empty" | "useValue" | "updatePhoneKey" | "updatePhoneNumber";
-};
-
 export type CustomRuleFields = string | number | boolean;
 
 type SideEffectFieldConfig = {
   fieldName: SchemaName;
-  action: SideEffectActions;
+  action: "empty" | "useValue";
   clearError: boolean;
   value?: CustomRuleFields;
 };
@@ -178,7 +174,6 @@ type ItemField = {
   flex?: number;
   prefix?: string;
   suffix?: string;
-  emptyFields?: SchemaName[];
   modifyFieldsValues?: SideEffectFieldConfig[];
   onChangeCustomConfig?: {
     fieldName: SchemaName;
