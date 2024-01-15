@@ -93,7 +93,8 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
               );
 
             // update form state value
-            setValue(fieldName, value);
+            // shouldValidate to validate field value on each change
+            setValue(fieldName, value, { shouldValidate: true });
           } else {
             // register non combine field values
             onChange(value);
