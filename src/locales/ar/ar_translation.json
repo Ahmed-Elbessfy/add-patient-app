@@ -623,6 +623,7 @@
     "time_later_than": "{{fieldName}} يجب أن يكون بعد {{targetField}}",
     "pattern": "برجاء اضافة {{fieldName}} صحيح",
     "minimum": "{{fieldName}} يجب أن يكون أكثر من {{minimum}}",
-    "maximum": "{{fieldName}} يجب أن يكون أقل {{maximum}}"
+    "maximum": "{{fieldName}} يجب أن يكون أقل {{maximum}}",
+    "isValidPhone": "برجاء اضافة {{fieldName}} صحيح"
   }
 }

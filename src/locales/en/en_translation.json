@@ -624,6 +624,7 @@
     "time_later_than": "{{fieldName}} must be later than {{targetField}}",
     "pattern": "Please enter a valid {{fieldName}}",
     "minimum": "{{fieldName}} must be more than {{minimum}}",
-    "maximum": "{{fieldName}} must be more than {{maximum}}"
+    "maximum": "{{fieldName}} must be more than {{maximum}}",
+    "isValidPhone": "Please enter a valid {{fieldName}}"
   }
 }
