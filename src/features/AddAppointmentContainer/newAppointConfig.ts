@@ -60,7 +60,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.patient_name.label",
         placeholder: "apInputs.patient_name.placeholder",
         disability: [
-          { field: "show_add_patient", value: true }, // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+          { field: "show_add_patient", value: true },
           { field: "switch_input_method", value: true },
         ],
 
@@ -73,31 +73,19 @@ export const addAppointmentFieldsConfig: Item[] = [
                 value: false,
               },
               {
-                field: "show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+                field: "show_add_patient",
                 value: false,
               },
             ],
           },
         ],
       },
-      // {
-      //   category: "field",
-      //   fieldType: "switch",
-      //   id: "show_add_patient",
-      //   testId: "show_add_patient",
-      //   name: "show_add_patient",
-      //   checkedChildren: "hide",
-      //   unCheckedChildren: "show",
-      //   defaultChecked: false,
-      //   validation: [],
-      //   disability: [{ field: "switch_input_method", value: true }],
-      // },
       {
         category: "field",
         fieldType: "switch",
-        id: "show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
-        testId: "show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
-        name: "show_add_patient", // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+        id: "show_add_patient",
+        testId: "show_add_patient",
+        name: "show_add_patient",
         checkedChildren: "hide",
         unCheckedChildren: "show",
         defaultChecked: true,
@@ -121,7 +109,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         unCheckedChildren: "QR",
         defaultChecked: false,
         validation: [],
-        disability: [{ field: "show_add_patient", value: true }], // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+        disability: [{ field: "show_add_patient", value: true }],
       },
     ],
   },
@@ -159,7 +147,7 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "form",
     name: "new_patient",
-    visibility: [{ field: "show_add_patient", value: true }], // this configuration to pass show_add_patient to same nested level as first name & last name for required if validation rule, check commit messages for more details
+    visibility: [{ field: "show_add_patient", value: true }],
     children: [
       {
         type: "title",
@@ -167,18 +155,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         title: "apInputs.add_new.patient_details_title.text",
         level: 3,
       },
-      // {
-      //   category: "field",
-      //   fieldType: "switch",
-      //   id: "new_patient.show_add_patient",
-      //   testId: "new_patient.show_add_patient",
-      //   name: "new_patient.show_add_patient",
-      //   checkedChildren: "hide",
-      //   unCheckedChildren: "show",
-      //   defaultChecked: false,
-      //   validation: [],
-      //   disability: [{ field: "switch_input_method", value: true }],
-      // },
       {
         category: "layout",
         type: "hStack",
@@ -235,7 +211,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         children: [
           {
             category: "combineField",
-            fieldType:"combine",
+            fieldType: "combine",
             name: "new_patient.phone",
             id: "new_patient.phone",
             testId: "new_patient.phone",

@@ -332,7 +332,7 @@ export type FieldComponentProps = {
     [x: string]: unknown;
   }>;
   getValues?: UseFormGetValues<{
-    [x: string]: unknown; // getValues is used for modification of combine field and combine filed value should always be a string ((Text Fields and easy to modify and concat)) so we can edit its value as configured at TextField configuration
+    [x: string]: unknown;
     [x: number]: unknown;
   }>;
 };

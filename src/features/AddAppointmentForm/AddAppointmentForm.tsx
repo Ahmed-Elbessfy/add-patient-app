@@ -198,7 +198,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     return <DualField {...item} renderFieldItems={renderFieldItems} />;
   };
 
-  
   const renderCombineFieldItems = (item: CombineFieldConfig) => {
     return (
       <CombineField
