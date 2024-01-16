@@ -10,12 +10,9 @@ const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
     testId,
     onChange,
     isDisabled,
-    setValue,
-    clearErrors,
     checkedChildren,
     unCheckedChildren,
     defaultChecked,
-    modifyFieldsValues,
   } = props;
 
   const { t } = useTranslation("translation");
@@ -33,22 +30,6 @@ const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
         defaultChecked={defaultChecked}
         onChange={(checked: boolean) => {
           onChange(checked);
-
-          // Apply side effect
-          // this functionality is used when we need a side effect of changing a switch field
-          // and need a change another field value on checkbox change
-          if (modifyFieldsValues && setValue) {
-            modifyFieldsValues.forEach((config) => {
-              if (config.action === "empty") setValue(config.fieldName, "");
-
-              if (config.action === "useValue" && config.value)
-                setValue(config.fieldName, config.value);
-
-              // clearing error if needed
-              if (config.clearError && clearErrors)
-                clearErrors(config.fieldName);
-            });
-          }
         }}
       />
     </>

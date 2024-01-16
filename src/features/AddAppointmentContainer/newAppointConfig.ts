@@ -88,16 +88,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "show_add_patient",
         checkedChildren: "hide",
         unCheckedChildren: "show",
-        defaultChecked: true,
+        defaultChecked: false,
         validation: [],
         disability: [{ field: "switch_input_method", value: true }],
-        modifyFieldsValues: [
-          {
-            fieldName: "patient_name",
-            action: "empty",
-            clearError: true,
-          },
-        ],
       },
       {
         category: "field",
@@ -209,42 +202,42 @@ export const addAppointmentFieldsConfig: Item[] = [
         type: "hStack",
         gap: 0.5,
         children: [
-          {
-            category: "combineField",
-            fieldType: "combine",
-            name: "new_patient.phone",
-            id: "new_patient.phone",
-            testId: "new_patient.phone",
-            label: "apInputs.add_new.phone.label",
-            validation: [{ type: "is_valid_phone" }],
-            fieldsConfig: [
-              {
-                category: "field",
-                fieldType: "text",
-                id: "new_patient.phone_key",
-                testId: "new_patient.phone_key",
-                name: "new_patient.phone_key", // name here is useless but it is a requirement for field item, form state name is at combine field name
-                defaultValue: "+20",
-                onChangeCustomConfig: {
-                  fieldName: "new_patient.phone",
-                  action: "updateFirstPart",
-                },
-                validation: [],
-              },
-              {
-                category: "field",
-                fieldType: "text",
-                id: "new_patient.phone_number",
-                testId: "new_patient.phone_number",
-                name: "new_patient.phone_number", // name here is useless but it is a requirement for field item, registered name at form state is at combine field name
-                onChangeCustomConfig: {
-                  fieldName: "new_patient.phone",
-                  action: "updateSecondPart",
-                },
-                validation: [],
-              },
-            ],
-          },
+          // {
+          //   category: "combineField",
+          //   fieldType: "combine",
+          //   name: "new_patient.phone",
+          //   id: "new_patient.phone",
+          //   testId: "new_patient.phone",
+          //   label: "apInputs.add_new.phone.label",
+          //   validation: [{ type: "is_valid_phone" }],
+          //   fieldsConfig: [
+          //     {
+          //       category: "field",
+          //       fieldType: "text",
+          //       id: "new_patient.phone_key",
+          //       testId: "new_patient.phone_key",
+          //       name: "new_patient.phone_key", // name here is useless but it is a requirement for field item, form state name is at combine field name
+          //       defaultValue: "+20",
+          //       onChangeCustomConfig: {
+          //         fieldName: "new_patient.phone",
+          //         action: "updateFirstPart",
+          //       },
+          //       validation: [],
+          //     },
+          //     {
+          //       category: "field",
+          //       fieldType: "text",
+          //       id: "new_patient.phone_number",
+          //       testId: "new_patient.phone_number",
+          //       name: "new_patient.phone_number", // name here is useless but it is a requirement for field item, registered name at form state is at combine field name
+          //       onChangeCustomConfig: {
+          //         fieldName: "new_patient.phone",
+          //         action: "updateSecondPart",
+          //       },
+          //       validation: [],
+          //     },
+          //   ],
+          // },
           {
             category: "field",
             fieldType: "text",
@@ -715,13 +708,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         unCheckedChildren: "show",
         defaultChecked: false,
         validation: [],
-        modifyFieldsValues: [
-          {
-            fieldName: "new_patient.insurance_company",
-            action: "empty",
-            clearError: true,
-          },
-        ],
       },
       {
         category: "form",
@@ -806,13 +792,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                   "apInputs.add_new.new_insurance_company.unLimitedCheck.label",
                 defaultChecked: false,
                 validation: [],
-                modifyFieldsValues: [
-                  {
-                    fieldName: "new_patient.new_insurance_company.limit",
-                    action: "empty",
-                    clearError: true,
-                  },
-                ],
               },
               {
                 category: "field",
@@ -849,13 +828,6 @@ export const addAppointmentFieldsConfig: Item[] = [
                 defaultChecked: false,
                 label: "100%",
                 validation: [],
-                modifyFieldsValues: [
-                  {
-                    fieldName: "new_patient.new_insurance_company.discount",
-                    action: "empty",
-                    clearError: true,
-                  },
-                ],
               },
             ],
           },

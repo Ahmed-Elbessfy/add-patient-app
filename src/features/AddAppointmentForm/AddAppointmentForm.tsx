@@ -31,11 +31,9 @@ import {
   UITitle,
   ItemForm,
   DualFieldConfig,
-  CombineFieldConfig,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 import DualField from "../DualField/DualField";
-import CombineField from "../CombineField/CombineField";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
 import { StyledTitle } from "./AddAppointmentForm.styled";
 
@@ -51,12 +49,11 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   const schemaShape = configValidation(fieldsConfig, shape);
   const schema = yup.object().shape(schemaShape);
   // console.log("final schema : ", schema);
-  const { control, handleSubmit, clearErrors, watch, setValue, getValues } =
-    useForm({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-      defaultValues: setDefaultValues(fieldsConfig, {}),
-    });
+  const { control, handleSubmit, clearErrors, watch } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+    defaultValues: setDefaultValues(fieldsConfig, {}),
+  });
 
   // get current language for content direction
   const { t, i18n } = useTranslation("translation");
@@ -149,8 +146,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
             onChange: field.onChange,
             isDisabled: item.disability ? isMatched(item.disability) : false,
             value: field.value,
-            setValue: setValue,
-            getValues: getValues,
           };
 
           return (
@@ -198,15 +193,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     return <DualField {...item} renderFieldItems={renderFieldItems} />;
   };
 
-  const renderCombineFieldItems = (item: CombineFieldConfig) => {
-    return (
-      <CombineField
-        {...item}
-        renderFieldItems={renderFieldItems}
-        control={control}
-      />
-    );
-  };
   const renderFormItems = (item: ItemForm) => {
     return item.visibility ? (
       isMatched(item.visibility) && (
@@ -239,10 +225,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
             case "dualField":
               // Field Render
               return renderDualFieldItems(fieldConfig as DualFieldConfig);
-
-            case "combineField":
-              // Field Render
-              return renderCombineFieldItems(fieldConfig as CombineFieldConfig);
 
             case "layout":
               // Layout Render

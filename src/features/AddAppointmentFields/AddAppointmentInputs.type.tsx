@@ -1,20 +1,8 @@
-import {
-  FieldElement,
-  UseFormClearErrors,
-  UseFormGetValues,
-  UseFormSetValue,
-  Control,
-} from "react-hook-form";
+import { FieldElement, UseFormClearErrors } from "react-hook-form";
 
 type Customize<T, R> = Omit<T, keyof R> & R; // Check this line
 
-type ItemCategory =
-  | "field"
-  | "dualField"
-  | "combineField"
-  | "layout"
-  | "UI"
-  | "form";
+type ItemCategory = "field" | "dualField" | "layout" | "UI" | "form";
 /*
 **********************************************************
                     Category: Field
@@ -147,13 +135,6 @@ export type Rule = {
 
 export type CustomRuleFields = string | number | boolean;
 
-type SideEffectFieldConfig = {
-  fieldName: SchemaName;
-  action: "empty" | "useValue";
-  clearError: boolean;
-  value?: CustomRuleFields;
-};
-
 type ItemField = {
   category: ItemCategory;
   id: string;
@@ -174,11 +155,6 @@ type ItemField = {
   flex?: number;
   prefix?: string;
   suffix?: string;
-  modifyFieldsValues?: SideEffectFieldConfig[];
-  onChangeCustomConfig?: {
-    fieldName: SchemaName;
-    action: "updateFirstPart" | "updateSecondPart";
-  };
 };
 
 export type FieldTextT = Customize<
@@ -328,13 +304,6 @@ export type FieldComponentProps = {
   onChange: (value: FieldElement["value"]) => void;
   isDisabled: boolean;
   value: unknown;
-  setValue?: UseFormSetValue<{
-    [x: string]: unknown;
-  }>;
-  getValues?: UseFormGetValues<{
-    [x: string]: unknown;
-    [x: number]: unknown;
-  }>;
 };
 
 export type FieldTextComponentProps = FieldText & FieldComponentProps;
@@ -388,21 +357,21 @@ export type DualFieldComponentProps = DualFieldConfig & {
   - So far, combine field is configured to have 2 TEXT fields only as fieldsConfig. If it is required, we can expand its usage to use other field type later upon request
   */
 
-export type CombineFieldConfig = {
-  category: ItemCategory;
-  fieldType: string;
-  name: SchemaName;
-  id: string;
-  testId: string;
-  label: string;
-  fieldsConfig: FieldText[];
-  validation: FieldValidation[];
-};
+// export type CombineFieldConfig = {
+//   category: ItemCategory;
+//   fieldType: string;
+//   name: SchemaName;
+//   id: string;
+//   testId: string;
+//   label: string;
+//   fieldsConfig: FieldText[];
+//   validation: FieldValidation[];
+// };
 
-export type CombineFieldComponentProps = CombineFieldConfig & {
-  renderFieldItems: (fieldConfig: FieldText) => JSX.Element;
-  control: Control<{ [x: string]: unknown; [x: number]: unknown }, unknown>;
-};
+// export type CombineFieldComponentProps = CombineFieldConfig & {
+//   renderFieldItems: (fieldConfig: FieldText) => JSX.Element;
+//   control: Control<{ [x: string]: unknown; [x: number]: unknown }, unknown>;
+// };
 
 /*
 **********************************************************
@@ -415,7 +384,6 @@ type LayoutType = "hStack" | "box";
 type ChildrenType =
   | FormFieldConfig
   | DualFieldConfig
-  | CombineFieldConfig
   | ItemLayout
   | ItemUI
   | ItemForm;
@@ -531,7 +499,6 @@ export type ItemUI = UITitle | UIText | UILink | UIAlert;
 export type Item =
   | FormFieldConfig
   | DualFieldConfig
-  | CombineFieldConfig
   | ItemLayout
   | ItemUI
   | ItemForm;

@@ -212,7 +212,6 @@ export const formatDateTime = (time: string) => {
         // also, could not use dayjs since comparison is done by "min" yup method
         dayjs()
           [dir](parseInt(count), unit)
-          [dir](parseInt(count), unit)
           .hour(0)
           .minute(0)
           .second(0)
