@@ -49,8 +49,7 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
         id={id}
         status={status}
         disabled={isDisabled}
-        value={value}
-        defaultValue={defaultValue}
+        value={value as string}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           if (modifyFieldsValues && setValue) {
             modifyFieldsValues.forEach((config) => {

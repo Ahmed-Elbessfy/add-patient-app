@@ -18,7 +18,7 @@ const DateField: FC<FieldDateComponentProps> = (props) => {
     isDisabled,
     format,
     dateLimit,
-    defaultValue,
+    value,
   } = props;
 
   // set disabled date for Date Picker Input
@@ -51,7 +51,7 @@ const DateField: FC<FieldDateComponentProps> = (props) => {
             ? disabledDate(current, dateLimit.status, dateLimit.date)
             : false
         }
-        defaultValue={defaultValue ? formatDateTime(defaultValue) : undefined}
+        value={value ? formatDateTime(value as string) : undefined}
         onChange={(value: DatePickerProps["value"]) => {
           // accepted format "YYYY/MM/DD"
           onChange(value);

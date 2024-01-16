@@ -15,10 +15,9 @@ const TextAreaField: FC<FieldTextAreaComponentProps> = (props) => {
     onChange,
     status,
     isDisabled,
-    value,
     maxLength,
     showCount,
-    defaultValue,
+    value,
   } = props;
 
   const { t } = useTranslation("translation");
@@ -37,8 +36,7 @@ const TextAreaField: FC<FieldTextAreaComponentProps> = (props) => {
         maxLength={maxLength}
         showCount={showCount}
         style={{ width: "100%" }}
-        value={value}
-        defaultValue={defaultValue}
+        value={value as string}
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
           onChange(e.target.value)
         }

@@ -12,7 +12,7 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
     onChange,
     status,
     isDisabled,
-    defaultValue,
+    value,
     options,
   } = props;
 
@@ -29,7 +29,7 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
         status={status}
         disabled={isDisabled}
         onChange={(value: string) => onChange(value)}
-        defaultValue={defaultValue}
+        value={value as string}
         style={{ width: "100%" }}
       >
         {options &&
