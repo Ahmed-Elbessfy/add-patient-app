@@ -12,23 +12,29 @@ const DualField: FC<DualFieldComponentProps> = (props) => {
   const [shownField, setShownField] = useState<string>(firstField);
 
   return (
-    <Col style={{ position: "relative", flex: 1 }}>
-      <Switch
-        data-testid={testId}
-        onChange={() => {
-          if (shownField === firstField) setShownField(secondField);
-          else setShownField(firstField);
-        }}
-        checkedChildren={<CalendarOutlined />}
-        unCheckedChildren={<CalendarOutlined />}
-        size="small"
-        style={{ position: "absolute", right: "11px", top: "4px", zIndex: 2 }}
-      />
+    <Col md={8}>
+      <div style={{ position: "relative" }}>
+        <Switch
+          data-testid={testId}
+          onChange={() => {
+            if (shownField === firstField) setShownField(secondField);
+            else setShownField(firstField);
+          }}
+          checkedChildren={<CalendarOutlined />}
+          unCheckedChildren={<CalendarOutlined />}
+          size="small"
+          style={{ position: "absolute", right: "4px", top: "4px", zIndex: 2 }}
+        />
 
-      {/* Rendered Fields  */}
-      {fieldsConfig.map((field) => {
-        return shownField === field.name && renderFieldItems(field);
-      })}
+        {/* Rendered Fields  */}
+        {fieldsConfig.map((field) => {
+          return (
+            shownField === field.name && (
+              <div style={{ margin: "0 -8px" }}>{renderFieldItems(field)}</div>
+            )
+          );
+        })}
+      </div>
     </Col>
   );
 };
