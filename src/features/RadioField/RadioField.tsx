@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Radio, RadioChangeEvent } from "antd";
 import { useTranslation } from "react-i18next";
-import { FieldRadioComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import { FieldRadioComponentProps } from "./RadioField.type";
 
 const RadioField: FC<FieldRadioComponentProps> = (props) => {
   const { label, name, testId, onChange, isDisabled, options } = props;

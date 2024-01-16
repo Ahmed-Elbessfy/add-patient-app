@@ -1,8 +1,46 @@
 import { FieldElement, UseFormClearErrors } from "react-hook-form";
+import {
+  FieldText,
+  FieldTextComponentProps,
+} from "../TextField/TextField.type";
+import {
+  FieldTextArea,
+  FieldTextAreaComponentProps,
+} from "../TextAreaField/TextAreaField.type";
+import {
+  FieldNumber,
+  FieldNumberComponentProps,
+} from "../NumberField/NumberField.type";
+import {
+  FieldRadio,
+  FieldRadioComponentProps,
+} from "../RadioField/RadioField.type";
+import {
+  FieldSelect,
+  FieldSelectComponentProps,
+} from "../SelectField/SelectField.type";
+import {
+  FieldSwitch,
+  FieldSwitchComponentProps,
+} from "../SwitchField/SwitchField.type";
+import {
+  FieldDate,
+  FieldDateComponentProps,
+} from "../DateField/DateField.type";
+import {
+  FieldTime,
+  FieldTimeComponentProps,
+} from "../TimeField/TimeField.type";
+import {
+  FieldCheckbox,
+  FieldCheckboxComponentProps,
+} from "../CheckboxField/CheckboxField.type";
+import { DualFieldConfig } from "../DualField/DualField.type";
 
-type Customize<T, R> = Omit<T, keyof R> & R; // Check this line
+export type Customize<T, R> = Omit<T, keyof R> & R;
 
 type ItemCategory = "field" | "dualField" | "layout" | "UI" | "form";
+
 /*
 **********************************************************
                     Category: Field
@@ -118,11 +156,6 @@ type fieldTypeValues =
   | "checkbox"
   | "dualField";
 
-type DateLimitRule = {
-  status: string;
-  date: string;
-};
-
 export type Option = {
   label: string;
   value: string;
@@ -135,7 +168,7 @@ export type Rule = {
 
 export type CustomRuleFields = string | number | boolean;
 
-type ItemField = {
+export type ItemField = {
   category: ItemCategory;
   id: string;
   testId: string;
@@ -157,137 +190,6 @@ type ItemField = {
   suffix?: string;
 };
 
-export type FieldTextT = Customize<
-  ItemField,
-  {
-    fieldType: "text";
-    defaultValue?: string;
-  }
->;
-export type FieldNumberT = Customize<
-  ItemField,
-  {
-    fieldType: "number";
-    defaultValue?: number;
-  }
->;
-export type FieldSelectT = Customize<
-  ItemField,
-  {
-    fieldType: "select";
-    defaultValue?: string;
-    options: Option[];
-  }
->;
-export type FieldRadioT = Customize<
-  ItemField,
-  {
-    fieldType: "radio";
-    defaultValue?: string;
-    options: Option[];
-  }
->;
-export type FieldDateT = Customize<
-  ItemField,
-  {
-    fieldType: "datePicker";
-    format: string;
-    defaultValue?: string;
-    dateLimit?: DateLimitRule;
-  }
->;
-export type FieldTimeT = Customize<
-  ItemField,
-  {
-    fieldType: "timePicker";
-    use12Hours: boolean;
-    format: string;
-    defaultValue?: string;
-  }
->;
-
-export type FieldTextAreaT = Customize<
-  ItemField,
-  {
-    fieldType: "textarea";
-    defaultValue?: string;
-    maxLength?: number;
-    showCount: boolean;
-  }
->;
-
-export type FieldSwitchT = Customize<
-  ItemField,
-  {
-    fieldType: "switch";
-    checkedChildren: string;
-    unCheckedChildren: string;
-    defaultChecked: boolean;
-  }
->;
-
-export type FieldCheckboxT = Customize<
-  ItemField,
-  {
-    fieldType: "checkbox";
-  }
->;
-
-export interface FieldText extends ItemField {
-  fieldType: "text";
-  defaultValue?: string;
-}
-
-export interface FieldNumber extends ItemField {
-  fieldType: "number";
-  defaultValue?: number;
-}
-
-export interface FieldSelect extends ItemField {
-  fieldType: "select";
-  options: Option[];
-  defaultValue?: string;
-}
-
-export interface FieldRadio extends ItemField {
-  fieldType: "radio";
-  options: Option[];
-  defaultValue?: string;
-}
-
-export interface FieldDate extends ItemField {
-  fieldType: "datePicker";
-  format: string;
-  defaultValue?: string;
-  dateLimit?: DateLimitRule;
-}
-
-export interface FieldTime extends ItemField {
-  fieldType: "timePicker";
-  use12Hours: boolean;
-  format: string;
-  defaultValue?: string;
-}
-
-export interface FieldTextArea extends ItemField {
-  fieldType: "textarea";
-  defaultValue?: string;
-  maxLength?: number;
-  showCount: boolean;
-}
-
-export interface FieldSwitch extends ItemField {
-  fieldType: "switch";
-  checkedChildren: string;
-  unCheckedChildren: string;
-  defaultChecked: boolean;
-}
-
-export interface FieldCheckbox extends ItemField {
-  fieldType: "checkbox";
-  defaultChecked: boolean;
-}
-
 export type FormFieldConfig =
   | FieldText
   | FieldNumber
@@ -306,16 +208,6 @@ export type FieldComponentProps = {
   value: unknown;
 };
 
-export type FieldTextComponentProps = FieldText & FieldComponentProps;
-export type FieldNumberComponentProps = FieldNumber & FieldComponentProps;
-export type FieldTextAreaComponentProps = FieldTextArea & FieldComponentProps;
-export type FieldSelectComponentProps = FieldSelect & FieldComponentProps;
-export type FieldRadioComponentProps = FieldRadio & FieldComponentProps;
-export type FieldDateComponentProps = FieldDate & FieldComponentProps;
-export type FieldTimeComponentProps = FieldTime & FieldComponentProps;
-export type FieldSwitchComponentProps = FieldSwitch & FieldComponentProps;
-export type FieldCheckboxComponentProps = FieldCheckbox & FieldComponentProps;
-
 export type FieldConfig =
   | FieldTextComponentProps
   | FieldNumberComponentProps
@@ -326,22 +218,6 @@ export type FieldConfig =
   | FieldTimeComponentProps
   | FieldSwitchComponentProps
   | FieldCheckboxComponentProps;
-
-/*
-  **********************************************************
-                      Category: Dual Field
-  **********************************************************
-  */
-
-export type DualFieldConfig = {
-  category: ItemCategory;
-  testId: string;
-  fieldsConfig: FormFieldConfig[];
-};
-
-export type DualFieldComponentProps = DualFieldConfig & {
-  renderFieldItems: (fieldConfig: FormFieldConfig) => JSX.Element;
-};
 
 /*
   **********************************************************

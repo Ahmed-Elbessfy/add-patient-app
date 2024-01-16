@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { Col, Switch } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
-import { DualFieldComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import { DualFieldComponentProps } from "./DualField.type";
 
 const DualField: FC<DualFieldComponentProps> = (props) => {
   const { testId, fieldsConfig, renderFieldItems } = props;

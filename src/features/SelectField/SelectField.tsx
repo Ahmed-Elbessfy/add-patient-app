@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Select } from "antd";
 import { useTranslation } from "react-i18next";
-import { FieldSelectComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import { FieldSelectComponentProps } from "./SelectField.type";
 
 const SelectField: FC<FieldSelectComponentProps> = (props) => {
   const {

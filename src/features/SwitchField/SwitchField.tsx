@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Switch } from "antd";
 import { useTranslation } from "react-i18next";
-import { FieldSwitchComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import { FieldSwitchComponentProps } from "./SwitchField.type";
 
 const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
   const {

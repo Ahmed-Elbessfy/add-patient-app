@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Checkbox } from "antd";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 import { useTranslation } from "react-i18next";
-import { FieldCheckboxComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import { FieldCheckboxComponentProps } from "./CheckboxField.type";
 
 const CheckboxField: FC<FieldCheckboxComponentProps> = (props) => {
   const { label, id, testId, onChange, defaultChecked } = props;

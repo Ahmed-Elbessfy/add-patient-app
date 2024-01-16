@@ -1,7 +1,7 @@
 import { ChangeEvent, FC } from "react";
 import { Input } from "antd";
 import { useTranslation } from "react-i18next";
-import { FieldNumberComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import { FieldNumberComponentProps } from "./NumberField.type";
 
 const NumberField: FC<FieldNumberComponentProps> = (props) => {
   const {
@@ -34,7 +34,7 @@ const NumberField: FC<FieldNumberComponentProps> = (props) => {
         id={id}
         status={status}
         disabled={isDisabled}
-        value={value}
+        value={value as number}
         defaultValue={defaultValue}
         addonAfter={suffix}
         addonBefore={prefix}

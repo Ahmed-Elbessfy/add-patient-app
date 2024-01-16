@@ -1,7 +1,7 @@
 import { ChangeEvent, FC } from "react";
 import { Input } from "antd";
 import { useTranslation } from "react-i18next";
-import { FieldTextComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import { FieldTextComponentProps } from "./TextField.type";
 
 const TextField: FC<FieldTextComponentProps> = (props) => {
   const {

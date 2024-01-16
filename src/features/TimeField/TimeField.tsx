@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import type { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
 import { formatDateTime } from "../../utils/addAppointUtils";
-import { FieldTimeComponentProps } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import { FieldTimeComponentProps } from "./TimeField.type";
 
 const TimeField: FC<FieldTimeComponentProps> = (props) => {
   const {
