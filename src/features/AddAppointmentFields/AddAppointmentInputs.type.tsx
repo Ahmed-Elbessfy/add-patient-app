@@ -35,6 +35,10 @@ import {
   FieldCheckbox,
   FieldCheckboxComponentProps,
 } from "../CheckboxField/CheckboxField.type";
+import {
+  FieldCountry,
+  FieldCountryComponentProps,
+} from "../CountryField/CountryField.type";
 import { DualFieldConfig } from "../DualField/DualField.type";
 
 export type Customize<T, R> = Omit<T, keyof R> & R;
@@ -148,6 +152,7 @@ type fieldTypeValues =
   | "text"
   | "number"
   | "select"
+  | "country"
   | "datePicker"
   | "timePicker"
   | "textarea"
@@ -184,7 +189,6 @@ export type ItemField = {
   }>;
   visibility?: Rule[];
   disability?: Rule[];
-  errorTransKey?: string;
   flex?: number;
   prefix?: string;
   suffix?: string;
@@ -194,6 +198,7 @@ export type FormFieldConfig =
   | FieldText
   | FieldNumber
   | FieldSelect
+  | FieldCountry
   | FieldRadio
   | FieldDate
   | FieldTime
@@ -213,6 +218,7 @@ export type FieldConfig =
   | FieldNumberComponentProps
   | FieldTextAreaComponentProps
   | FieldSelectComponentProps
+  | FieldCountryComponentProps
   | FieldRadioComponentProps
   | FieldDateComponentProps
   | FieldTimeComponentProps

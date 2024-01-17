@@ -256,31 +256,13 @@ export const addAppointmentFieldsConfig: Item[] = [
           },
           {
             category: "field",
-            fieldType: "select",
+            fieldType: "country",
             id: "new_patient.country",
             testId: "new_patient.country",
             name: "new_patient.country",
             label: "apInputs.add_new.country.label",
-            defaultValue: "egypt",
+            defaultValue: "EG",
             flex: 1,
-            options: [
-              {
-                value: "egypt",
-                label: "apInputs.add_new.country.options.egypt",
-              },
-              {
-                value: "palestine",
-                label: "apInputs.add_new.country.options.palestine",
-              },
-              {
-                value: "china",
-                label: "apInputs.add_new.country.options.china",
-              },
-              {
-                value: "australia",
-                label: "apInputs.add_new.country.options.australia",
-              },
-            ],
             validation: [],
           },
         ],
@@ -607,30 +589,12 @@ export const addAppointmentFieldsConfig: Item[] = [
           },
           {
             category: "field",
-            fieldType: "select",
+            fieldType: "country",
             id: "new_patient.nationality",
             testId: "new_patient.nationality",
             name: "new_patient.nationality",
             label: "apInputs.add_new.nationality.label",
             flex: 1,
-            options: [
-              {
-                value: "egypt",
-                label: "apInputs.add_new.nationality.options.egypt",
-              },
-              {
-                value: "palestine",
-                label: "apInputs.add_new.nationality.options.palestine",
-              },
-              {
-                value: "china",
-                label: "apInputs.add_new.nationality.options.china",
-              },
-              {
-                value: "australia",
-                label: "apInputs.add_new.nationality.options.australia",
-              },
-            ],
             validation: [],
           },
         ],

@@ -8,6 +8,7 @@ import { FieldSwitchComponentProps } from "../SwitchField/SwitchField.type";
 import { FieldDateComponentProps } from "../DateField/DateField.type";
 import { FieldTimeComponentProps } from "../TimeField/TimeField.type";
 import { FieldCheckboxComponentProps } from "../CheckboxField/CheckboxField.type";
+import { FieldCountryComponentProps } from "../CountryField/CountryField.type";
 
 import TextField from "../TextField/TextField";
 import NumberField from "../NumberField/NumberField";
@@ -18,6 +19,8 @@ import DateField from "../DateField/DateField";
 import TimeField from "../TimeField/TimeField";
 import SwitchField from "../SwitchField/SwitchField";
 import CheckboxField from "../CheckboxField/CheckboxField";
+import CountryField from "../CountryField/CountryField";
+
 import { FieldConfig } from "./AddAppointmentInputs.type";
 
 const AddAppointmentFields: FC<FieldConfig> = (props) => {
@@ -43,6 +46,11 @@ const AddAppointmentFields: FC<FieldConfig> = (props) => {
       {/* Select Input  */}
       {props.fieldType === "select" && (
         <SelectField {...(props as FieldSelectComponentProps)} />
+      )}
+
+      {/* Country Input  */}
+      {props.fieldType === "country" && (
+        <CountryField {...(props as FieldCountryComponentProps)} />
       )}
 
       {/* Radio Input  */}
