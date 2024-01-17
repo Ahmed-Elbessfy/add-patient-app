@@ -1,4 +1,14 @@
 import { FC } from "react";
+import { FieldTextComponentProps } from "../TextField/TextField.type";
+import { FieldTextAreaComponentProps } from "../TextAreaField/TextAreaField.type";
+import { FieldNumberComponentProps } from "../NumberField/NumberField.type";
+import { FieldRadioComponentProps } from "../RadioField/RadioField.type";
+import { FieldSelectComponentProps } from "../SelectField/SelectField.type";
+import { FieldSwitchComponentProps } from "../SwitchField/SwitchField.type";
+import { FieldDateComponentProps } from "../DateField/DateField.type";
+import { FieldTimeComponentProps } from "../TimeField/TimeField.type";
+import { FieldCheckboxComponentProps } from "../CheckboxField/CheckboxField.type";
+
 import TextField from "../TextField/TextField";
 import NumberField from "../NumberField/NumberField";
 import TextAreaField from "../TextAreaField/TextAreaField";
@@ -8,18 +18,7 @@ import DateField from "../DateField/DateField";
 import TimeField from "../TimeField/TimeField";
 import SwitchField from "../SwitchField/SwitchField";
 import CheckboxField from "../CheckboxField/CheckboxField";
-import {
-  FieldCheckboxComponentProps,
-  FieldConfig,
-  FieldDateComponentProps,
-  FieldNumberComponentProps,
-  FieldRadioComponentProps,
-  FieldSelectComponentProps,
-  FieldSwitchComponentProps,
-  FieldTextAreaComponentProps,
-  FieldTextComponentProps,
-  FieldTimeComponentProps,
-} from "./AddAppointmentInputs.type";
+import { FieldConfig } from "./AddAppointmentInputs.type";
 
 const AddAppointmentFields: FC<FieldConfig> = (props) => {
   return (
