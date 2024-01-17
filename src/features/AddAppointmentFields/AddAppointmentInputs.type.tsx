@@ -182,11 +182,6 @@ export type ItemField = {
   label?: string;
   placeholder?: string;
   validation: FieldValidation[];
-  status?: "error";
-  clearErrors?: UseFormClearErrors<{
-    [x: string]: unknown;
-    [x: number]: unknown;
-  }>;
   visibility?: Rule[];
   disability?: Rule[];
   flex?: number;
@@ -208,6 +203,11 @@ export type FormFieldConfig =
 
 // properties not added for form configuration and used within the field component
 export type FieldComponentProps = {
+  status?: "error";
+  clearErrors?: UseFormClearErrors<{
+    [x: string]: unknown;
+    [x: number]: unknown;
+  }>;
   onChange: (value: FieldElement["value"]) => void;
   isDisabled: boolean;
   value: unknown;
