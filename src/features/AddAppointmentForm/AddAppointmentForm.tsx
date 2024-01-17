@@ -30,10 +30,10 @@ import {
   UIText,
   UITitle,
   ItemForm,
-  DualFieldConfig,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 import DualField from "../DualField/DualField";
+import { DualFieldConfig } from "../DualField/DualField.type";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
 import { StyledTitle } from "./AddAppointmentForm.styled";
 

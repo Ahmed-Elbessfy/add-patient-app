@@ -6,9 +6,8 @@ import {
   FormFieldConfig,
   ItemForm,
   CustomRuleFields,
-  DualFieldConfig,
-  CombineFieldConfig,
 } from "../features/AddAppointmentFields/AddAppointmentInputs.type";
+import { DualFieldConfig } from "../features/DualField/DualField.type";
 import { DefaultValueObjectFormat } from "../features/AddAppointmentForm/AddAppointmentForm.types";
 import { parseValidation } from "./addAppointValidation";
 
@@ -16,7 +15,7 @@ import { parseValidation } from "./addAppointValidation";
 // build schema & default values
 export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
   itemsData.forEach((item: Item) => {
-    if (item.category === "field" || item.category === "combineField") {
+    if (item.category === "field") {
       const currentItem = item as FormFieldConfig;
       // if not nested
       if (!currentItem.name.includes(".")) {
