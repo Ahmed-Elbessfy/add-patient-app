@@ -27,10 +27,12 @@ const DualField: FC<DualFieldComponentProps> = (props) => {
         />
 
         {/* Rendered Fields  */}
-        {fieldsConfig.map((field) => {
+        {fieldsConfig.map((field, ind) => {
           return (
             shownField === field.name && (
-              <div style={{ margin: "0 -8px" }}>{renderFieldItems(field)}</div>
+              <div style={{ margin: "0 -8px" }} key={ind}>
+                {renderFieldItems(field)}
+              </div>
             )
           );
         })}
