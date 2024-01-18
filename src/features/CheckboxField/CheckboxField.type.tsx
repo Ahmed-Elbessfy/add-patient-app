@@ -16,6 +16,4 @@ export interface FieldCheckbox extends ItemField {
   defaultChecked: boolean;
 }
 
-export type FieldCheckboxComponentProps = {
-  defaultChecked: boolean;
-} & CustomFieldConfig;
+export type FieldCheckboxComponentProps = CustomFieldConfig;

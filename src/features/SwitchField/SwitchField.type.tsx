@@ -24,5 +24,4 @@ export interface FieldSwitch extends ItemField {
 export type FieldSwitchComponentProps = {
   checkedChildren: string;
   unCheckedChildren: string;
-  defaultChecked: boolean;
 } & CustomFieldConfig;

@@ -5,13 +5,13 @@ import { useTranslation } from "react-i18next";
 import { FieldCheckboxComponentProps } from "./CheckboxField.type";
 
 const CheckboxField: FC<FieldCheckboxComponentProps> = (props) => {
-  const { label, onChange, defaultChecked } = props;
+  const { label, onChange, value } = props;
 
   const { t } = useTranslation("translation");
 
   return (
     <Checkbox
-      defaultChecked={defaultChecked}
+      defaultChecked={value as boolean}
       onChange={(e: CheckboxChangeEvent) => {
         onChange(e.target.checked);
       }}

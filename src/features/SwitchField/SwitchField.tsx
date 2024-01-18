@@ -10,7 +10,7 @@ const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
     isDisabled,
     checkedChildren,
     unCheckedChildren,
-    defaultChecked,
+    value,
   } = props;
 
   const { t } = useTranslation("translation");
@@ -23,7 +23,7 @@ const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
         disabled={isDisabled}
         checkedChildren={t(checkedChildren)}
         unCheckedChildren={t(unCheckedChildren)}
-        defaultChecked={defaultChecked}
+        defaultChecked={value as boolean}
         onChange={(checked: boolean) => {
           onChange(checked);
         }}
