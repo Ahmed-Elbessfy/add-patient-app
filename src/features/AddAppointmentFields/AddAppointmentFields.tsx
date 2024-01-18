@@ -4,7 +4,7 @@ import { FieldTextAreaComponentProps } from "../TextAreaField/TextAreaField.type
 import { FieldNumberComponentProps } from "../NumberField/NumberField.type";
 // import { FieldRadioComponentProps } from "../RadioField/RadioField.type";
 import { FieldSelectComponentProps } from "../SelectField/SelectField.type";
-// import { FieldSwitchComponentProps } from "../SwitchField/SwitchField.type";
+import { FieldSwitchComponentProps } from "../SwitchField/SwitchField.type";
 // import { FieldDateComponentProps } from "../DateField/DateField.type";
 // import { FieldTimeComponentProps } from "../TimeField/TimeField.type";
 import { FieldCheckboxComponentProps } from "../CheckboxField/CheckboxField.type";
@@ -17,7 +17,7 @@ import SelectField from "../SelectField/SelectField";
 // import RadioField from "../RadioField/RadioField";
 // import DateField from "../DateField/DateField";
 // import TimeField from "../TimeField/TimeField";
-// import SwitchField from "../SwitchField/SwitchField";
+import SwitchField from "../SwitchField/SwitchField";
 import CheckboxField from "../CheckboxField/CheckboxField";
 // import CountryField from "../CountryField/CountryField";
 
@@ -99,9 +99,9 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       )} */}
 
       {/* Switch Input  */}
-      {/* {fieldType === "switch" && (
-        <SwitchField {...(props as FieldSwitchComponentProps)} />
-      )} */}
+      {fieldType === "switch" && (
+        <SwitchField {...(inputProps as FieldSwitchComponentProps)} />
+      )}
 
       {/* Checkbox Input  */}
       {fieldType === "checkbox" && (

@@ -6,8 +6,6 @@ import { FieldSwitchComponentProps } from "./SwitchField.type";
 const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
   const {
     label,
-    id,
-    testId,
     onChange,
     isDisabled,
     checkedChildren,
@@ -22,8 +20,6 @@ const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
       {label && <label>{t(label)}</label>}
 
       <Switch
-        data-testid={testId}
-        id={id}
         disabled={isDisabled}
         checkedChildren={t(checkedChildren)}
         unCheckedChildren={t(unCheckedChildren)}

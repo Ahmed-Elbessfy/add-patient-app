@@ -1,5 +1,5 @@
 import {
-  FieldComponentProps,
+  CustomFieldConfig,
   ItemField,
   Customize,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
@@ -21,4 +21,8 @@ export interface FieldSwitch extends ItemField {
   defaultChecked: boolean;
 }
 
-export type FieldSwitchComponentProps = FieldSwitch & FieldComponentProps;
+export type FieldSwitchComponentProps = {
+  checkedChildren: string;
+  unCheckedChildren: string;
+  defaultChecked: boolean;
+} & CustomFieldConfig;
