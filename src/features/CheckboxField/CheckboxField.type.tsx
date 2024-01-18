@@ -1,5 +1,5 @@
 import {
-  FieldComponentProps,
+  CustomFieldConfig,
   ItemField,
   Customize,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
@@ -16,4 +16,6 @@ export interface FieldCheckbox extends ItemField {
   defaultChecked: boolean;
 }
 
-export type FieldCheckboxComponentProps = FieldCheckbox & FieldComponentProps;
+export type FieldCheckboxComponentProps = {
+  defaultChecked: boolean;
+} & CustomFieldConfig;

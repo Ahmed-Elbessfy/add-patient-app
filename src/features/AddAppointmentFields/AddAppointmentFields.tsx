@@ -7,7 +7,7 @@ import { FieldSelectComponentProps } from "../SelectField/SelectField.type";
 // import { FieldSwitchComponentProps } from "../SwitchField/SwitchField.type";
 // import { FieldDateComponentProps } from "../DateField/DateField.type";
 // import { FieldTimeComponentProps } from "../TimeField/TimeField.type";
-// import { FieldCheckboxComponentProps } from "../CheckboxField/CheckboxField.type";
+import { FieldCheckboxComponentProps } from "../CheckboxField/CheckboxField.type";
 // import { FieldCountryComponentProps } from "../CountryField/CountryField.type";
 
 import TextField from "../TextField/TextField";
@@ -18,7 +18,7 @@ import SelectField from "../SelectField/SelectField";
 // import DateField from "../DateField/DateField";
 // import TimeField from "../TimeField/TimeField";
 // import SwitchField from "../SwitchField/SwitchField";
-// import CheckboxField from "../CheckboxField/CheckboxField";
+import CheckboxField from "../CheckboxField/CheckboxField";
 // import CountryField from "../CountryField/CountryField";
 
 import { GeneralFieldConfig } from "./AddAppointmentInputs.type";
@@ -57,7 +57,7 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       )}
 
       {/* Text Input  */}
-      {/* {props.fieldType === "phone" && (
+      {/* {fieldType === "phone" && (
         <PhoneField {...(props as FieldPhoneComponentProps)} />
       )} */}
 
@@ -79,34 +79,34 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       )}
 
       {/* Country Input  */}
-      {/* {props.fieldType === "country" && (
+      {/* {fieldType === "country" && (
         <CountryField {...(props as FieldCountryComponentProps)} />
       )} */}
 
       {/* Radio Input  */}
-      {/* {props.fieldType === "radio" && (
+      {/* {fieldType === "radio" && (
         <RadioField {...(props as FieldRadioComponentProps)} />
       )} */}
 
       {/* Date Picker Input  */}
-      {/* {props.fieldType === "datePicker" && (
+      {/* {fieldType === "datePicker" && (
         <DateField {...(props as FieldDateComponentProps)} />
       )} */}
 
       {/* Time Picker Input  */}
-      {/* {props.fieldType === "timePicker" && (
+      {/* {fieldType === "timePicker" && (
         <TimeField {...(props as FieldTimeComponentProps)} />
       )} */}
 
       {/* Switch Input  */}
-      {/* {props.fieldType === "switch" && (
+      {/* {fieldType === "switch" && (
         <SwitchField {...(props as FieldSwitchComponentProps)} />
       )} */}
 
       {/* Checkbox Input  */}
-      {/* {props.fieldType === "checkbox" && (
-        <CheckboxField {...(props as FieldCheckboxComponentProps)} />
-      )} */}
+      {fieldType === "checkbox" && (
+        <CheckboxField {...(inputProps as FieldCheckboxComponentProps)} />
+      )}
 
       <ErrorMsg error={error} />
     </div>
