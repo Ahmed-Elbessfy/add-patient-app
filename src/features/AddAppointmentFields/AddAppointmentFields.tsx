@@ -5,7 +5,7 @@ import { FieldNumberComponentProps } from "../NumberField/NumberField.type";
 // import { FieldRadioComponentProps } from "../RadioField/RadioField.type";
 import { FieldSelectComponentProps } from "../SelectField/SelectField.type";
 import { FieldSwitchComponentProps } from "../SwitchField/SwitchField.type";
-// import { FieldDateComponentProps } from "../DateField/DateField.type";
+import { FieldDateComponentProps } from "../DateField/DateField.type";
 // import { FieldTimeComponentProps } from "../TimeField/TimeField.type";
 import { FieldCheckboxComponentProps } from "../CheckboxField/CheckboxField.type";
 // import { FieldCountryComponentProps } from "../CountryField/CountryField.type";
@@ -15,7 +15,7 @@ import NumberField from "../NumberField/NumberField";
 import TextAreaField from "../TextAreaField/TextAreaField";
 import SelectField from "../SelectField/SelectField";
 // import RadioField from "../RadioField/RadioField";
-// import DateField from "../DateField/DateField";
+import DateField from "../DateField/DateField";
 // import TimeField from "../TimeField/TimeField";
 import SwitchField from "../SwitchField/SwitchField";
 import CheckboxField from "../CheckboxField/CheckboxField";
@@ -89,9 +89,9 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       )} */}
 
       {/* Date Picker Input  */}
-      {/* {fieldType === "datePicker" && (
-        <DateField {...(props as FieldDateComponentProps)} />
-      )} */}
+      {fieldType === "datePicker" && (
+        <DateField {...(inputProps as FieldDateComponentProps)} />
+      )}
 
       {/* Time Picker Input  */}
       {/* {fieldType === "timePicker" && (

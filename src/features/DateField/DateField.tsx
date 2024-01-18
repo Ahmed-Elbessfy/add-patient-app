@@ -9,10 +9,7 @@ import { FieldDateComponentProps } from "./DateField.type";
 const DateField: FC<FieldDateComponentProps> = (props) => {
   const {
     label,
-    name,
-    id,
     placeholder,
-    testId,
     onChange,
     status,
     isDisabled,
@@ -38,11 +35,8 @@ const DateField: FC<FieldDateComponentProps> = (props) => {
       {label && <label>{t(label)}</label>}
 
       <DatePicker
-        name={name}
         format={format}
         placeholder={placeholder && t(placeholder)}
-        data-testid={testId}
-        id={id}
         status={status}
         style={{ width: "100%" }}
         disabled={isDisabled}

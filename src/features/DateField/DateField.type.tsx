@@ -1,5 +1,5 @@
 import {
-  FieldComponentProps,
+  CustomFieldConfig,
   ItemField,
   Customize,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
@@ -26,4 +26,7 @@ export interface FieldDate extends ItemField {
   dateLimit?: DateLimitRule;
 }
 
-export type FieldDateComponentProps = FieldDate & FieldComponentProps;
+export type FieldDateComponentProps = {
+  format: string;
+  dateLimit?: DateLimitRule;
+} & CustomFieldConfig;
