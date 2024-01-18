@@ -4,18 +4,8 @@ import { useTranslation } from "react-i18next";
 import { FieldTextComponentProps } from "./TextField.type";
 
 const TextField: FC<FieldTextComponentProps> = (props) => {
-  const {
-    fieldType,
-    label,
-    name,
-    id,
-    placeholder,
-    testId,
-    onChange,
-    status,
-    isDisabled,
-    value,
-  } = props;
+  const { fieldType, label, placeholder, onChange, status, isDisabled, value } =
+    props;
 
   const { t } = useTranslation("translation");
 
@@ -25,10 +15,7 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
 
       <Input
         type={fieldType}
-        name={name}
         placeholder={placeholder && t(placeholder)}
-        data-testid={testId}
-        id={id}
         status={status}
         disabled={isDisabled}
         value={value as string}

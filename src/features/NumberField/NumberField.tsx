@@ -7,15 +7,11 @@ const NumberField: FC<FieldNumberComponentProps> = (props) => {
   const {
     fieldType,
     label,
-    name,
-    id,
     placeholder,
-    testId,
     onChange,
     status,
     isDisabled,
     value,
-    defaultValue,
     prefix,
     suffix,
   } = props;
@@ -28,14 +24,10 @@ const NumberField: FC<FieldNumberComponentProps> = (props) => {
 
       <Input
         type={fieldType}
-        name={name}
         placeholder={placeholder && t(placeholder)}
-        data-testid={testId}
-        id={id}
         status={status}
         disabled={isDisabled}
         value={value as number}
-        defaultValue={defaultValue}
         addonAfter={suffix}
         addonBefore={prefix}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>

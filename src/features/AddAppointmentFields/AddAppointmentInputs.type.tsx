@@ -1,43 +1,43 @@
-import { FieldElement, UseFormClearErrors } from "react-hook-form";
+import { Control, FieldElement } from "react-hook-form";
 import {
   FieldText,
-  FieldTextComponentProps,
+  // FieldTextComponentProps,
 } from "../TextField/TextField.type";
 import {
   FieldTextArea,
-  FieldTextAreaComponentProps,
+  // FieldTextAreaComponentProps,
 } from "../TextAreaField/TextAreaField.type";
 import {
   FieldNumber,
-  FieldNumberComponentProps,
+  // FieldNumberComponentProps,
 } from "../NumberField/NumberField.type";
 import {
   FieldRadio,
-  FieldRadioComponentProps,
+  // FieldRadioComponentProps,
 } from "../RadioField/RadioField.type";
 import {
   FieldSelect,
-  FieldSelectComponentProps,
+  // FieldSelectComponentProps,
 } from "../SelectField/SelectField.type";
 import {
   FieldSwitch,
-  FieldSwitchComponentProps,
+  // FieldSwitchComponentProps,
 } from "../SwitchField/SwitchField.type";
 import {
   FieldDate,
-  FieldDateComponentProps,
+  // FieldDateComponentProps,
 } from "../DateField/DateField.type";
 import {
   FieldTime,
-  FieldTimeComponentProps,
+  // FieldTimeComponentProps,
 } from "../TimeField/TimeField.type";
 import {
   FieldCheckbox,
-  FieldCheckboxComponentProps,
+  // FieldCheckboxComponentProps,
 } from "../CheckboxField/CheckboxField.type";
 import {
   FieldCountry,
-  FieldCountryComponentProps,
+  // FieldCountryComponentProps,
 } from "../CountryField/CountryField.type";
 import { DualFieldConfig } from "../DualField/DualField.type";
 
@@ -173,6 +173,8 @@ export type Rule = {
 
 export type CustomRuleFields = string | number | boolean;
 
+// FORM component props
+// should receive : Category, fieldType, name, id ,testId, label, placeholder, validation, visibility, disability, defaultValue, defaultChecked, checkedChildren, unCheckedChildren, suffix, prefix
 export type ItemField = {
   category: ItemCategory;
   id: string;
@@ -201,59 +203,55 @@ export type FormFieldConfig =
   | FieldCheckbox
   | FieldTextArea;
 
-// properties not added for form configuration and used within the field component
-export type FieldComponentProps = {
-  status?: "error";
-  clearErrors?: UseFormClearErrors<{
+// General Field Component props
+// should receive: fieldType, name, id, testid, label, placeholder, isDisabled, suffix, prefix
+
+export type GeneralFieldConfig = Omit<
+  FormFieldConfig,
+  "category" | "visibility" | "disability" | "validation" | "defaultValue"
+> & {
+  control: Control<{
     [x: string]: unknown;
     [x: number]: unknown;
   }>;
-  onChange: (value: FieldElement["value"]) => void;
   isDisabled: boolean;
-  value: unknown;
 };
 
-export type FieldConfig =
-  | FieldTextComponentProps
-  | FieldNumberComponentProps
-  | FieldTextAreaComponentProps
-  | FieldSelectComponentProps
-  | FieldCountryComponentProps
-  | FieldRadioComponentProps
-  | FieldDateComponentProps
-  | FieldTimeComponentProps
-  | FieldSwitchComponentProps
-  | FieldCheckboxComponentProps;
+// Custom Field Component props
+// should receive : label, placeholder, isDisabled, suffix, prefix, value, onChange, status
+export type CustomFieldConfig = Omit<
+  GeneralFieldConfig,
+  "id" | "testId" | "name" | "control"
+> & {
+  value: unknown;
+  onChange: (value: FieldElement["value"]) => void;
+  status?: "error";
+};
 
-/*
-  **********************************************************
-                      Category: Combine Field
-  **********************************************************
-  */
-
-/*
-  Notes:
-  - combine field is a field used when we have 2 - and only 2 - inputs that affecting the same form state value. For example: Phone number needs a key and actual number
-  - form state name is the name in combine field name not at the fieldsConfig fields
-  - combine field value is separated with "-" and this is useful to know on modification of its value
-  - So far, combine field is configured to have 2 TEXT fields only as fieldsConfig. If it is required, we can expand its usage to use other field type later upon request
-  */
-
-// export type CombineFieldConfig = {
-//   category: ItemCategory;
-//   fieldType: string;
-//   name: SchemaName;
-//   id: string;
-//   testId: string;
-//   label: string;
-//   fieldsConfig: FieldText[];
-//   validation: FieldValidation[];
+// properties not added for form configuration and used within the field component
+// export type FieldComponentProps = {
+//   status?: "error";
+//   clearErrors?: UseFormClearErrors<{
+//     [x: string]: unknown;
+//     [x: number]: unknown;
+//   }>;
+//   onChange: (value: FieldElement["value"]) => void;
+//   isDisabled: boolean;
+//   value: unknown;
 // };
 
-// export type CombineFieldComponentProps = CombineFieldConfig & {
-//   renderFieldItems: (fieldConfig: FieldText) => JSX.Element;
-//   control: Control<{ [x: string]: unknown; [x: number]: unknown }, unknown>;
-// };
+// export type FieldConfig =
+//   | FieldTextComponentProps
+//   | FieldPhoneComponentProps
+//   | FieldNumberComponentProps
+//   | FieldTextAreaComponentProps
+//   | FieldSelectComponentProps
+//   | FieldCountryComponentProps
+//   | FieldRadioComponentProps
+//   | FieldDateComponentProps
+//   | FieldTimeComponentProps
+//   | FieldSwitchComponentProps
+//   | FieldCheckboxComponentProps;
 
 /*
 **********************************************************

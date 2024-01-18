@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
   Alert,
   Button,
@@ -13,7 +13,6 @@ import { UploadOutlined } from "@ant-design/icons";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
-import ErrorMsg from "../../patterns/ErrorMsg/ErrorMsg";
 import {
   configValidation,
   setDefaultValues,
@@ -49,7 +48,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   const schemaShape = configValidation(fieldsConfig, shape);
   const schema = yup.object().shape(schemaShape);
   // console.log("final schema : ", schema);
-  const { control, handleSubmit, clearErrors, watch } = useForm({
+  const { control, handleSubmit, watch } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
     defaultValues: setDefaultValues(fieldsConfig, {}),
@@ -134,59 +133,66 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   };
 
   const renderFieldItems = (item: FormFieldConfig) => {
-    return (
-      <Controller
-        key={item.id}
-        name={item.name}
-        control={control}
-        render={({ field, fieldState: { error } }) => {
-          const fieldProps = {
-            ...item,
-            clearErrors: clearErrors,
-            onChange: field.onChange,
-            isDisabled: item.disability ? isMatched(item.disability) : false,
-            value: field.value,
-          };
+    // return (
+    //   <Controller
+    //     key={item.id}
+    //     name={item.name}
+    //     control={control}
+    //     render={({ field, fieldState: { error } }) => {
+    //       const fieldProps = {
+    //         ...item,
+    //         clearErrors: clearErrors,
+    //         onChange: field.onChange,
+    //         isDisabled: item.disability ? isMatched(item.disability) : false,
+    //         value: field.value,
+    //       };
 
-          return (
-            <Col
-              style={{
-                textAlign: "start",
-                flex: item.flex ? item.flex : undefined,
-              }}
-            >
-              {/* in case there is a visibility rule:
+    const {
+      category,
+      visibility,
+      disability,
+      defaultValue,
+      validation,
+      flex,
+      ...field
+    } = item;
+
+    const fieldProps = {
+      ...field,
+      isDisabled: disability ? isMatched(disability) : false,
+      control,
+    };
+    return (
+      <Col
+        style={{
+          textAlign: "start",
+          flex: flex ? flex : undefined,
+        }}
+      >
+        {/* in case there is a visibility rule:
                     - check if it is fulfilled first, if yse render field
                     - if not render field normally
               */}
-              {
-                <div>
-                  {item.visibility ? (
-                    isMatched(item.visibility) && (
-                      <>
-                        <AddAppointmentFields
-                          {...fieldProps}
-                          status={error ? "error" : undefined}
-                        />
-                        <ErrorMsg error={error} />
-                      </>
-                    )
-                  ) : (
-                    <>
-                      <AddAppointmentFields
-                        {...fieldProps}
-                        status={error ? "error" : undefined}
-                      />
-                      <ErrorMsg error={error} />
-                    </>
-                  )}
-                </div>
-              }
-            </Col>
-          );
-        }}
-      />
+        {
+          <div>
+            {visibility ? (
+              isMatched(visibility) && (
+                <>
+                  <AddAppointmentFields {...fieldProps} />
+                </>
+              )
+            ) : (
+              <>
+                <AddAppointmentFields {...fieldProps} />
+              </>
+            )}
+          </div>
+        }
+      </Col>
     );
+    //     }}
+    //   />
+    // );
   };
 
   const renderDualFieldItems = (item: DualFieldConfig) => {

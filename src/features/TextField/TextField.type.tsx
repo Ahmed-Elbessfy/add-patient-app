@@ -1,7 +1,7 @@
 import {
-  FieldComponentProps,
   ItemField,
   Customize,
+  CustomFieldConfig,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
 export type FieldTextT = Customize<
@@ -12,9 +12,11 @@ export type FieldTextT = Customize<
   }
 >;
 
+// used for form field configuration object
 export interface FieldText extends ItemField {
   fieldType: "text";
   defaultValue?: string;
 }
 
-export type FieldTextComponentProps = FieldText & FieldComponentProps;
+// used for Custom Field Configuration and in case input requires custom props
+export type FieldTextComponentProps = CustomFieldConfig;
