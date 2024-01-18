@@ -126,9 +126,7 @@ export const setDefaultValues = (
 
         // custom case for time picker default value
         if (currentItem.fieldType === "timePicker") {
-          currentDefaultValue = formatDateTime(currentItem.defaultValue).format(
-            "hh:mm a"
-          );
+          currentDefaultValue = formatDateTime(currentItem.defaultValue);
         }
         // store current field default value
         defaultValues[fieldName] = currentDefaultValue;

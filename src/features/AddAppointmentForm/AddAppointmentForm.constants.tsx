@@ -172,9 +172,9 @@ yup.addMethod(
         // get form state values or current fields values from context.parent
         const targetTime = context.parent[targetField];
         // Use dayjs to parse the input time
-        const parsedTime = dayjs(value, "hh:mm a", true);
+        const parsedTime = dayjs(value);
         // Parse the target time
-        const parsedTargetTime = dayjs(targetTime, "hh:mm a", true);
+        const parsedTargetTime = dayjs(targetTime);
 
         // Check if parsing was successful and both input & target time is a valid time
         if (!parsedTime.isValid() || !parsedTargetTime.isValid()) {
@@ -202,9 +202,9 @@ yup.addMethod(
         // get form state values or current fields values from context.parent
         const targetTime = context.parent[targetField];
         // Use dayjs to parse the input time
-        const parsedTime = dayjs(value, "hh:mm a", true);
+        const parsedTime = dayjs(value);
         // Parse the target time
-        const parsedTargetTime = dayjs(targetTime, "hh:mm a", true);
+        const parsedTargetTime = dayjs(targetTime);
 
         // Check if parsing was successful and both input & target time is a valid time
         if (!parsedTime.isValid() || !parsedTargetTime.isValid()) {

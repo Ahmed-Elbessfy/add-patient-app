@@ -1348,7 +1348,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "start_time",
         label: "apInputs.start_time.label",
         use12Hours: true,
-        defaultValue: "12/10/2023 14:00", // testing time format: date can be today with format MM/DD/YYYY
+        defaultValue: "add 0 minutes",
         format: "hh:mm a",
         flex: 1,
         validation: [
