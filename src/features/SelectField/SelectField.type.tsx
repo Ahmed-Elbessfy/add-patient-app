@@ -1,5 +1,5 @@
 import {
-  FieldComponentProps,
+  CustomFieldConfig,
   ItemField,
   Option,
   Customize,
@@ -14,10 +14,14 @@ export type FieldSelectT = Customize<
   }
 >;
 
+// used for form field configuration object
 export interface FieldSelect extends ItemField {
   fieldType: "select";
   options: Option[];
   defaultValue?: string;
 }
 
-export type FieldSelectComponentProps = FieldSelect & FieldComponentProps;
+// used for Custom Field Configuration and in case input requires custom props
+export type FieldSelectComponentProps = {
+  options: Option[];
+} & CustomFieldConfig;

@@ -4,17 +4,8 @@ import { useTranslation } from "react-i18next";
 import { FieldSelectComponentProps } from "./SelectField.type";
 
 const SelectField: FC<FieldSelectComponentProps> = (props) => {
-  const {
-    label,
-    id,
-    placeholder,
-    testId,
-    onChange,
-    status,
-    isDisabled,
-    value,
-    options,
-  } = props;
+  const { label, placeholder, onChange, status, isDisabled, value, options } =
+    props;
 
   const { t } = useTranslation("translation");
 
@@ -24,8 +15,6 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
 
       <Select
         placeholder={placeholder && t(placeholder)}
-        data-testid={testId}
-        id={id}
         status={status}
         disabled={isDisabled}
         onChange={(value: string) => onChange(value)}

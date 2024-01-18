@@ -3,7 +3,7 @@ import { FieldTextComponentProps } from "../TextField/TextField.type";
 // import { FieldTextAreaComponentProps } from "../TextAreaField/TextAreaField.type";
 import { FieldNumberComponentProps } from "../NumberField/NumberField.type";
 // import { FieldRadioComponentProps } from "../RadioField/RadioField.type";
-// import { FieldSelectComponentProps } from "../SelectField/SelectField.type";
+import { FieldSelectComponentProps } from "../SelectField/SelectField.type";
 // import { FieldSwitchComponentProps } from "../SwitchField/SwitchField.type";
 // import { FieldDateComponentProps } from "../DateField/DateField.type";
 // import { FieldTimeComponentProps } from "../TimeField/TimeField.type";
@@ -13,7 +13,7 @@ import { FieldNumberComponentProps } from "../NumberField/NumberField.type";
 import TextField from "../TextField/TextField";
 import NumberField from "../NumberField/NumberField";
 // import TextAreaField from "../TextAreaField/TextAreaField";
-// import SelectField from "../SelectField/SelectField";
+import SelectField from "../SelectField/SelectField";
 // import RadioField from "../RadioField/RadioField";
 // import DateField from "../DateField/DateField";
 // import TimeField from "../TimeField/TimeField";
@@ -74,9 +74,9 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       )} */}
 
       {/* Select Input  */}
-      {/* {props.fieldType === "select" && (
-        <SelectField {...(props as FieldSelectComponentProps)} />
-      )} */}
+      {props.fieldType === "select" && (
+        <SelectField {...(inputProps as FieldSelectComponentProps)} />
+      )}
 
       {/* Country Input  */}
       {/* {props.fieldType === "country" && (
