@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { FieldRadioComponentProps } from "./RadioField.type";
 
 const RadioField: FC<FieldRadioComponentProps> = (props) => {
-  const { label, name, testId, onChange, isDisabled, options } = props;
+  const { label, onChange, isDisabled, options } = props;
 
   const { t } = useTranslation("translation");
 
@@ -13,8 +13,6 @@ const RadioField: FC<FieldRadioComponentProps> = (props) => {
       {label && <label>{t(label)}</label>}
 
       <Radio.Group
-        name={name}
-        data-testid={testId}
         disabled={isDisabled}
         onChange={({ target: { value } }: RadioChangeEvent) => onChange(value)}
       >

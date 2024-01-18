@@ -1,5 +1,5 @@
 import {
-  FieldComponentProps,
+  CustomFieldConfig,
   ItemField,
   Option,
   Customize,
@@ -14,10 +14,14 @@ export type FieldRadioT = Customize<
   }
 >;
 
+// used for form field configuration object
 export interface FieldRadio extends ItemField {
   fieldType: "radio";
   options: Option[];
   defaultValue?: string;
 }
 
-export type FieldRadioComponentProps = FieldRadio & FieldComponentProps;
+// used for Custom Field Configuration and in case input requires custom props
+export type FieldRadioComponentProps = {
+  options: Option[];
+} & CustomFieldConfig;
