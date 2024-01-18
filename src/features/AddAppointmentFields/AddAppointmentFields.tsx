@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { FieldTextComponentProps } from "../TextField/TextField.type";
-// import { FieldTextAreaComponentProps } from "../TextAreaField/TextAreaField.type";
+import { FieldTextAreaComponentProps } from "../TextAreaField/TextAreaField.type";
 import { FieldNumberComponentProps } from "../NumberField/NumberField.type";
 // import { FieldRadioComponentProps } from "../RadioField/RadioField.type";
 import { FieldSelectComponentProps } from "../SelectField/SelectField.type";
@@ -12,7 +12,7 @@ import { FieldSelectComponentProps } from "../SelectField/SelectField.type";
 
 import TextField from "../TextField/TextField";
 import NumberField from "../NumberField/NumberField";
-// import TextAreaField from "../TextAreaField/TextAreaField";
+import TextAreaField from "../TextAreaField/TextAreaField";
 import SelectField from "../SelectField/SelectField";
 // import RadioField from "../RadioField/RadioField";
 // import DateField from "../DateField/DateField";
@@ -69,12 +69,12 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       )}
 
       {/* Textarea Input  */}
-      {/* {props.fieldType === "textarea" && (
-        <TextAreaField {...(props as FieldTextAreaComponentProps)} />
-      )} */}
+      {fieldType === "textarea" && (
+        <TextAreaField {...(inputProps as FieldTextAreaComponentProps)} />
+      )}
 
       {/* Select Input  */}
-      {props.fieldType === "select" && (
+      {fieldType === "select" && (
         <SelectField {...(inputProps as FieldSelectComponentProps)} />
       )}
 

@@ -8,10 +8,7 @@ const { TextArea } = Input;
 const TextAreaField: FC<FieldTextAreaComponentProps> = (props) => {
   const {
     label,
-    name,
-    id,
     placeholder,
-    testId,
     onChange,
     status,
     isDisabled,
@@ -27,10 +24,7 @@ const TextAreaField: FC<FieldTextAreaComponentProps> = (props) => {
       {label && <label>{t(label)}</label>}
 
       <TextArea
-        name={name}
         placeholder={placeholder && t(placeholder)}
-        data-testid={testId}
-        id={id}
         status={status}
         disabled={isDisabled}
         maxLength={maxLength}
