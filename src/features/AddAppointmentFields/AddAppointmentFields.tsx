@@ -8,7 +8,7 @@ import { FieldSwitchComponentProps } from "../SwitchField/SwitchField.type";
 import { FieldDateComponentProps } from "../DateField/DateField.type";
 import { FieldTimeComponentProps } from "../TimeField/TimeField.type";
 import { FieldCheckboxComponentProps } from "../CheckboxField/CheckboxField.type";
-// import { FieldCountryComponentProps } from "../CountryField/CountryField.type";
+import { FieldCountryComponentProps } from "../CountryField/CountryField.type";
 
 import TextField from "../TextField/TextField";
 import NumberField from "../NumberField/NumberField";
@@ -19,14 +19,14 @@ import DateField from "../DateField/DateField";
 import TimeField from "../TimeField/TimeField";
 import SwitchField from "../SwitchField/SwitchField";
 import CheckboxField from "../CheckboxField/CheckboxField";
-// import CountryField from "../CountryField/CountryField";
+import CountryField from "../CountryField/CountryField";
 
 import { GeneralFieldConfig } from "./AddAppointmentInputs.type";
 // import PhoneField from "../PhoneField/PhoneField";
 // import { FieldPhoneComponentProps } from "../PhoneField/PhoneField.type";
 import { useController } from "react-hook-form";
 import ErrorMsg from "../../patterns/ErrorMsg/ErrorMsg";
-import DualField from "../DualField/DualField";
+// import DualField from "../DualField/DualField";
 
 const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
   const { fieldType, name, control, id, testId, ...fieldProps } = props;
@@ -48,7 +48,7 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
     status: error && "error",
   };
 
-  const dualProps = { ...props, control };
+  // const dualProps = { ...props, control };
   return (
     <div id={id} date-testid={testId}>
       {/* Each field is rendered based on type internally to prevent typescript errors at field component  */}
@@ -81,9 +81,9 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       )}
 
       {/* Country Input  */}
-      {/* {fieldType === "country" && (
-        <CountryField {...(props as FieldCountryComponentProps)} />
-      )} */}
+      {fieldType === "country" && (
+        <CountryField {...(inputProps as FieldCountryComponentProps)} />
+      )}
 
       {/* Radio Input  */}
       {fieldType === "radio" && (
@@ -111,7 +111,7 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       )}
 
       {/* Dual Field  */}
-      {fieldType === "dualField" && <DualField {...dualProps} />}
+      {/* {fieldType === "dualField" && <DualField {...dualProps} />} */}
 
       <ErrorMsg error={error} />
     </div>

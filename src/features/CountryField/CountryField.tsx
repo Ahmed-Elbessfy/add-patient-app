@@ -5,16 +5,7 @@ import { useTranslation } from "react-i18next";
 import { CountriesDetails } from "./CountryField.constants";
 
 const CountryField: FC<FieldCountryComponentProps> = (props) => {
-  const {
-    label,
-    id,
-    placeholder,
-    testId,
-    onChange,
-    status,
-    isDisabled,
-    value,
-  } = props;
+  const { label, placeholder, onChange, status, isDisabled, value } = props;
 
   const { t } = useTranslation("translation");
   return (
@@ -23,8 +14,6 @@ const CountryField: FC<FieldCountryComponentProps> = (props) => {
 
       <Select
         placeholder={placeholder && t(placeholder)}
-        data-testid={testId}
-        id={id}
         status={status}
         disabled={isDisabled}
         onChange={(value: string) => onChange(value)}

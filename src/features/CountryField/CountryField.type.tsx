@@ -1,5 +1,5 @@
 import {
-  FieldComponentProps,
+  CustomFieldConfig,
   ItemField,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
@@ -258,4 +258,4 @@ export interface FieldCountry extends ItemField {
   defaultValue?: COUNTRY_CODE;
 }
 
-export type FieldCountryComponentProps = FieldCountry & FieldComponentProps;
+export type FieldCountryComponentProps = CustomFieldConfig;
