@@ -1,15 +1,18 @@
 import { FC, useState } from "react";
 import { Col, Switch } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
-import { DualFieldComponentProps } from "./DualField.type";
+import { FieldDualComponentProps } from "./DualField.type";
+import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
 
-const DualField: FC<DualFieldComponentProps> = (props) => {
-  const { testId, fieldsConfig, renderFieldItems } = props;
+const DualField: FC<FieldDualComponentProps> = (props) => {
+  const { testId, fieldsConfig, control } = props;
 
   // Toggle fields show
   const firstField = fieldsConfig[0].name,
     secondField = fieldsConfig[1].name;
   const [shownField, setShownField] = useState<string>(firstField);
+  // const [firstValue, setFirstValue] = useState(null);
+  // const [secondValue, setSecondValue] = useState(null);
 
   return (
     <Col md={8}>
@@ -28,11 +31,12 @@ const DualField: FC<DualFieldComponentProps> = (props) => {
 
         {/* Rendered Fields  */}
         {fieldsConfig.map((field, ind) => {
+          const childProps = { ...field, control, isDisabled: false };
           return (
             shownField === field.name && (
-              <div style={{ margin: "0 -8px" }} key={ind}>
-                {renderFieldItems(field)}
-              </div>
+              <Col style={{ margin: "0 -8px", width: "100%" }} key={ind}>
+                <AddAppointmentFields {...childProps} />
+              </Col>
             )
           );
         })}

@@ -273,8 +273,12 @@ export const addAppointmentFieldsConfig: Item[] = [
         gap: 0.5,
         children: [
           {
-            category: "dualField",
-            testId: "new_patient.switch_date_age",
+            category: "field",
+            fieldType: "dualField",
+            id: "new_patient.dual_birthDate_age",
+            testId: "new_patient.dual_birthDate_age",
+            name: "new_patient.dual_birthDate_age",
+            validation: [],
             fieldsConfig: [
               {
                 category: "field",
@@ -284,14 +288,14 @@ export const addAppointmentFieldsConfig: Item[] = [
                 name: "new_patient.age",
                 label: "apInputs.add_new.age.label",
                 validation: [
-                  {
-                    type: "minimum",
-                    minimum: 1,
-                  },
-                  {
-                    type: "maximum",
-                    maximum: 200,
-                  },
+                  // {
+                  //   type: "minimum",
+                  //   minimum: 1,
+                  // },
+                  // {
+                  //   type: "maximum",
+                  //   maximum: 200,
+                  // },
                 ],
               },
               {
@@ -304,10 +308,10 @@ export const addAppointmentFieldsConfig: Item[] = [
                 placeholder: "apInputs.add_new.birthDate.placeholder",
                 format: "DD/MM/YYYY",
                 validation: [
-                  {
-                    type: "earlier_than",
-                    date: "add 0 day",
-                  },
+                  // {
+                  //   type: "earlier_than",
+                  //   date: "add 0 day",
+                  // },
                 ],
                 dateLimit: {
                   status: "after",

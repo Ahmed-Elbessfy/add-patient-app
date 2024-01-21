@@ -26,6 +26,7 @@ import { GeneralFieldConfig } from "./AddAppointmentInputs.type";
 // import { FieldPhoneComponentProps } from "../PhoneField/PhoneField.type";
 import { useController } from "react-hook-form";
 import ErrorMsg from "../../patterns/ErrorMsg/ErrorMsg";
+import DualField from "../DualField/DualField";
 
 const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
   const { fieldType, name, control, id, testId, ...fieldProps } = props;
@@ -47,6 +48,7 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
     status: error && "error",
   };
 
+  const dualProps = { ...props, control };
   return (
     <div id={id} date-testid={testId}>
       {/* Each field is rendered based on type internally to prevent typescript errors at field component  */}
@@ -107,6 +109,9 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       {fieldType === "checkbox" && (
         <CheckboxField {...(inputProps as FieldCheckboxComponentProps)} />
       )}
+
+      {/* Dual Field  */}
+      {fieldType === "dualField" && <DualField {...dualProps} />}
 
       <ErrorMsg error={error} />
     </div>

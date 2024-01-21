@@ -31,8 +31,8 @@ import {
   ItemForm,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
-import DualField from "../DualField/DualField";
-import { DualFieldConfig } from "../DualField/DualField.type";
+// import DualField from "../DualField/DualField";
+// import { DualFieldConfig } from "../DualField/DualField.type";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
 import { StyledTitle } from "./AddAppointmentForm.styled";
 
@@ -133,20 +133,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   };
 
   const renderFieldItems = (item: FormFieldConfig) => {
-    // return (
-    //   <Controller
-    //     key={item.id}
-    //     name={item.name}
-    //     control={control}
-    //     render={({ field, fieldState: { error } }) => {
-    //       const fieldProps = {
-    //         ...item,
-    //         clearErrors: clearErrors,
-    //         onChange: field.onChange,
-    //         isDisabled: item.disability ? isMatched(item.disability) : false,
-    //         value: field.value,
-    //       };
-
     const {
       category,
       visibility,
@@ -170,9 +156,9 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
         }}
       >
         {/* in case there is a visibility rule:
-                    - check if it is fulfilled first, if yse render field
-                    - if not render field normally
-              */}
+            - check if it is fulfilled first, if yse render field
+            - if not render field normally
+        */}
         {
           <div>
             {visibility ? (
@@ -190,13 +176,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
         }
       </Col>
     );
-    //     }}
-    //   />
-    // );
-  };
-
-  const renderDualFieldItems = (item: DualFieldConfig) => {
-    return <DualField {...item} renderFieldItems={renderFieldItems} />;
   };
 
   const renderFormItems = (item: ItemForm) => {
@@ -227,10 +206,6 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
             case "field":
               // Field Render
               return renderFieldItems(fieldConfig as FormFieldConfig);
-
-            case "dualField":
-              // Field Render
-              return renderDualFieldItems(fieldConfig as DualFieldConfig);
 
             case "layout":
               // Layout Render

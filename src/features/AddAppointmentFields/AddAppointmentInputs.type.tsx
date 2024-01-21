@@ -39,11 +39,15 @@ import {
   FieldCountry,
   // FieldCountryComponentProps,
 } from "../CountryField/CountryField.type";
-import { DualFieldConfig } from "../DualField/DualField.type";
+import { FieldDual } from "../DualField/DualField.type";
+import {
+  FieldPhone,
+  // FieldPhoneComponentProps,
+} from "../PhoneField/PhoneField.type";
 
 export type Customize<T, R> = Omit<T, keyof R> & R;
 
-type ItemCategory = "field" | "dualField" | "layout" | "UI" | "form";
+type ItemCategory = "field" | "layout" | "UI" | "form";
 
 /*
 **********************************************************
@@ -107,8 +111,7 @@ export type SchemaName =
   | "new_patient.country"
   | "new_patient.birthDate"
   | "new_patient.age"
-  | "new_patient.switch_date_age"
-  | "new_patient.switch_date_age"
+  | "new_patient.dual_birthDate_age"
   | "new_patient.title"
   | "new_patient.gender"
   | "new_patient.email"
@@ -150,6 +153,7 @@ export type SchemaName =
 
 type fieldTypeValues =
   | "text"
+  | "phone"
   | "number"
   | "select"
   | "country"
@@ -193,6 +197,7 @@ export type ItemField = {
 
 export type FormFieldConfig =
   | FieldText
+  | FieldPhone
   | FieldNumber
   | FieldSelect
   | FieldCountry
@@ -201,7 +206,8 @@ export type FormFieldConfig =
   | FieldTime
   | FieldSwitch
   | FieldCheckbox
-  | FieldTextArea;
+  | FieldTextArea
+  | FieldDual;
 
 // General Field Component props
 // should receive: fieldType, name, id, testid, label, placeholder, isDisabled, suffix, prefix
@@ -228,31 +234,6 @@ export type CustomFieldConfig = Omit<
   status?: "error";
 };
 
-// properties not added for form configuration and used within the field component
-// export type FieldComponentProps = {
-//   status?: "error";
-//   clearErrors?: UseFormClearErrors<{
-//     [x: string]: unknown;
-//     [x: number]: unknown;
-//   }>;
-//   onChange: (value: FieldElement["value"]) => void;
-//   isDisabled: boolean;
-//   value: unknown;
-// };
-
-// export type FieldConfig =
-//   | FieldTextComponentProps
-//   | FieldPhoneComponentProps
-//   | FieldNumberComponentProps
-//   | FieldTextAreaComponentProps
-//   | FieldSelectComponentProps
-//   | FieldCountryComponentProps
-//   | FieldRadioComponentProps
-//   | FieldDateComponentProps
-//   | FieldTimeComponentProps
-//   | FieldSwitchComponentProps
-//   | FieldCheckboxComponentProps;
-
 /*
 **********************************************************
                     Category: Layout
@@ -263,7 +244,7 @@ type LayoutType = "hStack" | "box";
 
 type ChildrenType =
   | FormFieldConfig
-  | DualFieldConfig
+  | FieldDual
   | ItemLayout
   | ItemUI
   | ItemForm;
@@ -376,9 +357,4 @@ export interface UIAlert extends UIBase {
 
 export type ItemUI = UITitle | UIText | UILink | UIAlert;
 
-export type Item =
-  | FormFieldConfig
-  | DualFieldConfig
-  | ItemLayout
-  | ItemUI
-  | ItemForm;
+export type Item = FormFieldConfig | ItemLayout | ItemUI | ItemForm;

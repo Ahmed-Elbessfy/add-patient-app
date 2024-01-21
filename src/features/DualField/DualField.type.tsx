@@ -1,11 +1,12 @@
-import { FormFieldConfig } from "../AddAppointmentFields/AddAppointmentInputs.type";
+import {
+  FormFieldConfig,
+  GeneralFieldConfig,
+  ItemField,
+} from "../AddAppointmentFields/AddAppointmentInputs.type";
 
-export type DualFieldConfig = {
-  category: "dualField";
-  testId: string;
+export interface FieldDual extends ItemField {
+  fieldType: "dualField";
   fieldsConfig: FormFieldConfig[];
-};
+}
 
-export type DualFieldComponentProps = DualFieldConfig & {
-  renderFieldItems: (fieldConfig: FormFieldConfig) => JSX.Element;
-};
+export type FieldDualComponentProps = FieldDual & GeneralFieldConfig;
