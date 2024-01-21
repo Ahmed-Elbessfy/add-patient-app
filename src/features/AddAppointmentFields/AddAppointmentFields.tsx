@@ -20,10 +20,10 @@ import TimeField from "../TimeField/TimeField";
 import SwitchField from "../SwitchField/SwitchField";
 import CheckboxField from "../CheckboxField/CheckboxField";
 import CountryField from "../CountryField/CountryField";
+import PhoneField from "../PhoneField/PhoneField";
 
 import { GeneralFieldConfig } from "./AddAppointmentInputs.type";
-// import PhoneField from "../PhoneField/PhoneField";
-// import { FieldPhoneComponentProps } from "../PhoneField/PhoneField.type";
+import { FieldPhoneComponentProps } from "../PhoneField/PhoneField.type";
 import { useController } from "react-hook-form";
 import ErrorMsg from "../../patterns/ErrorMsg/ErrorMsg";
 // import DualField from "../DualField/DualField";
@@ -59,9 +59,9 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       )}
 
       {/* Text Input  */}
-      {/* {fieldType === "phone" && (
-        <PhoneField {...(props as FieldPhoneComponentProps)} />
-      )} */}
+      {fieldType === "phone" && (
+        <PhoneField {...(inputProps as FieldPhoneComponentProps)} />
+      )}
 
       {/* Number Input  */}
       {fieldType === "number" && (

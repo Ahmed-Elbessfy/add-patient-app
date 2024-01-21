@@ -7,7 +7,6 @@ import {
   ItemForm,
   CustomRuleFields,
 } from "../features/AddAppointmentFields/AddAppointmentInputs.type";
-import { DualFieldConfig } from "../features/DualField/DualField.type";
 import { DefaultValueObjectFormat } from "../features/AddAppointmentForm/AddAppointmentForm.types";
 import { parseValidation } from "./addAppointValidation";
 
@@ -17,28 +16,27 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
   itemsData.forEach((item: Item) => {
     if (item.category === "field") {
       const currentItem = item as FormFieldConfig;
-      // if not nested
-      if (!currentItem.name.includes(".")) {
-        shape[currentItem.name] = parseValidation(currentItem);
-      } else {
-        // if nested
-        const path = currentItem.name.split(".").reverse();
-        shape[path[0]] = parseValidation(currentItem);
-      }
-    }
-
-    if (item.category === "dualField") {
-      const currentItem = item as DualFieldConfig;
-      currentItem.fieldsConfig.forEach((field) => {
+      if (currentItem.fieldType !== "dualField") {
         // if not nested
-        if (!field.name.includes(".")) {
-          shape[field.name] = parseValidation(field);
+        if (!currentItem.name.includes(".")) {
+          shape[currentItem.name] = parseValidation(currentItem);
         } else {
           // if nested
-          const path = field.name.split(".").reverse();
-          shape[path[0]] = parseValidation(field);
+          const path = currentItem.name.split(".").reverse();
+          shape[path[0]] = parseValidation(currentItem);
         }
-      });
+      } else {
+        // currentItem.fieldsConfig.forEach((field) => {
+        //   // if not nested
+        //   if (!field.name.includes(".")) {
+        //     shape[field.name] = parseValidation(field);
+        //   } else {
+        //     // if nested
+        //     const path = field.name.split(".").reverse();
+        //     shape[path[0]] = parseValidation(field);
+        //   }
+        // });
+      }
     }
 
     if (item.category === "layout") {
@@ -100,63 +98,45 @@ export const setDefaultValues = (
         - default value for each field input is for the displayed value for user
          ********************/
 
-      // setting default value field name
-      // if nested, get last name
-      // if not nested, get item name
-      const fieldName: string = currentItem.name.includes(".")
-        ? currentItem.name.split(".").slice(-1)[0]
-        : currentItem.name;
+      if (currentItem.fieldType === "dualField") {
+        // setDefaultValues(currentItem.fieldsConfig, defaultValues);
+      } else {
+        // setting default value field name
+        // if nested, get last name
+        // if not nested, get item name
+        const fieldName: string = currentItem.name.includes(".")
+          ? currentItem.name.split(".").slice(-1)[0]
+          : currentItem.name;
 
-      // setting default value field value
-      // double check for typescript
-      if (
-        "defaultValue" in currentItem &&
-        currentItem.defaultValue !== undefined
-      ) {
-        // default state is when default value for any field not time or date,
-        let currentDefaultValue: string | number | dayjs.Dayjs =
-          currentItem.defaultValue;
+        // setting default value field value
+        // double check for typescript
+        if (
+          "defaultValue" in currentItem &&
+          currentItem.defaultValue !== undefined
+        ) {
+          // default state is when default value for any field not time or date,
+          let currentDefaultValue: string | number | dayjs.Dayjs =
+            currentItem.defaultValue;
 
-        // custom case for date picker default value
-        if (currentItem.fieldType === "datePicker") {
-          currentDefaultValue =
-            currentItem.defaultValue &&
-            formatDateTime(currentItem.defaultValue);
+          // custom case for date picker default value
+          if (currentItem.fieldType === "datePicker") {
+            currentDefaultValue =
+              currentItem.defaultValue &&
+              formatDateTime(currentItem.defaultValue);
+          }
+
+          // custom case for time picker default value
+          if (currentItem.fieldType === "timePicker") {
+            currentDefaultValue = formatDateTime(currentItem.defaultValue);
+          }
+          // store current field default value
+          defaultValues[fieldName] = currentDefaultValue;
         }
-
-        // custom case for time picker default value
-        if (currentItem.fieldType === "timePicker") {
-          currentDefaultValue = formatDateTime(currentItem.defaultValue);
+        // setting default value for switch & checkbox fields
+        if ("defaultChecked" in currentItem) {
+          defaultValues[fieldName] = currentItem.defaultChecked;
         }
-        // store current field default value
-        defaultValues[fieldName] = currentDefaultValue;
       }
-
-      // setting default value for switch & checkbox fields
-      if ("defaultChecked" in currentItem) {
-        defaultValues[fieldName] = currentItem.defaultChecked;
-      }
-    }
-
-    if (item.category === "combineField") {
-      const currentItem = item as CombineFieldConfig;
-      // get name of combine field to set default value
-      const name = currentItem.name.includes(".")
-        ? currentItem.name.split(".").slice(-1)[0]
-        : currentItem.name;
-
-      // get value of combine field
-      const firstDefaultValue = currentItem.fieldsConfig[0].defaultValue
-        ? currentItem.fieldsConfig[0].defaultValue
-        : "";
-
-      const secondDefaultValue = currentItem.fieldsConfig[1].defaultValue
-        ? currentItem.fieldsConfig[1].defaultValue
-        : "";
-
-      defaultValues[name] = firstDefaultValue
-        .concat("-")
-        .concat(secondDefaultValue);
     }
 
     if (item.category === "layout") {
