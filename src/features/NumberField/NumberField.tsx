@@ -14,6 +14,8 @@ const NumberField: FC<FieldNumberComponentProps> = (props) => {
     value,
     prefix,
     suffix,
+    min,
+    max,
   } = props;
 
   const { t } = useTranslation("translation");
@@ -30,6 +32,8 @@ const NumberField: FC<FieldNumberComponentProps> = (props) => {
         value={value as number}
         addonAfter={suffix}
         addonBefore={prefix}
+        min={min}
+        max={max}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           onChange(e.target.value)
         }
