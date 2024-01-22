@@ -9,6 +9,7 @@ import { FieldDateComponentProps } from "../DateField/DateField.type";
 import { FieldTimeComponentProps } from "../TimeField/TimeField.type";
 import { FieldCheckboxComponentProps } from "../CheckboxField/CheckboxField.type";
 import { FieldCountryComponentProps } from "../CountryField/CountryField.type";
+import { FieldDualComponentProps } from "../DualField/DualField.type";
 
 import TextField from "../TextField/TextField";
 import NumberField from "../NumberField/NumberField";
@@ -21,12 +22,12 @@ import SwitchField from "../SwitchField/SwitchField";
 import CheckboxField from "../CheckboxField/CheckboxField";
 import CountryField from "../CountryField/CountryField";
 import PhoneField from "../PhoneField/PhoneField";
+import DualField from "../DualField/DualField";
 
 import { GeneralFieldConfig } from "./AddAppointmentInputs.type";
 import { FieldPhoneComponentProps } from "../PhoneField/PhoneField.type";
 import { useController } from "react-hook-form";
 import ErrorMsg from "../../patterns/ErrorMsg/ErrorMsg";
-// import DualField from "../DualField/DualField";
 
 const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
   const { fieldType, name, control, id, testId, ...fieldProps } = props;
@@ -48,7 +49,10 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
     status: error && "error",
   };
 
-  // const dualProps = { ...props, control };
+  // AddAppointmentField requires "CONTROL" of useForm to register field value
+  // dual field uses AddAppointmentField internally to render its children to register fields values
+  // so control is passed to dual field to be passed again to AddAppointmentField component
+  const dualProps = { ...props, control };
   return (
     <div id={id} date-testid={testId}>
       {/* Each field is rendered based on type internally to prevent typescript errors at field component  */}
@@ -111,9 +115,12 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       )}
 
       {/* Dual Field  */}
-      {/* {fieldType === "dualField" && <DualField {...dualProps} />} */}
+      {fieldType === "dualField" && (
+        <DualField {...(dualProps as FieldDualComponentProps)} />
+      )}
 
-      <ErrorMsg error={error} />
+      {/* To prevent doubling error messages in case of using dual field  */}
+      {fieldType !== "dualField" && <ErrorMsg error={error} />}
     </div>
   );
 };
