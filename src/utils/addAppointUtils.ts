@@ -99,7 +99,8 @@ export const setDefaultValues = (
          ********************/
 
       if (currentItem.fieldType === "dualField") {
-        // setDefaultValues(currentItem.fieldsConfig, defaultValues);
+        // Dual field has children fields so it can be treated as layout or form children fields
+        setDefaultValues(currentItem.fieldsConfig, defaultValues);
       } else {
         // setting default value field name
         // if nested, get last name
