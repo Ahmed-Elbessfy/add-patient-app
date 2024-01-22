@@ -231,7 +231,7 @@ yup.addMethod(yup.string, "isValidPhoneNumber", function ({ errorMsg }) {
         return parsedNumber && parsedNumber.isValid() ? true : false;
       }
       // in case no value
-      return false;
+      return true;
     },
   });
 });
