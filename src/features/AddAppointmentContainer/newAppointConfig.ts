@@ -247,6 +247,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.dual_birthDate_age",
             name: "new_patient.dual_birthDate_age",
             validation: [],
+            flex: 1,
             fieldsConfig: [
               {
                 category: "field",
