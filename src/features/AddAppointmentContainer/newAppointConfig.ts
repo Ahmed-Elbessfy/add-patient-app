@@ -246,6 +246,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.phone",
             label: "apInputs.add_new.phone.label",
             validation: [{ type: "is_valid_phone" }],
+            flex: 1,
           },
           {
             category: "field",
