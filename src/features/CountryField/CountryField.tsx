@@ -5,7 +5,8 @@ import { useTranslation } from "react-i18next";
 import { CountriesDetails } from "./CountryField.constants";
 
 const CountryField: FC<FieldCountryComponentProps> = (props) => {
-  const { label, placeholder, onChange, status, isDisabled, value } = props;
+  const { label, placeholder, onChange, status, isDisabled, value, variant } =
+    props;
 
   const { t } = useTranslation("translation");
   return (
@@ -23,7 +24,9 @@ const CountryField: FC<FieldCountryComponentProps> = (props) => {
         {Object.values(CountriesDetails).map((country) => {
           return (
             <Select.Option key={country.code} value={country.code}>
-              {country.emoji} {country.name}
+              {variant && variant === "flag-only"
+                ? `${country.emoji}`
+                : `${country.emoji} ${country.name}`}
             </Select.Option>
           );
         })}

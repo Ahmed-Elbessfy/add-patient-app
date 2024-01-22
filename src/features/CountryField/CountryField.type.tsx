@@ -258,4 +258,6 @@ export interface FieldCountry extends ItemField {
   defaultValue?: COUNTRY_CODE;
 }
 
-export type FieldCountryComponentProps = CustomFieldConfig;
+export type FieldCountryComponentProps = {
+  variant?: "default" | "flag-only";
+} & CustomFieldConfig;
