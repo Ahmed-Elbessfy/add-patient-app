@@ -256,16 +256,9 @@ export const addAppointmentFieldsConfig: Item[] = [
                 testId: "new_patient.age",
                 name: "new_patient.age",
                 label: "apInputs.add_new.age.label",
-                validation: [
-                  // {
-                  //   type: "minimum",
-                  //   minimum: 1,
-                  // },
-                  // {
-                  //   type: "maximum",
-                  //   maximum: 200,
-                  // },
-                ],
+                min: 1,
+                max: 200,
+                validation: [],
               },
               {
                 category: "field",
@@ -1676,8 +1669,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "reminder_before",
         name: "reminder_before",
         label: "apInputs.reminder_before.label",
+        min: 0,
         flex: 1,
-        validation: [{ type: "minimum", minimum: 1 }],
+        validation: [],
       },
       {
         category: "field",
