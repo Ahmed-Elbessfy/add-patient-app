@@ -159,21 +159,18 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
             - check if it is fulfilled first, if yse render field
             - if not render field normally
         */}
-        {
-          <div>
-            {visibility ? (
-              isMatched(visibility) && (
-                <>
-                  <AddAppointmentFields {...fieldProps} />
-                </>
-              )
-            ) : (
-              <>
-                <AddAppointmentFields {...fieldProps} />
-              </>
-            )}
-          </div>
-        }
+
+        {visibility ? (
+          isMatched(visibility) && (
+            <>
+              <AddAppointmentFields {...fieldProps} />
+            </>
+          )
+        ) : (
+          <>
+            <AddAppointmentFields {...fieldProps} />
+          </>
+        )}
       </Col>
     );
   };
