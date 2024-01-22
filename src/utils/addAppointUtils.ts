@@ -26,16 +26,8 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
           shape[path[0]] = parseValidation(currentItem);
         }
       } else {
-        // currentItem.fieldsConfig.forEach((field) => {
-        //   // if not nested
-        //   if (!field.name.includes(".")) {
-        //     shape[field.name] = parseValidation(field);
-        //   } else {
-        //     // if nested
-        //     const path = field.name.split(".").reverse();
-        //     shape[path[0]] = parseValidation(field);
-        //   }
-        // });
+        // Dual field has children fields so it can be treated as layout or form children fields
+        configValidation(currentItem.fieldsConfig, shape);
       }
     }
 
