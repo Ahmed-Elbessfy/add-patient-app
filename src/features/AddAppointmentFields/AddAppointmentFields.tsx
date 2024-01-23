@@ -120,7 +120,10 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       )}
 
       {/* To prevent doubling error messages in case of using dual field  */}
-      {fieldType !== "dualField" && <ErrorMsg error={error} />}
+      {/* No need to error message for switch & checkbox fields and take useless area  */}
+      {!["dualField", "switch", "checkbox"].includes(fieldType) && (
+        <ErrorMsg error={error} />
+      )}
     </div>
   );
 };

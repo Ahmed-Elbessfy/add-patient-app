@@ -27,6 +27,7 @@ const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
         onChange={(checked: boolean) => {
           onChange(checked);
         }}
+        style={{ marginBottom: "9px" }} // center switch field vertically
       />
     </>
   );
