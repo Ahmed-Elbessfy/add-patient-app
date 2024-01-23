@@ -13,31 +13,15 @@ type Props = (ItemLayout | ItemForm) & {
 const AddAppointmentSection: FC<Props> = (props: Props) => {
   const { children, renderItems } = props;
 
-  // create style depending on type of layout
-  // const produceStyle = (type: string) => {
-  //   if (type === "box") {
-  //     return {
-  //       // gridGap: `${gap}rem`,
-  //       // padding: props.padding ? `${props.padding}rem` : "inherit",
-  //       width: "100%",
-  //     };
-  //   } else {
-  //     return {
-  //       width: "100%",
-  //     };
-  //   }
-  // };
-
   return (
-    <>
-      <section style={{ width: "100%" }}>
-        <Row gutter={16} align="middle" justify={props.justify}>
-          {/* <Flex justify="space-around" align="center" > */}
-          {renderItems(children)}
-          {/* </Flex> */}
-        </Row>
-      </section>
-    </>
+    <Row
+      gutter={16}
+      align="middle"
+      justify={props.justify}
+      style={{ width: "100%" }}
+    >
+      {renderItems(children)}
+    </Row>
   );
 };
 

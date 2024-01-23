@@ -1,5 +1,7 @@
 import { Item } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
+// Each Layout is a row of Items
+
 export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "layout",
@@ -59,6 +61,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "patient_name",
         label: "apInputs.patient_name.label",
         placeholder: "apInputs.patient_name.placeholder",
+        xs: 18,
+        md: 15,
         disability: [
           { field: "show_add_patient", value: true },
           { field: "switch_input_method", value: true },
@@ -121,6 +125,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "note_title",
         name: "note_title",
         label: "apInputs.note_title.label",
+        xs: 24,
+        md: 24,
         placeholder: "apInputs.note_title.placeholder",
         validation: [
           {
@@ -140,6 +146,7 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "form",
     name: "new_patient",
+    justify: "center",
     visibility: [{ field: "show_add_patient", value: true }],
     children: [
       {
@@ -160,7 +167,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.id",
             name: "new_patient.id",
             label: "apInputs.add_new.id.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             validation: [],
           },
           {
@@ -170,7 +178,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.first_name",
             name: "new_patient.first_name",
             label: "apInputs.add_new.first_name.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             validation: [
               {
                 type: "required",
@@ -188,7 +197,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.last_name",
             name: "new_patient.last_name",
             label: "apInputs.add_new.last_name.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             validation: [
               {
                 type: "required",
@@ -209,8 +219,9 @@ export const addAppointmentFieldsConfig: Item[] = [
             id: "new_patient.phone",
             testId: "new_patient.phone",
             label: "apInputs.add_new.phone.label",
+            xs: 24,
+            md: 8,
             validation: [{ type: "is_valid_phone" }],
-            flex: 1,
           },
           {
             category: "field",
@@ -219,7 +230,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.secondary_phone",
             name: "new_patient.secondary_phone",
             label: "apInputs.add_new.secondary_phone.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             validation: [{ type: "is_valid_phone" }],
           },
           {
@@ -229,8 +241,9 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.country",
             name: "new_patient.country",
             label: "apInputs.add_new.country.label",
+            xs: 24,
+            md: 8,
             defaultValue: "EG",
-            flex: 1,
             validation: [],
           },
         ],
@@ -246,8 +259,9 @@ export const addAppointmentFieldsConfig: Item[] = [
             id: "new_patient.dual_birthDate_age",
             testId: "new_patient.dual_birthDate_age",
             name: "new_patient.dual_birthDate_age",
+            xs: 24,
+            md: 8,
             validation: [],
-            flex: 1,
             fieldsConfig: [
               {
                 category: "field",
@@ -289,8 +303,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.title",
             name: "new_patient.title",
             label: "apInputs.add_new.title.label",
-            flex: 1,
-
+            xs: 24,
+            md: 8,
             options: [
               {
                 value: "mr",
@@ -322,7 +336,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.gender",
             name: "new_patient.gender",
             label: "apInputs.add_new.gender.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             options: [
               {
                 value: "male",
@@ -349,7 +364,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.email",
             name: "new_patient.email",
             label: "apInputs.add_new.email.label",
-            flex: 1,
+            xs: 24,
+            md: 12,
             validation: [
               {
                 type: "hasPattern",
@@ -365,7 +381,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.address",
             name: "new_patient.address",
             label: "apInputs.add_new.address.label",
-            flex: 1,
+            xs: 24,
+            md: 12,
             validation: [],
           },
         ],
@@ -382,8 +399,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.assigned_practitioner",
             name: "new_patient.assigned_practitioner",
             label: "apInputs.add_new.assigned_practitioner.label",
-            flex: 1,
-
+            xs: 24,
+            md: 12,
             options: [
               {
                 value: "ahmed_taha",
@@ -405,7 +422,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.price_list_group",
             name: "new_patient.price_list_group",
             label: "apInputs.add_new.price_list_group.label",
-            flex: 1,
+            xs: 24,
+            md: 12,
             options: [
               {
                 value: "price_list_group_1",
@@ -440,7 +458,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.patient_tags",
             name: "new_patient.patient_tags",
             label: "apInputs.add_new.patient_tags.label",
-            flex: 1,
+            xs: 24,
+            md: 24,
             options: [
               {
                 value: "diamond",
@@ -492,7 +511,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.martial_status",
             name: "new_patient.martial_status",
             label: "apInputs.add_new.martial_status.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             options: [
               {
                 value: "married",
@@ -524,7 +544,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.job",
             name: "new_patient.job",
             label: "apInputs.add_new.job.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             options: [
               {
                 value: "job_1",
@@ -560,7 +581,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.nationality",
             name: "new_patient.nationality",
             label: "apInputs.add_new.nationality.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             validation: [],
           },
         ],
@@ -577,20 +599,29 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.tax",
             name: "new_patient.tax",
             label: "apInputs.add_new.tax.label",
-            flex: 1,
+            xs: 24,
+            md: 24,
             suffix: "%",
             validation: [],
           },
         ],
       },
       {
-        category: "field",
-        fieldType: "number",
-        id: "new_patient.national_id",
-        testId: "new_patient.national_id",
-        name: "new_patient.national_id",
-        label: "apInputs.add_new.national_id.label",
-        validation: [],
+        category: "layout",
+        type: "hStack",
+        children: [
+          {
+            category: "field",
+            fieldType: "number",
+            id: "new_patient.national_id",
+            testId: "new_patient.national_id",
+            name: "new_patient.national_id",
+            label: "apInputs.add_new.national_id.label",
+            xs: 24,
+            md: 8,
+            validation: [],
+          },
+        ],
       },
       {
         category: "layout",
@@ -604,8 +635,9 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.patient_details",
             name: "new_patient.patient_details",
             label: "apInputs.add_new.patient_details.label",
+            xs: 24,
+            md: 24,
             placeholder: "apInputs.add_new.patient_details.placeholder",
-            flex: 1,
             maxLength: 1000,
             showCount: true,
             validation: [],
@@ -614,30 +646,34 @@ export const addAppointmentFieldsConfig: Item[] = [
       },
       {
         category: "UI",
-        type: "title",
-        title: "apInputs.add_new.insurance_details_title.text",
-        level: 3,
-      },
       {
-        category: "field",
-        fieldType: "text",
-        id: "new_patient.insurance_company",
-        testId: "new_patient.insurance_company",
-        name: "new_patient.insurance_company",
-        label: "apInputs.add_new.insurance_company.label",
-        placeholder: "apInputs.add_new.insurance_company.placeholder",
-        validation: [],
-      },
-      {
-        category: "field",
-        fieldType: "switch",
-        id: "new_patient.show_add_insurance_company",
-        testId: "new_patient.show_add_insurance_company",
-        name: "new_patient.show_add_insurance_company",
-        checkedChildren: "hide",
-        unCheckedChildren: "show",
-        defaultChecked: false,
-        validation: [],
+        category: "layout",
+        type: "hStack",
+        children: [
+          {
+            category: "field",
+            fieldType: "text",
+            id: "new_patient.insurance_company",
+            testId: "new_patient.insurance_company",
+            name: "new_patient.insurance_company",
+            label: "apInputs.add_new.insurance_company.label",
+            placeholder: "apInputs.add_new.insurance_company.placeholder",
+            xs: 18,
+            md: 15,
+            validation: [],
+          },
+          {
+            category: "field",
+            fieldType: "switch",
+            id: "new_patient.show_add_insurance_company",
+            testId: "new_patient.show_add_insurance_company",
+            name: "new_patient.show_add_insurance_company",
+            checkedChildren: "hide",
+            unCheckedChildren: "show",
+            defaultChecked: false,
+            validation: [],
+          },
+        ],
       },
       {
         category: "form",
@@ -658,6 +694,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 testId: "new_patient.new_insurance_company.name",
                 name: "new_patient.new_insurance_company.name",
                 label: "apInputs.add_new.new_insurance_company.name.label",
+                xs: 24,
+                md: 12,
                 validation: [
                   {
                     type: "required",
@@ -671,6 +709,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 testId: "new_patient.new_insurance_company.phone",
                 name: "new_patient.new_insurance_company.phone",
                 label: "apInputs.add_new.new_insurance_company.phone.label",
+                xs: 24,
+                md: 12,
                 validation: [{ type: "is_valid_phone" }],
               },
             ],
@@ -687,6 +727,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 testId: "new_patient.new_insurance_company.limit",
                 name: "new_patient.new_insurance_company.limit",
                 label: "apInputs.add_new.new_insurance_company.limit.label",
+                xs: 16,
+                md: 8,
                 suffix: "EGP",
                 validation: [
                   {
@@ -714,6 +756,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 name: "new_patient.new_insurance_company.isUnlimited",
                 label:
                   "apInputs.add_new.new_insurance_company.unLimitedCheck.label",
+                xs: 8,
+                md: 4,
                 defaultChecked: false,
                 validation: [],
               },
@@ -724,6 +768,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 testId: "new_patient.new_insurance_company.discount",
                 name: "new_patient.new_insurance_company.discount",
                 label: "apInputs.add_new.new_insurance_company.discount.label",
+                xs: 16,
+                md: 8,
                 suffix: "%",
                 validation: [
                   {
@@ -751,6 +797,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 name: "new_patient.new_insurance_company.fullDiscount",
                 defaultChecked: false,
                 label: "100%",
+                xs: 8,
+                md: 4,
                 validation: [],
               },
             ],
@@ -768,6 +816,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 name: "new_patient.new_insurance_company.type",
                 label:
                   "apInputs.add_new.new_insurance_company.membership.label",
+                xs: 24,
+                md: 8,
                 validation: [],
               },
               {
@@ -777,6 +827,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 testId: "new_patient.new_insurance_company.group",
                 name: "new_patient.new_insurance_company.group",
                 label: "apInputs.add_new.new_insurance_company.group.label",
+                xs: 24,
+                md: 8,
                 validation: [],
               },
               {
@@ -786,6 +838,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 testId: "new_patient.new_insurance_company.crt",
                 name: "new_patient.new_insurance_company.crt",
                 label: "apInputs.add_new.new_insurance_company.CRT.label",
+                xs: 24,
+                md: 8,
                 validation: [],
               },
             ],
@@ -803,6 +857,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 name: "new_patient.new_insurance_company.expiryDate",
                 label:
                   "apInputs.add_new.new_insurance_company.expiry_date.label",
+                xs: 24,
+                md: 8,
                 placeholder:
                   "apInputs.add_new.new_insurance_company.expiry_date.placeholder",
                 format: "DD/MM/YYYY",
@@ -816,6 +872,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 name: "new_patient.new_insurance_company.startMonth",
                 label:
                   "apInputs.add_new.new_insurance_company.start_month.label",
+                xs: 24,
+                md: 8,
                 options: [
                   {
                     value: "january",
@@ -888,6 +946,8 @@ export const addAppointmentFieldsConfig: Item[] = [
                 name: "new_patient.new_insurance_company.requireApproval",
                 label:
                   "apInputs.add_new.new_insurance_company.require_approval.label",
+                xs: 24,
+                md: 8,
                 defaultChecked: false,
                 validation: [],
               },
@@ -913,7 +973,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.referral_source",
             name: "new_patient.referral_source",
             label: "apInputs.add_new.referral_source.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             options: [
               {
                 value: "user",
@@ -945,7 +1006,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.referral_details",
             name: "new_patient.referral_details",
             label: "apInputs.add_new.referral_details.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             options: [],
             validation: [],
           },
@@ -956,7 +1018,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.referral_user",
             name: "new_patient.referral_user",
             label: "apInputs.add_new.referral_user.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             options: [
               {
                 value: "ahmed_taha",
@@ -982,7 +1045,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.referral_patient",
             name: "new_patient.referral_patient",
             label: "apInputs.add_new.referral_patient.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             options: [
               {
                 value: "zaki_badr",
@@ -1033,7 +1097,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.emergency_first_name",
             name: "new_patient.emergency_first_name",
             label: "apInputs.add_new.emergency_first_name.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             validation: [],
           },
           {
@@ -1043,7 +1108,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.emergency_last_name",
             name: "new_patient.emergency_last_name",
             label: "apInputs.add_new.emergency_last_name.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             validation: [],
           },
           {
@@ -1053,7 +1119,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.emergency_phone",
             name: "new_patient.emergency_phone",
             label: "apInputs.add_new.emergency_phone.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             validation: [{ type: "is_valid_phone" }],
           },
         ],
@@ -1070,7 +1137,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.emergency_secondary_phone",
             name: "new_patient.emergency_secondary_phone",
             label: "apInputs.add_new.emergency_secondary_phone.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             validation: [{ type: "is_valid_phone" }],
           },
           {
@@ -1080,7 +1148,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.emergency_address",
             name: "new_patient.emergency_address",
             label: "apInputs.add_new.emergency_address.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             validation: [],
           },
           {
@@ -1090,7 +1159,8 @@ export const addAppointmentFieldsConfig: Item[] = [
             testId: "new_patient.emergency_relationship",
             name: "new_patient.emergency_relationship",
             label: "apInputs.add_new.emergency_relationship.label",
-            flex: 1,
+            xs: 24,
+            md: 8,
             options: [
               {
                 value: "spouse",
@@ -1134,8 +1204,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "doctor",
         name: "doctor",
         label: "apInputs.doctor.label",
+        xs: 24,
+        md: 8,
         placeholder: "apInputs.doctor.placeholder",
-        flex: 1,
         options: [
           { value: "ahmed", label: "apInputs.doctor.options.ahmed" },
           { value: "taha", label: "apInputs.doctor.options.taha" },
@@ -1159,8 +1230,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "room",
         name: "room",
         label: "apInputs.room.label",
+        xs: 24,
+        md: 8,
         defaultValue: "room_1",
-        flex: 1,
         options: [
           { value: "room_1", label: "apInputs.room.options.room_1" },
           { value: "room_2", label: "apInputs.room.options.room_2" },
@@ -1180,8 +1252,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "status",
         name: "status",
         label: "apInputs.status.label",
+        xs: 24,
+        md: 8,
         defaultValue: "open",
-        flex: 1,
         options: [
           { value: "open", label: "apInputs.status.options.open" },
           { value: "confirmed", label: "apInputs.status.options.confirmed" },
@@ -1222,8 +1295,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "notified_doctor",
         name: "notified_doctor",
         label: "apInputs.notified_doctor.label",
+        xs: 24,
+        md: 8,
         placeholder: "apInputs.notified_doctor.placeholder",
-        flex: 1,
         options: [
           { value: "ahmed", label: "apInputs.notified_doctor.options.ahmed" },
           { value: "taha", label: "apInputs.notified_doctor.options.taha" },
@@ -1247,8 +1321,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "room",
         name: "room",
         label: "apInputs.room.label",
+        xs: 24,
+        md: 8,
         defaultValue: "room_1",
-        flex: 1,
         options: [
           { value: "room_1", label: "apInputs.room.options.room_1" },
           { value: "room_2", label: "apInputs.room.options.room_2" },
@@ -1275,9 +1350,10 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "day",
         name: "day",
         label: "apInputs.day.label",
+        xs: 24,
+        md: 8,
         defaultValue: "add 0 day",
         format: "DD/MM/YYYY",
-        flex: 1,
         validation: [
           {
             type: "required",
@@ -1295,6 +1371,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "start_time",
         name: "start_time",
         label: "apInputs.start_time.label",
+        xs: 24,
+        md: 8,
         use12Hours: true,
         defaultValue: "add 0 minutes",
         format: "hh:mm a",
@@ -1318,6 +1396,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "end_time",
         name: "end_time",
         label: "apInputs.end_time.label",
+        xs: 24,
+        md: 8,
         defaultValue: "add 30 minute",
         use12Hours: true,
         format: "hh:mm a",
@@ -1348,6 +1428,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "alert_content",
         name: "alert_content",
         label: "apInputs.alert_content.label",
+        xs: 24,
+        md: 24,
         placeholder: "apInputs.alert_content.placeholder",
         maxLength: 1000,
         showCount: true,
@@ -1369,8 +1451,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "type",
         name: "type",
         label: "apInputs.type.label",
+        xs: 24,
+        md: 8,
         defaultValue: "examination",
-        flex: 1,
         options: [
           { value: "examination", label: "apInputs.type.options.examination" },
           { value: "follow_up", label: "apInputs.type.options.follow_up" },
@@ -1402,8 +1485,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "subtype",
         name: "subtype",
         label: "apInputs.subtype.label",
+        xs: 24,
+        md: 8,
         defaultValue: "",
-        flex: 1,
         options: [
           { value: "subtype_1", label: "apInputs.subtype.options.subtype_1" },
           { value: "subtype_2", label: "apInputs.subtype.options.subtype_2" },
@@ -1419,9 +1503,10 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "created",
         name: "created",
         label: "apInputs.created.label",
+        xs: 24,
+        md: 8,
         placeholder: "apInputs.created.placeholder",
         format: "DD/MM/YYYY",
-        flex: 1,
         validation: [
           {
             type: "earlier_than",
@@ -1436,53 +1521,74 @@ export const addAppointmentFieldsConfig: Item[] = [
     ],
   },
   {
-    category: "field",
-    fieldType: "select",
-    id: "assistants",
-    testId: "assistants",
-    name: "assistants",
-    label: "apInputs.assistants.label",
-    defaultValue: "",
-    flex: 1,
-    options: [
+    category: "layout",
+    type: "hStack",
+    children: [
       {
-        value: "assistant_1",
-        label: "apInputs.assistants.options.assistant_1",
-      },
-      {
-        value: "assistant_2",
-        label: "apInputs.assistants.options.assistant_2",
+        category: "field",
+        fieldType: "select",
+        id: "assistants",
+        testId: "assistants",
+        name: "assistants",
+        label: "apInputs.assistants.label",
+        xs: 24,
+        md: 24,
+        defaultValue: "",
+        options: [
+          {
+            value: "assistant_1",
+            label: "apInputs.assistants.options.assistant_1",
+          },
+          {
+            value: "assistant_2",
+            label: "apInputs.assistants.options.assistant_2",
+          },
+        ],
+        validation: [],
       },
     ],
-    validation: [],
   },
   {
-    category: "field",
-    fieldType: "textarea",
-    id: "description",
-    testId: "description",
-    name: "description",
-    label: "apInputs.description.label",
-    placeholder: "apInputs.description.placeholder",
-    maxLength: 1000,
-    showCount: true,
-    flex: 1,
-    validation: [],
-    visibility: [{ field: "note_form", value: false }],
+    category: "layout",
+    type: "hStack",
+    children: [
+      {
+        category: "field",
+        fieldType: "textarea",
+        id: "description",
+        testId: "description",
+        name: "description",
+        label: "apInputs.description.label",
+        xs: 24,
+        md: 24,
+        placeholder: "apInputs.description.placeholder",
+        maxLength: 1000,
+        showCount: true,
+        validation: [],
+        visibility: [{ field: "note_form", value: false }],
+      },
+    ],
   },
   {
-    category: "field",
-    fieldType: "textarea",
-    id: "note_content",
-    testId: "note_content",
-    name: "note_content",
-    label: "apInputs.note_content.label",
-    placeholder: "apInputs.note_content.placeholder",
-    maxLength: 1000,
-    showCount: true,
-    flex: 1,
-    validation: [],
-    visibility: [{ field: "note_form", value: true }],
+    category: "layout",
+    type: "hStack",
+    children: [
+      {
+        category: "field",
+        fieldType: "textarea",
+        id: "note_content",
+        testId: "note_content",
+        name: "note_content",
+        label: "apInputs.note_content.label",
+        xs: 24,
+        md: 24,
+        placeholder: "apInputs.note_content.placeholder",
+        maxLength: 1000,
+        showCount: true,
+        validation: [],
+        visibility: [{ field: "note_form", value: true }],
+      },
+    ],
   },
   {
     category: "UI",
@@ -1517,140 +1623,134 @@ export const addAppointmentFieldsConfig: Item[] = [
         ],
         validation: [],
       },
+    ],
+  },
+  {
+    category: "layout",
+    type: "box",
+    visibility: [
       {
-        category: "layout",
-        type: "box",
-        gap: 0.5,
-        visibility: [
-          {
-            field: "diagnostic_fees",
-            value: "collected",
-          },
-        ],
-        children: [
-          {
-            category: "field",
-            fieldType: "number",
-            id: "collected_diagnostic_fees",
-            testId: "collected_diagnostic_fees",
-            name: "collected_diagnostic_fees",
-            label: "Payment Amount",
-            defaultValue: 100,
-            suffix: "EGP",
-            flex: 1,
-            validation: [],
-          },
-          {
-            category: "field",
-            fieldType: "select",
-            id: "collected_diagnostic_fees_options",
-            testId: "collected_diagnostic_fees_options",
-            name: "collected_diagnostic_fees_options",
-            label: "Payment Method",
-            defaultValue: "cash",
-            flex: 1,
-            options: [
-              {
-                value: "cash",
-                label:
-                  "apInputs.collected_diagnostic_fees_options.options.cash",
-              },
-              {
-                value: "card",
-                label:
-                  "apInputs.collected_diagnostic_fees_options.options.card",
-              },
-              {
-                value: "insurance",
-                label:
-                  "apInputs.collected_diagnostic_fees_options.options.insurance",
-              },
-              {
-                value: "cheque",
-                label:
-                  "apInputs.collected_diagnostic_fees_options.options.cheque",
-              },
-              {
-                value: "voucher",
-                label:
-                  "apInputs.collected_diagnostic_fees_options.options.voucher",
-              },
-              {
-                value: "bank_transfer",
-                label:
-                  "apInputs.collected_diagnostic_fees_options.options.bank_transfer",
-              },
-              {
-                value: "mobile_wallet",
-                label:
-                  "apInputs.collected_diagnostic_fees_options.options.mobile_wallet",
-              },
-              {
-                value: "other",
-                label:
-                  "apInputs.collected_diagnostic_fees_options.options.other",
-              },
-            ],
-            validation: [],
-          },
-          {
-            category: "field",
-            fieldType: "select",
-            id: "collected_diagnostic_fees_subtype",
-            testId: "collected_diagnostic_fees_subtype",
-            name: "collected_diagnostic_fees_subtype",
-            label: "Payment Subtype",
-            defaultValue: "",
-            flex: 1,
-            options: [
-              {
-                value: "",
-                label:
-                  "apInputs.collected_diagnostic_fees_subtype.options.subtype",
-              },
-              {
-                value: "subtype_1",
-                label:
-                  "apInputs.collected_diagnostic_fees_subtype.options.subtype_1",
-              },
-              {
-                value: "subtype_2",
-                label:
-                  "apInputs.collected_diagnostic_fees_subtype.options.subtype_2",
-              },
-            ],
-            validation: [],
-          },
-        ],
+        field: "diagnostic_fees",
+        value: "collected",
+      },
+    ],
+    children: [
+      {
+        category: "field",
+        fieldType: "number",
+        id: "collected_diagnostic_fees",
+        testId: "collected_diagnostic_fees",
+        name: "collected_diagnostic_fees",
+        label: "Payment Amount",
+        xs: 24,
+        md: 8,
+        defaultValue: 100,
+        suffix: "EGP",
+        validation: [],
       },
       {
-        category: "layout",
-        type: "box",
-        gap: 0.5,
-        visibility: [
+        category: "field",
+        fieldType: "select",
+        id: "collected_diagnostic_fees_options",
+        testId: "collected_diagnostic_fees_options",
+        name: "collected_diagnostic_fees_options",
+        label: "Payment Method",
+        xs: 24,
+        md: 8,
+        defaultValue: "cash",
+        options: [
           {
-            field: "diagnostic_fees",
-            value: "add_to_next_invoice",
+            value: "cash",
+            label: "apInputs.collected_diagnostic_fees_options.options.cash",
+          },
+          {
+            value: "card",
+            label: "apInputs.collected_diagnostic_fees_options.options.card",
+          },
+          {
+            value: "insurance",
+            label:
+              "apInputs.collected_diagnostic_fees_options.options.insurance",
+          },
+          {
+            value: "cheque",
+            label: "apInputs.collected_diagnostic_fees_options.options.cheque",
+          },
+          {
+            value: "voucher",
+            label: "apInputs.collected_diagnostic_fees_options.options.voucher",
+          },
+          {
+            value: "bank_transfer",
+            label:
+              "apInputs.collected_diagnostic_fees_options.options.bank_transfer",
+          },
+          {
+            value: "mobile_wallet",
+            label:
+              "apInputs.collected_diagnostic_fees_options.options.mobile_wallet",
+          },
+          {
+            value: "other",
+            label: "apInputs.collected_diagnostic_fees_options.options.other",
           },
         ],
-        children: [
+        validation: [],
+      },
+      {
+        category: "field",
+        fieldType: "select",
+        id: "collected_diagnostic_fees_subtype",
+        testId: "collected_diagnostic_fees_subtype",
+        name: "collected_diagnostic_fees_subtype",
+        label: "Payment Subtype",
+        xs: 24,
+        md: 8,
+        defaultValue: "",
+        options: [
           {
-            category: "field",
-            fieldType: "number",
-            id: "next_invoice_diagnostic_fees",
-            testId: "next_invoice_diagnostic_fees",
-            name: "next_invoice_diagnostic_fees",
-            label: "Amount",
-            suffix: "EGP",
-            defaultValue: 100,
-            flex: 1,
-            validation: [],
+            value: "",
+            label: "apInputs.collected_diagnostic_fees_subtype.options.subtype",
+          },
+          {
+            value: "subtype_1",
+            label:
+              "apInputs.collected_diagnostic_fees_subtype.options.subtype_1",
+          },
+          {
+            value: "subtype_2",
+            label:
+              "apInputs.collected_diagnostic_fees_subtype.options.subtype_2",
           },
         ],
+        validation: [],
       },
     ],
   },
-
+  {
+    category: "layout",
+    type: "box",
+    visibility: [
+      {
+        field: "diagnostic_fees",
+        value: "add_to_next_invoice",
+      },
+    ],
+    children: [
+      {
+        category: "field",
+        fieldType: "number",
+        id: "next_invoice_diagnostic_fees",
+        testId: "next_invoice_diagnostic_fees",
+        name: "next_invoice_diagnostic_fees",
+        label: "Amount",
+        xs: 24,
+        suffix: "EGP",
+        defaultValue: 100,
+        validation: [],
+      },
+    ],
+  },
   {
     category: "UI",
     type: "title",
@@ -1669,8 +1769,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "reminder_before",
         name: "reminder_before",
         label: "apInputs.reminder_before.label",
+        xs: 24,
+        md: 8,
         min: 0,
-        flex: 1,
         validation: [],
       },
       {
@@ -1680,8 +1781,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         testId: "reminder_before_interval",
         name: "reminder_before_interval",
         label: "apInputs.reminder_before_interval.label",
+        xs: 24,
+        md: 8,
         defaultValue: "minutes",
-        flex: 1,
         options: [
           {
             value: "minutes",

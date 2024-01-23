@@ -139,7 +139,8 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
       disability,
       defaultValue,
       validation,
-      flex,
+      md,
+      xs,
       ...field
     } = item;
 
@@ -150,9 +151,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
     };
     return (
       <Col
+        xs={xs}
+        md={md}
         style={{
           textAlign: "start",
-          flex: flex ? flex : undefined,
         }}
       >
         {/* in case there is a visibility rule:
@@ -176,12 +178,24 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   };
 
   const renderFormItems = (item: ItemForm) => {
-    return item.visibility ? (
-      isMatched(item.visibility) && (
-        <AddAppointmentSection renderItems={renderItems} {...item} />
-      )
-    ) : (
-      <AddAppointmentSection renderItems={renderItems} {...item} />
+    return (
+      <div
+        style={{
+          // Center form Content
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: ".5rem .5rem 0",
+        }}
+      >
+        {item.visibility ? (
+          isMatched(item.visibility) && (
+            <AddAppointmentSection renderItems={renderItems} {...item} />
+          )
+        ) : (
+          <AddAppointmentSection renderItems={renderItems} {...item} />
+        )}
+      </div>
     );
   };
 
@@ -246,7 +260,16 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
           Upload Image
         </Button>
       </Upload>
-      {renderItems(fieldsConfig)}
+      {/* Center form Content  */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {renderItems(fieldsConfig)}
+      </div>
       <Button type="primary" htmlType="submit">
         submit
       </Button>

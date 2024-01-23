@@ -190,9 +190,11 @@ export type ItemField = {
   validation: FieldValidation[];
   visibility?: Rule[];
   disability?: Rule[];
-  flex?: number;
   prefix?: string;
   suffix?: string;
+  // Layout Values
+  xs?: number;
+  md?: number;
 };
 
 export type FormFieldConfig =
@@ -308,6 +310,34 @@ export type ItemForm = {
   name: string;
   children: ChildrenType[];
   visibility?: Rule[];
+  align?:
+    | "top"
+    | "middle"
+    | "bottom"
+    | "stretch"
+    | {
+        [key in "xs" | "sm" | "md" | "lg" | "xl" | "xxl"]:
+          | "top"
+          | "middle"
+          | "bottom"
+          | "stretch";
+      };
+  justify?:
+    | "start"
+    | "end"
+    | "center"
+    | "space-around"
+    | "space-between"
+    | "space-evenly"
+    | Partial<{
+        [key in "xs" | "sm" | "md" | "lg" | "xl" | "xxl"]:
+          | "start"
+          | "end"
+          | "center"
+          | "space-around"
+          | "space-between"
+          | "space-evenly";
+      }>;
 };
 
 /*
