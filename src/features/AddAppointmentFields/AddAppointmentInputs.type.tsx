@@ -361,13 +361,13 @@ export interface UIDivider extends UIBase {
 }
 
 export interface UITitle extends UIBase {
-  type: UIType;
+  type: "title";
   title: string;
   level: 1 | 2 | 3 | 4 | 5;
 }
 
 export interface UIText extends UIBase {
-  type: UIType;
+  type: "text";
   text: string;
   style?: {
     type?: "secondary" | "success" | "warning" | "danger";
@@ -378,13 +378,13 @@ export interface UIText extends UIBase {
 }
 
 export interface UILink extends UIBase {
-  type: UIType;
+  type: "link";
   text: string;
   url: string;
 }
 
 export interface UIAlert extends UIBase {
-  type: UIType;
+  type: "alert";
   description: string;
   message: string;
   alertType: "error" | "success" | "info" | "warning";
