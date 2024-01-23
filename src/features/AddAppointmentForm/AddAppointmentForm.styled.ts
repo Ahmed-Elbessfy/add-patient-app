@@ -4,7 +4,6 @@ const { Title } = Typography;
 
 export const StyledTitle = styled(Title)`
   color: rgb(0, 119, 185) !important;
-  position: relative;
 
   & strong {
     position: relative;
@@ -12,23 +11,9 @@ export const StyledTitle = styled(Title)`
     padding: 1rem;
     background: #f0f4f9;
   }
+`;
 
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 50%;
-    height: 2px;
-    background: rgba(0, 0, 0, 0.05);
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 50%;
-    width: 50%;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.09);
-  }
+export const StyledDividerText = styled.strong`
+  color: rgb(0, 119, 185);
+  font-size: 1.2rem;
 `;

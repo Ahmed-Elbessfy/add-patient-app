@@ -4,6 +4,7 @@ import {
   Alert,
   Button,
   Col,
+  Divider,
   Typography,
   Upload,
   UploadProps,
@@ -29,12 +30,13 @@ import {
   UIText,
   UITitle,
   ItemForm,
+  UIDivider,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
 // import DualField from "../DualField/DualField";
 // import { DualFieldConfig } from "../DualField/DualField.type";
 import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
-import { StyledTitle } from "./AddAppointmentForm.styled";
+import { StyledDividerText, StyledTitle } from "./AddAppointmentForm.styled";
 
 const { Text, Link } = Typography;
 
@@ -127,6 +129,21 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
             type={alertType}
             showIcon={showIcon}
           />
+        );
+      }
+      // Divider UI Item
+      case "divider": {
+        const { text, orientation, direction } = item as UIDivider;
+        return item.visibility ? (
+          isMatched(item.visibility) && (
+            <Divider type={direction} orientation={orientation}>
+              <StyledDividerText>{t(text)}</StyledDividerText>
+            </Divider>
+          )
+        ) : (
+          <Divider type={direction} orientation={orientation}>
+            <StyledDividerText>{t(text)}</StyledDividerText>
+          </Divider>
         );
       }
     }

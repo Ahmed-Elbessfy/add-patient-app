@@ -150,15 +150,15 @@ export const addAppointmentFieldsConfig: Item[] = [
     visibility: [{ field: "show_add_patient", value: true }],
     children: [
       {
-        type: "title",
         category: "UI",
-        title: "apInputs.add_new.patient_details_title.text",
-        level: 3,
+        type: "divider",
+        direction: "horizontal",
+        orientation: "center",
+        text: "apInputs.add_new.patient_details_title.text",
       },
       {
         category: "layout",
         type: "hStack",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -646,6 +646,11 @@ export const addAppointmentFieldsConfig: Item[] = [
       },
       {
         category: "UI",
+        type: "divider",
+        direction: "horizontal",
+        orientation: "center",
+        text: "apInputs.add_new.insurance_details_title.text",
+      },
       {
         category: "layout",
         type: "hStack",
@@ -957,9 +962,10 @@ export const addAppointmentFieldsConfig: Item[] = [
       },
       {
         category: "UI",
-        type: "title",
-        title: "apInputs.add_new.referral_title.text",
-        level: 3,
+        type: "divider",
+        direction: "horizontal",
+        orientation: "center",
+        text: "apInputs.add_new.referral_title.text",
       },
       {
         category: "layout",
@@ -1081,9 +1087,10 @@ export const addAppointmentFieldsConfig: Item[] = [
       },
       {
         category: "UI",
-        type: "title",
-        title: "apInputs.add_new.emergency_contact_title.text",
-        level: 3,
+        type: "divider",
+        direction: "horizontal",
+        orientation: "center",
+        text: "apInputs.add_new.emergency_contact_title.text",
       },
       {
         category: "layout",
@@ -1592,9 +1599,10 @@ export const addAppointmentFieldsConfig: Item[] = [
   },
   {
     category: "UI",
-    type: "title",
-    title: "apInputs.diagnostic_fees_title.text",
-    level: 3,
+    type: "divider",
+    direction: "horizontal",
+    orientation: "center",
+    text: "apInputs.diagnostic_fees_title.text",
     visibility: [{ field: "note_form", value: false }],
   },
   {
@@ -1753,9 +1761,10 @@ export const addAppointmentFieldsConfig: Item[] = [
   },
   {
     category: "UI",
-    type: "title",
-    title: "apInputs.mobile_notification.text",
-    level: 3,
+    type: "divider",
+    direction: "horizontal",
+    orientation: "center",
+    text: "apInputs.mobile_notification.text",
   },
   {
     category: "layout",

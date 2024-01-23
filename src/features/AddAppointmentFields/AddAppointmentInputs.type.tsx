@@ -346,13 +346,20 @@ export type ItemForm = {
 **********************************************************
 */
 
-type UIType = "title" | "text" | "link" | "alert";
+type UIType = "title" | "text" | "link" | "alert" | "divider";
 
 export type UIBase = {
   category: ItemCategory;
   type: UIType;
   visibility?: Rule[];
 };
+
+export interface UIDivider extends UIBase {
+  type: "divider";
+  direction: "vertical" | "horizontal";
+  orientation: "left" | "right" | "center";
+  text: string;
+}
 
 export interface UITitle extends UIBase {
   type: UIType;
@@ -385,6 +392,6 @@ export interface UIAlert extends UIBase {
   showIcon: boolean;
 }
 
-export type ItemUI = UITitle | UIText | UILink | UIAlert;
+export type ItemUI = UITitle | UIText | UILink | UIAlert | UIDivider;
 
 export type Item = FormFieldConfig | ItemLayout | ItemUI | ItemForm;
