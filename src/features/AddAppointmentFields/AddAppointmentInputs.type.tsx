@@ -288,11 +288,11 @@ export type LayoutBase = {
 };
 
 export interface LayoutHStack extends LayoutBase {
-  type: LayoutType;
+  type: "hStack";
 }
 
 export interface LayoutBox extends LayoutBase {
-  type: LayoutType;
+  type: "box";
   padding: number;
 }
 
