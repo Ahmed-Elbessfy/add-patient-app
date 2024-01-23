@@ -293,7 +293,7 @@ export interface LayoutHStack extends LayoutBase {
 
 export interface LayoutBox extends LayoutBase {
   type: "box";
-  padding: number;
+  // padding: number;
 }
 
 export type ItemLayout = LayoutHStack | LayoutBox;
