@@ -39,7 +39,7 @@ const PhoneField: FC<FieldPhoneComponentProps> = (props) => {
         </div>
         <div style={{ flex: 4 }}>
           <Input
-            type="text"
+            type="tel"
             placeholder="01xxxxxxxxx"
             status={status}
             value={number}
