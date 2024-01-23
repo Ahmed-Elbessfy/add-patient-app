@@ -6,7 +6,6 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "layout",
     type: "hStack",
-    gap: 0.5,
     align: "middle",
     justify: "end",
     children: [
@@ -48,7 +47,6 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "layout",
     type: "box",
-    gap: 0.5,
     align: "middle",
     justify: "start",
     visibility: [{ field: "note_form", value: false }],
@@ -113,7 +111,6 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "layout",
     type: "box",
-    gap: 0.5,
     align: "middle",
     justify: "start",
     visibility: [{ field: "note_form", value: true }],
@@ -210,7 +207,6 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "layout",
         type: "hStack",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -251,7 +247,6 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "layout",
         type: "hStack",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -355,7 +350,6 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "layout",
         type: "hStack",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -390,7 +384,6 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "layout",
         type: "hStack",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -449,7 +442,6 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "layout",
         type: "hStack",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -498,11 +490,9 @@ export const addAppointmentFieldsConfig: Item[] = [
           },
         ],
       },
-
       {
         category: "layout",
         type: "hStack",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -590,7 +580,6 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "layout",
         type: "box",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -626,7 +615,6 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "layout",
         type: "box",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -690,7 +678,6 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "layout",
             type: "box",
-            gap: 0.5,
             children: [
               {
                 category: "field",
@@ -723,7 +710,6 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "layout",
             type: "box",
-            gap: 0.5,
             children: [
               {
                 category: "field",
@@ -811,7 +797,6 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "layout",
             type: "box",
-            gap: 0.5,
             children: [
               {
                 category: "field",
@@ -852,7 +837,6 @@ export const addAppointmentFieldsConfig: Item[] = [
           {
             category: "layout",
             type: "box",
-            gap: 0.5,
             children: [
               {
                 category: "field",
@@ -970,7 +954,6 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "layout",
         type: "hStack",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -1095,7 +1078,6 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "layout",
         type: "hStack",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -1135,7 +1117,6 @@ export const addAppointmentFieldsConfig: Item[] = [
       {
         category: "layout",
         type: "hStack",
-        gap: 0.5,
         children: [
           {
             category: "field",
@@ -1199,7 +1180,6 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "layout",
     type: "hStack",
-    gap: 0.5,
     align: "middle",
     justify: "start",
     visibility: [{ field: "note_form", value: false }],
@@ -1292,7 +1272,6 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "layout",
     type: "hStack",
-    gap: 0.5,
     visibility: [{ field: "note_form", value: true }],
     children: [
       {
@@ -1348,7 +1327,6 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "layout",
     type: "hStack",
-    gap: 0.5,
     children: [
       {
         category: "field",
@@ -1383,7 +1361,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         use12Hours: true,
         defaultValue: "add 0 minutes",
         format: "hh:mm a",
-        flex: 1,
         validation: [
           {
             type: "required",
@@ -1408,7 +1385,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         defaultValue: "add 30 minute",
         use12Hours: true,
         format: "hh:mm a",
-        flex: 1,
         validation: [
           {
             type: "required",
@@ -1426,7 +1402,6 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "layout",
     type: "box",
-    gap: 0.5,
     children: [
       {
         category: "field",
@@ -1440,7 +1415,6 @@ export const addAppointmentFieldsConfig: Item[] = [
         placeholder: "apInputs.alert_content.placeholder",
         maxLength: 1000,
         showCount: true,
-        flex: 1,
         validation: [],
         visibility: [{ field: "alert_form", value: true }],
       },
@@ -1449,7 +1423,6 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "layout",
     type: "hStack",
-    gap: 0.5,
     children: [
       {
         category: "field",
@@ -1608,7 +1581,6 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "layout",
     type: "box",
-    gap: 0.5,
     visibility: [{ field: "note_form", value: false }],
     children: [
       {
@@ -1769,7 +1741,6 @@ export const addAppointmentFieldsConfig: Item[] = [
   {
     category: "layout",
     type: "hStack",
-    gap: 0.5,
     children: [
       {
         category: "field",

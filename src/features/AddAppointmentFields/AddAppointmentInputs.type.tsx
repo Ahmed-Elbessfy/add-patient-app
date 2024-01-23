@@ -255,7 +255,6 @@ export type LayoutBase = {
   category: ItemCategory;
   type: LayoutType;
   children: ChildrenType[];
-  gap: number;
   align?:
     | "top"
     | "middle"
