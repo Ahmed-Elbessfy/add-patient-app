@@ -227,10 +227,7 @@ export type GeneralFieldConfig = Omit<
 
 // Custom Field Component props
 // should receive : label, placeholder, isDisabled, suffix, prefix, value, onChange, status
-export type CustomFieldConfig = Omit<
-  GeneralFieldConfig,
-  "id" | "testId" | "name" | "control"
-> & {
+export type CustomFieldConfig = Omit<GeneralFieldConfig, "name" | "control"> & {
   value: unknown;
   onChange: (value: FieldElement["value"]) => void;
   status?: "error";

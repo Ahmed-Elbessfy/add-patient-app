@@ -30,7 +30,7 @@ import { useController } from "react-hook-form";
 import ErrorMsg from "../../patterns/ErrorMsg/ErrorMsg";
 
 const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
-  const { fieldType, name, control, id, testId, ...fieldProps } = props;
+  const { fieldType, name, control, ...fieldProps } = props;
 
   // register field value to form state
   const {
@@ -54,7 +54,7 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
   // so control is passed to dual field to be passed again to AddAppointmentField component
   const dualProps = { ...props, control };
   return (
-    <div id={id} date-testid={testId}>
+    <>
       {/* Each field is rendered based on type internally to prevent typescript errors at field component  */}
 
       {/* Text Input  */}
@@ -124,7 +124,7 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       {!["dualField", "switch", "checkbox"].includes(fieldType) && (
         <ErrorMsg error={error} />
       )}
-    </div>
+    </>
   );
 };
 
