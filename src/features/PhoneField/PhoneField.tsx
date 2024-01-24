@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { Input } from "antd";
+import { Input, Space } from "antd";
 import { useTranslation } from "react-i18next";
 import { COUNTRY_CODE } from "../CountryField/CountryField.type";
 import CountryField from "../CountryField/CountryField";
@@ -26,9 +26,8 @@ const PhoneField: FC<FieldPhoneComponentProps> = (props) => {
   return (
     <div id={id} data-testid={testId}>
       {label && <label>{t(label)}</label>}
-
-      <div style={{ display: "flex" }}>
-        <div>
+      <Space.Compact style={{ width: "100%" }}>
+        <div style={{ width: "85px" }}>
           <CountryField
             fieldType="country"
             onChange={setCode}
@@ -37,7 +36,7 @@ const PhoneField: FC<FieldPhoneComponentProps> = (props) => {
             variant="flag-only"
           />
         </div>
-        <div style={{ flex: 4 }}>
+        <div style={{ width: "100%" }}>
           <Input
             type="tel"
             placeholder="01xxxxxxxxx"
@@ -46,7 +45,7 @@ const PhoneField: FC<FieldPhoneComponentProps> = (props) => {
             onChange={(e) => setNumber(e.target.value)}
           />
         </div>
-      </div>
+      </Space.Compact>
     </div>
   );
 };
