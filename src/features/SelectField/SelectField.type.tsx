@@ -24,7 +24,7 @@ export type FieldSelectT = Customize<
 export interface FieldSelect extends ItemField {
   fieldType: "select"; // Type of the field (select)
   options: Option[]; // available options of select field
-  defaultValue?: string; // Default value for the switch field. Used to set form default values object.
+  defaultValue?: string; // Default value for the Select field. Used to set form default values object.
 }
 
 /**
