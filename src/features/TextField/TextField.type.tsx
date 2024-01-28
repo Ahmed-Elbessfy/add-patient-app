@@ -12,11 +12,23 @@ export type FieldTextT = Customize<
   }
 >;
 
-// used for form field configuration object
+/**
+ * Represents the configuration for a text field in a form configuration object.
+ * Extends the base ItemField type to extend field items properties and adding custom properties specific to text fields.
+ *
+ * @interface FieldText
+ * @extends {ItemField}
+ */
 export interface FieldText extends ItemField {
-  fieldType: "text";
-  defaultValue?: string;
+  fieldType: "text"; // Type of the field (text)
+  defaultValue?: string; // Default value for the text field. Used to set form default values object.
 }
 
-// used for Custom Field Configuration and in case input requires custom props
+/**
+ * Represents the custom field configuration for a text field that is used to determine FieldText component expected props.
+ * Inherits properties from GeneralFieldConfig and includes if needed, additional properties specific to text fields.
+ *
+ * @interface FieldTextComponentProps
+ * @extends {CustomFieldConfig}
+ */
 export type FieldTextComponentProps = CustomFieldConfig;
