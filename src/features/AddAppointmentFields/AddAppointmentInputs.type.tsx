@@ -47,7 +47,8 @@ import {
 
 export type Customize<T, R> = Omit<T, keyof R> & R;
 
-type ItemCategory = "field" | "layout" | "UI" | "form";
+// ITEMS Possible categories
+// "field" | "layout" | "UI" | "form"
 
 /*
 **********************************************************
@@ -55,22 +56,24 @@ type ItemCategory = "field" | "layout" | "UI" | "form";
 **********************************************************
 */
 
-// fieldLabel is used for Error Messages translation
+// Used for fields validation based on other fields values
 type FieldValidationField = {
-  field: SchemaName;
-  fieldLabel: string;
+  field: SchemaName; // name of field value that its value is limit of validation
+  fieldLabel: string; // used for Error Messages translation
 };
 
+// Validation Rules type
 export type FieldValidation = {
-  type: string;
-  date?: string;
-  fields?: FieldValidationField[];
-  pattern?: RegExp;
-  minimum?: number;
-  maximum?: number;
-  requiredConditions?: Rule[];
+  type: string; // Type of validation (e.g., 'required', 'requiredIf', 'hasPattern')
+  date?: string; // limit date for validation
+  fields?: FieldValidationField[]; // fields that their values is limit or used for validation of current field
+  pattern?: RegExp; // Regular expression for pattern validation
+  minimum?: number; // Minimum value for number validation
+  maximum?: number; // Maximum value for number validation
+  requiredConditions?: Rule[]; // Fields that based on its values, the current field is required or not - used with requiredIf rule -
 };
 
+// Allowed names to be used as Form State props
 export type SchemaName =
   | "urgent_tag"
   | "alert_form"
@@ -151,6 +154,7 @@ export type SchemaName =
   | "new_patient.emergency_relationship"
   | "new_patient_first_name";
 
+// Available field types
 type fieldTypeValues =
   | "text"
   | "phone"
@@ -165,38 +169,48 @@ type fieldTypeValues =
   | "checkbox"
   | "dualField";
 
+// Options of Select & Radio types
 export type Option = {
-  label: string;
-  value: string;
+  label: string; // text rendered to user - text property matches AntD multi select options
+  value: string; // value of option
 };
 
+// Type to describe a field and possible value of it
+// Used for visibility rules, disability rules, conditions of conditional validation
 export type Rule = {
-  field: string;
-  value: string | number | boolean;
+  field: string; // field name need to get its value
+  value: string | number | boolean; // value that if matched a functionality applies or does not
 };
 
+// possible types of form field values
+// it is possible to need to add Dayjs in the future but I did not meet a case need Dayjs
 export type CustomRuleFields = string | number | boolean;
 
-// FORM component props
+// General FIELD component props
 // should receive : Category, fieldType, name, id ,testId, label, placeholder, validation, visibility, disability, defaultValue, defaultChecked, checkedChildren, unCheckedChildren, suffix, prefix
 export type ItemField = {
-  category: ItemCategory;
-  id: string;
-  testId: string;
-  fieldType: fieldTypeValues;
-  name: SchemaName;
-  label?: string;
+  category: "field"; // determine item is a field category
+  id: string; // field id for selecting and in some cases to attach label to input
+  testId: string; // used to select items for testing
+  fieldType: fieldTypeValues; // determine which field type to render
+  name: SchemaName; // name used to register field value to form state
+  label?: string; // label for all field and text for checkbox fields
   placeholder?: string;
-  validation: FieldValidation[];
-  visibility?: Rule[];
-  disability?: Rule[];
-  prefix?: string;
-  suffix?: string;
-  // Layout Values
-  xs?: number;
-  md?: number;
+  validation: FieldValidation[]; // validation rules
+  visibility?: Rule[]; // visibility rules
+  disability?: Rule[]; // disability rules
+  prefix?: string; // text or icon added before field - used with addonBefore
+  suffix?: string; // text or icon added after field - used with addonAfter
+  // Design Values
+  xs?: number; // used for default width at screens less than MEDIUM size
+  md?: number; // used for width at screens wider than MEDIUM size
 };
 
+// possible field configuration types
+// used for controlling types of configuration form object
+// used as Form component expected props
+// Form component functionality : render item based on category - apply visibility & disability rules - build default values & Schema -  submit form state data
+// to fullfil this requirement, components needs following properties
 export type FormFieldConfig =
   | FieldText
   | FieldPhone
@@ -213,24 +227,27 @@ export type FormFieldConfig =
 
 // General Field Component props
 // should receive: fieldType, name, id, testid, label, placeholder, isDisabled, suffix, prefix
-
+// General Field functionality: registers field value to form state - render Custom Field type based on field value - get current field value and onChange function to register field value if changed
+// to fullfil this requirement, components needs following properties
 export type GeneralFieldConfig = Omit<
   FormFieldConfig,
+  // these props is not requirement or needed to general field layer to fullfil its functionality
   "category" | "visibility" | "disability" | "validation" | "defaultValue"
 > & {
   control: Control<{
     [x: string]: unknown;
     [x: number]: unknown;
-  }>;
-  isDisabled: boolean;
+  }>; // passed from Form component to register current field value
+  isDisabled: boolean; // to set item is disabled or not, needs this property to be at custom field level. it get set at Form Component with help of "watch" of useForm so it gets passed to General field then to Custom Field.
 };
 
 // Custom Field Component props
 // should receive : label, placeholder, isDisabled, suffix, prefix, value, onChange, status
+// Custom Field functionality: render field value - submit new value if changed to onChanged function - control AntD status to provide visual indicator if error
 export type CustomFieldConfig = Omit<GeneralFieldConfig, "name" | "control"> & {
-  value: unknown;
-  onChange: (value: FieldElement["value"]) => void;
-  status?: "error";
+  value: unknown; // current field value at form state
+  onChange: (value: FieldElement["value"]) => void; // function to return new value. In most cases, it accepts onChange of field object to register new value to form state
+  status?: "error"; // in case of error, render error custom style
 };
 
 /*
@@ -239,21 +256,25 @@ export type CustomFieldConfig = Omit<GeneralFieldConfig, "name" | "control"> & {
 **********************************************************
 */
 
+// Layout is a wrapper of fields
+
+// possible Layout Types
 type LayoutType = "hStack" | "box";
 
+// layout possible children
 type ChildrenType =
-  | FormFieldConfig
-  | FieldDual
-  | ItemLayout
-  | ItemUI
-  | ItemForm;
+  | FormFieldConfig // fields items
+  | ItemLayout // nested layout items
+  | ItemUI // Non functional items
+  | ItemForm; // nested form items
 
 export type LayoutBase = {
-  category: ItemCategory;
-  type: LayoutType;
-  children: ChildrenType[];
-  align?:
-    | "top"
+  category: "layout"; // determine item is layout category
+  type: LayoutType; // determine which layout type to render
+  children: ChildrenType[]; // accepted children types
+  // Design Values
+  align?: // vertical alignment and based on screens size
+  | "top"
     | "middle"
     | "bottom"
     | "stretch"
@@ -264,8 +285,8 @@ export type LayoutBase = {
           | "bottom"
           | "stretch";
       };
-  justify?:
-    | "start"
+  justify?: // horizontal alignment and based on screens size
+  | "start"
     | "end"
     | "center"
     | "space-around"
@@ -280,8 +301,8 @@ export type LayoutBase = {
           | "space-between"
           | "space-evenly";
       }>;
-  padding?: number;
-  visibility?: Rule[];
+  padding?: number; // adding additional padding
+  visibility?: Rule[]; // visibility rules
 };
 
 export interface LayoutHStack extends LayoutBase {
@@ -293,6 +314,7 @@ export interface LayoutBox extends LayoutBase {
   // padding: number;
 }
 
+// Union to join possible layout types
 export type ItemLayout = LayoutHStack | LayoutBox;
 
 /*
@@ -302,12 +324,13 @@ export type ItemLayout = LayoutHStack | LayoutBox;
 */
 
 export type ItemForm = {
-  category: ItemCategory;
-  name: string;
-  children: ChildrenType[];
-  visibility?: Rule[];
-  align?:
-    | "top"
+  category: "form"; // determine item is form category
+  name: string; // name of nested object for nested form used for form state, default values and schema structures
+  children: ChildrenType[]; // accepted children types
+  visibility?: Rule[]; // visibility rules
+  // Design Values
+  align?: // vertical alignment and based on screens size
+  | "top"
     | "middle"
     | "bottom"
     | "stretch"
@@ -318,8 +341,8 @@ export type ItemForm = {
           | "bottom"
           | "stretch";
       };
-  justify?:
-    | "start"
+  justify?: // horizontal alignment and based on screens size
+  | "start"
     | "end"
     | "center"
     | "space-around"
@@ -345,27 +368,29 @@ export type ItemForm = {
 type UIType = "title" | "text" | "link" | "alert" | "divider";
 
 export type UIBase = {
-  category: ItemCategory;
-  type: UIType;
-  visibility?: Rule[];
+  category: "UI"; // determine item is UI category
+  type: UIType; // determine which UI type to render
+  visibility?: Rule[]; // visibility rules
 };
 
+// Title with horizontal border
 export interface UIDivider extends UIBase {
   type: "divider";
-  direction: "vertical" | "horizontal";
-  orientation: "left" | "right" | "center";
-  text: string;
+  direction: "vertical" | "horizontal"; // direction of hHR
+  orientation: "left" | "right" | "center"; // location of text
+  text: string; // content
 }
 
+// Headings
 export interface UITitle extends UIBase {
   type: "title";
-  title: string;
-  level: 1 | 2 | 3 | 4 | 5;
+  title: string; // content
+  level: 1 | 2 | 3 | 4 | 5; // font size based on AntD configuration
 }
 
 export interface UIText extends UIBase {
   type: "text";
-  text: string;
+  text: string; // content
   style?: {
     type?: "secondary" | "success" | "warning" | "danger";
     disabled?: boolean;
@@ -374,20 +399,24 @@ export interface UIText extends UIBase {
   };
 }
 
+// links
 export interface UILink extends UIBase {
   type: "link";
-  text: string;
-  url: string;
+  text: string; // content
+  url: string; // target link
 }
 
+// Alerts
 export interface UIAlert extends UIBase {
   type: "alert";
-  description: string;
-  message: string;
-  alertType: "error" | "success" | "info" | "warning";
+  message: string; // main content - alert title
+  description: string; // additional content if needed - alert text
+  alertType: "error" | "success" | "info" | "warning"; // type for styling
   showIcon: boolean;
 }
 
+// Union to join UI types
 export type ItemUI = UITitle | UIText | UILink | UIAlert | UIDivider;
 
+// Union to join all possible items types
 export type Item = FormFieldConfig | ItemLayout | ItemUI | ItemForm;
