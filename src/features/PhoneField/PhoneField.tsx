@@ -21,6 +21,7 @@ const PhoneField: FC<FieldPhoneComponentProps> = (props) => {
     // to prevent validation on load, only validate if "number" has value which means user is entering value
     if (number)
       onChange(`+${getCountryCallingCode(code as CountryCode)}${number}`);
+    else onChange(undefined); // if number is empty, reset value to clear error
   }, [code, number, onChange]);
 
   return (
