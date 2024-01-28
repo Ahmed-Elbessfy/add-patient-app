@@ -1,5 +1,6 @@
 import { COUNTRY_CODE, Country } from "./CountryField.type";
 
+// Available Country options data
 export const CountriesDetails: { [key in COUNTRY_CODE]: Country } = {
   AD: {
     code: "AD",

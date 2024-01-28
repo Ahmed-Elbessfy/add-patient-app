@@ -3,6 +3,15 @@ import {
   ItemField,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
+/**
+ * Country field is a select field with specific fixed options
+ * it is used for Country fields and Phone Field
+ * Country field single option is an object contains country data ( type Country)
+ * Country field options is stored at CountryField.constants.ts file
+
+**/
+
+// Available countries code values
 export type COUNTRY_CODE =
   | "AD"
   | "AE"
@@ -244,6 +253,7 @@ export type COUNTRY_CODE =
   | "ZM"
   | "ZW";
 
+// Define the structure of a country option object
 export type Country = {
   code: COUNTRY_CODE;
   emoji: string;
@@ -253,11 +263,25 @@ export type Country = {
   dialCode: number;
 };
 
+/**
+ * Represents the configuration for a country field in a form configuration object.
+ * Extends the base ItemField type to extend field items properties and adding custom properties specific to country fields.
+ *
+ * @interface FieldCountry
+ * @extends {ItemField}
+ */
 export interface FieldCountry extends ItemField {
-  fieldType: "country";
-  defaultValue?: COUNTRY_CODE;
+  fieldType: "country"; // Type of the field (country)
+  defaultValue?: COUNTRY_CODE; // Default value for the country field. Used to set form default values object.
 }
 
+/**
+ * Represents the custom field configuration for a country field that is used to determine FieldCountry component expected props.
+ * Inherits properties from GeneralFieldConfig and includes if needed, additional properties specific to country fields.
+ *
+ * @interface FieldCountryComponentProps
+ * @extends {CustomFieldConfig}
+ */
 export type FieldCountryComponentProps = {
-  variant?: "default" | "flag-only";
+  variant?: "default" | "flag-only"; // set country content wither to render flag & full name (case of Country filed alone) or flag only (case of phone field)
 } & CustomFieldConfig;
