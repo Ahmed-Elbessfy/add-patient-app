@@ -78,47 +78,149 @@ Here we are listing available Items and each item available configuration proper
   - **xs**: set field original width on all screens that has size less than medium screen size It can be a **number less than or equal to 24**
   - **md**: set field width on all screens that has size more than medium screen size It can be a **number less than or equal to 24**
 
+  - ### Validation, Visibility & Disability rules configuration
 
-  ### validation, visibility & disability rules configuration
+    - **visibility & disability**:
 
-    Main idea is to pass a *field name* & *value* that in case it is current *field name*'s' value, apply a specific functionality. These rules are an array of objects and each object represents a rule need to be meet to apply the required functionality. Each Rule follows following syntax:
+      Main idea is to pass a *field name* & *value* that in case it is current *field name*'s' value, apply a specific functionality. These rules are an array of objects and each object represents a rule need to be meet to apply the required functionality. Each Rule follows following syntax:
 
-    ```Javascript
-      type Rule = {
-        field     // field name to watch its value
-        value     // value that if field name has this value, apply a specific functionality
-      }
-    ```
+      ```Javascript
+        type Rule = {
+          field     // field name to watch its value
+          value     // value that if field name has this value, apply a specific functionality
+        }
+      ```
 
-    For example:
+      For example:
 
-    ```Javascript
-      visibility: [{ field: "note_form", value: false }],
-    ```
+      ```Javascript
+        visibility: [{ field: "note_form", value: false }],
+      ```
 
-    this code express that if field with name `note_form` has value of `false` then show current field, otherwise hide it.
-    Now, let us explain what how to set for each rule type:
+      this code express that if field with name `note_form` has value of `false` then show current field, otherwise hide it.
+      Now, let us explain what how to set for each rule type:
 
-  - In case of *visibility*: if we need to be an item is visible only if a field with name `show_form` is `true`, then visibility configuration will be as following at field's object:
+      - In case of *visibility*: if we need to be an item is visible only if a field with name `show_form` is `true`, then visibility configuration will be as following at field's object:
 
-    ```Javascript
-      visibility: [{ field: "show_form", value: false }],
-    ```
+        ```Javascript
+          visibility: [{ field: "show_form", value: false }],
+        ```
 
-  - In case of *disability*: if we need to make item is disabled only if a field with name `unLimited` is `true`, then disability configuration will be as following at field/s object:
+      - In case of *disability*: if we need to make item is disabled only if a field with name `unLimited` is `true`, then disability configuration will be as following at field/s object:
 
-    ```Javascript
-      disability:[{field:"limit",value:true}]
-    ```
+        ```Javascript
+          disability:[{field:"limit",value:true}]
+        ```
+
+    - **validation**
+
+      With validation it is a bit different. Basically, validation requires a type of *validation* and *options* based on validation type. It accepts an array of objects and each object is a validation rule. Available validation types are:
+      `"required"
+      , "requiredIf"
+      , "earlier_than"
+      , "later_than"
+      , "time_earlier_than"
+      , "time_later_than"
+      , "hasPattern"
+      , "minimum"
+      , "maximum"
+      , "is_valid_phone"`
+
+      Allowed validation rules is following:
+
+      ```Javascript
+          <!-- Required Rule -->
+          <!-- Used if field is required  -->
+          validation: [{type:'required'}]
+
+          <!-- Required If -->
+          <!-- Used if current field is required based on a value of other field  -->
+          validation: [{
+            type: "requiredIf",
+            <!--
+                  - Required Conditions is a field name and value if meet, current field is required otherwise not required
+                  - Can have more than one required condition
+                -->
+            requiredConditions: [
+                {
+                  field: string of target field name,
+                  value: value if meet, current field is required,
+                },
+              ],
+            }]
+
+            <!-- Earlier Than Rule  -->
+            <!-- Used for Date earlier than a certain date limit  -->
+            validation: [{
+              type:"earlier_than",
+              date:"add 0 day"
+              <!--
+                  - Date is the limit than user needs to select a date before it
+                  - Date can have 2 value formats:
+                    - a certain date: MM/DD/YYYY for example: 25 Dec. 2023 will be "12/25/2023"
+                    - a certain time period started from today: "add/subtract number 
+                    millisecond/second/minute/hour/day/week/month/quarter/year"
+                    These following dayjs formats.
+                    For example, if we need to add 3 days from today, than value is : "add 3 day", 
+                    if we need a week past today, " subtract 1 week"
+                    and so on.
+              -->
+              }]
+
+              <!-- Later Than Rule -->
+              <!-- Used for Date later than a certain date limit  -->
+              validation: [{
+                type:"later_than",
+                date: "subtract 4 week"
+                <!-- Same configuration as date at Earlier Than Rule  -->
+              }]
+
+              <!-- Time Earlier Than Rule  -->
+              <!-- Used for Time earlier than a certain time  -->
 
 
-- ### Text Fields
+              <!-- Time Later Than Rule  -->
+              <!-- Used for Time later than a certain time  -->
 
-  - represents Text inputs that accepts strings
-  - Text Field has all
+
+              <!-- Has Pattern Rule -->
+              <!-- Used for text field that has a pattern, for emails & passwords for example -->
+              validation: [{
+                type:"hasPattern",
+                pattern: Regexp to validate field content. For example, this pattern can be used for emails: 
+                /^[A-Za-z0-9,-_.]{3,}@[A-Za-z0-9]{3,}\.[A-Za-z0-9]{3,}$/,
+              }]
+
+
+              <!-- Minimum Rule -->
+              <!-- Used for field that requires minimum values like Number fields -->
+              validation: [{
+                type:"minimum",
+                minimum: minimum limit number
+              }]
+
+
+              <!-- Maximum Rule -->
+              <!-- Used for field that requires maximum values like Number fields -->
+              validation: [{
+                type:"maximum",
+                maximum: maximum limit number
+              }]
+
+              <!-- Is Valid Phone Rule -->
+              <!-- Used ot validate phone numbers -->
+              validation: [{type:"is_valid_phone"}]
+      ```
+
+  - ### Text Fields
+
+    - represents Text inputs that accepts strings
+    - Text Field has all
+
+
 
 - Create a Form container component
 - Import Form component (Currently called AddAppointmentForm)
 - Pass Form Configuration object as props to Form component
 
-Now I think we need to know how to build 
+Now I think we need to know how to build
