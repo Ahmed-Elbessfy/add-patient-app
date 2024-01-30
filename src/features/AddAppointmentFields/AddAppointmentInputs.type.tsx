@@ -29,13 +29,23 @@ export type Customize<T, R> = Omit<T, keyof R> & R;
 
 // Validation field definition used for fields validation based on other fields' values
 type FieldValidationField = {
-  field: SchemaName; // Name of field value that its value is used for validation
+  field: string; // Name of field value that its value is used for validation
   fieldLabel: string; // Used for error messages translation
 };
 
 // Validation Rules type
 export type FieldValidation = {
-  type: string; // Type of validation (e.g., 'required', 'requiredIf', 'hasPattern')
+  type:
+    | "required"
+    | "requiredIf"
+    | "earlier_than"
+    | "later_than"
+    | "time_earlier_than"
+    | "time_later_than"
+    | "hasPattern"
+    | "minimum"
+    | "maximum"
+    | "is_valid_phone"; // Type of validation (e.g., 'required', 'requiredIf', 'hasPattern')
   date?: string; // Limit date for validation
   fields?: FieldValidationField[]; // Fields that their values is used for validation of current field
   pattern?: RegExp; // Regular expression for pattern validation
@@ -43,87 +53,6 @@ export type FieldValidation = {
   maximum?: number; // Maximum value for number validation
   requiredConditions?: Rule[]; // Fields that, based on its values, determine if the current field is required or not (used with 'requiredIf' rule)
 };
-
-// Allowed names to be used as Form State props
-export type SchemaName =
-  | "urgent_tag"
-  | "alert_form"
-  | "note_form"
-  | "patient_name"
-  | "new_patient.show_add_patient"
-  | "show_add_patient"
-  | "switch_input_method"
-  | "note_title"
-  | "doctor"
-  | "notified_doctor"
-  | "room"
-  | "status"
-  | "day"
-  | "start_time"
-  | "end_time"
-  | "alert_content"
-  | "type"
-  | "subtype"
-  | "created"
-  | "assistants"
-  | "description"
-  | "note_content"
-  | "diagnostic_fees"
-  | "collected_diagnostic_fees"
-  | "collected_diagnostic_fees_options"
-  | "collected_diagnostic_fees_subtype"
-  | "next_invoice_diagnostic_fees"
-  | "reminder_before"
-  | "reminder_before_interval"
-  | "new_patient.id"
-  | "new_patient.first_name"
-  | "new_patient.last_name"
-  | "new_patient.phone"
-  | "new_patient.phone_key"
-  | "new_patient.phone_number"
-  | "new_patient.secondary_phone"
-  | "new_patient.country"
-  | "new_patient.birthDate"
-  | "new_patient.age"
-  | "new_patient.dual_birthDate_age"
-  | "new_patient.title"
-  | "new_patient.gender"
-  | "new_patient.email"
-  | "new_patient.address"
-  | "new_patient.assigned_practitioner"
-  | "new_patient.price_list_group"
-  | "new_patient.patient_tags"
-  | "new_patient.martial_status"
-  | "new_patient.job"
-  | "new_patient.nationality"
-  | "new_patient.tax"
-  | "new_patient.national_id"
-  | "new_patient.patient_details"
-  | "new_patient.insurance_company"
-  | "new_patient.show_add_insurance_company"
-  | "new_patient.new_insurance_company.name"
-  | "new_patient.new_insurance_company.phone"
-  | "new_patient.new_insurance_company.limit"
-  | "new_patient.new_insurance_company.isUnlimited"
-  | "new_patient.new_insurance_company.discount"
-  | "new_patient.new_insurance_company.fullDiscount"
-  | "new_patient.new_insurance_company.type"
-  | "new_patient.new_insurance_company.group"
-  | "new_patient.new_insurance_company.crt"
-  | "new_patient.new_insurance_company.expiryDate"
-  | "new_patient.new_insurance_company.startMonth"
-  | "new_patient.new_insurance_company.requireApproval"
-  | "new_patient.referral_source"
-  | "new_patient.referral_details"
-  | "new_patient.referral_user"
-  | "new_patient.referral_patient"
-  | "new_patient.emergency_first_name"
-  | "new_patient.emergency_last_name"
-  | "new_patient.emergency_phone"
-  | "new_patient.emergency_secondary_phone"
-  | "new_patient.emergency_address"
-  | "new_patient.emergency_relationship"
-  | "new_patient_first_name";
 
 // Available field types
 type fieldTypeValues =
@@ -164,7 +93,7 @@ export type ItemField = {
   id: string; // Field id for selecting and, in some cases, to attach label to input
   testId: string; // Used to select items for testing
   fieldType: fieldTypeValues; // Determine which field type to render
-  name: SchemaName; // Name used to register field value to form state
+  name: string; // Name used to register field value to form state
   label?: string; // Label for all fields and text for checkbox fields
   placeholder?: string;
   validation: FieldValidation[]; // Validation rules
