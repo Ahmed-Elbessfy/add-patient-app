@@ -196,23 +196,43 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
 
   const renderFormItems = (item: ItemForm) => {
     return (
-      <div
-        style={{
-          // Center form Content
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: ".5rem .5rem 0",
-        }}
-      >
+      <>
         {item.visibility ? (
           isMatched(item.visibility) && (
-            <AddAppointmentSection renderItems={renderItems} {...item} />
+            <div
+              style={{
+                background: "rgba(0, 99, 193, 0.03)",
+                boxShadow: "rgba(0, 99, 193, 0.4) 0px 0px 6px",
+                borderRadius: "8px",
+                // Center form Content
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: ".5rem .5rem 0",
+                marginBottom: "2rem",
+              }}
+            >
+              <AddAppointmentSection renderItems={renderItems} {...item} />
+            </div>
           )
         ) : (
-          <AddAppointmentSection renderItems={renderItems} {...item} />
+          <div
+            style={{
+              background: "rgba(0, 99, 193, 0.03)",
+              boxShadow: "rgba(0, 99, 193, 0.4) 0px 0px 6px",
+              borderRadius: "8px",
+              // Center form Content
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              padding: ".5rem .5rem 0",
+              marginBottom: "2rem",
+            }}
+          >
+            <AddAppointmentSection renderItems={renderItems} {...item} />
+          </div>
         )}
-      </div>
+      </>
     );
   };
 
