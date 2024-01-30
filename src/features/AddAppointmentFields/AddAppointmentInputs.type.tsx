@@ -13,6 +13,7 @@ import { FieldCheckbox } from "../CheckboxField/CheckboxField.type";
 import { FieldCountry } from "../CountryField/CountryField.type";
 import { FieldDual } from "../DualField/DualField.type";
 import { FieldPhone } from "../PhoneField/PhoneField.type";
+import { FieldID } from "../IDField/IDField.type";
 
 // Utility type to customize a type by excluding certain properties
 // this was for approaching another type definition method and can be used later
@@ -57,6 +58,7 @@ export type FieldValidation = {
 // Available field types
 type fieldTypeValues =
   | "text"
+  | "idField"
   | "phone"
   | "number"
   | "select"
@@ -113,6 +115,7 @@ export type ItemField = {
 // to fullfil this requirement, components needs properties from each Field type based on rendered type
 export type FormFieldConfig =
   | FieldText
+  | FieldID
   | FieldPhone
   | FieldNumber
   | FieldSelect

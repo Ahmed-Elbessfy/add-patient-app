@@ -159,7 +159,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         children: [
           {
             category: "field",
-            fieldType: "text",
+            fieldType: "idField",
             id: "new_patient.id",
             testId: "new_patient.id",
             name: "new_patient.id",

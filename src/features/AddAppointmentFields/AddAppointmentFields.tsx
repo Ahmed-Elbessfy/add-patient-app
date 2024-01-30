@@ -10,6 +10,7 @@ import { FieldTimeComponentProps } from "../TimeField/TimeField.type";
 import { FieldCheckboxComponentProps } from "../CheckboxField/CheckboxField.type";
 import { FieldCountryComponentProps } from "../CountryField/CountryField.type";
 import { FieldDualComponentProps } from "../DualField/DualField.type";
+import { FieldIDComponentProps } from "../IDField/IDField.type";
 
 import TextField from "../TextField/TextField";
 import NumberField from "../NumberField/NumberField";
@@ -23,6 +24,7 @@ import CheckboxField from "../CheckboxField/CheckboxField";
 import CountryField from "../CountryField/CountryField";
 import PhoneField from "../PhoneField/PhoneField";
 import DualField from "../DualField/DualField";
+import IDField from "../IDField/IDField";
 
 import { GeneralFieldConfig } from "./AddAppointmentInputs.type";
 import { FieldPhoneComponentProps } from "../PhoneField/PhoneField.type";
@@ -55,8 +57,6 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
   const dualProps = { ...props, control };
   return (
     <>
-      {/* Each field is rendered based on type internally to prevent typescript errors at field component  */}
-
       {/* Text Input  */}
       {fieldType === "text" && (
         <TextField {...({ ...inputProps } as FieldTextComponentProps)} />
@@ -117,6 +117,11 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       {/* Dual Field  */}
       {fieldType === "dualField" && (
         <DualField {...(dualProps as FieldDualComponentProps)} />
+      )}
+
+      {/* ID Field  */}
+      {fieldType === "idField" && (
+        <IDField {...(inputProps as FieldIDComponentProps)} />
       )}
 
       {/* To prevent doubling error messages in case of using dual field  */}

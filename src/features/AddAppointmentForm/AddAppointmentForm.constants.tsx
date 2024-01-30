@@ -15,6 +15,7 @@ export const INPUT_TYPES = {
   INPUT_SWITCH: "switch",
   INPUT_CHECKBOX: "checkbox",
   INPUT_PHONE: "phone",
+  INPUT_ID: "idField",
 };
 
 export const VALIDATION_RULE_TYPES = {
@@ -141,6 +142,7 @@ export const INPUT_VALIDATION_TYPES = {
   [INPUT_TYPES.INPUT_SWITCH]: yup.boolean(),
   [INPUT_TYPES.INPUT_CHECKBOX]: yup.boolean(),
   [INPUT_TYPES.INPUT_PHONE]: yup.string(),
+  [INPUT_TYPES.INPUT_ID]: yup.string(),
 };
 
 /**********************************************************************
