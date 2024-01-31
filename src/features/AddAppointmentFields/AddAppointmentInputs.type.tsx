@@ -100,7 +100,7 @@ export type ItemField = {
   placeholder?: string;
   validation: FieldValidation[]; // Validation rules
   visibility?: Rule[]; // Visibility rules
-  disability?: Rule[]; // Disability rules
+  disability?: Rule[] | "alwaysDisabled"; // Disability rules or allow permanent disability
   prefix?: string; // Text or icon added before field (used with addonBefore)
   suffix?: string; // Text or icon added after field (used with addonAfter)
   // Design Values

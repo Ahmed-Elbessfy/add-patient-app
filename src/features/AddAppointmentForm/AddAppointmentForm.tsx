@@ -163,7 +163,11 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
 
     const fieldProps = {
       ...field,
-      isDisabled: disability ? isMatched(disability) : false,
+      isDisabled: disability
+        ? disability === "alwaysDisabled"
+          ? true
+          : isMatched(disability)
+        : false,
       control,
     };
     return (
