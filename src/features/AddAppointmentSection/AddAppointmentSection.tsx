@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Row } from "antd";
+import { Col, Row } from "antd";
 import {
   Item,
   ItemForm,
@@ -11,15 +11,23 @@ type Props = (ItemLayout | ItemForm) & {
 };
 
 const AddAppointmentSection: FC<Props> = (props: Props) => {
-  const { children, renderItems } = props;
+  const { type, xs, md, justify, children, renderItems } = props;
 
-  return (
-    <Row
-      gutter={16}
-      align="middle"
-      justify={props.justify}
-      style={{ width: "100%" }}
-    >
+  return type === "fieldGroup" ? (
+    // Field Group layout
+    <Col xs={xs} md={md}>
+      <Row
+        gutter={0}
+        align="middle"
+        justify={justify}
+        style={{ width: "100%" }}
+      >
+        {renderItems(children)}
+      </Row>
+    </Col>
+  ) : (
+    // hStack & Box layout
+    <Row gutter={16} align="middle" justify={justify} style={{ width: "100%" }}>
       {renderItems(children)}
     </Row>
   );

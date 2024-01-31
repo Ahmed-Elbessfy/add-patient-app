@@ -162,7 +162,7 @@ export type CustomFieldConfig = Omit<GeneralFieldConfig, "name" | "control"> & {
 // Layout is a wrapper of fields
 
 // Possible Layout Types
-type LayoutType = "hStack" | "box";
+type LayoutType = "hStack" | "box" | "fieldGroup";
 
 // Layout possible children
 type ChildrenType =
@@ -174,7 +174,6 @@ type ChildrenType =
 export type LayoutBase = {
   category: "layout"; // Determine item is layout category
   type: LayoutType; // Determine which layout type to render
-  children: ChildrenType[]; // Accepted children types
   // Design Values
   align?: // Vertical alignment and based on screens size
   | "top"
@@ -210,15 +209,24 @@ export type LayoutBase = {
 
 export interface LayoutHStack extends LayoutBase {
   type: "hStack";
+  children: ChildrenType[]; // Accepted children types
 }
 
 export interface LayoutBox extends LayoutBase {
   type: "box";
+  children: ChildrenType[]; // Accepted children types
   // padding: number;
 }
 
+export interface LayoutFieldGroup extends LayoutBase {
+  type: "fieldGroup";
+  children: FormFieldConfig[];
+  xs: number;
+  md: number;
+}
+
 // Union to join possible layout types
-export type ItemLayout = LayoutHStack | LayoutBox;
+export type ItemLayout = LayoutHStack | LayoutBox | LayoutFieldGroup;
 
 /*
 **********************************************************
