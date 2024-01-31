@@ -5,18 +5,21 @@ import { FieldTextComponentProps } from "./TextField.type";
 
 const testProps: FieldTextComponentProps = {
   fieldType: "text",
-  label: "apInputs.patient_name.label",
-  placeholder: "apInputs.patient_name.placeholder",
+  label: "Text Label",
+  placeholder: "Text Placeholder",
   isDisabled: false,
   value: "patient name",
   id: "id",
   testId: "testId",
   onChange: () => {},
 };
+
 describe("TextField component", () => {
   test("renders without errors", () => {
     render(<TextField {...testProps} />);
+    expect(screen.getByText("Text Label")).toBeInTheDocument();
     expect(screen.getByTestId("testId")).toBeInTheDocument();
+    expect(screen.getByTestId("testId")).toHaveAttribute("placeholder");
   });
 
   test("handles onChange event", () => {
