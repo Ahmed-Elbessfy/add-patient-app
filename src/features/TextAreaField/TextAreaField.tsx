@@ -21,7 +21,7 @@ const TextAreaField: FC<FieldTextAreaComponentProps> = (props) => {
 
   return (
     <>
-      {label && <label>{t(label)}</label>}
+      <label>{label && t(label)}</label>
 
       <TextArea
         placeholder={placeholder && t(placeholder)}

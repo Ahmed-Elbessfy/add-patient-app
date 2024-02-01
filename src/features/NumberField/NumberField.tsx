@@ -21,7 +21,7 @@ const NumberField: FC<FieldNumberComponentProps> = (props) => {
 
   return (
     <>
-      {label && <label>{t(label)}</label>}
+      <label>{label && t(label)}</label>
 
       <InputNumber
         placeholder={placeholder && t(placeholder)}

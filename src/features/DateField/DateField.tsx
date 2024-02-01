@@ -32,7 +32,7 @@ const DateField: FC<FieldDateComponentProps> = (props) => {
 
   return (
     <>
-      {label && <label>{t(label)}</label>}
+      <label>{label && t(label)}</label>
 
       <DatePicker
         format={format}

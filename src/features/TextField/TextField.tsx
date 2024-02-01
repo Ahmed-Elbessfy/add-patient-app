@@ -20,8 +20,7 @@ const TextField: FC<FieldTextComponentProps> = (props) => {
 
   return (
     <>
-      {label && <label>{t(label)}</label>}
-
+      <label>{label && t(label)}</label>
       <Input
         id={id}
         data-testid={testId}

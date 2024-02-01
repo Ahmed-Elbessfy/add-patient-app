@@ -23,7 +23,7 @@ const TimeField: FC<FieldTimeComponentProps> = (props) => {
   return (
     <>
       <>
-        {label && <label>{t(label)}</label>}
+        <label>{label && t(label)}</label>
 
         <TimePicker
           format={format}

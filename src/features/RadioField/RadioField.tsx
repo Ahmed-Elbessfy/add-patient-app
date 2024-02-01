@@ -10,7 +10,7 @@ const RadioField: FC<FieldRadioComponentProps> = (props) => {
 
   return (
     <>
-      {label && <label>{t(label)}</label>}
+      <label>{label && t(label)}</label>
 
       <Radio.Group
         disabled={isDisabled}

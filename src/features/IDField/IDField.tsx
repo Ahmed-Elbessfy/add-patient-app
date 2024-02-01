@@ -25,7 +25,7 @@ const IDField: FC<FieldIDComponentProps> = (props) => {
 
   return (
     <div id={id} data-testid={testId}>
-      {label && <label>{t(label)}</label>}
+      <label>{label && t(label)}</label>
 
       <Space.Compact style={{ width: "100%" }}>
         {/* Fixed ID fetched and set from Server  */}

@@ -11,7 +11,7 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
 
   return (
     <>
-      {label && <label>{t(label)}</label>}
+      <label>{label && t(label)}</label>
 
       <Select
         placeholder={placeholder && t(placeholder)}

@@ -26,7 +26,7 @@ const PhoneField: FC<FieldPhoneComponentProps> = (props) => {
 
   return (
     <div id={id} data-testid={testId}>
-      {label && <label>{t(label)}</label>}
+      <label>{label && t(label)}</label>
       <Space.Compact style={{ width: "100%" }}>
         <div style={{ width: "85px" }}>
           <CountryField
