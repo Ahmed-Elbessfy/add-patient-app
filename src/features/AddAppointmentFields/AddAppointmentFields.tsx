@@ -9,6 +9,7 @@ import { FieldDateComponentProps } from "../DateField/DateField.type";
 import { FieldTimeComponentProps } from "../TimeField/TimeField.type";
 import { FieldCheckboxComponentProps } from "../CheckboxField/CheckboxField.type";
 import { FieldCountryComponentProps } from "../CountryField/CountryField.type";
+import { FieldPhoneComponentProps } from "../PhoneField/PhoneField.type";
 import { FieldDualComponentProps } from "../DualField/DualField.type";
 import { FieldIDComponentProps } from "../IDField/IDField.type";
 
@@ -27,7 +28,6 @@ import DualField from "../DualField/DualField";
 import IDField from "../IDField/IDField";
 
 import { GeneralFieldConfig } from "./AddAppointmentInputs.type";
-import { FieldPhoneComponentProps } from "../PhoneField/PhoneField.type";
 import { useController } from "react-hook-form";
 import ErrorMsg from "../../patterns/ErrorMsg/ErrorMsg";
 

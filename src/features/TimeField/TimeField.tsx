@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { TimePicker } from "antd";
 import dayjs from "dayjs";
 import type { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
+import { StyledTimeField } from "./TimeField.styled";
 import { FieldTimeComponentProps } from "./TimeField.type";
 import { formatDateTime } from "../../utils/addAppointUtils";
 
@@ -25,7 +25,7 @@ const TimeField: FC<FieldTimeComponentProps> = (props) => {
       <>
         <label>{label && t(label)}</label>
 
-        <TimePicker
+        <StyledTimeField
           format={format}
           placeholder={placeholder && t(placeholder)}
           status={status}

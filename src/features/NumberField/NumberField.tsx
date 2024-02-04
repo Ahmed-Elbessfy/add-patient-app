@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { InputNumber } from "antd";
 import { useTranslation } from "react-i18next";
 import { FieldNumberComponentProps } from "./NumberField.type";
+import { StyledNumberField } from "./NumberField.styled";
 
 const NumberField: FC<FieldNumberComponentProps> = (props) => {
   const {
@@ -23,7 +23,7 @@ const NumberField: FC<FieldNumberComponentProps> = (props) => {
     <>
       <label>{label && t(label)}</label>
 
-      <InputNumber
+      <StyledNumberField
         placeholder={placeholder && t(placeholder)}
         status={status}
         disabled={isDisabled}
@@ -32,7 +32,6 @@ const NumberField: FC<FieldNumberComponentProps> = (props) => {
         addonBefore={prefix}
         min={min}
         max={max}
-        style={{ width: "100%" }}
         // null is required by InputNumber onChange method
         onChange={(value: number | null) => {
           // only submit if field is not empty - value not null

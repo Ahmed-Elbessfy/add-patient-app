@@ -1,8 +1,11 @@
 import { FC, useState } from "react";
-import { Switch } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
-import { FieldDualComponentProps } from "./DualField.type";
 import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
+import { FieldDualComponentProps } from "./DualField.type";
+import {
+  StyledDualFieldWrapper,
+  StyledSwitchDualField,
+} from "./DualField.styled";
 
 const DualField: FC<FieldDualComponentProps> = (props) => {
   const { testId, fieldsConfig, control } = props;
@@ -14,7 +17,7 @@ const DualField: FC<FieldDualComponentProps> = (props) => {
 
   return (
     <div style={{ position: "relative" }}>
-      <Switch
+      <StyledSwitchDualField
         data-testid={testId}
         onChange={() => {
           if (shownField === firstField) setShownField(secondField);
@@ -23,7 +26,6 @@ const DualField: FC<FieldDualComponentProps> = (props) => {
         checkedChildren={<CalendarOutlined />}
         unCheckedChildren={<CalendarOutlined />}
         size="small"
-        style={{ position: "absolute", right: "4px", top: "4px", zIndex: 2 }}
       />
 
       {/* Rendered Fields  */}
@@ -33,9 +35,9 @@ const DualField: FC<FieldDualComponentProps> = (props) => {
         const childProps = { ...field, control, isDisabled: false };
         return (
           shownField === field.name && (
-            <div style={{ width: "100%" }} key={ind}>
+            <StyledDualFieldWrapper key={ind}>
               <AddAppointmentFields {...childProps} />
-            </div>
+            </StyledDualFieldWrapper>
           )
         );
       })}

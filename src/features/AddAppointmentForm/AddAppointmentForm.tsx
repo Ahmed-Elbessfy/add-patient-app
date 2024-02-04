@@ -14,6 +14,13 @@ import { UploadOutlined } from "@ant-design/icons";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
+import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
+import {
+  StyledDividerText,
+  StyledForm,
+  StyledNestedForm,
+  StyledTitle,
+} from "./AddAppointmentForm.styled";
 import {
   configValidation,
   setDefaultValues,
@@ -33,10 +40,6 @@ import {
   UIDivider,
 } from "../AddAppointmentFields/AddAppointmentInputs.type";
 import AddAppointmentSection from "../AddAppointmentSection/AddAppointmentSection";
-// import DualField from "../DualField/DualField";
-// import { DualFieldConfig } from "../DualField/DualField.type";
-import { AddAppointmentFormProps } from "./AddAppointmentForm.types";
-import { StyledDividerText, StyledTitle } from "./AddAppointmentForm.styled";
 
 const { Text, Link } = Typography;
 
@@ -203,38 +206,14 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
       <>
         {item.visibility ? (
           isMatched(item.visibility) && (
-            <div
-              style={{
-                background: "rgba(0, 99, 193, 0.03)",
-                boxShadow: "rgba(0, 99, 193, 0.4) 0px 0px 6px",
-                borderRadius: "8px",
-                // Center form Content
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                padding: ".5rem .5rem 0",
-                marginBottom: "2rem",
-              }}
-            >
+            <StyledNestedForm>
               <AddAppointmentSection renderItems={renderItems} {...item} />
-            </div>
+            </StyledNestedForm>
           )
         ) : (
-          <div
-            style={{
-              background: "rgba(0, 99, 193, 0.03)",
-              boxShadow: "rgba(0, 99, 193, 0.4) 0px 0px 6px",
-              borderRadius: "8px",
-              // Center form Content
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              padding: ".5rem .5rem 0",
-              marginBottom: "2rem",
-            }}
-          >
+          <StyledNestedForm>
             <AddAppointmentSection renderItems={renderItems} {...item} />
-          </div>
+          </StyledNestedForm>
         )}
       </>
     );
@@ -302,15 +281,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
         </Button>
       </Upload>
       {/* Center form Content  */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        {renderItems(fieldsConfig)}
-      </div>
+      <StyledForm>{renderItems(fieldsConfig)}</StyledForm>
       <Button type="primary" htmlType="submit">
         submit
       </Button>

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { FieldSwitchComponentProps } from "./SwitchField.type";
+import { StyledSwitchField } from "./SwitchField.styled";
 
 const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
   const { onChange, isDisabled, checkedChildren, unCheckedChildren, value } =
@@ -11,7 +11,7 @@ const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
 
   return (
     <>
-      <Switch
+      <StyledSwitchField
         disabled={isDisabled}
         checkedChildren={t(checkedChildren)}
         unCheckedChildren={t(unCheckedChildren)}
@@ -19,7 +19,6 @@ const SwitchField: FC<FieldSwitchComponentProps> = (props) => {
         onChange={(checked: boolean) => {
           onChange(checked);
         }}
-        style={{ marginBottom: "9px" }} // center switch field vertically
       />
     </>
   );

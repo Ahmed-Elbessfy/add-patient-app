@@ -1,10 +1,11 @@
 import { FC } from "react";
-import { DatePicker, DatePickerProps } from "antd";
+import { DatePickerProps } from "antd";
 import dayjs from "dayjs";
 import type { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
 import { formatDateTime } from "../../utils/addAppointUtils";
 import { FieldDateComponentProps } from "./DateField.type";
+import { StyledDateField } from "./DateField.styled";
 
 const DateField: FC<FieldDateComponentProps> = (props) => {
   const {
@@ -34,7 +35,7 @@ const DateField: FC<FieldDateComponentProps> = (props) => {
     <>
       <label>{label && t(label)}</label>
 
-      <DatePicker
+      <StyledDateField
         format={format}
         placeholder={placeholder && t(placeholder)}
         status={status}

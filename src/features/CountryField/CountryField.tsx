@@ -1,8 +1,9 @@
 import { FC } from "react";
-import { FieldCountryComponentProps } from "./CountryField.type";
 import { Select } from "antd";
 import { useTranslation } from "react-i18next";
+import { FieldCountryComponentProps } from "./CountryField.type";
 import { CountriesDetails } from "./CountryField.constants";
+import { StyledCountryField } from "./CountryField.styled";
 
 const CountryField: FC<FieldCountryComponentProps> = (props) => {
   const { label, placeholder, onChange, status, isDisabled, value, variant } =
@@ -13,13 +14,12 @@ const CountryField: FC<FieldCountryComponentProps> = (props) => {
     <>
       {label && <label>{t(label)}</label>}
 
-      <Select
+      <StyledCountryField
         placeholder={placeholder && t(placeholder)}
         status={status}
         disabled={isDisabled}
         onChange={(value: string) => onChange(value)}
         value={value as string}
-        style={{ width: "100%" }}
       >
         {Object.values(CountriesDetails).map((country) => {
           return (
@@ -30,7 +30,7 @@ const CountryField: FC<FieldCountryComponentProps> = (props) => {
             </Select.Option>
           );
         })}
-      </Select>
+      </StyledCountryField>
     </>
   );
 };

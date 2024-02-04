@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Select } from "antd";
 import { useTranslation } from "react-i18next";
 import { FieldSelectComponentProps } from "./SelectField.type";
+import { StyledSelectField } from "./SelectField.styled";
 
 const SelectField: FC<FieldSelectComponentProps> = (props) => {
   const { label, placeholder, onChange, status, isDisabled, value, options } =
@@ -13,7 +14,7 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
     <>
       <label>{label && t(label)}</label>
 
-      <Select
+      <StyledSelectField
         placeholder={placeholder && t(placeholder)}
         status={status}
         disabled={isDisabled}
@@ -29,7 +30,7 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
               </Select.Option>
             );
           })}
-      </Select>
+      </StyledSelectField>
     </>
   );
 };

@@ -6,6 +6,11 @@ import CountryField from "../CountryField/CountryField";
 import { FieldPhoneComponentProps } from "./PhoneField.type";
 
 import { getCountryCallingCode, CountryCode } from "libphonenumber-js";
+import {
+  StyleSpaceCompact,
+  StyledPhoneCountryWrapper,
+  StyledPhoneNumberWrapper,
+} from "./PhoneField.styled";
 
 const PhoneField: FC<FieldPhoneComponentProps> = (props) => {
   const { label, id, testId, onChange, status } = props;
@@ -27,8 +32,8 @@ const PhoneField: FC<FieldPhoneComponentProps> = (props) => {
   return (
     <div id={id} data-testid={testId}>
       <label>{label && t(label)}</label>
-      <Space.Compact style={{ width: "100%" }}>
-        <div style={{ width: "85px" }}>
+      <StyleSpaceCompact>
+        <StyledPhoneCountryWrapper>
           <CountryField
             fieldType="country"
             onChange={setCode}
@@ -36,8 +41,8 @@ const PhoneField: FC<FieldPhoneComponentProps> = (props) => {
             isDisabled={false}
             variant="flag-only"
           />
-        </div>
-        <div style={{ width: "100%" }}>
+        </StyledPhoneCountryWrapper>
+        <StyledPhoneNumberWrapper>
           <Input
             type="tel"
             placeholder="01xxxxxxxxx"
@@ -45,8 +50,8 @@ const PhoneField: FC<FieldPhoneComponentProps> = (props) => {
             value={number}
             onChange={(e) => setNumber(e.target.value)}
           />
-        </div>
-      </Space.Compact>
+        </StyledPhoneNumberWrapper>
+      </StyleSpaceCompact>
     </div>
   );
 };

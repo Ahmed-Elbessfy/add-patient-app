@@ -1,9 +1,7 @@
 import { ChangeEvent, FC } from "react";
-import { Input } from "antd";
 import { useTranslation } from "react-i18next";
+import { StyledTextAreaField } from "./TextAreaField.styled";
 import { FieldTextAreaComponentProps } from "./TextAreaField.type";
-
-const { TextArea } = Input;
 
 const TextAreaField: FC<FieldTextAreaComponentProps> = (props) => {
   const {
@@ -23,7 +21,7 @@ const TextAreaField: FC<FieldTextAreaComponentProps> = (props) => {
     <>
       <label>{label && t(label)}</label>
 
-      <TextArea
+      <StyledTextAreaField
         placeholder={placeholder && t(placeholder)}
         status={status}
         disabled={isDisabled}
