@@ -90,7 +90,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         name: "show_add_patient",
         checkedChildren: "hide",
         unCheckedChildren: "show",
-        defaultChecked: true,
+        defaultChecked: false,
         validation: [],
         disability: [{ field: "switch_input_method", value: true }],
       },
