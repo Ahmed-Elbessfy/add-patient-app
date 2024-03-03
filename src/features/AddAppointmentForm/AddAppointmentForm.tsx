@@ -63,16 +63,43 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   // get current language for content direction
   const { t, i18n } = useTranslation("translation");
 
-  // configure if field is disabled or not
-  const isMatched = (rules: Rule[]) => {
-    const [...currentValues] = watch(rules.map((rule) => rule.field));
-
-    // if any condition met, disable field
-    for (let i = 0; i < currentValues.length; i++) {
-      if (currentValues[i] === rules[i].value) return true;
+  const configDisability = (itemData: FormFieldConfig) => {
+    // Check if disability configuration exists and directly return its value if it's a boolean
+    if (typeof itemData.disability === "boolean") {
+      return itemData.disability;
     }
-    // No condition is meet so don't disable field
+
+    // If disability configuration is an array of rules
+    if (Array.isArray(itemData.disability)) {
+      // Use map and some to check if any condition is fulfilled
+      const isDisabled = itemData.disability.some(
+        (rule: Rule) => watch(rule.field) === rule.value
+      );
+      return isDisabled;
+    }
+
+    // Default to false if disability is not defined or not a boolean/array
     return false;
+  };
+
+  // conditional visibility configuration
+  const configVisibility = (itemData: Item) => {
+    // Check if visibility configuration exists and directly return its value if it's a boolean
+    if (typeof itemData.visibility === "boolean") {
+      return itemData.visibility;
+    }
+
+    // If visibility configuration is an array of rules
+    if (Array.isArray(itemData.visibility)) {
+      // Use map and every to check if all conditions are fulfilled
+      const allConditionsMet = itemData.visibility.every(
+        (rule: Rule) => watch(rule.field) === rule.value
+      );
+      return allConditionsMet;
+    }
+
+    // Default to true if visibility is neither a boolean nor an array
+    return true;
   };
 
   const renderUIItems = (item: ItemUI) => {
@@ -82,13 +109,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
         const { level, title } = item as UITitle;
         return (
           <Col span={24}>
-            {item.visibility ? (
-              isMatched(item.visibility) && (
-                <StyledTitle level={level}>
-                  <strong>{t(title)}</strong>
-                </StyledTitle>
-              )
-            ) : (
+            {configVisibility(item) && (
               <StyledTitle level={level}>
                 <strong>{t(title)}</strong>
               </StyledTitle>
@@ -99,26 +120,18 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
       // Text UI Item
       case "text": {
         const { text } = item as UIText;
-        return item.visibility ? (
-          isMatched(item.visibility) && <Text>{t(text)}</Text>
-        ) : (
-          <Text>{t(text)}</Text>
-        );
+        return configVisibility(item) && <Text>{t(text)}</Text>;
       }
       // Link UI Item
       case "link": {
         const { text, url } = item as UILink;
-        return item.visibility ? (
-          isMatched(item.visibility) && <Link href={url}>{t(text)}</Link>
-        ) : (
-          <Link href={url}>{t(text)}</Link>
-        );
+        return configVisibility(item) && <Link href={url}>{t(text)}</Link>;
       }
       // Alert UI Item
       case "alert": {
         const { description, message, alertType, showIcon } = item as UIAlert;
-        return item.visibility ? (
-          isMatched(item.visibility) && (
+        return (
+          configVisibility(item) && (
             <Alert
               message={t(message)}
               description={t(description)}
@@ -126,73 +139,63 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
               showIcon={showIcon}
             />
           )
-        ) : (
-          <Alert
-            message={t(message)}
-            description={t(description)}
-            type={alertType}
-            showIcon={showIcon}
-          />
         );
       }
       // Divider UI Item
       case "divider": {
         const { text, orientation, direction } = item as UIDivider;
-        return item.visibility ? (
-          isMatched(item.visibility) && (
+        return (
+          configVisibility(item) && (
             <Divider type={direction} orientation={orientation}>
               <StyledDividerText>{t(text)}</StyledDividerText>
             </Divider>
           )
-        ) : (
-          <Divider type={direction} orientation={orientation}>
-            <StyledDividerText>{t(text)}</StyledDividerText>
-          </Divider>
         );
       }
     }
   };
 
   const renderFieldItems = (item: FormFieldConfig) => {
-    const {
-      category,
-      visibility,
-      disability,
-      defaultValue,
-      validation,
-      dataSource,
-      md,
-      xs,
-      ...field
-    } = item;
+    const { dataSource } = item;
 
     // set properties values from backend
     if (dataSource) {
       const { propName, dataSourceKey } = dataSource;
 
       // check that data source data exists in data source object
-      if (!dataSourceObject[dataSourceKey]) {
+      if (!(dataSourceKey in dataSourceObject)) {
         throw Error("Key does not exists in data source object");
       }
 
       // check that prop name exists in item properties
-      if (propName in field) {
+      if (propName in item) {
+        // console.log(dataSourceObject[dataSourceKey]);
         // set selected property value
-        field[propName] = dataSourceObject[dataSourceKey];
+        item[propName] = dataSourceObject[dataSourceKey];
+        // console.log(propName, item[propName]);
       } else {
         throw Error("No such property name in current field configuration");
       }
     }
 
+    // extract field data
+    const {
+      category,
+      visibility,
+      disability,
+      defaultValue,
+      validation,
+      md,
+      xs,
+      ...field
+    } = item;
+
     const fieldProps = {
       ...field,
-      isDisabled: disability
-        ? disability === "alwaysDisabled"
-          ? true
-          : isMatched(disability)
-        : false,
+      isDisabled: configDisability(item),
       control,
     };
+
     return (
       <Col
         xs={xs}
@@ -201,22 +204,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
           textAlign: "start",
         }}
       >
-        {/* in case there is a visibility rule:
-            - check if it is fulfilled first, if yse render field
-            - if not render field normally
-        */}
-
-        {visibility ? (
-          isMatched(visibility) && (
-            <>
-              <AddAppointmentFields {...fieldProps} />
-            </>
-          )
-        ) : (
-          <>
-            <AddAppointmentFields {...fieldProps} />
-          </>
-        )}
+        {configVisibility(item) && <AddAppointmentFields {...fieldProps} />}
       </Col>
     );
   };
@@ -224,13 +212,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   const renderFormItems = (item: ItemForm) => {
     return (
       <>
-        {item.visibility ? (
-          isMatched(item.visibility) && (
-            <StyledNestedForm>
-              <AddAppointmentSection renderItems={renderItems} {...item} />
-            </StyledNestedForm>
-          )
-        ) : (
+        {configVisibility(item) && (
           <StyledNestedForm>
             <AddAppointmentSection renderItems={renderItems} {...item} />
           </StyledNestedForm>
@@ -240,12 +222,10 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   };
 
   const renderLayoutItems = (item: ItemLayout) => {
-    return item.visibility ? (
-      isMatched(item.visibility) && (
+    return (
+      configVisibility(item) && (
         <AddAppointmentSection renderItems={renderItems} {...item} />
       )
-    ) : (
-      <AddAppointmentSection renderItems={renderItems} {...item} />
     );
   };
   // render items recursively config

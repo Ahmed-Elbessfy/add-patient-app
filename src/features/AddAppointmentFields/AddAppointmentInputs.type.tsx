@@ -99,9 +99,9 @@ export type ItemField = {
   label?: string; // Label for all fields and text for checkbox fields
   placeholder?: string;
   validation: FieldValidation[]; // Validation rules
-  visibility?: Rule[]; // Visibility rules
-  disability?: Rule[] | "alwaysDisabled"; // Disability rules or allow permanent disability
-  prefix?: string; // Text or icon added before field (used with addonBefore)
+  visibility?: Rule[] | boolean; // Visibility rules or get a permanent value
+  disability?: Rule[] | boolean; // Disability rules or allow permanent disability
+  prefix?: string; // Text or icon added before field (used with addonBefore)N
   suffix?: string; // Text or icon added after field (used with addonAfter)
   dataSource?: {
     propName: string;
