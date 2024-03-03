@@ -46,6 +46,7 @@ const { Text, Link } = Typography;
 const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   fieldsConfig,
   onSubmit,
+  dataSourceObject,
 }) => {
   // Schema Config
   const shape: yup.ObjectShape = {};
@@ -159,10 +160,29 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
       disability,
       defaultValue,
       validation,
+      dataSource,
       md,
       xs,
       ...field
     } = item;
+
+    // set properties values from backend
+    if (dataSource) {
+      const { propName, dataSourceKey } = dataSource;
+
+      // check that data source data exists in data source object
+      if (!dataSourceObject[dataSourceKey]) {
+        throw Error("Key does not exists in data source object");
+      }
+
+      // check that prop name exists in item properties
+      if (propName in field) {
+        // set selected property value
+        field[propName] = dataSourceObject[dataSourceKey];
+      } else {
+        throw Error("No such property name in current field configuration");
+      }
+    }
 
     const fieldProps = {
       ...field,

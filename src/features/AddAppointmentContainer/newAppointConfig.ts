@@ -1218,6 +1218,10 @@ export const addAppointmentFieldsConfig: Item[] = [
           { value: "ahmed", label: "apInputs.doctor.options.ahmed" },
           { value: "taha", label: "apInputs.doctor.options.taha" },
         ],
+        dataSource: {
+          propName: "options",
+          dataSourceKey: "doctorsList",
+        },
         validation: [
           {
             type: "requiredIf",
