@@ -47,6 +47,7 @@ const dataSource: DataSource = {
   }),
   roomsList: ["Room 1", "Room 2", "Room 3", "Room 4"],
   allowTemporaryPatient: true,
+  referenceIDValue: "87000",
 };
 
 const AddAppointmentContainer: FC = () => {

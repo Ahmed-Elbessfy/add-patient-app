@@ -58,7 +58,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   const { control, handleSubmit, watch } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
-    defaultValues: setDefaultValues(fieldsConfig, {}),
+    defaultValues: setDefaultValues(fieldsConfig, {}, dataSourceObject),
   });
 
   // get current language for content direction

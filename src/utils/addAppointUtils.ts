@@ -82,7 +82,8 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
 // build default values Object
 export const setDefaultValues = (
   items: Item[],
-  defaultValues: DefaultValueObjectFormat = {}
+  defaultValues: DefaultValueObjectFormat = {},
+  dataSourceObject: DataSource
 ) => {
   items.forEach((item) => {
     if (item.category === "field") {
@@ -95,9 +96,23 @@ export const setDefaultValues = (
 
       if (currentItem.fieldType === "dualField") {
         // Dual field has children fields so it can be treated as layout or form children fields
-        setDefaultValues(currentItem.fieldsConfig, defaultValues);
+        setDefaultValues(
+          currentItem.fieldsConfig,
+          defaultValues,
+          dataSourceObject
+        );
       } else {
         // setting default value field name
+
+        // before applying default values configuration, check for data source object that affects default value
+        if (
+          "dataSource" in currentItem &&
+          currentItem.dataSource?.propName === "defaultValue"
+        ) {
+          console.log(currentItem.dataSource.propName);
+          configDataSource(currentItem, dataSourceObject);
+        }
+
         // if nested, get last name
         // if not nested, get item name
         const fieldName: string = currentItem.name.includes(".")
@@ -137,7 +152,7 @@ export const setDefaultValues = (
 
     if (item.category === "layout") {
       const currentItem = item as ItemLayout;
-      setDefaultValues(currentItem.children, defaultValues);
+      setDefaultValues(currentItem.children, defaultValues, dataSourceObject);
     }
 
     if (item.category === "form") {
@@ -155,7 +170,8 @@ export const setDefaultValues = (
         ...defaultValues,
         [objName]: setDefaultValues(
           currentItem.children,
-          currentFormDefaultObject
+          currentFormDefaultObject,
+          dataSourceObject
         ),
       };
     }

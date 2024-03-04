@@ -175,6 +175,7 @@ export const addAppointmentFieldsConfig: Item[] = [
                 xs: 6,
                 md: 6,
                 validation: [],
+                dataSource:{propName:"defaultValue", dataSourceKey:"referenceIDValue"}
               },
               {
                 category: "field",
