@@ -7,7 +7,10 @@ import {
   ItemForm,
   CustomRuleFields,
 } from "../features/AddAppointmentFields/AddAppointmentInputs.type";
-import { DefaultValueObjectFormat } from "../features/AddAppointmentForm/AddAppointmentForm.types";
+import {
+  DataSource,
+  DefaultValueObjectFormat,
+} from "../features/AddAppointmentForm/AddAppointmentForm.types";
 import { parseValidation } from "./addAppointValidation";
 
 // Schema Config
@@ -191,4 +194,34 @@ export const formatDateTime = (time: string) => {
   } else {
     return dayjs(time);
   }
+};
+
+// Configure Data Source properties
+export const configDataSource = (
+  item: FormFieldConfig,
+  dataSourceObject: DataSource
+): FormFieldConfig => {
+  const { dataSource } = item;
+
+  // if No data source, return item data as it is
+  if (!dataSource) return item;
+
+  // If there is a dataSource property
+  const { propName, dataSourceKey } = dataSource;
+
+  // check that data source data exists in data source object
+  if (!(dataSourceKey in dataSourceObject)) {
+    throw Error("Key does not exists in data source object");
+  }
+
+  // check that prop name exists in item properties
+  if (!(propName in item)) {
+    throw Error("No such property name in current field configuration");
+  }
+
+  // set selected property value
+  item[propName] = dataSourceObject[dataSourceKey];
+
+  // return modified Item
+  return item;
 };

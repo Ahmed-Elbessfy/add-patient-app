@@ -24,6 +24,7 @@ import {
 import {
   configValidation,
   setDefaultValues,
+  configDataSource,
 } from "../../utils/addAppointUtils";
 import AddAppointmentFields from "../AddAppointmentFields/AddAppointmentFields";
 import {
@@ -156,27 +157,8 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   };
 
   const renderFieldItems = (item: FormFieldConfig) => {
-    const { dataSource } = item;
-
-    // set properties values from backend
-    if (dataSource) {
-      const { propName, dataSourceKey } = dataSource;
-
-      // check that data source data exists in data source object
-      if (!(dataSourceKey in dataSourceObject)) {
-        throw Error("Key does not exists in data source object");
-      }
-
-      // check that prop name exists in item properties
-      if (propName in item) {
-        // console.log(dataSourceObject[dataSourceKey]);
-        // set selected property value
-        item[propName] = dataSourceObject[dataSourceKey];
-        // console.log(propName, item[propName]);
-      } else {
-        throw Error("No such property name in current field configuration");
-      }
-    }
+    // Apply Data Source configuration
+    const dataSourceItem = configDataSource(item, dataSourceObject);
 
     // extract field data
     const {
@@ -188,11 +170,11 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
       md,
       xs,
       ...field
-    } = item;
+    } = dataSourceItem;
 
     const fieldProps = {
       ...field,
-      isDisabled: configDisability(item),
+      isDisabled: configDisability(dataSourceItem),
       control,
     };
 
@@ -204,7 +186,9 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
           textAlign: "start",
         }}
       >
-        {configVisibility(item) && <AddAppointmentFields {...fieldProps} />}
+        {configVisibility(dataSourceItem) && (
+          <AddAppointmentFields {...fieldProps} />
+        )}
       </Col>
     );
   };
