@@ -175,7 +175,10 @@ export const addAppointmentFieldsConfig: Item[] = [
                 xs: 6,
                 md: 6,
                 validation: [],
-                dataSource:{propName:"defaultValue", dataSourceKey:"referenceIDValue"}
+                dataSource: {
+                  propName: "defaultValue",
+                  dataSourceKey: "referenceIDValue",
+                },
               },
               {
                 category: "field",
@@ -321,6 +324,9 @@ export const addAppointmentFieldsConfig: Item[] = [
             label: "apInputs.add_new.title.label",
             xs: 24,
             md: 8,
+            allowAddingOptions: true,
+            showSearch: true,
+            allowClear: true,
             options: [
               {
                 value: "mr",
@@ -1287,6 +1293,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         label: "apInputs.status.label",
         xs: 24,
         md: 8,
+        allowClear: true,
+        showSearch: true,
+        allowAddingOptions: true,
         defaultValue: "open",
         options: [
           { value: "open", label: "apInputs.status.options.open" },
@@ -1480,6 +1489,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         xs: 24,
         md: 8,
         defaultValue: "examination",
+        showSearch: true,
+        allowClear: true,
         options: [
           { value: "examination", label: "apInputs.type.options.examination" },
           { value: "follow_up", label: "apInputs.type.options.follow_up" },

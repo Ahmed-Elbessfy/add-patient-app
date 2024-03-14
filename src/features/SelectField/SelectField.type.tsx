@@ -25,6 +25,11 @@ export interface FieldSelect extends ItemField {
   fieldType: "select"; // Type of the field (select)
   options: Option[]; // available options of select field
   defaultValue?: string; // Default value for the Select field. Used to set form default values object.
+  showSearch?: boolean; // allow search or not
+  allowClear?: boolean; // allow clear selection
+  useTags?: boolean; // show options as tags with AntD Tag element for custom style
+  allowMultiple?: boolean; // allow selecting "multiple" options. And add customized option "tags"
+  allowAddingOptions?: boolean;
 }
 
 /**
@@ -36,4 +41,9 @@ export interface FieldSelect extends ItemField {
  */
 export type FieldSelectComponentProps = {
   options: Option[]; // available options of select field
+  showSearch?: boolean; // allow search or not
+  allowClear?: boolean; // allow clear selection
+  useTags?: boolean; // show options as tags with AntD Tag element for custom style
+  allowMultiple?: boolean; // allow selecting "multiple" options. And add customized option "tags"
+  allowAddingOptions?: boolean;
 } & CustomFieldConfig;
