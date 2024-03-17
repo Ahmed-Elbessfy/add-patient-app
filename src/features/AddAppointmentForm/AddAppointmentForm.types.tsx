@@ -1,14 +1,18 @@
 import type { Dayjs } from "dayjs";
 import { Item } from "../AddAppointmentFields/AddAppointmentInputs.type";
 
-export type DataSource = {
+export type DataSourceProperty = {
   [x: string]:
     | { [x: string]: string | boolean | number }[]
     | string
     | string[]
-    | boolean;
+    | boolean
+    | ((x: string) => { value: string; label: string }[]);
 };
 
+export type DataSource = {
+  [x: string]: DataSourceProperty;
+};
 export interface AddAppointmentFormProps {
   fieldsConfig: Item[];
   onSubmit: (data: unknown) => void;

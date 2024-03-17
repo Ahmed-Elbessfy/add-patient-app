@@ -53,7 +53,7 @@ export const addAppointmentFieldsConfig: Item[] = [
     children: [
       {
         category: "field",
-        fieldType: "text",
+        fieldType: "select",
         id: "patient_name",
         testId: "patient_name",
         name: "patient_name",
@@ -61,6 +61,10 @@ export const addAppointmentFieldsConfig: Item[] = [
         placeholder: "apInputs.patient_name.placeholder",
         xs: 18,
         md: 15,
+        showSearch: true,
+        allowClear: true,
+        useDataSource: true,
+        options: [],
         disability: [
           { field: "show_add_patient", value: true },
           { field: "switch_input_method", value: true },
@@ -166,19 +170,19 @@ export const addAppointmentFieldsConfig: Item[] = [
               {
                 category: "field",
                 fieldType: "number",
-                id: "new_patient.fixed_id",
-                testId: "new_patient.fixed_id",
-                name: "new_patient.fixed_id",
+                id: "new_patient.referenceId",
+                testId: "new_patient.referenceId",
+                name: "new_patient.referenceId",
                 label: "apInputs.add_new.id.label",
                 disability: true,
                 defaultValue: 8,
                 xs: 6,
                 md: 6,
                 validation: [],
-                dataSource: {
-                  propName: "defaultValue",
-                  dataSourceKey: "referenceIDValue",
-                },
+                // dataSource: {
+                //   propName: "defaultValue",
+                //   dataSourceKey: "new_patient.referenceId.referenceIDValue",
+                // },
               },
               {
                 category: "field",
@@ -673,10 +677,7 @@ export const addAppointmentFieldsConfig: Item[] = [
             defaultChecked: false,
             validation: [],
             visibility: [],
-            dataSource: {
-              propName: "visibility",
-              dataSourceKey: "allowTemporaryPatient",
-            },
+            useDataSource: true,
           },
         ],
       },
@@ -1242,14 +1243,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         xs: 24,
         md: 8,
         placeholder: "apInputs.doctor.placeholder",
-        options: [
-          { value: "ahmed", label: "apInputs.doctor.options.ahmed" },
-          { value: "taha", label: "apInputs.doctor.options.taha" },
-        ],
-        dataSource: {
-          propName: "options",
-          dataSourceKey: "doctorsList",
-        },
+        options: [],
+        useDataSource: true,
         validation: [
           {
             type: "requiredIf",

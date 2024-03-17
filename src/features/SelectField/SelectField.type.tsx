@@ -23,7 +23,7 @@ export type FieldSelectT = Customize<
  */
 export interface FieldSelect extends ItemField {
   fieldType: "select"; // Type of the field (select)
-  options: Option[]; // available options of select field
+  options: Option[] | ((x: string) => { value: string; label: string }[]); // available options of select field
   defaultValue?: string; // Default value for the Select field. Used to set form default values object.
   showSearch?: boolean; // allow search or not
   allowClear?: boolean; // allow clear selection
@@ -40,7 +40,7 @@ export interface FieldSelect extends ItemField {
  * @extends {CustomFieldConfig}
  */
 export type FieldSelectComponentProps = {
-  options: Option[]; // available options of select field
+  options: Option[] | ((x: string) => { value: string; label: string }[]); // available options of select field
   showSearch?: boolean; // allow search or not
   allowClear?: boolean; // allow clear selection
   useTags?: boolean; // show options as tags with AntD Tag element for custom style

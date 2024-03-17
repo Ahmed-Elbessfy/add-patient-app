@@ -158,7 +158,9 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
 
   const renderFieldItems = (item: FormFieldConfig) => {
     // Apply Data Source configuration
-    const dataSourceItem = configDataSource(item, dataSourceObject);
+    const dataSourceItem = item.useDataSource
+      ? configDataSource(item, dataSourceObject)
+      : item;
 
     // extract field data
     const {

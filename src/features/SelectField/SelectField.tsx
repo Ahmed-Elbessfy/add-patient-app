@@ -22,11 +22,13 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
   // Field local state
   // manage search value as (local value) locally for allowing adding new options in case it is allowed
 
-  const [optionsClone, setOptionsClone] = useState(options);
+  const [optionsClone, setOptionsClone] = useState([]);
   const { t } = useTranslation("translation");
 
   // handle adding options with search
   const handleSearch = (searchedItem: string) => {
+    if (label == "apInputs.patient_name.label")
+      console.log(options(searchedItem));
     if (allowAddingOptions) {
       const ex = options.find((option) => {
         return option.value.toLowerCase().includes(searchedItem.toLowerCase());

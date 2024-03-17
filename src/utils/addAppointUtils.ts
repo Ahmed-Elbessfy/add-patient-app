@@ -217,27 +217,27 @@ export const configDataSource = (
   item: FormFieldConfig,
   dataSourceObject: DataSource
 ): FormFieldConfig => {
-  const { dataSource } = item;
+  const { name } = item;
 
-  // if No data source, return item data as it is
-  if (!dataSource) return item;
-
-  // If there is a dataSource property
-  const { propName, dataSourceKey } = dataSource;
-
-  // check that data source data exists in data source object
-  if (!(dataSourceKey in dataSourceObject)) {
-    throw Error("Key does not exists in data source object");
+  // check if current field has a data source object
+  if (!(name in dataSourceObject)) {
+    throw Error(`No data source for ${name} field`);
   }
 
-  // check that prop name exists in item properties
-  if (!(propName in item)) {
-    throw Error("No such property name in current field configuration");
+  // extract item data source date from data source object
+  const itemDataSource = dataSourceObject[name];
+
+  console.log(itemDataSource, item);
+  // check that data source config is for existing property
+  // this step to prevent adding any non-configured properties
+  for (const prop in itemDataSource) {
+    if (!item[prop]) {
+      throw Error(
+        `Property ${prop} does not exist in ${name} field configuration`
+      );
+    }
   }
 
-  // set selected property value
-  item[propName] = dataSourceObject[dataSourceKey];
-
-  // return modified Item
-  return item;
+  // return modified Item: New data source configuration will override the original properties values.
+  return { ...item, ...itemDataSource };
 };
