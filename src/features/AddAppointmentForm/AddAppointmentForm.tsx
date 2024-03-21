@@ -48,6 +48,7 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
   fieldsConfig,
   onSubmit,
   dataSourceObject,
+  eventsSourceObject,
 }) => {
   // Schema Config
   const shape: yup.ObjectShape = {};
@@ -158,8 +159,8 @@ const AddAppointmentForm: FC<AddAppointmentFormProps> = ({
 
   const renderFieldItems = (item: FormFieldConfig) => {
     // Apply Data Source configuration
-    const dataSourceItem = item.useDataSource
-      ? configDataSource(item, dataSourceObject)
+    const dataSourceItem = item.dataSourceConfig
+      ? configDataSource(item, dataSourceObject, eventsSourceObject)
       : item;
 
     // extract field data

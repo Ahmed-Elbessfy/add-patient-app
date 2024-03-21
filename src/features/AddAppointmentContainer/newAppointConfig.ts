@@ -63,7 +63,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         md: 15,
         showSearch: true,
         allowClear: true,
-        useDataSource: true,
+        dataSourceConfig: {
+          source: "eventsSource",
+        },
         options: [],
         disability: [
           { field: "show_add_patient", value: true },
@@ -677,7 +679,9 @@ export const addAppointmentFieldsConfig: Item[] = [
             defaultChecked: false,
             validation: [],
             visibility: [],
-            useDataSource: true,
+            dataSourceConfig: {
+              source: "eventsSource",
+            },
           },
         ],
       },
@@ -1244,7 +1248,9 @@ export const addAppointmentFieldsConfig: Item[] = [
         md: 8,
         placeholder: "apInputs.doctor.placeholder",
         options: [],
-        useDataSource: true,
+        dataSourceConfig: {
+          source: "eventsSource",
+        },
         validation: [
           {
             type: "requiredIf",

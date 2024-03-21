@@ -3,7 +3,6 @@ import { Select, Tag } from "antd";
 import { useTranslation } from "react-i18next";
 import { FieldSelectComponentProps } from "./SelectField.type";
 import { StyledSelectField } from "./SelectField.styled";
-
 const SelectField: FC<FieldSelectComponentProps> = (props) => {
   const {
     label,
@@ -20,26 +19,21 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
   } = props;
 
   // Field local state
-  // manage search value as (local value) locally for allowing adding new options in case it is allowed
-
-  const [optionsClone, setOptionsClone] = useState([]);
+  const [optionsClone, setOptionsClone] =
+    useState<{ label: string; value: string }[]>(options);
   const { t } = useTranslation("translation");
 
   // handle adding options with search
   const handleSearch = (searchedItem: string) => {
-    if (label == "apInputs.patient_name.label")
-      console.log(options(searchedItem));
     if (allowAddingOptions) {
       const ex = options.find((option) => {
         return option.value.toLowerCase().includes(searchedItem.toLowerCase());
       });
-      console.log(ex, searchedItem);
       if (!ex) {
         const newOp = [
           ...options,
           { label: searchedItem, value: searchedItem },
         ];
-        console.log(newOp);
         setOptionsClone(newOp);
       } else {
         setOptionsClone(options);

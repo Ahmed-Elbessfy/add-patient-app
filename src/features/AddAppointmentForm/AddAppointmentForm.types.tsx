@@ -13,10 +13,20 @@ export type DataSourceProperty = {
 export type DataSource = {
   [x: string]: DataSourceProperty;
 };
+
+export type EventsSource = {
+  [x: string]: {
+    [x: string]:
+      | (() => string | string[] | boolean | { value: string; label: string }[])
+      | ((x: string) => { value: string; label: string }[]);
+  };
+};
+
 export interface AddAppointmentFormProps {
   fieldsConfig: Item[];
   onSubmit: (data: unknown) => void;
   dataSourceObject: DataSource;
+  eventsSourceObject: EventsSource;
 }
 
 export type DefaultValueObjectFormat = Record<
