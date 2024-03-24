@@ -3,7 +3,7 @@ import { DataSource } from "../AddAppointmentForm/AddAppointmentForm.types";
 import AddAppointmentForm from "../AddAppointmentForm/AddAppointmentForm";
 import { addAppointmentFieldsConfig } from "./newAppointConfig";
 
-const eventsSource = {
+const actions = {
   patient_name: {
     options: (txt: string) => {
       console.log("search options");
@@ -95,7 +95,7 @@ const AddAppointmentContainer: FC = () => {
     fieldsConfig: addAppointmentFieldsConfig,
     onSubmit,
     dataSourceObject: dataSource,
-    eventsSourceObject: eventsSource,
+    actionsObject: actions,
   };
   return (
     <div>

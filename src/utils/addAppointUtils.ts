@@ -9,7 +9,7 @@ import {
 } from "../features/AddAppointmentFields/AddAppointmentInputs.type";
 import {
   DataSource,
-  EventsSource,
+  Actions,
   DefaultValueObjectFormat,
 } from "../features/AddAppointmentForm/AddAppointmentForm.types";
 import { parseValidation } from "./addAppointValidation";
@@ -216,7 +216,7 @@ export const formatDateTime = (time: string) => {
 // Helper function to apply data source configuration
 const applyDataSourceConfig = (
   item: FormFieldConfig,
-  configObject: DataSource | EventsSource
+  configObject: DataSource | Actions
 ): FormFieldConfig => {
   // Extract the name of the field from the item
   const { name } = item;
@@ -242,14 +242,14 @@ const applyDataSourceConfig = (
 };
 
 // Helper function to apply events source configuration
-const applyEventsSourceConfig = (
+const applyActionsConfig = (
   item: FormFieldConfig,
-  eventsSourceObject: EventsSource
+  actionsObject: Actions
 ): FormFieldConfig => {
   // Extract the name of the field from the item
   const { name } = item;
   // Retrieve the specific events configuration for the field from the events source object
-  const sourceConfig = eventsSourceObject[name];
+  const sourceConfig = actionsObject[name];
 
   // Check if the events configuration exists for the field
   if (!sourceConfig) {
@@ -267,6 +267,7 @@ const applyEventsSourceConfig = (
           `Property ${propName} does not exist in ${name} field configuration`
         );
 
+      console.log(sourceConfig[propName].length);
       configObj[propName] = sourceConfig[propName]();
       return configObj;
     },
@@ -280,7 +281,7 @@ const applyEventsSourceConfig = (
 export const configDataSource = (
   item: FormFieldConfig,
   dataSourceObject: DataSource,
-  eventsSourceObject: EventsSource
+  actionsObject: Actions
 ): FormFieldConfig => {
   // Extract the dataSourceConfig from the item
   const { dataSourceConfig } = item;
@@ -291,135 +292,6 @@ export const configDataSource = (
     return applyDataSourceConfig(item, dataSourceObject);
   } else {
     // Apply events source configuration
-    return applyEventsSourceConfig(item, eventsSourceObject);
+    return applyActionsConfig(item, actionsObject);
   }
 };
-
-// Configure Data Source properties
-// export const configDataSource = (
-//   item: FormFieldConfig,
-//   dataSourceObject: DataSource,
-//   eventsSourceObject: Events
-// ): FormFieldConfig => {
-//   // get field data source config
-//   const { name, dataSourceConfig } = item;
-
-//   // If data source configuration
-//   if (dataSourceConfig?.source === "dataSource") {
-//     // get configuration
-//     const sourceConfig = dataSourceObject[name];
-//     // check that current field has a data source configuration
-//     if (!sourceConfig)
-//       throw Error(`No Data source configuration for ${name} field`);
-
-//     // apply data source configuration
-//     return { ...item, ...sourceConfig };
-//   } else {
-//     // If events source configuration
-
-//     // get configuration
-//     const sourceConfig = eventsSourceObject[name];
-
-//     // check that current field has a events source configuration
-//     if (!sourceConfig)
-//       throw Error(`No Events source configuration for ${name} field`);
-
-//     const eventsConfig = {};
-//     // apply events source configuration
-//     for (const config in sourceConfig) {
-//       // console.log(config, sourceConfig[config]);
-//       eventsConfig[config] = sourceConfig[config]();
-//     }
-//     console.log(eventsConfig);
-
-//     return { ...item, ...eventsConfig };
-//   }
-
-//   // // determine data source object
-//   // const sourceObj =
-//   //   dataSourceConfig?.source === "dataSource" ? dataSourceObject : eventsObject;
-
-//   /**
-//    *
-//    *
-//    *
-//    *
-//    *
-//    *
-//    */
-
-//   // // new configuration from data source of events configuration
-//   // const dsFieldConfig = {};
-
-//   // // apply data source configuration
-//   // for (const config of dataSourceConfig!) {
-//   //   // applyDataSourceMutation(config, item);
-//   //   console.log(config);
-
-//   //   // get current configuration
-//   //   // prop name that will have the new configuration value,
-//   //   // source key where data source configuration exist in data source or events objects,
-//   //   // and in which key inside the configuration object
-//   //   const { propName, sourceKey } = config;
-
-//   //   // check if prop name does not exist already to prevent adding unacceptable properties
-//   //   if (!item[propName]) {
-//   //     throw Error(
-//   //       `Property ${propName} does not exist in ${name} field configuration`
-//   //     );
-//   //   }
-
-//   //   // get data source configuration source
-//   //   // split source key where first part is Events or data source objects
-//   //   // last part
-//   //   const spltConfig = sourceKey.split(".");
-//   //   const dsSrc = spltConfig.shift(),
-//   //     key = spltConfig.pop();
-
-//   //   console.log(dsSrc, key, name);
-
-//   //   const sourceObject = dsSrc === "events" ? eventsObject : dataSourceObject;
-//   //   // check if data source or events object configuration has a configuration for this field
-//   //   if (!sourceObject[name]) {
-//   //     throw Error(`No data source for ${name} field`);
-//   //   }
-
-//   //   // if data source configuration comes from data source object
-//   //   if (dsSrc === "dataSource") {
-//   //     dsFieldConfig[propName] = sourceObject[name][key];
-//   //   } else {
-//   //     // if data source configuration comes from events object
-//   //     const fun = sourceObject[name][key];
-//   //     console.log(fun());
-//   //     dsFieldConfig[propName] = fun();
-//   //   }
-//   // }
-//   // console.log(dsFieldConfig);
-
-//   // return { ...item, ...dsFieldConfig };
-//   // extracting dataSource config data
-
-//   // const [source, ...fieldName] = dataSourceConfig!.sourceKey;
-//   // console.log(source, fieldName);
-//   // check if current field has a data source object
-//   // if (!(name in dataSourceObject)) {
-//   //   throw Error(`No data source for ${name} field`);
-//   // }
-
-//   // extract item data source date from data source object
-//   // const itemDataSource = dataSourceObject[name];
-
-//   // console.log(itemDataSource, item);
-//   // check that data source config is for existing property
-//   // this step to prevent adding any non-configured properties
-//   // for (const prop in itemDataSource) {
-//   //   if (!item[prop]) {
-//   //     throw Error(
-//   //       `Property ${prop} does not exist in ${name} field configuration`
-//   //     );
-//   //   }
-//   // }
-
-//   // return modified Item: New data source configuration will override the original properties values.
-//   // return { ...item, ...itemDataSource };
-// };
