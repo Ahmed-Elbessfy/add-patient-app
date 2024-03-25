@@ -20,12 +20,18 @@ export type Actions = {
     // actions that requires a parameter
     | ((
           x: string
-        ) => string | string[] | boolean | { value: string; label: string }[])
+        ) =>
+          | string
+          | string[]
+          | number
+          | boolean
+          | { value: string; label: string }[])
       //
       // actions that does not require a parameter
       | (() =>
           | string
           | string[]
+          | number
           | boolean
           | { value: string; label: string }[]);
   };

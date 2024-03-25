@@ -84,7 +84,8 @@ export const configValidation = (itemsData: Item[], shape: yup.ObjectShape) => {
 export const setDefaultValues = (
   items: Item[],
   defaultValues: DefaultValueObjectFormat = {},
-  dataSourceObject: DataSource
+  dataSourceObject: DataSource,
+  actionsObject: Actions
 ) => {
   items.forEach((item) => {
     if (item.category === "field") {
@@ -100,19 +101,21 @@ export const setDefaultValues = (
         setDefaultValues(
           currentItem.fieldsConfig,
           defaultValues,
-          dataSourceObject
+          dataSourceObject,
+          actionsObject
         );
       } else {
         // setting default value field name
 
         // before applying default values configuration, check for data source object that affects default value
-        // if (
-        //   "dataSource" in currentItem &&
-        //   currentItem.dataSource?.propName === "defaultValue"
-        // ) {
-        //   console.log(currentItem.dataSource.propName);
-        //   configDataSource(currentItem, dataSourceObject);
-        // }
+
+        if ("dataSourceConfig" in currentItem) {
+          currentItem = configDataSource(
+            currentItem,
+            dataSourceObject,
+            actionsObject
+          );
+        }
 
         // if nested, get last name
         // if not nested, get item name
@@ -153,7 +156,12 @@ export const setDefaultValues = (
 
     if (item.category === "layout") {
       const currentItem = item as ItemLayout;
-      setDefaultValues(currentItem.children, defaultValues, dataSourceObject);
+      setDefaultValues(
+        currentItem.children,
+        defaultValues,
+        dataSourceObject,
+        actionsObject
+      );
     }
 
     if (item.category === "form") {
@@ -172,7 +180,8 @@ export const setDefaultValues = (
         [objName]: setDefaultValues(
           currentItem.children,
           currentFormDefaultObject,
-          dataSourceObject
+          dataSourceObject,
+          actionsObject
         ),
       };
     }
@@ -271,7 +280,6 @@ const applyActionsConfig = (
       if (sourceConfig[propName].length !== 0) {
         configObj[propName] = sourceConfig[propName];
       } else {
-
         // If action does not requires parameters
         configObj[propName] = sourceConfig[propName]();
       }

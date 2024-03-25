@@ -178,14 +178,13 @@ export const addAppointmentFieldsConfig: Item[] = [
                 name: "new_patient.referenceId",
                 label: "apInputs.add_new.id.label",
                 disability: true,
-                defaultValue: 8,
+                defaultValue: 50,
                 xs: 6,
                 md: 6,
                 validation: [],
-                // dataSource: {
-                //   propName: "defaultValue",
-                //   dataSourceKey: "new_patient.referenceId.referenceIDValue",
-                // },
+                dataSourceConfig: {
+                  source: "actionsSource",
+                },
               },
               {
                 category: "field",

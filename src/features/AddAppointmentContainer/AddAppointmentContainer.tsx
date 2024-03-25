@@ -39,6 +39,11 @@ const actions = {
       });
     },
   },
+  "new_patient.referenceId": {
+    defaultValue: () => {
+      return 234;
+    },
+  },
   doctor: {
     options: () => {
       return [
@@ -106,7 +111,7 @@ const actions = {
   },
   "new_patient.tempPatient": {
     visibility: () => {
-      return true;
+      return false;
     },
   },
 };
