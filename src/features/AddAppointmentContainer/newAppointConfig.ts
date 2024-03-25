@@ -1248,6 +1248,8 @@ export const addAppointmentFieldsConfig: Item[] = [
         xs: 24,
         md: 8,
         placeholder: "apInputs.doctor.placeholder",
+        showSearch: true,
+        allowClear: true,
         options: [],
         dataSourceConfig: {
           source: "actionsSource",

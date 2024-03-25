@@ -78,11 +78,14 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
         showSearch={showSearch}
         allowClear={allowClear}
         mode={allowMultiple ? "multiple" : undefined}
+        filterOption={(input, option): boolean => {
+          return option?.key.toLowerCase().includes(input.toLowerCase());
+        }}
       >
         {optionsClone &&
-          optionsClone.map((option, ind) => {
+          optionsClone.map((option) => {
             return (
-              <Select.Option key={ind} value={option.value}>
+              <Select.Option key={option.label} value={option.value}>
                 <Tag color="#d4d106">{t(option.label)}</Tag>
               </Select.Option>
             );
