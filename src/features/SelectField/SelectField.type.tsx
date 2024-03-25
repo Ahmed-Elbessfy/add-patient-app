@@ -30,6 +30,7 @@ export interface FieldSelect extends ItemField {
   useTags?: boolean; // show options as tags with AntD Tag element for custom style
   allowMultiple?: boolean; // allow selecting "multiple" options. And add customized option "tags"
   allowAddingOptions?: boolean;
+  getOptions?: (x: string) => void; // getOptions here is a placeholder for the getOptions action comes from actions configuration later
 }
 
 /**
@@ -41,6 +42,7 @@ export interface FieldSelect extends ItemField {
  */
 export type FieldSelectComponentProps = {
   options: Option[]; // available options of select field
+  getOptions?: (x: string) => Option[]; // an action to fetch options based on Select Field Value, used for search
   showSearch?: boolean; // allow search or not
   allowClear?: boolean; // allow clear selection
   useTags?: boolean; // show options as tags with AntD Tag element for custom style

@@ -267,8 +267,14 @@ const applyActionsConfig = (
           `Property ${propName} does not exist in ${name} field configuration`
         );
 
-      console.log(sourceConfig[propName].length);
-      configObj[propName] = sourceConfig[propName]();
+      // check if action requires parameters
+      if (sourceConfig[propName].length !== 0) {
+        configObj[propName] = sourceConfig[propName];
+      } else {
+
+        // If action does not requires parameters
+        configObj[propName] = sourceConfig[propName]();
+      }
       return configObj;
     },
     {} as Record<string, unknown>

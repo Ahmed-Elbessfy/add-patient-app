@@ -5,14 +5,38 @@ import { addAppointmentFieldsConfig } from "./newAppointConfig";
 
 const actions = {
   patient_name: {
-    options: (txt: string) => {
-      console.log("search options");
-      return [
+    getOptions: (x: string) => {
+      const users = [
         {
-          value: txt,
-          label: txt,
+          label: "Ahmed Taha",
+          value: "ahmed_taha",
+          number: "01113305408",
+        },
+        {
+          label: "Sameha Taha",
+          value: "sameha_taha",
+          number: "02233454646",
+        },
+        {
+          label: "Dina Ali",
+          value: "dina_ali",
+          number: "083434353453",
+        },
+        {
+          label: "Omar Ahmed",
+          value: "omar_ahmed",
+          number: "035456657757",
+        },
+        {
+          label: "Fatma Mohmammed",
+          value: "fatma_mohammed",
+          number: "0565758887456",
         },
       ];
+
+      return users.filter((user) => {
+        return user.label.toLowerCase().includes(x);
+      });
     },
   },
   doctor: {

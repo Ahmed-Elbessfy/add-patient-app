@@ -16,9 +16,18 @@ export type DataSource = {
 
 export type Actions = {
   [x: string]: {
-    [x: string]:
-      | (() => string | string[] | boolean | { value: string; label: string }[])
-      | ((x: string) => { value: string; label: string }[]);
+    [x: string]: //
+    // actions that requires a parameter
+    | ((
+          x: string
+        ) => string | string[] | boolean | { value: string; label: string }[])
+      //
+      // actions that does not require a parameter
+      | (() =>
+          | string
+          | string[]
+          | boolean
+          | { value: string; label: string }[]);
   };
 };
 

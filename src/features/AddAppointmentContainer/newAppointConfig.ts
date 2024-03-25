@@ -66,6 +66,7 @@ export const addAppointmentFieldsConfig: Item[] = [
         dataSourceConfig: {
           source: "actionsSource",
         },
+        getOptions: () => {},
         options: [],
         disability: [
           { field: "show_add_patient", value: true },
