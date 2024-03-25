@@ -63,6 +63,11 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
     }
   };
 
+  const handleClear = () => {
+    // In case fetching options from an API, empty fetched options on clearing
+    if (allowClear && getOptions) setOptionsClone(options);
+  };
+
   return (
     <>
       <label>{label && t(label)}</label>
@@ -77,6 +82,7 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
         style={{ width: "100%" }}
         showSearch={showSearch}
         allowClear={allowClear}
+        onClear={handleClear}
         mode={allowMultiple ? "multiple" : undefined}
         filterOption={(input, option): boolean => {
           return option?.key.toLowerCase().includes(input.toLowerCase());
