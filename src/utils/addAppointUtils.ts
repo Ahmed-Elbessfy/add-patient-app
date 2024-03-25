@@ -241,25 +241,25 @@ const applyDataSourceConfig = (
   return { ...item, ...sourceConfig };
 };
 
-// Helper function to apply events source configuration
+// Helper function to apply actions source configuration
 const applyActionsConfig = (
   item: FormFieldConfig,
   actionsObject: Actions
 ): FormFieldConfig => {
   // Extract the name of the field from the item
   const { name } = item;
-  // Retrieve the specific events configuration for the field from the events source object
+  // Retrieve the specific actions configuration for the field from the actions source object
   const sourceConfig = actionsObject[name];
 
-  // Check if the events configuration exists for the field
+  // Check if the actions configuration exists for the field
   if (!sourceConfig) {
-    // Throw an error if no events configuration is found, indicating the field name
-    throw new Error(`No Events source configuration for ${name} field`);
+    // Throw an error if no actions configuration is found, indicating the field name
+    throw new Error(`No Actions source configuration for ${name} field`);
   }
 
   // Iterate over the sourceConfig object to apply each event configuration
-  // and store the results in a new object, eventsConfig
-  const eventsConfig = Object.keys(sourceConfig).reduce(
+  // and store the results in a new object, actionsConfig
+  const actionsConfig = Object.keys(sourceConfig).reduce(
     (configObj, propName) => {
       // check if property exists in field configuration
       if (!(item as any)[propName])
@@ -274,8 +274,8 @@ const applyActionsConfig = (
     {} as Record<string, unknown>
   );
 
-  // Merge the original item with the eventsConfig object and return the result
-  return { ...item, ...eventsConfig };
+  // Merge the original item with the actionsConfig object and return the result
+  return { ...item, ...actionsConfig };
 };
 
 export const configDataSource = (
@@ -291,7 +291,7 @@ export const configDataSource = (
     // Apply data source configuration
     return applyDataSourceConfig(item, dataSourceObject);
   } else {
-    // Apply events source configuration
+    // Apply actions source configuration
     return applyActionsConfig(item, actionsObject);
   }
 };

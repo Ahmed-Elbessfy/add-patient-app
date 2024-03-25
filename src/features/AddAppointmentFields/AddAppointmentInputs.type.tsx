@@ -103,7 +103,7 @@ export type ItemField = {
   disability?: Rule[] | boolean; // Disability rules or allow permanent disability
   prefix?: string; // Text or icon added before field (used with addonBefore)N
   suffix?: string; // Text or icon added after field (used with addonAfter)
-  dataSourceConfig?: { source: "eventsSource" | "dataSource" };
+  dataSourceConfig?: { source: "actionsSource" | "dataSource" };
   // Design Values
   xs?: number; // Used for default width at screens less than MEDIUM size
   md?: number; // Used for width at screens wider than MEDIUM size
