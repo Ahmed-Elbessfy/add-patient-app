@@ -107,14 +107,41 @@ export const setDefaultValues = (
       } else {
         // setting default value field name
 
-        // before applying default values configuration, check for data source object that affects default value
+        // before applying default values configuration, check for data source or action source object that affects default value
 
         if ("dataSourceConfig" in currentItem) {
-          currentItem = configDataSource(
-            currentItem,
-            dataSourceObject,
-            actionsObject
-          );
+          // only apply config if the data source or actions source is affecting default value or default checked
+          // determine source object
+          const source =
+            currentItem.dataSourceConfig?.source === "dataSource"
+              ? dataSourceObject
+              : actionsObject;
+          // get field data source/action source config
+          const config = source[currentItem.name];
+
+          // if default value is not a boolean, like text, number, select ..etc
+          // check for defaultValue exist in current item to prevent typescript error that it does not exist in some fields types
+          if ("defaultValue" in config && "defaultValue" in currentItem) {
+            const { defaultValue } = configDataSource(
+              currentItem,
+              dataSourceObject,
+              actionsObject
+            );
+
+            currentItem.defaultValue = defaultValue;
+          }
+
+          // if default value is boolean, for switch & checkbox field types
+          // check for defaultChecked exist in current item to prevent typescript error that it does not exist in some fields types
+          if ("defaultChecked" in config) {
+            const { defaultChecked } = configDataSource(
+              currentItem,
+              dataSourceObject,
+              actionsObject
+            );
+
+            currentItem.defaultChecked = defaultChecked;
+          }
         }
 
         // if nested, get last name
