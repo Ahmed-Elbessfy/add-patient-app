@@ -12,6 +12,7 @@ import { FieldCountryComponentProps } from "../CountryField/CountryField.type";
 import { FieldPhoneComponentProps } from "../PhoneField/PhoneField.type";
 import { FieldDualComponentProps } from "../DualField/DualField.type";
 import { FieldIDComponentProps } from "../IDField/IDField.type";
+import { FieldUploadFileComponentProps } from "../UploadField/UploadField.type";
 
 import TextField from "../TextField/TextField";
 import NumberField from "../NumberField/NumberField";
@@ -55,6 +56,7 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
   // dual field uses AddAppointmentField internally to render its children to register fields values
   // so control is passed to dual field to be passed again to AddAppointmentField component
   const dualProps = { ...props, control };
+
   return (
     <>
       {/* Text Input  */}

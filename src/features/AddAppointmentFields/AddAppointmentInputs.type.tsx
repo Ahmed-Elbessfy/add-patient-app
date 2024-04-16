@@ -14,6 +14,7 @@ import { FieldCountry } from "../CountryField/CountryField.type";
 import { FieldDual } from "../DualField/DualField.type";
 import { FieldPhone } from "../PhoneField/PhoneField.type";
 import { FieldID } from "../IDField/IDField.type";
+import { FieldUploadFile } from "../UploadField/UploadField.type";
 
 // Utility type to customize a type by excluding certain properties
 // this was for approaching another type definition method and can be used later
@@ -69,7 +70,8 @@ type fieldTypeValues =
   | "radio"
   | "switch"
   | "checkbox"
-  | "dualField";
+  | "dualField"
+  | "uploadFile";
 
 // Options of Select & Radio types
 export type Option = {
@@ -127,7 +129,8 @@ export type FormFieldConfig =
   | FieldSwitch
   | FieldCheckbox
   | FieldTextArea
-  | FieldDual;
+  | FieldDual
+  | FieldUploadFile;
 
 // General Field Component props
 // Should receive: fieldType, name, id, testid, label, placeholder, isDisabled, suffix, prefix
