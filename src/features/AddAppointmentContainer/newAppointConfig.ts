@@ -11,6 +11,23 @@ export const addAppointmentFieldsConfig: Item[] = [
     children: [
       {
         category: "field",
+        fieldType: "uploadFile",
+        id: "user_image",
+        testId: "user_image",
+        name: "user_image",
+        acceptedFormats: [
+          "image/jpg",
+          "image/jpeg",
+          "image/png",
+          "image/svg",
+          "image/webp",
+        ],
+        sizeLimit: 5,
+        maxFileCount: 2,
+        validation: [],
+      },
+      {
+        category: "field",
         fieldType: "switch",
         id: "urgent_tag",
         testId: "urgent_tag",
