@@ -67,6 +67,12 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
     // In case fetching options from an API, empty fetched options on clearing
     if (allowClear && getOptions) setOptionsClone(options);
   };
+  const handleSelectForAddress = () => {
+    console.log(value);
+    fetch("https://jsonplaceholder.typicode.com/todos/10")
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  };
 
   return (
     <>
@@ -83,6 +89,7 @@ const SelectField: FC<FieldSelectComponentProps> = (props) => {
         showSearch={showSearch}
         allowClear={allowClear}
         onClear={handleClear}
+        onSelect={handleSelectForAddress}
         mode={allowMultiple ? "multiple" : undefined}
         filterOption={(input, option): boolean => {
           return option?.key.toLowerCase().includes(input.toLowerCase());

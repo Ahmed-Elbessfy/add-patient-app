@@ -39,6 +39,16 @@ const actions = {
       });
     },
   },
+  "new_patient.address": {
+    getOptions: (x: string) => {
+      console.log(x);
+      fetch("https://jsonplaceholder.typicode.com/todos/10")
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+
+      return [];
+    },
+  },
   "new_patient.referenceId": {
     defaultValue: () => {
       return 234;
