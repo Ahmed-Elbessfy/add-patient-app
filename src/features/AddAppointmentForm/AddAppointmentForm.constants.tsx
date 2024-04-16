@@ -16,6 +16,7 @@ export const INPUT_TYPES = {
   INPUT_CHECKBOX: "checkbox",
   INPUT_PHONE: "phone",
   INPUT_ID: "idField",
+  INPUT_UPLOAD: "uploadFile",
 };
 
 export const VALIDATION_RULE_TYPES = {
@@ -143,6 +144,7 @@ export const INPUT_VALIDATION_TYPES = {
   [INPUT_TYPES.INPUT_CHECKBOX]: yup.boolean(),
   [INPUT_TYPES.INPUT_PHONE]: yup.string(),
   [INPUT_TYPES.INPUT_ID]: yup.string(),
+  [INPUT_TYPES.INPUT_UPLOAD]: yup.mixed()
 };
 
 /**********************************************************************
