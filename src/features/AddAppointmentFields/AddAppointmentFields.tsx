@@ -27,6 +27,7 @@ import CountryField from "../CountryField/CountryField";
 import PhoneField from "../PhoneField/PhoneField";
 import DualField from "../DualField/DualField";
 import IDField from "../IDField/IDField";
+import UploadField from "../UploadField/UploadField";
 
 import { GeneralFieldConfig } from "./AddAppointmentInputs.type";
 import { useController } from "react-hook-form";
@@ -130,6 +131,10 @@ const AddAppointmentFields: FC<GeneralFieldConfig> = (props) => {
       {/* No need to error message for switch & checkbox fields and take useless area  */}
       {!["dualField", "switch", "checkbox"].includes(fieldType) && (
         <ErrorMsg error={error} />
+      )}
+
+      {fieldType === "uploadFile" && (
+        <UploadField {...(inputProps as FieldUploadFileComponentProps)} />
       )}
     </>
   );
