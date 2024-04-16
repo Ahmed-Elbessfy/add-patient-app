@@ -128,8 +128,33 @@ const actions = {
 
 const dataSource: DataSource = {};
 
+function flattenObject(obj, parentKey = "") {
+  const flattened = {};
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const propName = key;
+
+      if (
+        typeof obj[key] === "object" &&
+        obj[key] !== null &&
+        !Array.isArray(obj[key])
+      ) {
+        Object.assign(flattened, flattenObject(obj[key], propName));
+      } else {
+        flattened[propName] = obj[key];
+      }
+    }
+  }
+
+  return flattened;
+}
+
 const AddAppointmentContainer: FC = () => {
-  const onSubmit = (data: unknown) => console.log(data);
+  const onSubmit = (data: unknown) => {
+    console.log(data.user_image);
+    console.log(flattenObject(data));
+  };
   const formConfig = {
     fieldsConfig: addAppointmentFieldsConfig,
     onSubmit,
